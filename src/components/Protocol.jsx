@@ -37,8 +37,8 @@ export default function Protocol() {
                         ease: "none",
                         scrollTrigger: {
                             trigger: cards[index + 1],
-                            start: "top 80%",
-                            end: "top 10%",
+                            start: "top 75%",
+                            end: "top 20%",
                             scrub: true,
                         }
                     });
@@ -52,7 +52,7 @@ export default function Protocol() {
 
     return (
         <section id="portfolio" ref={containerRef} className="relative bg-drago-bg pb-24 md:pb-32">
-            <div className="text-center pt-24 mb-16 w-full relative z-20 pointer-events-none">
+            <div className="text-center pt-24 mb-16 w-full z-10 pointer-events-none">
                 <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance text-drago-contrast">
                     Portfolio in evidenza
                 </h2>
@@ -61,7 +61,7 @@ export default function Protocol() {
 
             <div className="flex flex-col relative w-full">
                 {projects.map((project, i) => (
-                    <div key={i} className={`card-wrapper sticky top-6 md:top-12 lg:top-16 w-full flex justify-center pb-12 lg:pb-24`} style={{ zIndex: i }}>
+                    <div key={i} className={`card-wrapper sticky top-16 md:top-24 w-full h-[auto] min-h-[85vh] md:min-h-[95vh] flex items-start justify-center pt-4 md:pt-8 pb-8 md:pb-12 border-0 bg-transparent outline-none`} style={{ zIndex: i }}>
                         {/* Removed CSS transition-all to allow raw GSAP frame scrub rendering without lagging */}
                         <div className={`card-inner relative rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 group backdrop-blur-xl aspect-[4/5] md:aspect-video ${!project.image ? 'w-[90%] md:w-[60%] max-w-4xl shadow-[0_0_100px_rgba(0,115,160,0.5)] border-drago-accent/40 bg-white/5' : 'w-[95%] md:w-[90%] max-w-6xl bg-black/50 shadow-black/50'}`}>
 
@@ -70,7 +70,7 @@ export default function Protocol() {
                                     <img
                                         src={project.image}
                                         alt={project.title}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${i === 1 ? 'object-[center_10%]' : ''}`}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
                                     <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-center md:text-left">
