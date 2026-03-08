@@ -172,16 +172,22 @@ export default function Protocol() {
                             100% { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
                         }
                     `}</style>
-                    <div className="card-inner relative w-[85%] md:w-[60%] lg:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-[55vh] lg:aspect-video lg:h-auto"
+                    <div className="card-inner relative w-[90%] md:w-[70%] lg:w-[55%] max-w-4xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden"
                         style={{ animation: 'cardGlowBreath 3s ease-in-out infinite' }}
                     >
-                        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
-                            <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
+                        <div className="flex flex-col items-center justify-center px-8 sm:px-12 py-10 sm:py-14 text-center">
+                            <h3
+                                className="font-sans font-bold leading-tight text-balance text-white mb-4"
+                                style={{ fontSize: 'clamp(1.6rem, 4vw, 3.5rem)' }}
+                            >
                                 Inizia il tuo progetto con{' '}
                                 <span className="text-drago-accent">Drago Labs</span>
                             </h3>
 
-                            <p className="font-sans font-light text-sm md:text-base lg:text-lg text-gray-300 max-w-xl mx-auto leading-relaxed text-balance mb-8">
+                            <p
+                                className="font-sans font-light text-gray-300 max-w-xl mx-auto leading-relaxed text-balance mb-8"
+                                style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.125rem)' }}
+                            >
                                 Non limitarti a un sito web, investi in una{' '}
                                 <span className="text-drago-accent font-medium">soluzione digitale</span>{' '}
                                 per rivoluzionare la tua presenza online.
