@@ -78,7 +78,7 @@ export default function Protocol() {
                         className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden transition-colors duration-500 group">
+                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_40px_rgba(0,115,160,0.22)] bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.5s,box-shadow_0.5s] group">
 
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
@@ -165,7 +165,16 @@ export default function Protocol() {
                     className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="card-inner relative w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl shadow-[0_0_100px_rgba(0,115,160,0.5)] overflow-hidden aspect-[4/5] md:aspect-video">
+                    <style>{`
+                        @keyframes cardGlowBreath {
+                            0%   { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
+                            50%  { box-shadow: 0 0 70px 28px rgba(0,115,160,0.12), 0 0 0 0 transparent; }
+                            100% { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
+                        }
+                    `}</style>
+                    <div className="card-inner relative w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden aspect-[4/5] md:aspect-video"
+                        style={{ animation: 'cardGlowBreath 3s ease-in-out infinite' }}
+                    >
                         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
                             <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
                                 Inizia il tuo progetto con{' '}
