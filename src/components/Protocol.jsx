@@ -7,16 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
     {
         title: "Casa Vacanze Vistamare",
-        image: "/img/casavacanze-vistamare.png"
+        type: "Sito Web",
+        description: "Sito di presentazione per una casa vacanze affacciata sul mare, con sistema di prenotazione integrato e galleria multimediale.",
+        image: "/img/casavacanze-vistamare.png",
+        link: ""
     },
     {
         title: "A Un Passo Dal Faro",
-        image: "/img/aunpasso-dalfaro.png"
-    },
-    {
-        title: "Inizia il tuo progetto Labs.",
-        subtitle: "Consulenza strategica e sviluppo high-end. Richiedi una sessione esplorativa per valutare la digitalizzazione sartoriale della tua impresa.",
-        image: ""
+        type: "Sito Web",
+        description: "Portale turistico per un affitto vacanze con prenotazione online, calendario disponibilità e contenuti multilingua.",
+        image: "/img/aunpasso-dalfaro.png",
+        link: ""
     }
 ];
 
@@ -28,7 +29,6 @@ export default function Protocol() {
             const cards = gsap.utils.toArray('.card-wrapper');
 
             cards.forEach((card, index) => {
-                // Scale + blur the current card as the next one scrolls over it
                 if (index < cards.length - 1) {
                     gsap.to(card.querySelector('.card-inner'), {
                         scale: 0.90,
@@ -52,7 +52,7 @@ export default function Protocol() {
 
     return (
         <section id="portfolio" ref={containerRef} className="relative bg-drago-bg pb-24 md:pb-32">
-            {/* Section Title — spacing matches "Perchè sceglierci" */}
+            {/* Section Title */}
             <div className="text-center pt-24 mb-16 w-full z-10 pointer-events-none">
                 <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance text-drago-contrast">
                     Portfolio in evidenza
@@ -61,99 +61,145 @@ export default function Protocol() {
             </div>
 
             <div className="flex flex-col relative w-full">
+
+                {/* ─── PROJECT CARDS ─── */}
                 {projects.map((project, i) => (
                     <div
                         key={i}
-                        className="card-wrapper sticky top-16 md:top-20 w-full min-h-screen flex items-center justify-center"
+                        className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        {/* Card inner — different sizing for image vs CTA card */}
-                        <div
-                            className={`card-inner relative rounded-[2rem] overflow-hidden shadow-2xl border backdrop-blur-xl
-                                ${!project.image
-                                    ? 'w-[90%] md:w-[60%] max-w-4xl aspect-[4/5] md:aspect-video border-drago-accent/40 bg-white/5 shadow-[0_0_100px_rgba(0,115,160,0.5)]'
-                                    : 'w-[95%] max-w-[1200px] h-[75vh] border-white/10 bg-black/60 shadow-black/50'
-                                }`}
-                        >
-                            {project.image ? (
-                                /* Image cards: image top 40% mobile / full cover desktop with text overlay */
-                                <>
-                                    {/* Mobile: stacked layout */}
-                                    <div className="md:hidden flex flex-col h-full">
-                                        <div className="relative h-[40%] flex-shrink-0 overflow-hidden">
-                                            <img
-                                                src={project.image}
-                                                alt={project.title}
-                                                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${i === 1 ? 'object-[center_10%]' : ''}`}
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
-                                        </div>
-                                        <div className="flex-1 flex flex-col justify-center px-6 py-4 bg-black/80">
-                                            <h3 className="font-sans font-bold leading-tight text-2xl text-white">
-                                                {project.title}
-                                            </h3>
-                                        </div>
-                                    </div>
+                        <div className="card-inner relative w-[95%] max-w-[1100px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden transition-colors duration-500 group">
 
-                                    {/* Desktop: full cover with gradient overlay + text bottom-left */}
-                                    <div className="hidden md:block absolute inset-0">
+                            {/* ── DESKTOP: image left / info right ── */}
+                            <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
+                                {/* Image panel */}
+                                <div className="w-[50%] flex-shrink-0 p-4">
+                                    <div className="w-full h-full rounded-[1.25rem] overflow-hidden">
                                         <img
                                             src={project.image}
                                             alt={project.title}
-                                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${i === 1 ? 'object-[center_10%]' : ''}`}
+                                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03] ${i === 1 ? 'object-[center_10%]' : ''}`}
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/5" />
-                                        <div className="absolute inset-0 p-12 flex flex-col justify-end text-left">
-                                            <h3 className="font-sans font-bold leading-tight text-4xl md:text-5xl text-white">
-                                                {project.title}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </>
-                            ) : (
-                                /* CTA card: centered content */
-                                <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center bg-transparent">
-                                    <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
-                                        Inizia il tuo progetto con{' '}
-                                        <span className="text-drago-accent">Drago Labs</span>
-                                    </h3>
-
-                                    <p className="font-sans font-light text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed text-balance mb-8">
-                                        Non limitarti a un sito web, investi in un'architettura digitale d'eccellenza. Parliamo della tua visione e trasformiamola in un progetto high-end per rivoluzionare la tua presenza online.
-                                    </p>
-
-                                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none">
-                                        <a
-                                            href="mailto:info.dragolabs@gmail.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto"
-                                        >
-                                            <span className="relative z-10 flex items-center gap-2">
-                                                Prenota una consulenza
-                                                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </span>
-                                        </a>
-
-                                        <a
-                                            href="/portfolio"
-                                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/10 rounded-full hover:bg-white/20 hover:scale-105 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] w-full sm:w-auto"
-                                        >
-                                            <span className="relative z-10 flex items-center gap-2">
-                                                Portfolio completo
-                                                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </span>
-                                        </a>
                                     </div>
                                 </div>
-                            )}
+
+                                {/* Info panel */}
+                                <div className="flex-1 flex flex-col justify-center px-10 py-8">
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-drago-accent/50 text-drago-accent bg-drago-accent/10 w-fit mb-5">
+                                        {project.type}
+                                    </span>
+                                    <h3 className="font-sans font-bold text-3xl xl:text-4xl text-white leading-tight mb-4">
+                                        {project.title}
+                                    </h3>
+                                    <p className="font-sans font-light text-base text-gray-300 leading-relaxed mb-8 max-w-sm">
+                                        {project.description}
+                                    </p>
+                                    <a
+                                        href={project.link || '#'}
+                                        className="group inline-flex items-center justify-between w-full max-w-xs p-3 rounded-xl border border-drago-accent hover:bg-drago-accent hover:border-drago-accent transition-all duration-300"
+                                    >
+                                        <span className="font-sans text-base font-semibold text-drago-accent group-hover:text-white transition-colors">Visita il progetto</span>
+                                        <div className="w-6 h-6 rounded-full bg-drago-accent/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                                            <svg className="w-3 h-3 text-drago-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* ── MOBILE: image top / info bottom ── */}
+                            <div className="flex md:hidden flex-col">
+                                {/* Image — aspect 16/10 for taller look on mobile */}
+                                <div className="p-3 pb-0">
+                                    <div className="w-full rounded-[1.25rem] overflow-hidden" style={{ aspectRatio: '16/10' }}>
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className={`w-full h-full object-cover ${i === 1 ? 'object-[center_10%]' : ''}`}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Info */}
+                                <div className="px-5 py-5">
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-drago-accent/50 text-drago-accent bg-drago-accent/10 w-fit mb-3">
+                                        {project.type}
+                                    </span>
+                                    <h3 className="font-sans font-bold text-xl text-white leading-tight mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="font-sans font-light text-sm text-gray-300 leading-relaxed mb-4">
+                                        {project.description}
+                                    </p>
+                                    <a
+                                        href={project.link || '#'}
+                                        className="group inline-flex items-center justify-between w-full p-3 rounded-xl border border-drago-accent hover:bg-drago-accent transition-all duration-300"
+                                    >
+                                        <span className="font-sans text-sm font-semibold text-drago-accent group-hover:text-white transition-colors">Visita il progetto</span>
+                                        <div className="w-5 h-5 rounded-full bg-drago-accent/10 flex items-center justify-center group-hover:bg-white transition-colors">
+                                            <svg className="w-3 h-3 text-drago-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 ))}
+
+                {/* ─── CTA CARD (third) ─── */}
+                <div
+                    className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
+                    style={{ zIndex: projects.length }}
+                >
+                    <div className="card-inner w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl shadow-[0_0_100px_rgba(0,115,160,0.5)] overflow-hidden aspect-[4/5] md:aspect-video">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
+                            <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
+                                Inizia il tuo progetto con{' '}
+                                <span className="text-drago-accent">Drago Labs</span>
+                            </h3>
+
+                            <p className="font-sans font-light text-sm md:text-base lg:text-lg text-gray-300 max-w-xl mx-auto leading-relaxed text-balance mb-8">
+                                Non limitarti a un sito web, investi in una{' '}
+                                <span className="text-drago-accent font-medium">soluzione digitale</span>{' '}
+                                per rivoluzionare la tua presenza online.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none">
+                                <a
+                                    href="mailto:info.dragolabs@gmail.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        Prenota una consulenza
+                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </span>
+                                </a>
+
+                                <a
+                                    href="/portfolio"
+                                    className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/10 rounded-full hover:bg-white/20 hover:scale-105 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] w-full sm:w-auto"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        Portfolio completo
+                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     );

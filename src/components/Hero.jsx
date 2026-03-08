@@ -23,7 +23,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+            className="relative min-h-screen flex flex-col items-center pt-20 pb-8 md:pb-12 overflow-hidden"
         >
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -35,6 +35,10 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-drago-bg" />
             </div>
 
+            {/* Flexible top spacer — pushes content toward center */}
+            <div className="flex-1" />
+
+            {/* Main content */}
             <div className="relative z-10 container mx-auto px-6 flex flex-col items-center text-center">
                 <div ref={textRef} className="space-y-6 max-w-4xl">
                     <h1 className="stagger-text font-sans font-bold text-6xl md:text-8xl lg:text-[6rem] leading-tight text-balance text-drago-contrast">
@@ -70,8 +74,11 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="stagger-text absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 md:gap-4 opacity-50">
+            {/* Flexible bottom spacer — separates content from scroll indicator */}
+            <div className="flex-1" />
+
+            {/* Scroll indicator — naturally at the bottom of the flex column */}
+            <div className="stagger-text relative z-10 flex flex-col items-center gap-3 md:gap-5 opacity-50">
                 <div className="animate-bounce">
                     <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
