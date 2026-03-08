@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -23,6 +23,15 @@ const projects = [
 
 export default function Protocol() {
     const containerRef = useRef(null);
+    const [pulsing, setPulsing] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPulsing(true);
+            setTimeout(() => setPulsing(false), 500);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -37,8 +46,8 @@ export default function Protocol() {
                         ease: "none",
                         scrollTrigger: {
                             trigger: cards[index + 1],
-                            start: "top bottom",
-                            end: "top 30%",
+                            start: "top 80%",
+                            end: "top 10%",
                             scrub: true,
                         }
                     });
@@ -69,12 +78,12 @@ export default function Protocol() {
                         className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        <div className="card-inner relative w-[95%] max-w-[1100px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden transition-colors duration-500 group">
+                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden transition-colors duration-500 group">
 
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
                                 {/* Image panel */}
-                                <div className="w-[50%] flex-shrink-0 p-4">
+                                <div className="w-[70%] flex-shrink-0 p-4">
                                     <div className="w-full h-full rounded-[1.25rem] overflow-hidden">
                                         <img
                                             src={project.image}
@@ -156,7 +165,7 @@ export default function Protocol() {
                     className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="card-inner w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl shadow-[0_0_100px_rgba(0,115,160,0.5)] overflow-hidden aspect-[4/5] md:aspect-video">
+                    <div className="card-inner relative w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl shadow-[0_0_100px_rgba(0,115,160,0.5)] overflow-hidden aspect-[4/5] md:aspect-video">
                         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
                             <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
                                 Inizia il tuo progetto con{' '}
@@ -178,9 +187,15 @@ export default function Protocol() {
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         Prenota una consulenza
-                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
+                                        <span style={{
+                                            display: 'inline-flex',
+                                            transform: pulsing ? 'translateX(5px)' : 'translateX(0)',
+                                            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                                        }}>
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </span>
                                     </span>
                                 </a>
 
@@ -190,8 +205,8 @@ export default function Protocol() {
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         Portfolio completo
-                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
                                         </svg>
                                     </span>
                                 </a>

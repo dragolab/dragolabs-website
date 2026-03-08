@@ -1,9 +1,10 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function Hero() {
     const containerRef = useRef(null);
     const textRef = useRef(null);
+    const [pulsing, setPulsing] = useState(false);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -18,6 +19,15 @@ export default function Hero() {
         }, containerRef);
 
         return () => ctx.revert();
+    }, []);
+
+    // Arrow pulse every 3 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPulsing(true);
+            setTimeout(() => setPulsing(false), 500);
+        }, 3000);
+        return () => clearInterval(interval);
     }, []);
 
     return (
@@ -54,17 +64,28 @@ export default function Hero() {
                     </p>
 
                     <div className="stagger-text pt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        {/* Prima consulenza gratuita — arrow pulses right every 3s */}
                         <a href="mailto:info.dragolabs@gmail.com" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 overflow-hidden shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto">
                             <span className="relative z-10 flex items-center gap-2">
                                 Prima consulenza gratuita
-                                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
+                                <span
+                                    style={{
+                                        display: 'inline-flex',
+                                        transform: pulsing ? 'translateX(5px)' : 'translateX(0)',
+                                        transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                                    }}
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </span>
                             </span>
                         </a>
+
+                        {/* Guarda il portfolio */}
                         <a href="#portfolio" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/10 rounded-full hover:bg-white/20 hover:scale-105 overflow-hidden border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] w-full sm:w-auto">
                             <span className="relative z-10 flex items-center gap-2">
-                                Vedi portfolio
+                                Guarda il portfolio
                                 <svg className="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                                 </svg>
