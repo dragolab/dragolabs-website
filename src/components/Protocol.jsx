@@ -37,8 +37,8 @@ export default function Protocol() {
                         ease: "none",
                         scrollTrigger: {
                             trigger: cards[index + 1],
-                            start: "top center",
-                            end: "top 10%",
+                            start: "top bottom",
+                            end: "top 30%",
                             scrub: true,
                         }
                     });
@@ -67,13 +67,12 @@ export default function Protocol() {
                         className="card-wrapper sticky top-16 md:top-20 w-full min-h-screen flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        {/* Card inner — viewport-aware height, never overflows */}
+                        {/* Card inner — different sizing for image vs CTA card */}
                         <div
-                            className={`card-inner relative rounded-[1.5rem] overflow-hidden shadow-2xl border backdrop-blur-xl
-                                w-[95%] max-w-[1200px] h-[75vh] md:h-[75vh]
+                            className={`card-inner relative rounded-[2rem] overflow-hidden shadow-2xl border backdrop-blur-xl
                                 ${!project.image
-                                    ? 'border-drago-accent/40 bg-white/5 shadow-[0_0_100px_rgba(0,115,160,0.4)]'
-                                    : 'border-white/10 bg-black/60 shadow-black/50'
+                                    ? 'w-[90%] md:w-[60%] max-w-4xl aspect-[4/5] md:aspect-video border-drago-accent/40 bg-white/5 shadow-[0_0_100px_rgba(0,115,160,0.5)]'
+                                    : 'w-[95%] max-w-[1200px] h-[75vh] border-white/10 bg-black/60 shadow-black/50'
                                 }`}
                         >
                             {project.image ? (
@@ -113,13 +112,13 @@ export default function Protocol() {
                                 </>
                             ) : (
                                 /* CTA card: centered content */
-                                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 md:px-12 py-8 text-center">
-                                    <h3 className="font-sans font-bold text-2xl md:text-4xl lg:text-[3rem] leading-tight text-balance text-white mb-4">
+                                <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center bg-transparent">
+                                    <h3 className="font-sans font-bold text-3xl md:text-5xl lg:text-[3.5rem] leading-tight text-balance text-white mb-4">
                                         Inizia il tuo progetto con{' '}
                                         <span className="text-drago-accent">Drago Labs</span>
                                     </h3>
 
-                                    <p className="font-sans font-light text-sm md:text-base lg:text-lg text-gray-300 max-w-xl mx-auto leading-relaxed text-balance mb-8">
+                                    <p className="font-sans font-light text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed text-balance mb-8">
                                         Non limitarti a un sito web, investi in un'architettura digitale d'eccellenza. Parliamo della tua visione e trasformiamola in un progetto high-end per rivoluzionare la tua presenza online.
                                     </p>
 
@@ -128,11 +127,11 @@ export default function Protocol() {
                                             href="mailto:info.dragolabs@gmail.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group relative inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto"
+                                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto"
                                         >
-                                            <span className="relative z-10 flex items-center gap-2 text-sm md:text-base">
+                                            <span className="relative z-10 flex items-center gap-2">
                                                 Prenota una consulenza
-                                                <svg className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </span>
@@ -140,11 +139,11 @@ export default function Protocol() {
 
                                         <a
                                             href="/portfolio"
-                                            className="group relative inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 font-bold text-white transition-all duration-300 bg-white/10 rounded-full hover:bg-white/20 hover:scale-105 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] w-full sm:w-auto"
+                                            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-white/10 rounded-full hover:bg-white/20 hover:scale-105 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] w-full sm:w-auto"
                                         >
-                                            <span className="relative z-10 flex items-center gap-2 text-sm md:text-base">
+                                            <span className="relative z-10 flex items-center gap-2">
                                                 Portfolio completo
-                                                <svg className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </span>
