@@ -172,7 +172,7 @@ export default function Protocol() {
                             100% { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
                         }
                     `}</style>
-                    <div className="card-inner relative w-[85%] md:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden aspect-[4/5] md:aspect-video"
+                    <div className="card-inner relative w-[85%] md:w-[60%] lg:w-[50%] max-w-3xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden aspect-[4/5] md:aspect-auto md:h-[55vh] lg:aspect-video lg:h-auto"
                         style={{ animation: 'cardGlowBreath 3s ease-in-out infinite' }}
                     >
                         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
