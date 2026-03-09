@@ -119,14 +119,12 @@ export default function Navbar() {
 
                 {/* Right side */}
                 <div className="flex items-center gap-3">
-                    <a
-                        href="mailto:info.dragolabs@gmail.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        to="/contatti"
                         className="hidden md:inline-block bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-2 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95"
                     >
                         Consulenza Gratuita
-                    </a>
+                    </Link>
                     <button
                         className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
                         onClick={() => setMobileOpen((o) => !o)}
@@ -156,15 +154,13 @@ export default function Navbar() {
                     ))}
 
                     <div className="px-2 pt-3 pb-1">
-                        <a
-                            href="mailto:info.dragolabs@gmail.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to="/contatti"
                             className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-3 rounded-full text-base font-bold transition-all hover:scale-105 active:scale-95"
                             onClick={() => setMobileOpen(false)}
                         >
                             Consulenza Gratuita
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

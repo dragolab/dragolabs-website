@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -194,10 +195,8 @@ export default function Protocol() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none">
-                                <a
-                                    href="mailto:info.dragolabs@gmail.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <Link
+                                    to="/contatti"
                                     className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
@@ -212,7 +211,7 @@ export default function Protocol() {
                                             </svg>
                                         </span>
                                     </span>
-                                </a>
+                                </Link>
 
                                 <a
                                     href="/portfolio"
