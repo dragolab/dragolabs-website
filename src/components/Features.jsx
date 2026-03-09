@@ -133,8 +133,8 @@ export default function Features() {
             {/* Changed max-w to 1600px and 95% to allow wide text on single line, increased gaps drastically */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 w-[95%] max-w-[1600px] mx-auto">
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_28px_rgba(0,115,160,0.25)] [transition:border-color_0.5s,box-shadow_0.5s] group relative overflow-hidden flex flex-col">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-drago-accent/0 via-drago-accent to-drago-accent/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+
                     <Code className="w-8 h-8 text-drago-accent mb-3" />
                     <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Logica e Metodo</h3>
                     <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">
@@ -157,8 +157,8 @@ export default function Features() {
                     </div>
                 </div>
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_28px_rgba(0,115,160,0.25)] [transition:border-color_0.5s,box-shadow_0.5s] group relative overflow-hidden flex flex-col">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-drago-accent/0 via-drago-accent to-drago-accent/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+
                     <Layout className="w-8 h-8 text-drago-accent mb-3" />
                     <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Servizi Digitali</h3>
                     <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">
@@ -181,8 +181,8 @@ export default function Features() {
                     </div>
                 </div>
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_28px_rgba(0,115,160,0.25)] [transition:border-color_0.5s,box-shadow_0.5s] group relative overflow-hidden flex flex-col">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-drago-accent/0 via-drago-accent to-drago-accent/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+
                     <GitMerge className="w-8 h-8 text-drago-accent mb-3" />
                     <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Soluzioni Innovative</h3>
                     <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">

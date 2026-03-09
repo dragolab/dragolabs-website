@@ -78,7 +78,7 @@ export default function Protocol() {
                         className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_40px_rgba(0,115,160,0.22)] bg-[#202324] backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.5s,box-shadow_0.5s] group">
+                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
 
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">

@@ -104,9 +104,11 @@ export default function Contact() {
 
     const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
+    const isValid = form.nome.trim() !== '' && form.email.trim() !== '' && form.messaggio.trim() !== '';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!privacy || status === 'sending') return;
+        if (!privacy || status === 'sending' || !isValid) return;
 
         setStatus('sending');
         try {
@@ -168,7 +170,7 @@ export default function Contact() {
                     </h1>
                     <p className="font-sans font-light text-lg md:text-xl text-gray-300">
                         Hai un progetto in mente?{' '}
-                        <span className="text-drago-accent">Parliamone insieme!</span>
+                        <span className="text-drago-accent">Parliamone!</span>
                     </p>
                     <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
                 </div>
@@ -200,10 +202,10 @@ export default function Contact() {
                                     Richiedi una consulenza
                                 </h2>
 
-                                <AnimatedInput label="Nome e Cognome" name="nome" placeholder="Francesco Rossi" value={form.nome} onChange={handleChange} delay={300} />
-                                <AnimatedInput label="Email" type="email" name="email" placeholder="francescorossi@email.it" value={form.email} onChange={handleChange} delay={600} />
+                                <AnimatedInput label="Nome e Cognome *" name="nome" placeholder="Francesco Rossi" value={form.nome} onChange={handleChange} delay={300} />
+                                <AnimatedInput label="Email *" type="email" name="email" placeholder="francescorossi@email.it" value={form.email} onChange={handleChange} delay={600} />
                                 <AnimatedInput label="Telefono (opzionale)" type="tel" name="telefono" placeholder="+39 123 456 7890" value={form.telefono} onChange={handleChange} delay={900} />
-                                <AnimatedTextarea label="Come posso aiutarti?" name="messaggio" placeholder="Ciao Gianluca, vorrei digitalizzare la mia attività locale e avrei bisogno di una consulenza tecnica..." value={form.messaggio} onChange={handleChange} delay={1200} />
+                                <AnimatedTextarea label="Come posso aiutarti? *" name="messaggio" placeholder="Ciao Gianluca, vorrei digitalizzare la mia attività locale e avrei bisogno di una consulenza tecnica..." value={form.messaggio} onChange={handleChange} delay={1200} />
 
                                 {/* Error message */}
                                 {status === 'error' && (
@@ -237,9 +239,9 @@ export default function Contact() {
                                 {/* Submit */}
                                 <button
                                     type="submit"
-                                    disabled={!privacy || status === 'sending'}
+                                    disabled={!privacy || status === 'sending' || !isValid}
                                     className={`w-full py-4 rounded-xl font-sans font-bold text-base text-white transition-all duration-300
-                                        ${privacy && status !== 'sending'
+                                        ${privacy && isValid && status !== 'sending'
                                             ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.02] shadow-[0_0_20px_rgba(0,115,160,0.4)]'
                                             : 'bg-white/10 cursor-not-allowed opacity-50'
                                         }`}

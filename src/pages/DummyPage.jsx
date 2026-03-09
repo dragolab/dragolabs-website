@@ -22,24 +22,24 @@ export default function DummyPage({ title }) {
     }, [title]);
 
     return (
-        <div className="min-h-screen relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-20">
-            {/* Background elements */}
+        <section className="relative min-h-screen pt-56 pb-20 px-6 overflow-hidden">
+            {/* Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <img src="/img/background.png" alt="Background" className="w-full h-full object-cover opacity-60 mix-blend-screen" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-drago-bg" />
+                <img src="/img/background.png" alt="Background" className="w-full h-full object-cover opacity-50 mix-blend-screen" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-drago-bg" />
             </div>
 
-            <div ref={textRef} className="relative z-10 max-w-4xl mx-auto space-y-6">
-                <h2 className="stagger-text font-sans font-bold text-drago-secondary uppercase tracking-[0.2em] text-sm md:text-base">
-                    Drago Labs
-                </h2>
-                <h1 className="stagger-text font-sans font-bold text-5xl md:text-7xl lg:text-8xl leading-tight text-balance text-drago-contrast">
-                    {title}
-                </h1>
-                <p className="stagger-text font-serif italic text-2xl text-drago-accent mt-4">
-                    Work in progress...
-                </p>
+            <div ref={textRef} className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center">
+                <div className="text-center mb-14">
+                    <h1 className="stagger-text font-sans font-bold text-5xl md:text-6xl text-drago-contrast mb-4">
+                        {title}
+                    </h1>
+                    <p className="stagger-text font-sans font-light text-lg md:text-xl text-gray-300">
+                        <span className="text-drago-accent italic">Work in progress...</span>
+                    </p>
+                    <div className="stagger-text w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
