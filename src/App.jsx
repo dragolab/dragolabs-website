@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import DummyPage from './pages/DummyPage';
+import Contact from './pages/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,7 +36,7 @@ function App() {
             <Route path="/servizi" element={<DummyPage title="Servizi" />} />
             <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
             <Route path="/blog" element={<DummyPage title="Blog" />} />
-            <Route path="/contatti" element={<DummyPage title="Contatti" />} />
+            <Route path="/contatti" element={<Contact />} />
           </Routes>
         </main>
 
