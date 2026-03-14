@@ -136,17 +136,23 @@ export default function Contact() {
         window.scrollTo(0, 0);
 
         const ctx = gsap.context(() => {
-            gsap.from('.contact-reveal', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',
+            gsap.fromTo('.contact-reveal', 
+                {
+                    y: 50,
+                    opacity: 0
                 },
-                y: 50,
-                opacity: 0,
-                duration: 0.9,
-                stagger: 0.1,
-                ease: 'power3.out',
-            });
+                {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 80%',
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                }
+            );
         }, containerRef);
 
         return () => ctx.revert();
@@ -164,7 +170,7 @@ export default function Contact() {
             <div className="relative z-10 max-w-6xl mx-auto">
 
                 {/* ── Header ── */}
-                <div className="contact-reveal text-center mb-14">
+                <div className="contact-reveal opacity-0 text-center mb-14">
                     <h1 className="font-sans font-bold text-5xl md:text-6xl text-drago-contrast mb-4">
                         Contattaci
                     </h1>
@@ -179,7 +185,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-start">
 
                     {/* ── LEFT: Form ── */}
-                    <div ref={formRef} className="contact-reveal glass rounded-2xl p-7 md:p-9 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.15)]">
+                    <div ref={formRef} className="contact-reveal opacity-0 glass rounded-2xl p-7 md:p-9 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.15)]">
                         {status === 'success' ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">
@@ -276,7 +282,7 @@ export default function Contact() {
                                 href: null,
                             },
                         ].map((item, i) => (
-                            <div key={i} className="contact-reveal glass rounded-2xl p-5 flex items-center gap-4 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
+                            <div key={i} className="contact-reveal opacity-0 glass rounded-2xl p-5 flex items-center gap-4 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
                                 <div className="w-10 h-10 rounded-full bg-drago-accent/10 border border-drago-accent/30 flex items-center justify-center flex-shrink-0">
                                     {item.icon}
                                 </div>
@@ -291,7 +297,7 @@ export default function Contact() {
                         ))}
 
                         {/* Operational availability card */}
-                        <div className="contact-reveal glass rounded-2xl p-6 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
+                        <div className="contact-reveal opacity-0 glass rounded-2xl p-6 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
                             <h3 className="font-sans font-bold text-lg text-white mb-4">
                                 Disponibilità Operativa
                             </h3>

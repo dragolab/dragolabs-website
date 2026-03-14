@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import DummyPage from './pages/DummyPage';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/chi-sono" element={<DummyPage title="Chi Sono" />} />
+            <Route path="/chi-sono" element={<About />} />
             <Route path="/servizi" element={<DummyPage title="Servizi" />} />
             <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
             <Route path="/blog" element={<DummyPage title="Blog" />} />
