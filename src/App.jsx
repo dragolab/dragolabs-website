@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import DummyPage from './pages/DummyPage';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import CalcioLive from './pages/CalcioLive';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
             <Route path="/blog" element={<DummyPage title="Blog" />} />
             <Route path="/contatti" element={<Contact />} />
+            <Route path="/calcio-live" element={<CalcioLive />} />
           </Routes>
         </main>
 
