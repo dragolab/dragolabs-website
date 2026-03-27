@@ -1,6 +1,6 @@
 {
-  "versionCode": 8,
-  "versionName": "1.7",
-  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v1.7.apk",
+  "versionCode": 9,
+  "versionName": "1.8",
+  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v1.8.apk",
   "releaseNotes": "Aggiunto updater, nuova pagina "Info" e support oper ogni dispositivo con Android 5+"
 }
