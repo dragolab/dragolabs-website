@@ -51,7 +51,7 @@ export default function CalcioLive() {
                     <img
                         src="/img/calcio-live-home-tablet.png"
                         alt="Screenshot Tablet"
-                        className="h-[16.75rem] md:h-[10rem] lg:h-[25rem] w-auto object-contain"
+                        className="h-[16.75rem] md:h-[20rem] lg:h-[25rem] w-auto object-contain"
                     />
                 </div>
 
@@ -65,8 +65,8 @@ export default function CalcioLive() {
                 {/* CTA Buttons */}
                 <div className="stagger-reveal flex flex-col md:flex-row items-center gap-4 mb-24">
                     <a
-                        href="/calcio-live-apk/Calcio%20Live%20v1.6.apk"
-                        download="Calcio Live v1.6.apk"
+                        href="/calcio-live-apk/Calcio%20Live%20v1.7.apk"
+                        download="Calcio Live v1.7.apk"
                         className="group inline-flex items-center justify-center gap-3 px-8 py-4 font-sans font-bold text-white bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,115,160,0.4)]"
                     >
                         Scaricala ora
