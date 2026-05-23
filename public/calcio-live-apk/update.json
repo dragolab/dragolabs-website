@@ -1,9 +1,9 @@
 {
-  "versionCode": 11,
-  "versionName": "1.10",
-  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v1.10.apk",
-  "releaseNotes": "- Migliorata la visualizzazione di nomi squadre e lingue;
-- Migliorata la classificazione delle stream in 'AQ', 'FHD' o 'SD';
-- Aggiunto indicatore "Live" per le leghe con partite in corso.
-- Rimosse le stream "AQ" dati i problemi di riproduzione."
+  "versionCode": 10,
+  "versionName": "1.9",
+  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v1.9.apk",
+  "releaseNotes": "- Esperienza TV migliorata: navigazione con telecomando più precisa e correzione dello scorrimento nelle Info.
+- Aggiunto un popup con QR code nella pagina Info per aprire i link velocemente sulla TV.
+- Nomi stream migliorati: ora mostrano correttamente le info dei match.
+- Grafica più curata e bugfixing generale."
 }
