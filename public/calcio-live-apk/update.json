@@ -1,8 +1,9 @@
 {
-  "versionCode": 11,
-  "versionName": "1.10",
-  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v1.10.apk",
-  "releaseNotes": "- Migliorata la visualizzazione dei nomi delle squadre nelle stream;
-- Migliorata la visualizzazione delle lingue nelle stream;
-- Aggiunto indicatore "LIVE" nella card dei campionati se ci sono match in corso."
+  "versionCode": 12,
+  "versionName": "2.0",
+  "apkUrl": "https://dragolabs.vercel.app/calcio-live-apk/Calcio%20Live%20v2.0.apk",
+  "releaseNotes": "- Aggiunta la pagina "Preferiti" in cui aggiungere i propri campioanti del cuore;
+- Nuove icone dinamiche per i pulsanti della barra di navigazione;
+- Miglioramenti nel codice dell'app;
+- Miglioramenti delle animazioni generali."
 }
