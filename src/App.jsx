@@ -10,6 +10,8 @@ import DummyPage from './pages/DummyPage';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import CalcioLive from './pages/CalcioLive';
+import Terms from './pages/Terms';
+import CookiePolicy from './pages/CookiePolicy';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +42,9 @@ function App() {
             <Route path="/blog" element={<DummyPage title="Blog" />} />
             <Route path="/contatti" element={<Contact />} />
             <Route path="/calcio-live" element={<CalcioLive />} />
+            <Route path="/termini-e-condizioni" element={<Terms />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
           </Routes>
         </main>
 

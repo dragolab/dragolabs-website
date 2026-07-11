@@ -85,9 +85,9 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
                     <div className="flex items-center gap-4 text-xs font-mono text-drago-secondary">
-                        <a href="#" className="hover:text-drago-accent transition-colors">Privacy Policy</a>
+                        <Link to="/termini-e-condizioni" className="hover:text-drago-accent transition-colors">Termini di Servizio</Link>
                         <span>|</span>
-                        <a href="#" className="hover:text-drago-accent transition-colors">Cookie Policy</a>
+                        <Link to="/cookie-policy" className="hover:text-drago-accent transition-colors">Cookie Policy</Link>
                     </div>
 
                     <p className="font-sans text-sm text-drago-secondary text-center md:text-right">
