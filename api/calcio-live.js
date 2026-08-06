@@ -11,5 +11,6 @@ export default function handler(req, res) {
     "addon_version": "1.9",
     "engine_type": "AES_ENGINE_V1",
     "updateUrl": "https://dragolabs.vercel.app/drago-player.apk",
-  "updateFeatures": "--"
+    "updateFeatures": "--"
+  });
 }

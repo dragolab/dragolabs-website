@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow private API endpoints
+Disallow: /api/
+
+Sitemap: https://dragolabs.vercel.app/sitemap.xml

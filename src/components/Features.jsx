@@ -27,9 +27,10 @@ const useTypewriter = (textArray, delayStart = 0) => {
 
         if (isDeleting) {
             if (text === '') {
-                setIsDeleting(false);
-                setIndex((prev) => (prev + 1) % textArray.length);
-                timeout = setTimeout(() => { }, 200); // 200ms pause before next word
+                timeout = setTimeout(() => {
+                    setIsDeleting(false);
+                    setIndex((prev) => (prev + 1) % textArray.length);
+                }, 200); // 200ms pause before next word
             } else {
                 timeout = setTimeout(() => {
                     setText(currentString.substring(0, text.length - 1));
