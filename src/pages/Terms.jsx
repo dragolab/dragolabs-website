@@ -34,7 +34,7 @@ export default function Terms() {
 
             <div className="relative z-10 max-w-4xl mx-auto">
                 {/* Header */}
-                <div className="terms-reveal text-center mb-16">
+                <div className="terms-reveal opacity-0 text-center mb-16">
                     <h1 className="font-sans font-bold text-4xl md:text-5xl text-drago-contrast mb-4">
                         Termini di Servizio
                     </h1>
@@ -50,7 +50,7 @@ export default function Terms() {
                 {/* Content Sections */}
                 <div className="space-y-8">
                     {/* Intro Card */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8">
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
                             Benvenuto su Drago Labs. I presenti Termini di Servizio disciplinano l'accesso e l'utilizzo del sito web nonché il rapporto contrattuale tra 
                             <strong className="text-white"> Gianluca Dragone</strong> (di seguito "Drago Labs" o "Fornitore"), con sede a Fasano (BR), Italia, 
@@ -60,7 +60,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 1: Oggetto del Servizio */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <FileText className="w-4 h-4" />
@@ -75,7 +75,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 2: Uso Accettabile del Sito */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <AlertTriangle className="w-4 h-4" />
@@ -93,7 +93,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 3: Condizioni di Pagamento */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Scale className="w-4 h-4" />
@@ -108,7 +108,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 4: Politica di Rimborso e Diritto di Recesso */}
-                    <div className="terms-reveal glass border border-red-950 bg-red-950/10 rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass border border-red-950 bg-red-950/10 rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-red-500/15 border border-red-500/40 flex items-center justify-center text-red-400">
                                 <RefreshCw className="w-4 h-4" />
@@ -128,7 +128,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 5: Limitazione di Responsabilità & Backup */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Database className="w-4 h-4" />
@@ -147,7 +147,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 6: Proprietà Intellettuale */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Shield className="w-4 h-4" />
@@ -161,7 +161,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 7: Servizi ed Infrastrutture di Terze Parti */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Globe className="w-4 h-4" />
@@ -174,7 +174,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 8: Legge Applicabile e Modifiche */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Gavel className="w-4 h-4" />
@@ -190,7 +190,7 @@ export default function Terms() {
                     </div>
 
                     {/* Section 9: Contatti */}
-                    <div className="terms-reveal glass rounded-2xl p-6 md:p-8">
+                    <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8">
                         <h3 className="font-sans font-bold text-lg text-white mb-3">
                             Contatti e Comunicazioni Legali
                         </h3>
