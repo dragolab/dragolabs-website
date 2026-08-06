@@ -42,7 +42,6 @@ export default function Protocol() {
                 if (index < cards.length - 1) {
                     gsap.to(card.querySelector('.card-inner'), {
                         scale: 0.90,
-                        filter: 'blur(14px)',
                         opacity: 0.35,
                         ease: "none",
                         scrollTrigger: {
