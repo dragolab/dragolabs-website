@@ -127,7 +127,7 @@ export default function About() {
             <div className="relative z-10 max-w-6xl mx-auto space-y-20">
 
                 {/* ══════════════════════════ 1 – HERO ══════════════════════════ */}
-                <div className="about-reveal opacity-0 text-center">
+                <div className="about-reveal text-center">
                     <h1 className="font-sans font-bold text-5xl md:text-6xl text-drago-contrast mb-5">
                         Chi Sono
                     </h1>
@@ -141,7 +141,7 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-start">
 
                     {/* Blueprint card — same glass colour as Contact */}
-                    <div className="about-reveal opacity-0 glass rounded-2xl p-8 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
+                    <div className="about-reveal glass rounded-2xl p-8 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
                         {/* Avatar + Name */}
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-14 h-14 rounded-full overflow-hidden bg-drago-accent/10 border border-drago-accent/40 flex-shrink-0">
@@ -196,7 +196,7 @@ export default function About() {
                     </div>
 
                     {/* Visione */}
-                    <div className="about-reveal opacity-0 flex flex-col gap-6">
+                    <div className="about-reveal flex flex-col gap-6">
                         <div className="glass rounded-2xl p-8 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
                             <h3 className="font-sans font-bold text-xl text-white mb-5 flex items-center gap-3">
                                 <span className="w-8 h-8 rounded-full bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent text-xs font-bold">✦</span>
@@ -228,10 +228,10 @@ export default function About() {
 
                 {/* ══════════════════════════ 3 – TIMELINE ══════════════════════════ */}
                 <div ref={timelineRef}>
-                    <h2 className="about-reveal opacity-0 font-sans font-semibold text-4xl md:text-5xl text-drago-contrast mb-4 text-center">
+                    <h2 className="about-reveal font-sans font-semibold text-4xl md:text-5xl text-drago-contrast mb-4 text-center">
                         Il mio percorso
                     </h2>
-                    <div className="about-reveal opacity-0 w-24 h-[1px] bg-drago-accent mx-auto mb-16" />
+                    <div className="about-reveal w-24 h-[1px] bg-drago-accent mx-auto mb-16" />
 
                     {/* Timeline wrapper: dots + line sit ABOVE cards */}
                     <div className="relative">
@@ -257,7 +257,7 @@ export default function About() {
                                 return (
                                     <div
                                         key={i}
-                                        className="timeline-card opacity-0 glass rounded-2xl p-5 flex flex-col gap-3 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]"
+                                        className="timeline-card glass rounded-2xl p-5 flex flex-col gap-3 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]"
                                     >
                                         {/* Icon + year row */}
                                         <div className="flex items-center gap-2">
@@ -278,7 +278,7 @@ export default function About() {
 
                     {/* Hard Skills */}
                     <div className="skill-group">
-                        <h3 className="about-reveal opacity-0 font-sans font-bold text-xl text-white mb-5 flex items-center gap-3">
+                        <h3 className="about-reveal font-sans font-bold text-xl text-white mb-5 flex items-center gap-3">
                             <span className="w-2 h-2 rounded-full bg-drago-accent inline-block" />
                             Hard Skills
                         </h3>
@@ -286,7 +286,7 @@ export default function About() {
                             {hardSkills.map((skill) => (
                                 <div
                                     key={skill}
-                                    className="skill-card opacity-0 px-5 py-2.5 rounded-full glass border border-drago-accent/30 text-sm md:text-base font-sans font-medium text-drago-accent [transition:border-color_0.3s,box-shadow_0.3s] hover:border-drago-accent hover:shadow-[0_0_12px_rgba(0,115,160,0.3)] cursor-default"
+                                    className="skill-card px-5 py-2.5 rounded-full glass border border-drago-accent/30 text-sm md:text-base font-sans font-medium text-drago-accent [transition:border-color_0.3s,box-shadow_0.3s] hover:border-drago-accent hover:shadow-[0_0_12px_rgba(0,115,160,0.3)] cursor-default"
                                 >
                                     {skill}
                                 </div>
@@ -296,7 +296,7 @@ export default function About() {
 
                     {/* Soft Skills */}
                     <div className="skill-group">
-                        <h3 className="about-reveal opacity-0 font-sans font-bold text-xl text-white mb-5 flex items-center gap-3">
+                        <h3 className="about-reveal font-sans font-bold text-xl text-white mb-5 flex items-center gap-3">
                             <span className="w-2 h-2 rounded-full bg-drago-accent inline-block" />
                             Soft Skills
                         </h3>
@@ -304,7 +304,7 @@ export default function About() {
                             {softSkills.map((skill) => (
                                 <div
                                     key={skill}
-                                    className="skill-card opacity-0 px-5 py-2.5 rounded-full glass border border-white/15 text-sm md:text-base font-sans font-medium text-gray-300 [transition:border-color_0.3s,box-shadow_0.3s] hover:border-drago-accent hover:text-drago-accent hover:shadow-[0_0_12px_rgba(0,115,160,0.2)] cursor-default"
+                                    className="skill-card px-5 py-2.5 rounded-full glass border border-white/15 text-sm md:text-base font-sans font-medium text-gray-300 [transition:border-color_0.3s,box-shadow_0.3s] hover:border-drago-accent hover:text-drago-accent hover:shadow-[0_0_12px_rgba(0,115,160,0.2)] cursor-default"
                                 >
                                     {skill}
                                 </div>

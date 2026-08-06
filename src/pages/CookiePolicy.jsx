@@ -34,7 +34,7 @@ export default function CookiePolicy() {
 
             <div className="relative z-10 max-w-4xl mx-auto">
                 {/* Header */}
-                <div className="cookie-reveal opacity-0 text-center mb-16">
+                <div className="cookie-reveal text-center mb-16">
                     <h1 className="font-sans font-bold text-4xl md:text-5xl text-drago-contrast mb-4">
                         Informativa sui Cookie
                     </h1>
@@ -50,14 +50,14 @@ export default function CookiePolicy() {
                 {/* Content Sections */}
                 <div className="space-y-8">
                     {/* Intro Card */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8">
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
                             La trasparenza e la tutela della tua privacy sono fondamentali per Drago Labs. La presente Informativa illustra in modo dettagliato quali tipi di cookie vengono impiegati sul sito web <strong className="text-white">Drago Labs</strong>, le loro finalità, la loro durata e le modalità a disposizione dell'utente per gestirne o disabilitarne l'uso, in piena conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR - UE 2016/679) e la Direttiva ePrivacy.
                         </p>
                     </div>
 
                     {/* Section 1: Cosa sono i cookie */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Cookie className="w-4 h-4" />
@@ -70,7 +70,7 @@ export default function CookiePolicy() {
                     </div>
 
                     {/* Section 2: Inventario Cookie e Tipologie */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Lock className="w-4 h-4" />
@@ -114,7 +114,7 @@ export default function CookiePolicy() {
                     </div>
 
                     {/* Section 3: Nessuna Profilazione */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <ShieldAlert className="w-4 h-4" />
@@ -127,7 +127,7 @@ export default function CookiePolicy() {
                     </div>
 
                     {/* Section 4: Do Not Track (DNT) */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <EyeOff className="w-4 h-4" />
@@ -140,7 +140,7 @@ export default function CookiePolicy() {
                     </div>
 
                     {/* Section 5: Come Gestire o Disabilitare i Cookie */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Settings className="w-4 h-4" />
@@ -162,7 +162,7 @@ export default function CookiePolicy() {
                     </div>
 
                     {/* Section 6: Contatti */}
-                    <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8">
+                    <div className="cookie-reveal glass rounded-2xl p-6 md:p-8">
                         <h3 className="font-sans font-bold text-lg text-white mb-3 flex items-center gap-2">
                             <Info className="w-5 h-5 text-drago-accent" />
                             Titolare del Trattamento
