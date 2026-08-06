@@ -75,7 +75,7 @@ export default function Terms() {
                         </p>
                     </div>
 
-                    {/* Section 2: Pagamenti e Stripe */}
+                    {/* Section 2: Condizioni di Pagamento */}
                     <div className="terms-reveal opacity-0 glass rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
@@ -84,14 +84,11 @@ export default function Terms() {
                             2. Condizioni di Pagamento
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            I pagamenti per le prestazioni fornite da Drago Labs vengono elaborati in modo sicuro tramite la piattaforma di pagamento di terze parti 
-                            <strong className="text-white"> Stripe</strong>. I pagamenti possono essere strutturati in un'unica soluzione anticipata, oppure suddivisi in acconto e saldo, 
-                            secondo quanto specificato nel preventivo concordato. Il lavoro sui progetti commissionati avrà inizio solo a seguito dell'avvenuta ricezione del 
-                            pagamento pattuito (o dell'acconto iniziale).
+                            I pagamenti per le prestazioni fornite da Drago Labs vengono effettuati tramite metodi di pagamento sicuri e tracciabili (quali bonifico bancario o altre modalità concordate). I pagamenti possono essere strutturati in un'unica soluzione anticipata, oppure suddivisi in acconto e saldo, secondo quanto specificato nel preventivo concordato. Il lavoro sui progetti commissionati avrà inizio solo a seguito dell'avvenuta ricezione del pagamento pattuito (o dell'acconto iniziale).
                         </p>
                     </div>
 
-                    {/* Section 3: Rimborso (Fundamental for Stripe) */}
+                    {/* Section 3: Politica di Rimborso e Diritto di Recesso */}
                     <div className="terms-reveal opacity-0 glass border border-red-950 bg-red-950/10 rounded-2xl p-6 md:p-8 hover:border-drago-accent/50 transition-colors duration-350">
                         <h3 className="font-sans font-bold text-lg md:text-xl text-white mb-4 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-red-500/15 border border-red-500/40 flex items-center justify-center text-red-400">

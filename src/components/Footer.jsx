@@ -91,7 +91,7 @@ export default function Footer() {
                     </div>
 
                     <p className="font-sans text-sm text-drago-secondary text-center md:text-right">
-                        © 2026 DragoLabs di Gianluca Dragone - C.F. DRGGLC06A31D508T - Sede Legale: Via Roma 273, 72015, Fasano (BR) - Tutti i diritti riservati.
+                        © 2026 DragoLabs di Gianluca Dragone - Sede Legale: Fasano (BR) - Tutti i diritti riservati.
                     </p>
 
                 </div>
