@@ -13,7 +13,7 @@ export default function Footer() {
 
                     {/* Column 1: Brand Info */}
                     <div className="flex flex-col items-center gap-4">
-                        <div className="flex items-center gap-3 mb-2">
+                        <div className="h-12 flex items-center gap-3 mb-2">
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-white/10 flex items-center justify-center">
                                 <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                             </div>
@@ -46,7 +46,7 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="font-sans font-bold text-white mb-2">Link Rapidi</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Link Rapidi</h4>
                         <nav className="flex flex-col items-center gap-3">
                             <Link to="/" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Home</Link>
                             <Link to="/chi-sono" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Chi Sono</Link>
@@ -59,7 +59,7 @@ export default function Footer() {
 
                     {/* Column 3: Contacts */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="font-sans font-bold text-white mb-2">Contatti</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Contatti</h4>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://wa.me/393939450653" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
                                 <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-all group-hover:scale-105 text-drago-secondary group-hover:bg-white/10">
