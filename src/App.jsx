@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,14 +6,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import DummyPage from './pages/DummyPage';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import CalcioLive from './pages/CalcioLive';
-import Terms from './pages/Terms';
-import CookiePolicy from './pages/CookiePolicy';
-import PrivacyPolicy from './pages/PrivacyPolicy';
 import Seo from './components/Seo';
+
+const DummyPage = lazy(() => import('./pages/DummyPage'));
+const Contact = lazy(() => import('./pages/Contact'));
+const About = lazy(() => import('./pages/About'));
+const CalcioLive = lazy(() => import('./pages/CalcioLive'));
+const Terms = lazy(() => import('./pages/Terms'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,19 +38,21 @@ function App() {
         <Navbar />
 
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/chi-sono" element={<About />} />
-            <Route path="/servizi" element={<DummyPage title="Servizi" />} />
-            <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
-            <Route path="/blog" element={<DummyPage title="Blog" />} />
-            <Route path="/contatti" element={<Contact />} />
-            <Route path="/calcio-live" element={<CalcioLive />} />
-            <Route path="/termini-e-condizioni" element={<Terms />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/chi-sono" element={<About />} />
+              <Route path="/servizi" element={<DummyPage title="Servizi" />} />
+              <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
+              <Route path="/blog" element={<DummyPage title="Blog" />} />
+              <Route path="/contatti" element={<Contact />} />
+              <Route path="/calcio-live" element={<CalcioLive />} />
+              <Route path="/termini-e-condizioni" element={<Terms />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />

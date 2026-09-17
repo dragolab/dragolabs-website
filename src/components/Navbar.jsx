@@ -92,7 +92,7 @@ export default function Navbar() {
                         className="w-10 h-10 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0"
                         onClick={() => setMobileOpen(false)}
                     >
-                        <img src="/img/logo-dragolabs.png" alt="Drago Labs Logo" className="w-full h-full object-cover" />
+                        <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                     </Link>
                     <Link
                         to="/"

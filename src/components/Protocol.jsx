@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,28 +10,36 @@ const projects = [
         title: "Casa Vacanze Vistamare",
         type: "Sito Web",
         description: "Sito di presentazione per una casa vacanze affacciata sul mare, con sistema di prenotazione integrato e galleria multimediale.",
-        image: "/img/casavacanze-vistamare.png",
+        image: "/img/optimized/casavacanze-vistamare-1600.webp",
+        imageSet: "/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w",
+        width: 2438,
+        height: 1366,
         link: ""
     },
     {
         title: "A Un Passo Dal Faro",
         type: "Sito Web",
         description: "Portale turistico per un affitto vacanze con prenotazione online, calendario disponibilità e contenuti multilingua.",
-        image: "/img/aunpasso-dalfaro.png",
+        image: "/img/optimized/aunpasso-dalfaro-1200.webp",
+        imageSet: "/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w",
+        width: 1207,
+        height: 763,
         link: ""
     }
 ];
 
 export default function Protocol() {
     const containerRef = useRef(null);
-    const [pulsing, setPulsing] = useState(false);
+    const ctaRef = useRef(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setPulsing(true);
-            setTimeout(() => setPulsing(false), 500);
-        }, 3000);
-        return () => clearInterval(interval);
+        const element = ctaRef.current;
+        if (!element) return undefined;
+        const observer = new IntersectionObserver(([entry]) => {
+            element.classList.toggle('is-in-viewport', entry.isIntersecting);
+        }, { threshold: 0.1 });
+        observer.observe(element);
+        return () => observer.disconnect();
     }, []);
 
     useEffect(() => {
@@ -88,6 +96,12 @@ export default function Protocol() {
                                     <div className="w-full h-full rounded-[1.25rem] overflow-hidden">
                                         <img
                                             src={project.image}
+                                            srcSet={project.imageSet}
+                                            sizes="(min-width: 768px) 925px, 100vw"
+                                            width={project.width}
+                                            height={project.height}
+                                            loading="lazy"
+                                            decoding="async"
                                             alt={project.title}
                                             className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03] ${i === 1 ? 'object-[center_10%]' : ''}`}
                                         />
@@ -126,6 +140,12 @@ export default function Protocol() {
                                     <div className="w-full rounded-[1.25rem] overflow-hidden" style={{ aspectRatio: '16/10' }}>
                                         <img
                                             src={project.image}
+                                            srcSet={project.imageSet}
+                                            sizes="100vw"
+                                            width={project.width}
+                                            height={project.height}
+                                            loading="lazy"
+                                            decoding="async"
                                             alt={project.title}
                                             className={`w-full h-full object-cover ${i === 1 ? 'object-[center_10%]' : ''}`}
                                         />
@@ -163,19 +183,11 @@ export default function Protocol() {
 
                 {/* ─── CTA CARD (third) ─── */}
                 <div
+                    ref={ctaRef}
                     className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <style>{`
-                        @keyframes cardGlowBreath {
-                            0%   { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
-                            50%  { box-shadow: 0 0 70px 28px rgba(0,115,160,0.12), 0 0 0 0 transparent; }
-                            100% { box-shadow: 0 0 30px 6px rgba(0,115,160,0.35), 0 0 0 0 transparent; }
-                        }
-                    `}</style>
-                    <div className="card-inner relative w-[90%] md:w-[70%] lg:w-[55%] max-w-4xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl overflow-hidden"
-                        style={{ animation: 'cardGlowBreath 3s ease-in-out infinite' }}
-                    >
+                    <div className="portfolio-cta-glow card-inner relative w-[90%] md:w-[70%] lg:w-[55%] max-w-4xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl">
                         <div className="flex flex-col items-center justify-center px-8 sm:px-12 py-10 sm:py-14 text-center">
                             <h3
                                 className="font-sans font-bold leading-tight text-balance text-white mb-4"
@@ -201,11 +213,7 @@ export default function Protocol() {
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         Prenota una consulenza
-                                        <span style={{
-                                            display: 'inline-flex',
-                                            transform: pulsing ? 'translateX(5px)' : 'translateX(0)',
-                                            transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                        }}>
+                                        <span className="cta-arrow-pulse">
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                             </svg>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -6,7 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Philosophy() {
     const manifestoRef = useRef(null);
-    const [pulsing, setPulsing] = useState(false);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -25,13 +24,14 @@ export default function Philosophy() {
         return () => ctx.revert();
     }, []);
 
-    // Arrow pulse every 3 seconds
     useEffect(() => {
-        const interval = setInterval(() => {
-            setPulsing(true);
-            setTimeout(() => setPulsing(false), 600);
-        }, 3000);
-        return () => clearInterval(interval);
+        const element = manifestoRef.current;
+        if (!element) return undefined;
+        const observer = new IntersectionObserver(([entry]) => {
+            element.classList.toggle('is-in-viewport', entry.isIntersecting);
+        }, { threshold: 0.1 });
+        observer.observe(element);
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -49,28 +49,13 @@ export default function Philosophy() {
 
                 {/* CTA Button with breathing glow */}
                 <div className="manifesto-text mt-12 flex justify-center">
-                    <div className="relative inline-flex">
-                        <style>{`
-                            @keyframes glowBreath {
-                                0%   { box-shadow: 0 0 20px 4px rgba(0,115,160,0.45); }
-                                50%  { box-shadow: 0 0 45px 18px rgba(0,115,160,0.2); }
-                                100% { box-shadow: 0 0 20px 4px rgba(0,115,160,0.45); }
-                            }
-                        `}</style>
-
+                    <div className="cta-glow relative inline-flex">
                         <a
                             href="/contatti"
                             className="relative group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-drago-accent text-white font-bold text-base md:text-lg transition-all duration-300 hover:bg-drago-accent/90 hover:scale-105"
-                            style={{ animation: 'glowBreath 3s ease-in-out infinite' }}
                         >
                             Contattaci ora
-                            <span
-                                className="inline-flex items-center justify-center w-6 h-6"
-                                style={{
-                                    transform: pulsing ? 'translate(3px, -3px)' : 'translate(0, 0)',
-                                    transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                }}
-                            >
+                            <span className="cta-arrow-pulse-diagonal inline-flex items-center justify-center w-6 h-6">
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />
                                 </svg>

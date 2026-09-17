@@ -15,7 +15,7 @@ export default function Footer() {
                     <div className="flex flex-col items-center gap-4">
                         <div className="flex items-center gap-3 mb-2">
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-white/10 flex items-center justify-center">
-                                <img src="/img/logo-dragolabs.png" alt="Drago Labs Logo" className="w-full h-full object-cover" />
+                                <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                             </div>
                             <span className="font-sans font-bold text-xl tracking-wide">Drago Labs</span>
                         </div>

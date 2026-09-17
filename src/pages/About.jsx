@@ -120,7 +120,7 @@ export default function About() {
 
             {/* ── Background ── */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <img src="/img/background.png" alt="" className="w-full h-full object-cover opacity-50 mix-blend-screen" />
+                <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-50 mix-blend-screen" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-drago-bg" />
             </div>
 
@@ -145,7 +145,7 @@ export default function About() {
                         {/* Avatar + Name */}
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-14 h-14 rounded-full overflow-hidden bg-drago-accent/10 border border-drago-accent/40 flex-shrink-0">
-                                <img src="/img/logo-dragolabs-hd-crop.png" alt="Gianluca Dragone" className="w-full h-full object-cover" />
+                                <img src="/img/optimized/logo-dragolabs-hd-320.webp" width="320" height="320" alt="Gianluca Dragone" decoding="async" className="w-full h-full object-cover" />
                             </div>
                             <div>
                                 <h2 className="font-sans font-bold text-xl text-white">Gianluca Dragone</h2>

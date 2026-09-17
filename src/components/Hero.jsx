@@ -1,11 +1,10 @@
-import { useLayoutEffect, useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 
 export default function Hero() {
     const containerRef = useRef(null);
     const textRef = useRef(null);
-    const [pulsing, setPulsing] = useState(false);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -22,13 +21,14 @@ export default function Hero() {
         return () => ctx.revert();
     }, []);
 
-    // Arrow pulse every 3 seconds
     useEffect(() => {
-        const interval = setInterval(() => {
-            setPulsing(true);
-            setTimeout(() => setPulsing(false), 500);
-        }, 3000);
-        return () => clearInterval(interval);
+        const element = containerRef.current;
+        if (!element) return undefined;
+        const observer = new IntersectionObserver(([entry]) => {
+            element.classList.toggle('is-in-viewport', entry.isIntersecting);
+        }, { threshold: 0.1 });
+        observer.observe(element);
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -39,8 +39,14 @@ export default function Hero() {
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <img
-                    src="/img/background.png"
-                    alt="Background Texture"
+                    src="/img/optimized/background-1600.webp"
+                    srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w"
+                    sizes="100vw"
+                    width="2048"
+                    height="2048"
+                    alt=""
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover opacity-60 mix-blend-screen"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-drago-bg" />
@@ -69,13 +75,7 @@ export default function Hero() {
                         <Link to="/contatti" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 overflow-hidden shadow-[0_0_20px_rgba(0,115,160,0.5)] w-full sm:w-auto">
                             <span className="relative z-10 flex items-center gap-2">
                                 Prima consulenza gratuita
-                                <span
-                                    style={{
-                                        display: 'inline-flex',
-                                        transform: pulsing ? 'translateX(5px)' : 'translateX(0)',
-                                        transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                    }}
-                                >
+                                <span className="cta-arrow-pulse">
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>

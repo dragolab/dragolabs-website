@@ -43,4 +43,98 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  @keyframes matrix-pulse {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.95; }
+  }
+
+  .matrix-cell {
+    contain: paint;
+  }
+
+  .matrix-cell__fill {
+    position: absolute;
+    inset: 1px;
+    border-radius: 1px;
+    background: #0073a0;
+    opacity: 0;
+    will-change: opacity;
+    animation: matrix-pulse var(--matrix-duration) ease-in-out var(--matrix-delay) infinite;
+    animation-play-state: paused;
+  }
+
+  .matrix-grid.is-in-viewport .matrix-cell__fill,
+  .is-in-viewport .cta-arrow-pulse,
+  .is-in-viewport .cta-arrow-pulse-diagonal,
+  .is-in-viewport .cta-glow::before,
+  .is-in-viewport .portfolio-cta-glow::before {
+    animation-play-state: running;
+  }
+
+  @keyframes cta-arrow-pulse {
+    0%, 82%, 100% { transform: translateX(0); }
+    90% { transform: translateX(5px); }
+  }
+
+  @keyframes cta-arrow-pulse-diagonal {
+    0%, 82%, 100% { transform: translate(0, 0); }
+    90% { transform: translate(3px, -3px); }
+  }
+
+  .cta-arrow-pulse,
+  .cta-arrow-pulse-diagonal {
+    display: inline-flex;
+    will-change: transform;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+  }
+
+  .cta-arrow-pulse { animation-name: cta-arrow-pulse; }
+  .cta-arrow-pulse-diagonal { animation-name: cta-arrow-pulse-diagonal; }
+
+  @keyframes gpu-glow-breath {
+    0%, 100% { opacity: 0.55; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+
+  .cta-glow,
+  .portfolio-cta-glow {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .cta-glow::before,
+  .portfolio-cta-glow::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    inset: -1.5rem;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(0, 115, 160, 0.48) 0%, rgba(0, 115, 160, 0.12) 45%, transparent 72%);
+    filter: blur(14px);
+    opacity: 0.55;
+    will-change: opacity, transform;
+    animation: gpu-glow-breath 3s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+
+  .cta-glow > *,
+  .portfolio-cta-glow > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-cell__fill,
+    .cta-arrow-pulse,
+    .cta-arrow-pulse-diagonal,
+    .cta-glow::before,
+    .portfolio-cta-glow::before {
+      animation: none;
+    }
+  }
 }

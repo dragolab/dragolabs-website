@@ -28,7 +28,7 @@ export default function Terms() {
         <section ref={containerRef} className="relative min-h-screen pt-44 pb-24 px-6 overflow-x-hidden">
             {/* Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <img src="/img/background.png" alt="" className="w-full h-full object-cover opacity-30 mix-blend-screen" />
+                <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-30 mix-blend-screen" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-drago-bg" />
             </div>
 

@@ -83,31 +83,20 @@ export default function Features() {
                 ease: 'power3.out'
             });
 
-            // Card 3 Matrix - 3x3 Variable Speed Organic Recursive Flow
-            const cells = gsap.utils.toArray('.grid-cell');
-
-            cells.forEach((cell) => {
-                // Recursive function to continuously change variables
-                const runCycle = () => {
-                    gsap.to(cell, {
-                        backgroundColor: '#0073a0',
-                        duration: gsap.utils.random(0.4, 3.5),   // Dynamic unpredictable tempo: Fast to very slow
-                        ease: 'sine.inOut',
-                        yoyo: true,
-                        repeat: 1, // On and Off
-                        onComplete: () => {
-                            // After it turns off, wait a random time then run again with new speeds
-                            gsap.delayedCall(gsap.utils.random(0.1, 1.0), runCycle);
-                        }
-                    });
-                };
-
-                // Initial kick-off staggered
-                gsap.delayedCall(gsap.utils.random(0, 3), runCycle);
-            });
-
         }, containerRef);
         return () => ctx.revert();
+    }, []);
+
+    useEffect(() => {
+        const grid = gridRef.current;
+        if (!grid) return undefined;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            grid.classList.toggle('is-in-viewport', entry.isIntersecting);
+        }, { threshold: 0.1 });
+
+        observer.observe(grid);
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -195,12 +184,13 @@ export default function Features() {
                         {/* Box mimicking the height of the black terminal boxes adjacent */}
                         <div className="bg-black/20 rounded-lg p-2 min-h-[48px] flex items-center justify-center w-full">
                             {/* 13x3 Grid (39 cells max) perfectly centered within the simulated box */}
-                            <div ref={gridRef} className="grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1 w-[90%] md:w-full">
+                            <div ref={gridRef} className="matrix-grid grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1 w-[90%] md:w-full">
                                 {[...Array(39)].map((_, i) => (
                                     <div
                                         key={i}
-                                        className="grid-cell w-full aspect-square rounded-[2px] border border-drago-accent/30 bg-transparent"
-                                    />
+                                        className="matrix-cell relative w-full aspect-square rounded-[2px] border border-drago-accent/30"
+                                        style={{ '--matrix-duration': `${1.6 + (i % 7) * 0.31}s`, '--matrix-delay': `${-(i % 11) * 0.23}s` }}
+                                    ><span className="matrix-cell__fill" /></div>
                                 ))}
                             </div>
                         </div>
