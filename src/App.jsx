@@ -12,6 +12,8 @@ import About from './pages/About';
 import CalcioLive from './pages/CalcioLive';
 import Terms from './pages/Terms';
 import CookiePolicy from './pages/CookiePolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Seo from './components/Seo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +33,7 @@ function App() {
   return (
     <Router>
       <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
+        <Seo />
         <Navbar />
 
         <main className="flex-grow">
@@ -45,6 +48,7 @@ function App() {
             <Route path="/termini-e-condizioni" element={<Terms />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
 

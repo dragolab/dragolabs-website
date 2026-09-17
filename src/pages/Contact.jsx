@@ -31,7 +31,7 @@ function useTypingPlaceholder(text, delayMs = 0) {
 }
 
 /* ── Animated input ── */
-function AnimatedInput({ label, type = 'text', placeholder, value, onChange, name, delay = 0 }) {
+function AnimatedInput({ label, type = 'text', placeholder, value, onChange, name, autoComplete, required = false, error, delay = 0 }) {
     const [focused, setFocused] = useState(false);
     const typed = useTypingPlaceholder(placeholder, delay);
     const hasValue = value.length > 0;
@@ -39,6 +39,7 @@ function AnimatedInput({ label, type = 'text', placeholder, value, onChange, nam
     return (
         <div className="relative">
             <label
+                htmlFor={name}
                 className={`absolute left-4 font-sans text-sm transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
                         ? '-top-2.5 text-xs text-drago-accent bg-[#0f1a1e] px-1 rounded'
@@ -49,21 +50,27 @@ function AnimatedInput({ label, type = 'text', placeholder, value, onChange, nam
             </label>
             <input
                 type={type}
+                id={name}
                 name={name}
                 value={value}
+                autoComplete={autoComplete}
+                required={required}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? `${name}-error` : undefined}
                 onChange={onChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 placeholder={focused ? typed + (typed.length < placeholder.length ? '|' : '') : ''}
-                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none transition-colors duration-200
-                    ${focused ? 'border-drago-accent' : 'border-white/15'}`}
+                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70
+                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/15'}`}
             />
+            {error && <p id={`${name}-error`} className="mt-2 text-sm text-red-300" role="alert">{error}</p>}
         </div>
     );
 }
 
 /* ── Animated textarea ── */
-function AnimatedTextarea({ label, placeholder, value, onChange, name, delay = 0 }) {
+function AnimatedTextarea({ label, placeholder, value, onChange, name, required = false, error, delay = 0 }) {
     const [focused, setFocused] = useState(false);
     const typed = useTypingPlaceholder(placeholder, delay);
     const hasValue = value.length > 0;
@@ -71,6 +78,7 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, delay = 0
     return (
         <div className="relative">
             <label
+                htmlFor={name}
                 className={`absolute left-4 font-sans text-sm transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
                         ? '-top-2.5 text-xs text-drago-accent bg-[#0f1a1e] px-1 rounded'
@@ -81,15 +89,20 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, delay = 0
             </label>
             <textarea
                 name={name}
+                id={name}
                 value={value}
+                required={required}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? `${name}-error` : undefined}
                 onChange={onChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 rows={5}
                 placeholder={focused ? typed + (typed.length < placeholder.length ? '|' : '') : ''}
-                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none resize-none transition-colors duration-200
-                    ${focused ? 'border-drago-accent' : 'border-white/15'}`}
+                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none resize-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70
+                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/15'}`}
             />
+            {error && <p id={`${name}-error`} className="mt-2 text-sm text-red-300" role="alert">{error}</p>}
         </div>
     );
 }
@@ -101,14 +114,27 @@ export default function Contact() {
     const [form, setForm] = useState({ nome: '', email: '', telefono: '', messaggio: '' });
     const [privacy, setPrivacy] = useState(false);
     const [status, setStatus] = useState('idle'); // idle | sending | success | error
+    const [showErrors, setShowErrors] = useState(false);
 
     const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-    const isValid = form.nome.trim() !== '' && form.email.trim() !== '' && form.messaggio.trim() !== '';
+    const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+    const errors = {
+        nome: form.nome.trim() ? '' : 'Inserisci nome e cognome.',
+        email: !form.email.trim() ? 'Inserisci un indirizzo email.' : !emailIsValid ? 'Inserisci un indirizzo email valido.' : '',
+        messaggio: form.messaggio.trim() ? '' : 'Descrivi brevemente come possiamo aiutarti.',
+        privacy: privacy ? '' : 'Devi prendere visione dell’informativa privacy per inviare la richiesta.',
+    };
+    const isValid = !Object.values(errors).some(Boolean);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!privacy || status === 'sending' || !isValid) return;
+        setShowErrors(true);
+        if (status === 'sending' || !isValid) {
+            const firstInvalid = Object.keys(errors).find((field) => errors[field]);
+            document.getElementById(firstInvalid)?.focus();
+            return;
+        }
 
         setStatus('sending');
         try {
@@ -126,6 +152,7 @@ export default function Contact() {
             setStatus('success');
             setForm({ nome: '', email: '', telefono: '', messaggio: '' });
             setPrivacy(false);
+            setShowErrors(false);
         } catch (err) {
             console.error('EmailJS error:', err);
             setStatus('error');
@@ -185,9 +212,9 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-start">
 
                     {/* ── LEFT: Form ── */}
-                    <div ref={formRef} className="contact-reveal opacity-0 glass rounded-2xl p-7 md:p-9 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.15)]">
+                    <div className="contact-reveal opacity-0 glass rounded-2xl p-7 md:p-9 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.15)]">
                         {status === 'success' ? (
-                            <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
+                            <div className="flex flex-col items-center justify-center py-16 text-center gap-4" role="status" aria-live="polite">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">
                                     <Mail className="w-7 h-7 text-drago-accent" />
                                 </div>
@@ -203,53 +230,62 @@ export default function Contact() {
                                 </button>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                            <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
                                 <h2 className="font-sans font-bold text-2xl text-white mb-1">
                                     Richiedi una consulenza
                                 </h2>
 
-                                <AnimatedInput label="Nome e Cognome *" name="nome" placeholder="Francesco Rossi" value={form.nome} onChange={handleChange} delay={300} />
-                                <AnimatedInput label="Email *" type="email" name="email" placeholder="francescorossi@email.it" value={form.email} onChange={handleChange} delay={600} />
-                                <AnimatedInput label="Telefono (opzionale)" type="tel" name="telefono" placeholder="+39 123 456 7890" value={form.telefono} onChange={handleChange} delay={900} />
-                                <AnimatedTextarea label="Come posso aiutarti? *" name="messaggio" placeholder="Ciao Gianluca, vorrei digitalizzare la mia attività locale e avrei bisogno di una consulenza tecnica..." value={form.messaggio} onChange={handleChange} delay={1200} />
+                                {showErrors && !isValid && <p className="rounded-lg border border-red-400/50 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Controlla i campi evidenziati prima di inviare la richiesta.</p>}
+
+                                <AnimatedInput label="Nome e Cognome *" name="nome" placeholder="Francesco Rossi" value={form.nome} onChange={handleChange} autoComplete="name" required error={showErrors ? errors.nome : ''} delay={300} />
+                                <AnimatedInput label="Email *" type="email" name="email" placeholder="francescorossi@email.it" value={form.email} onChange={handleChange} autoComplete="email" required error={showErrors ? errors.email : ''} delay={600} />
+                                <AnimatedInput label="Telefono (opzionale)" type="tel" name="telefono" placeholder="+39 123 456 7890" value={form.telefono} onChange={handleChange} autoComplete="tel" delay={900} />
+                                <AnimatedTextarea label="Come posso aiutarti? *" name="messaggio" placeholder="Ciao Gianluca, vorrei digitalizzare la mia attività locale e avrei bisogno di una consulenza tecnica..." value={form.messaggio} onChange={handleChange} required error={showErrors ? errors.messaggio : ''} delay={1200} />
 
                                 {/* Error message */}
                                 {status === 'error' && (
-                                    <p className="text-red-400 text-sm font-sans">
+                                    <p className="text-red-400 text-sm font-sans" role="alert">
                                         Qualcosa è andato storto. Riprova o scrivimi direttamente a{' '}
                                         <a href="mailto:info.dragolabs@gmail.com" className="underline">info.dragolabs@gmail.com</a>.
                                     </p>
                                 )}
 
                                 {/* Privacy */}
-                                <label className="flex items-start gap-3 cursor-pointer group">
-                                    <div
-                                        className={`w-5 h-5 mt-0.5 rounded border flex-shrink-0 flex items-center justify-center transition-colors duration-200
-                                            ${privacy ? 'bg-drago-accent border-drago-accent' : 'border-white/30 group-hover:border-drago-accent/60'}`}
-                                        onClick={() => setPrivacy((p) => !p)}
-                                    >
+                                <div>
+                                    <label htmlFor="privacy" className="flex items-start gap-3 cursor-pointer group">
+                                        <input
+                                            id="privacy"
+                                            name="privacy"
+                                            type="checkbox"
+                                            checked={privacy}
+                                            onChange={(e) => setPrivacy(e.target.checked)}
+                                            required
+                                            aria-invalid={Boolean(showErrors && errors.privacy)}
+                                            aria-describedby={showErrors && errors.privacy ? 'privacy-error' : undefined}
+                                            className="sr-only peer"
+                                        />
+                                        <span aria-hidden="true" className={`w-5 h-5 mt-0.5 rounded border flex-shrink-0 flex items-center justify-center transition-colors duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-drago-accent peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[#0f1a1e]
+                                            ${privacy ? 'bg-drago-accent border-drago-accent' : showErrors && errors.privacy ? 'border-red-400' : 'border-white/30 group-hover:border-drago-accent/60'}`}>
                                         {privacy && (
                                             <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                             </svg>
                                         )}
-                                    </div>
-                                    <span className="font-sans text-sm text-gray-300">
-                                        Ho letto e accetto la{' '}
-                                        <a href="/privacy" className="text-drago-accent underline underline-offset-2 hover:text-drago-accent/80">
-                                            Privacy Policy
-                                        </a>
-                                    </span>
-                                </label>
+                                        </span>
+                                        <span className="font-sans text-sm text-gray-300">Ho preso visione dell’Informativa Privacy.</span>
+                                    </label>
+                                    <a href="/privacy" className="ml-8 text-sm text-drago-accent underline underline-offset-2 hover:text-drago-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-drago-accent">Leggi l’Informativa Privacy</a>
+                                    {showErrors && errors.privacy && <p id="privacy-error" className="mt-2 text-sm text-red-300" role="alert">{errors.privacy}</p>}
+                                </div>
 
                                 {/* Submit */}
                                 <button
                                     type="submit"
-                                    disabled={!privacy || status === 'sending' || !isValid}
+                                    disabled={status === 'sending'}
                                     className={`w-full py-4 rounded-xl font-sans font-bold text-base text-white transition-all duration-300
-                                        ${privacy && isValid && status !== 'sending'
+                                        ${status !== 'sending'
                                             ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.02] shadow-[0_0_20px_rgba(0,115,160,0.4)]'
-                                            : 'bg-white/10 cursor-not-allowed opacity-50'
+                                            : 'bg-white/10 cursor-wait opacity-50'
                                         }`}
                                 >
                                     {status === 'sending' ? 'Invio in corso...' : 'Richiedi Consulenza'}
@@ -302,10 +338,10 @@ export default function Contact() {
                                 Disponibilità Operativa
                             </h3>
                             <div className="flex items-end gap-4 mb-3">
-                                <span className="font-serif italic text-6xl text-drago-accent leading-none">H24</span>
+                                <span className="font-serif italic text-4xl md:text-5xl text-drago-accent leading-none">1 giorno</span>
                                 <p className="font-sans font-light text-sm text-gray-300 pb-1 leading-snug">
-                                    Risposta appena possibile<br />
-                                    <span className="text-gray-400 text-xs">(compatibilmente con impegni universitari)</span>
+                                    Risposta entro un giorno lavorativo<br />
+                                    <span className="text-gray-400 text-xs">per le richieste inviate dal modulo</span>
                                 </p>
                             </div>
                             <div className="h-[1px] bg-white/10 my-4" />

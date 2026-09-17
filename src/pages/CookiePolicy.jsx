@@ -42,7 +42,7 @@ export default function CookiePolicy() {
                         Informativa ed inventario sull'utilizzo dei cookie su Drago Labs.
                     </p>
                     <p className="font-sans text-xs text-drago-accent mt-3">
-                        Ultimo aggiornamento: 6 Agosto 2026
+                        Ultimo aggiornamento: 18 settembre 2026
                     </p>
                     <div className="w-20 h-[1px] bg-drago-accent mx-auto mt-6" />
                 </div>
@@ -52,7 +52,7 @@ export default function CookiePolicy() {
                     {/* Intro Card */}
                     <div className="cookie-reveal opacity-0 glass rounded-2xl p-6 md:p-8">
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            La trasparenza e la tutela della tua privacy sono fondamentali per Drago Labs. La presente Informativa illustra in modo dettagliato quali tipi di cookie vengono impiegati sul sito web <strong className="text-white">Drago Labs</strong>, le loro finalità, la loro durata e le modalità a disposizione dell'utente per gestirne o disabilitarne l'uso, in piena conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR - UE 2016/679) e la Direttiva ePrivacy.
+                            La trasparenza e la tutela della privacy sono fondamentali per Drago Labs. Questa pagina descrive i cookie effettivamente utilizzati dal sito e viene aggiornata quando vengono introdotti nuovi strumenti o servizi.
                         </p>
                     </div>
 
@@ -65,7 +65,7 @@ export default function CookiePolicy() {
                             1. Che cosa sono i Cookie?
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            I cookie sono piccoli file di testo inviati da un sito web al dispositivo dell'utente (computer, smartphone o tablet) durante la navigazione. Essi consentono al sito di memorizzare informazioni sulle preferenze dell'utente, garantendo un'esperienza di navigazione fluida, sicura e personalizzata.
+                            I cookie sono piccoli file di testo che un sito può salvare nel browser. Possono essere necessari al funzionamento del sito oppure usati, previa gestione delle preferenze quando richiesta, per statistiche e marketing.
                         </p>
                     </div>
 
@@ -75,42 +75,15 @@ export default function CookiePolicy() {
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Lock className="w-4 h-4" />
                             </span>
-                            2. Inventario dei Cookie Utilizzati
+                            2. Cookie utilizzati da Drago Labs
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base mb-6">
-                            Questo sito fa uso <strong className="text-white">esclusivamente di cookie tecnici e di sessione strettamente necessari</strong> per consentire la corretta fruizione delle pagine e garantire la sicurezza della navigazione.
+                            Alla data dell'ultimo aggiornamento, il codice del sito <strong className="text-white">non crea né legge cookie proprietari, cookie di sessione, token CSRF o dati di local storage</strong>. Non è quindi presente un inventario di cookie tecnici da gestire.
                         </p>
 
-                        {/* Cookie Inventory Table */}
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left text-xs md:text-sm font-sans border-collapse">
-                                <thead>
-                                    <tr className="border-b border-white/10 text-drago-accent uppercase tracking-wider font-semibold">
-                                        <th className="py-3 px-3">Nome Cookie</th>
-                                        <th className="py-3 px-3">Tipologia</th>
-                                        <th className="py-3 px-3">Finalità</th>
-                                        <th className="py-3 px-3">Durata</th>
-                                        <th className="py-3 px-3">Modalità Opt-Out</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-white/5 text-gray-300 font-light">
-                                    <tr>
-                                        <td className="py-3 px-3 font-mono text-white text-xs">Session_ID / Technical</td>
-                                        <td className="py-3 px-3"><span className="px-2 py-0.5 rounded bg-drago-accent/15 text-drago-accent font-medium text-xs">Essenziale</span></td>
-                                        <td className="py-3 px-3">Gestione dello stato di navigazione e rendering delle componenti</td>
-                                        <td className="py-3 px-3">Sessione (rimosso alla chiusura)</td>
-                                        <td className="py-3 px-3 text-xs text-gray-400">Impostazioni Browser</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="py-3 px-3 font-mono text-white text-xs">CSRF Token / Security</td>
-                                        <td className="py-3 px-3"><span className="px-2 py-0.5 rounded bg-drago-accent/15 text-drago-accent font-medium text-xs">Essenziale</span></td>
-                                        <td className="py-3 px-3">Protezione da attacchi di tipo Cross-Site Request Forgery</td>
-                                        <td className="py-3 px-3">Sessione</td>
-                                        <td className="py-3 px-3 text-xs text-gray-400">Impostazioni Browser</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
+                            Il sito carica font da Google Fonts e utilizza EmailJS soltanto quando l'utente invia il modulo di contatto. L'eventuale trattamento effettuato da tali fornitori è disciplinato dalle rispettive informative; questa applicazione non usa tali servizi per profilazione o advertising.
+                        </p>
                     </div>
 
                     {/* Section 3: Nessuna Profilazione */}
@@ -122,7 +95,7 @@ export default function CookiePolicy() {
                             3. Assenza di Cookie di Profilazione e Marketing
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            Questo sito <strong className="text-white">non fa uso di alcun cookie di profilazione o tracciamento pubblicitario di terze parti </strong> (es. Pixel Meta, Google Ads o reti di retargeting). Non vengono effettuate attività di tracciamento comportamentale o profilazione commerciale dei visitatori.
+                            Questo sito <strong className="text-white">non utilizza Pixel Meta, Google Ads, Analytics o reti di retargeting</strong>. Non vengono effettuate attività di profilazione commerciale o pubblicitaria attraverso il sito.
                         </p>
                     </div>
 
@@ -145,19 +118,13 @@ export default function CookiePolicy() {
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Settings className="w-4 h-4" />
                             </span>
-                            5. Come Gestire o Disabilitare i Cookie dal Browser
+                            5. Gestione futura delle preferenze
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base mb-4">
-                            Puoi configurare il tuo browser affinché accetti, rifiuti o elimini i cookie in qualsiasi momento. Consulta le guide ufficiali per i principali browser:
+                            Qualora venissero introdotti cookie non essenziali, il sito mostrerà prima del loro utilizzo una scelta dedicata per accettarli o rifiutarli. Le preferenze potranno essere modificate in qualsiasi momento.
                         </p>
-                        <ul className="list-disc pl-6 space-y-2 text-sm font-sans text-gray-400 mb-4">
-                            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noreferrer" className="text-drago-accent hover:underline">Google Chrome</a></li>
-                            <li><a href="https://support.mozilla.org/it/kb/Gestione%20dei%20cookie" target="_blank" rel="noreferrer" className="text-drago-accent hover:underline">Mozilla Firefox</a></li>
-                            <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noreferrer" className="text-drago-accent hover:underline">Apple Safari</a></li>
-                            <li><a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-e-gestire-i-cookie-in-microsoft-edge-63947406-40b9-7524-2cfb-7b94b540defd" target="_blank" rel="noreferrer" className="text-drago-accent hover:underline">Microsoft Edge</a></li>
-                        </ul>
                         <p className="font-sans font-light text-xs text-gray-400 leading-relaxed">
-                            Nota: La disabilitazione completa dei cookie tecnici di sessione potrebbe alterare la corretta visualizzazione di alcune sezioni del sito.
+                            Puoi comunque gestire o eliminare i cookie dal browser seguendo le istruzioni del relativo produttore.
                         </p>
                     </div>
 

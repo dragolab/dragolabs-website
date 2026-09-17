@@ -87,6 +87,8 @@ export default function Footer() {
                     <div className="flex items-center gap-4 text-xs font-mono text-drago-secondary">
                         <Link to="/termini-e-condizioni" className="hover:text-drago-accent transition-colors">Termini di Servizio</Link>
                         <span>|</span>
+                        <Link to="/privacy" className="hover:text-drago-accent transition-colors">Privacy Policy</Link>
+                        <span>|</span>
                         <Link to="/cookie-policy" className="hover:text-drago-accent transition-colors">Cookie Policy</Link>
                     </div>
 

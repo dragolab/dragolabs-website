@@ -126,7 +126,7 @@ export default function Features() {
             </style>
             <div className="text-center mb-16">
                 <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance">
-                    Perchè sceglierci
+                    Perché sceglierci
                 </h2>
                 <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
             </div>
