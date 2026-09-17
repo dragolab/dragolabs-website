@@ -335,7 +335,7 @@ export default function Contact() {
                         {/* Operational availability card */}
                         <div className="contact-reveal opacity-0 glass rounded-2xl p-6 [transition:border-color_0.4s,box-shadow_0.4s] hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)]">
                             <h3 className="font-sans font-bold text-lg text-white mb-4">
-                                Disponibilità Operativa
+                                Disponibilità
                             </h3>
                             <div className="flex items-end gap-4 mb-3">
                                 <span className="font-serif italic text-4xl md:text-5xl text-drago-accent leading-none">1 giorno</span>
@@ -346,22 +346,23 @@ export default function Contact() {
                             </div>
                             <div className="h-[1px] bg-white/10 my-4" />
                             {/* Social icons */}
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 flex-wrap">
                                 {[
-                                    { href: 'https://wa.me/393939450653', icon: (<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.83L.057 23.998l6.304-1.654A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 11.999 0zm.001 21.818a9.818 9.818 0 0 1-5.011-1.374l-.36-.214-3.733.979 1-3.648-.235-.374A9.818 9.818 0 0 1 2.182 12c0-5.422 4.396-9.818 9.818-9.818 5.423 0 9.818 4.396 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z" /></svg>), label: 'WhatsApp' },
-                                    { href: 'https://instagram.com/drago.labs', icon: <Instagram className="w-5 h-5" />, label: 'Instagram' },
-                                    { href: 'https://linkedin.com/company/dragolab', icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn' },
-                                    { href: 'https://github.com/dragolab', icon: <Github className="w-5 h-5" />, label: 'GitHub' },
+                                    { href: 'https://wa.me/393939450653', colorClass: 'group-hover:text-[#25D366] group-active:text-[#25D366]', icon: (<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.83L.057 23.998l6.304-1.654A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 11.999 0zm.001 21.818a9.818 9.818 0 0 1-5.011-1.374l-.36-.214-3.733.979 1-3.648-.235-.374A9.818 9.818 0 0 1 2.182 12c0-5.422 4.396-9.818 9.818-9.818 5.423 0 9.818 4.396 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z" /></svg>), label: 'WhatsApp' },
+                                    { href: 'mailto:info.dragolabs@gmail.com', colorClass: 'group-hover:text-yellow-400 group-active:text-yellow-400', icon: <Mail className="w-5 h-5" />, label: 'Email', external: false },
+                                    { href: 'https://www.linkedin.com/in/gianluca-dragone/', colorClass: 'group-hover:text-[#0a66c2] group-active:text-[#0a66c2]', icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn' },
+                                    { href: 'https://github.com/dragolab', colorClass: 'group-hover:text-white group-active:text-white', icon: <Github className="w-5 h-5" />, label: 'GitHub' },
+                                    { href: 'https://www.instagram.com/gianl.drag/', colorClass: 'group-hover:text-[#E1306C] group-active:text-[#E1306C]', icon: <Instagram className="w-5 h-5" />, label: 'Instagram' },
                                 ].map((s) => (
                                     <a
                                         key={s.label}
                                         href={s.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        target={s.external === false ? undefined : '_blank'}
+                                        rel={s.external === false ? undefined : 'noopener noreferrer'}
                                         aria-label={s.label}
-                                        className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-drago-accent hover:border-drago-accent hover:bg-drago-accent/10 transition-all duration-300"
+                                        className="group w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:border-white/30 hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300"
                                     >
-                                        {s.icon}
+                                        <span className={s.colorClass}>{s.icon}</span>
                                     </a>
                                 ))}
                             </div>

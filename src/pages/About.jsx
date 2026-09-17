@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Instagram, Linkedin, Github, MapPin, BookOpen, Globe, GraduationCap, Zap } from 'lucide-react';
+import { Instagram, Linkedin, Github, Mail, MapPin, BookOpen, Globe, GraduationCap, Zap } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,15 +38,16 @@ const hardSkills = ['Python', 'C', 'Java', 'HTML', 'CSS', 'JavaScript', 'React',
 const softSkills = ['Problem Solving', 'Problem Analysis', 'Teamwork', 'Pensiero Critico', 'Adattabilità', 'Organizzazione'];
 
 const socials = [
-    { href: 'https://wa.me/393939450653', label: 'WhatsApp', icon: (
+    { href: 'https://wa.me/393939450653', label: 'WhatsApp', colorClass: 'group-hover:text-[#25D366] group-active:text-[#25D366]', icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
             <path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.83L.057 23.998l6.304-1.654A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 11.999 0zm.001 21.818a9.818 9.818 0 0 1-5.011-1.374l-.36-.214-3.733.979 1-3.648-.235-.374A9.818 9.818 0 0 1 2.182 12c0-5.422 4.396-9.818 9.818-9.818 5.423 0 9.818 4.396 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818z"/>
         </svg>
     )},
-    { href: 'https://instagram.com/drago.labs', label: 'Instagram', icon: <Instagram className="w-5 h-5" /> },
-    { href: 'https://linkedin.com/in/gianluca-dragone', label: 'LinkedIn', icon: <Linkedin className="w-5 h-5" /> },
-    { href: 'https://github.com/dragolab', label: 'GitHub', icon: <Github className="w-5 h-5" /> },
+    { href: 'mailto:info.dragolabs@gmail.com', label: 'Email', colorClass: 'group-hover:text-yellow-400 group-active:text-yellow-400', icon: <Mail className="w-5 h-5" />, external: false },
+    { href: 'https://www.linkedin.com/in/gianluca-dragone/', label: 'LinkedIn', colorClass: 'group-hover:text-[#0a66c2] group-active:text-[#0a66c2]', icon: <Linkedin className="w-5 h-5" /> },
+    { href: 'https://github.com/dragolab', label: 'GitHub', colorClass: 'group-hover:text-white group-active:text-white', icon: <Github className="w-5 h-5" /> },
+    { href: 'https://www.instagram.com/gianl.drag/', label: 'Instagram', colorClass: 'group-hover:text-[#E1306C] group-active:text-[#E1306C]', icon: <Instagram className="w-5 h-5" /> },
 ];
 
 export default function About() {
@@ -161,17 +162,15 @@ export default function About() {
 
                         <div className="h-[1px] bg-white/10 mb-6" />
 
-                        {/* Quick stats — first */}
+                        {/* Quick stats */}
                         <div className="grid grid-cols-2 gap-4 mb-6">
                             {[
-                                { value: '3+', label: 'Anni di esperienza' },
-                                { value: '10+', label: 'Tecnologie' },
-                                { value: '5+', label: 'Progetti realizzati' },
-                                { value: 'H24', label: 'Disponibilità' },
+                                { value: '4+', label: 'Anni di esperienza' },
+                                { value: '12+', label: 'Progetti realizzati' },
                             ].map((stat) => (
-                                <div key={stat.label} className="text-center py-3 rounded-xl bg-white/5 border border-white/10">
-                                    <p className="font-serif italic text-2xl text-drago-accent">{stat.value}</p>
-                                    <p className="font-sans text-xs text-gray-400 mt-1">{stat.label}</p>
+                                <div key={stat.label} className="text-center py-4 rounded-xl bg-drago-accent/10 border border-drago-accent/40 shadow-[0_0_18px_rgba(0,115,160,0.16)] transition-transform duration-300 hover:-translate-y-0.5">
+                                    <p className="font-serif italic text-3xl text-drago-accent">{stat.value}</p>
+                                    <p className="font-sans text-xs font-medium text-gray-300 mt-1">{stat.label}</p>
                                 </div>
                             ))}
                         </div>
@@ -184,12 +183,12 @@ export default function About() {
                                 <a
                                     key={s.label}
                                     href={s.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    target={s.external === false ? undefined : '_blank'}
+                                    rel={s.external === false ? undefined : 'noopener noreferrer'}
                                     aria-label={s.label}
-                                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-drago-accent hover:border-drago-accent hover:bg-drago-accent/10 transition-all duration-300"
+                                    className="group w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:border-white/30 hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300"
                                 >
-                                    {s.icon}
+                                    <span className={s.colorClass}>{s.icon}</span>
                                 </a>
                             ))}
                         </div>
