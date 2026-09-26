@@ -47,7 +47,7 @@ export default function Protocol() {
         const ctx = gsap.context(() => {
             const media = gsap.matchMedia();
 
-            media.add('(min-width: 768px)', () => {
+            const animateCards = ({ scale, blur, opacity, start, end }) => {
                 const cards = gsap.utils.toArray('.card-wrapper');
 
                 cards.forEach((card, index) => {
@@ -60,22 +60,38 @@ export default function Protocol() {
                         });
 
                         gsap.to(innerCard, {
-                            scale: 0.92,
-                            filter: 'blur(10px)',
-                            opacity: 0.4,
+                            scale,
+                            filter: `blur(${blur}px)`,
+                            opacity,
                             ease: 'none',
                             force3D: true,
                             scrollTrigger: {
                                 trigger: cards[index + 1],
-                                start: 'top 78%',
-                                end: 'top 12%',
+                                start,
+                                end,
                                 scrub: 0.25,
                                 invalidateOnRefresh: true,
                             }
                         });
                     }
                 });
-            });
+            };
+
+            media.add('(min-width: 768px)', () => animateCards({
+                scale: 0.92,
+                blur: 10,
+                opacity: 0.4,
+                start: 'top 78%',
+                end: 'top 12%',
+            }));
+
+            media.add('(max-width: 767px)', () => animateCards({
+                scale: 0.96,
+                blur: 6,
+                opacity: 0.52,
+                start: 'top 84%',
+                end: 'top 18%',
+            }));
 
             return () => media.revert();
         }, containerRef);
