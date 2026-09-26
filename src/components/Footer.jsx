@@ -90,6 +90,8 @@ export default function Footer() {
                         <Link to="/privacy" className="hover:text-drago-accent transition-colors">Privacy Policy</Link>
                         <span>|</span>
                         <Link to="/cookie-policy" className="hover:text-drago-accent transition-colors">Cookie Policy</Link>
+                        <span>|</span>
+                        <button type="button" onClick={() => window.dispatchEvent(new Event('drago:open-cookie-settings'))} className="hover:text-drago-accent transition-colors">Preferenze cookie</button>
                     </div>
 
                     <p className="font-sans text-sm text-drago-secondary text-center md:text-right">

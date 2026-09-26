@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Seo from './components/Seo';
+import CookieConsent from './components/CookieConsent';
 
 const DummyPage = lazy(() => import('./pages/DummyPage'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -57,6 +58,7 @@ function App() {
         </main>
 
         <Footer />
+        <CookieConsent />
       </div>
     </Router>
   );

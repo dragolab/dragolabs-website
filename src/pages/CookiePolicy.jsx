@@ -42,7 +42,7 @@ export default function CookiePolicy() {
                         Informativa ed inventario sull'utilizzo dei cookie su Drago Labs.
                     </p>
                     <p className="font-sans text-xs text-drago-accent mt-3">
-                        Ultimo aggiornamento: 18 settembre 2026
+                        Ultimo aggiornamento: 26 settembre 2026
                     </p>
                     <div className="w-20 h-[1px] bg-drago-accent mx-auto mt-6" />
                 </div>
@@ -78,11 +78,11 @@ export default function CookiePolicy() {
                             2. Cookie utilizzati da Drago Labs
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base mb-6">
-                            Alla data dell'ultimo aggiornamento, il codice del sito <strong className="text-white">non crea né legge cookie proprietari, cookie di sessione, token CSRF o dati di local storage</strong>. Non è quindi presente un inventario di cookie tecnici da gestire.
+                            Il sito non utilizza cookie di profilazione o marketing. Dopo il consenso dell'utente, può caricare <strong className="text-white">Google Analytics 4</strong> per statistiche aggregate di utilizzo. Google Analytics può usare identificatori analitici come <strong className="text-white">_ga</strong> e <strong className="text-white">_ga_*</strong>.
                         </p>
 
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            Il sito carica font da Google Fonts e utilizza EmailJS soltanto quando l'utente invia il modulo di contatto. L'eventuale trattamento effettuato da tali fornitori è disciplinato dalle rispettive informative; questa applicazione non usa tali servizi per profilazione o advertising.
+                            La scelta relativa agli analytics viene memorizzata localmente nel browser esclusivamente per ricordare la preferenza. Il sito carica Google Fonts e utilizza EmailJS soltanto quando l'utente invia il modulo di contatto. L'eventuale trattamento effettuato da tali fornitori è disciplinato dalle rispettive informative.
                         </p>
                     </div>
 
@@ -92,10 +92,10 @@ export default function CookiePolicy() {
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <ShieldAlert className="w-4 h-4" />
                             </span>
-                            3. Assenza di Cookie di Profilazione e Marketing
+                            3. Analytics e assenza di marketing
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            Questo sito <strong className="text-white">non utilizza Pixel Meta, Google Ads, Analytics o reti di retargeting</strong>. Non vengono effettuate attività di profilazione commerciale o pubblicitaria attraverso il sito.
+                            Questo sito non utilizza Pixel Meta, Google Ads o reti di retargeting. Google Analytics 4 viene attivato solo dopo una scelta esplicita; non viene usato per profilazione commerciale o pubblicitaria.
                         </p>
                     </div>
 
@@ -105,10 +105,10 @@ export default function CookiePolicy() {
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <EyeOff className="w-4 h-4" />
                             </span>
-                            4. Segnali "Do Not Track" (DNT)
+                            4. Scelta e revoca del consenso
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base">
-                            Poiché Drago Labs non monitora né traccia le attività dei propri utenti su siti terzi per finalità di profilazione o advertising, il sito è progettato da subito per rispettare la privacy dell'utente senza raccogliere dati personali profilanti.
+                            Al primo accesso puoi accettare o rifiutare gli analytics. Puoi riaprire le preferenze in qualsiasi momento dal link “Preferenze cookie” nel footer e modificare la scelta.
                         </p>
                     </div>
 
@@ -118,10 +118,10 @@ export default function CookiePolicy() {
                             <span className="w-8 h-8 rounded-lg bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
                                 <Settings className="w-4 h-4" />
                             </span>
-                            5. Gestione futura delle preferenze
+                            5. Gestione delle preferenze
                         </h3>
                         <p className="font-sans font-light text-gray-300 leading-relaxed text-sm md:text-base mb-4">
-                            Qualora venissero introdotti cookie non essenziali, il sito mostrerà prima del loro utilizzo una scelta dedicata per accettarli o rifiutarli. Le preferenze potranno essere modificate in qualsiasi momento.
+                            Google Analytics non viene caricato finché non viene prestato il consenso. Le preferenze possono essere aggiornate in qualsiasi momento dal footer.
                         </p>
                         <p className="font-sans font-light text-xs text-gray-400 leading-relaxed">
                             Puoi comunque gestire o eliminare i cookie dal browser seguendo le istruzioni del relativo produttore.
