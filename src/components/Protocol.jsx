@@ -7,6 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
     {
+        title: "Studio Legale Palmisano",
+        type: "Sito Web",
+        description: "Restyling e sviluppo del sito web per Studio Legale Palmisano, con l’obiettivo di rafforzarne l’identità digitale attraverso un design autorevole, contemporaneo e distintivo. Il sito presenta lo studio, i professionisti e le principali aree di attività con una struttura dei contenuti chiara e facilmente navigabile. Include pagine servizi, profili professionali, contatti e moduli di richiesta informazioni, ottimizzati per una fruizione fluida da desktop e mobile. Realizzato con WordPress e tema personalizzato, il progetto offre una gestione editoriale semplice, flessibile e autonoma.",
+        image: "/img/optimized/avvstefanopalmisano-sito-1600.webp",
+        imageSet: "/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w",
+        width: 2848,
+        height: 1416,
+        link: "https://www.avvstefanopalmisano.it/",
+        external: true
+    },
+    {
         title: "Casa Vacanze Vistamare",
         type: "Sito Web",
         description: "Sito di presentazione per una casa vacanze affacciata sul mare, con sistema di prenotazione integrato e galleria multimediale.",
@@ -14,16 +25,6 @@ const projects = [
         imageSet: "/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w",
         width: 2438,
         height: 1366,
-        link: ""
-    },
-    {
-        title: "A Un Passo Dal Faro",
-        type: "Sito Web",
-        description: "Portale turistico per un affitto vacanze con prenotazione online, calendario disponibilità e contenuti multilingua.",
-        image: "/img/optimized/aunpasso-dalfaro-1200.webp",
-        imageSet: "/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w",
-        width: 1207,
-        height: 763,
         link: ""
     }
 ];
@@ -121,6 +122,8 @@ export default function Protocol() {
                                     </p>
                                     <a
                                         href={project.link || '#'}
+                                        target={project.external ? '_blank' : undefined}
+                                        rel={project.external ? 'noopener noreferrer' : undefined}
                                         className="group inline-flex items-center justify-between w-full max-w-xs p-3 rounded-xl border border-drago-accent hover:bg-drago-accent hover:border-drago-accent transition-all duration-300"
                                     >
                                         <span className="font-sans text-base font-semibold text-drago-accent group-hover:text-white transition-colors">Visita il progetto</span>
@@ -165,6 +168,8 @@ export default function Protocol() {
                                     </p>
                                     <a
                                         href={project.link || '#'}
+                                        target={project.external ? '_blank' : undefined}
+                                        rel={project.external ? 'noopener noreferrer' : undefined}
                                         className="group inline-flex items-center justify-between w-full p-3 rounded-xl border border-drago-accent hover:bg-drago-accent transition-all duration-300"
                                     >
                                         <span className="font-sans text-sm font-semibold text-drago-accent group-hover:text-white transition-colors">Visita il progetto</span>
