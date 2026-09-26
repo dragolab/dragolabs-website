@@ -100,7 +100,7 @@ export default function Features() {
     }, []);
 
     return (
-        <section ref={containerRef} className="py-24 px-6 container mx-auto">
+        <section ref={containerRef} className="py-16 md:py-24 px-6 container mx-auto">
             <style>
                 {`
                     @keyframes periodicTwitch {
@@ -113,7 +113,7 @@ export default function Features() {
                     }
                 `}
             </style>
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 md:mb-16">
                 <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance">
                     Perché sceglierci
                 </h2>

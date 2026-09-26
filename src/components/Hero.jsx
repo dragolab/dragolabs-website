@@ -34,7 +34,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex flex-col items-center pt-20 pb-8 md:pb-12 overflow-hidden"
+            className="relative min-h-[90svh] md:min-h-screen flex flex-col items-center pt-20 pb-8 md:pb-12 overflow-hidden"
         >
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -53,7 +53,7 @@ export default function Hero() {
             </div>
 
             {/* Flexible top spacer — pushes content toward center */}
-            <div className="flex-1" />
+            <div className="flex-[0.55] md:flex-1" />
 
             {/* Main content */}
             <div className="relative z-10 container mx-auto px-6 flex flex-col items-center text-center">
@@ -97,7 +97,7 @@ export default function Hero() {
             </div>
 
             {/* Flexible bottom spacer — separates content from scroll indicator */}
-            <div className="flex-1" />
+            <div className="flex-[0.35] md:flex-1" />
 
             {/* Scroll indicator — naturally at the bottom of the flex column */}
             <div className="stagger-text relative z-10 flex flex-col items-center gap-3 md:gap-5 opacity-50">

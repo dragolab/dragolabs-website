@@ -35,7 +35,7 @@ export default function Philosophy() {
     }, []);
 
     return (
-        <section className="relative py-40 border-y border-white/5 overflow-hidden">
+        <section className="relative py-20 md:py-40 border-y border-white/5 overflow-hidden">
             {/* Texture background */}
             <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDAiPjwvcmVjdD4KPC9zdmc+')] pointer-events-none" />
 
