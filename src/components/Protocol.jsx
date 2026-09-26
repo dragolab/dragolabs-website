@@ -45,25 +45,39 @@ export default function Protocol() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            const cards = gsap.utils.toArray('.card-wrapper');
+            const media = gsap.matchMedia();
 
-            cards.forEach((card, index) => {
-                if (index < cards.length - 1) {
-                    gsap.to(card.querySelector('.card-inner'), {
-                        scale: 0.90,
-                        filter: 'blur(14px)',
-                        opacity: 0.35,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: cards[index + 1],
-                            start: "top 80%",
-                            end: "top 10%",
-                            scrub: true,
-                        }
-                    });
-                }
+            media.add('(min-width: 768px)', () => {
+                const cards = gsap.utils.toArray('.card-wrapper');
+
+                cards.forEach((card, index) => {
+                    if (index < cards.length - 1) {
+                        const innerCard = card.querySelector('.card-inner');
+                        gsap.set(innerCard, {
+                            filter: 'blur(0px)',
+                            transformOrigin: 'center center',
+                            willChange: 'transform, filter, opacity',
+                        });
+
+                        gsap.to(innerCard, {
+                            scale: 0.92,
+                            filter: 'blur(10px)',
+                            opacity: 0.4,
+                            ease: 'none',
+                            force3D: true,
+                            scrollTrigger: {
+                                trigger: cards[index + 1],
+                                start: 'top 78%',
+                                end: 'top 12%',
+                                scrub: 0.25,
+                                invalidateOnRefresh: true,
+                            }
+                        });
+                    }
+                });
             });
 
+            return () => media.revert();
         }, containerRef);
 
         return () => ctx.revert();
@@ -88,7 +102,7 @@ export default function Protocol() {
                         className="card-wrapper sticky top-16 md:top-20 w-full min-h-[80vh] flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        <div className="card-inner relative w-[95%] max-w-[1320px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
+                        <div className="card-inner relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
 
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
@@ -98,7 +112,7 @@ export default function Protocol() {
                                         <img
                                             src={project.image}
                                             srcSet={project.imageSet}
-                                            sizes="(min-width: 768px) 925px, 100vw"
+                                            sizes="(min-width: 768px) 840px, 100vw"
                                             width={project.width}
                                             height={project.height}
                                             loading="lazy"
