@@ -9,7 +9,7 @@ const projects = [
     {
         title: "Studio Legale Palmisano",
         type: "Sito Web",
-        description: "Restyling e sviluppo del sito web per Studio Legale Palmisano, con l’obiettivo di rafforzarne l’identità digitale attraverso un design autorevole, contemporaneo e distintivo. Il sito presenta lo studio, i professionisti e le principali aree di attività con una struttura dei contenuti chiara e facilmente navigabile. Include pagine servizi, profili professionali, contatti e moduli di richiesta informazioni, ottimizzati per una fruizione fluida da desktop e mobile. Realizzato con WordPress e tema personalizzato, il progetto offre una gestione editoriale semplice, flessibile e autonoma.",
+        description: "Restyling e sviluppo del sito dello Studio Legale Palmisano: un’identità digitale autorevole, contenuti chiari e una gestione editoriale semplice e autonoma.",
         image: "/img/optimized/avvstefanopalmisano-sito-1600.webp",
         imageSet: "/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w",
         width: 2848,

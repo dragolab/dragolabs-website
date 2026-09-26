@@ -15,6 +15,7 @@ const CalcioLive = lazy(() => import('./pages/CalcioLive'));
 const Terms = lazy(() => import('./pages/Terms'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +44,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/chi-sono" element={<About />} />
               <Route path="/servizi" element={<DummyPage title="Servizi" />} />
-              <Route path="/portfolio" element={<DummyPage title="Portfolio" />} />
+              <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/blog" element={<DummyPage title="Blog" />} />
               <Route path="/contatti" element={<Contact />} />
               <Route path="/calcio-live" element={<CalcioLive />} />
