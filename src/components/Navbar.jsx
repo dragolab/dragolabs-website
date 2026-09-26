@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,14 +106,14 @@ export default function Navbar() {
                 {/* Desktop links */}
                 <div className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
-                        <Link
+                        <NavLink
                             key={link.to}
                             to={link.to}
                             onClick={link.onClick}
-                            className="text-lg font-medium hover:text-drago-accent transition-colors"
+                            className={({ isActive }) => `text-lg font-medium transition-colors ${isActive ? 'text-drago-accent' : 'hover:text-drago-accent'}`}
                         >
                             {link.label}
-                        </Link>
+                        </NavLink>
                     ))}
                 </div>
 
@@ -143,14 +143,14 @@ export default function Navbar() {
             >
                 <div className="flex flex-col py-3 px-3">
                     {navLinks.map((link) => (
-                        <Link
+                        <NavLink
                             key={link.to}
                             to={link.to}
                             onClick={() => { link.onClick?.(); setMobileOpen(false); }}
-                            className="px-4 py-3 text-lg font-medium hover:text-drago-accent hover:bg-white/5 rounded-xl transition-colors"
+                            className={({ isActive }) => `px-4 py-3 text-lg font-medium rounded-xl transition-colors ${isActive ? 'text-drago-accent bg-white/5' : 'hover:text-drago-accent hover:bg-white/5'}`}
                         >
                             {link.label}
-                        </Link>
+                        </NavLink>
                     ))}
 
                     <div className="px-2 pt-3 pb-1">
