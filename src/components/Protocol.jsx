@@ -115,7 +115,7 @@ export default function Protocol() {
                 {projects.map((project, i) => (
                     <div
                         key={i}
-                        className="card-wrapper relative md:sticky top-auto md:top-20 w-full min-h-0 md:min-h-[80vh] py-6 md:py-0 flex items-center justify-center"
+                        className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
                         <div className="card-inner relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
@@ -219,7 +219,7 @@ export default function Protocol() {
                 {/* ─── CTA CARD (third) ─── */}
                 <div
                     ref={ctaRef}
-                    className="card-wrapper relative md:sticky top-auto md:top-20 w-full min-h-0 md:min-h-[80vh] py-6 md:py-0 flex items-center justify-center"
+                    className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
                     <div className="portfolio-cta-glow card-inner relative w-[90%] md:w-[70%] lg:w-[55%] max-w-4xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl">
