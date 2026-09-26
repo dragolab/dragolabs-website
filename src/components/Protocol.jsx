@@ -52,14 +52,16 @@ export default function Protocol() {
 
                 cards.forEach((card, index) => {
                     if (index < cards.length - 1) {
-                        const innerCard = card.querySelector('.card-inner');
-                        gsap.set(innerCard, {
-                            filter: 'blur(0px)',
+                        const motionLayer = card.querySelector('.card-motion');
+                        gsap.set(motionLayer, {
+                            filter: 'blur(0.001px)',
                             transformOrigin: 'center center',
                             willChange: 'transform, filter, opacity',
+                            backfaceVisibility: 'hidden',
+                            transformStyle: 'preserve-3d',
                         });
 
-                        gsap.to(innerCard, {
+                        gsap.to(motionLayer, {
                             scale,
                             filter: `blur(${blur}px)`,
                             opacity,
@@ -118,8 +120,9 @@ export default function Protocol() {
                         className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                         style={{ zIndex: i }}
                     >
-                        <div className="card-inner relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
+                        <div className="card-inner isolate relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-white/10 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] bg-drago-text/60 backdrop-blur-xl shadow-2xl overflow-hidden [transition:border-color_0.4s,box-shadow_0.4s] group">
 
+                            <div className="card-motion [transform:translateZ(0)] [backface-visibility:hidden]">
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
                                 {/* Image panel */}
@@ -210,6 +213,7 @@ export default function Protocol() {
                                         </div>
                                     </a>
                                 </div>
+                            </div>
                             </div>
 
                         </div>
