@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const projects = [
     {
-        title: 'Studio Legale Palmisano',
+        title: 'Studio Legale Ambientale Palmisano',
         category: 'Sito web',
         date: 'Settembre 2026',
         summary: 'Restyling e sviluppo di un sito istituzionale autorevole, chiaro e semplice da gestire.',
@@ -20,7 +20,7 @@ const projects = [
             { label: 'Focus', value: 'Identità e autonomia editoriale', Icon: Target },
         ],
         description: [
-            'Restyling e sviluppo del sito web per Studio Legale Palmisano, con l’obiettivo di rafforzarne l’identità digitale attraverso un design autorevole, contemporaneo e distintivo.',
+            'Restyling e sviluppo del sito web per Studio Legale Ambientale Palmisano, con l’obiettivo di rafforzarne l’identità digitale attraverso un design autorevole, contemporaneo e distintivo.',
             'Il sito presenta lo studio, i professionisti e le principali aree di attività con una struttura dei contenuti chiara e facilmente navigabile. Include pagine servizi, profili professionali, contatti e moduli di richiesta informazioni, ottimizzati per una fruizione fluida da desktop e mobile.',
             'Realizzato con WordPress e tema personalizzato, il progetto offre una gestione editoriale semplice, flessibile e autonoma.',
         ],
@@ -83,7 +83,7 @@ export default function Portfolio() {
 
     return (
         <section ref={containerRef} className="relative overflow-hidden bg-drago-bg px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44">
-            <div className="pointer-events-none absolute inset-0 opacity-45">
+            <div className="pointer-events-none fixed inset-0 z-0 opacity-45">
                 <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="h-full w-full object-cover mix-blend-screen" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-drago-bg/85 to-drago-bg" />
             </div>

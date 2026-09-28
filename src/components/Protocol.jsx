@@ -7,9 +7,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
     {
-        title: "Studio Legale Palmisano",
+        title: "Studio Legale Ambientale Palmisano",
         type: "Sito Web",
-        description: "Restyling e sviluppo del sito dello Studio Legale Palmisano: un’identità digitale autorevole, contenuti chiari e una gestione editoriale semplice e autonoma.",
+        description: "Restyling e sviluppo del sito dello Studio Legale Ambientale Palmisano: un’identità digitale autorevole, contenuti chiari e una gestione editoriale semplice e autonoma.",
         image: "/img/optimized/avvstefanopalmisano-sito-1600.webp",
         imageSet: "/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w",
         width: 2848,

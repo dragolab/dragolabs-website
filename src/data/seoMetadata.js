@@ -12,7 +12,7 @@ export const pageMetadata = {
     },
     '/servizi': {
         title: 'Servizi digitali | Drago Labs',
-        description: 'Sviluppo siti web, e-commerce, consulenza strategica e assistenza IT su misura per far crescere la presenza online del tuo business.',
+        description: 'Siti web, web app, app Android, e-commerce, branding, workflow AI multiagente e assistenza informatica su misura.',
     },
     '/portfolio': {
         title: 'Portfolio | Drago Labs',
