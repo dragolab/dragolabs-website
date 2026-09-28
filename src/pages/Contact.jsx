@@ -186,7 +186,7 @@ export default function Contact() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen pt-56 pb-20 px-6 overflow-hidden">
+        <section ref={containerRef} className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-hidden">
 
             {/* Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -197,15 +197,15 @@ export default function Contact() {
             <div className="relative z-10 max-w-6xl mx-auto">
 
                 {/* ── Header ── */}
-                <div className="contact-reveal opacity-0 text-center mb-14">
-                    <h1 className="font-sans font-bold text-5xl md:text-6xl text-drago-contrast mb-4">
+                <div className="contact-reveal opacity-0 mx-auto mb-16 max-w-3xl text-center md:mb-20">
+                    <h1 className="font-sans text-5xl font-bold text-balance text-drago-contrast md:text-6xl">
                         Contattaci
                     </h1>
-                    <p className="font-sans font-light text-lg md:text-xl text-gray-300">
+                    <p className="mt-6 font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
                         Hai un progetto in mente?{' '}
                         <span className="text-drago-accent">Parliamone!</span>
                     </p>
-                    <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
+                    <div className="mx-auto mt-8 h-px w-24 bg-drago-accent" />
                 </div>
 
                 {/* ── Two-column grid — Form LEFT, Info RIGHT ── */}

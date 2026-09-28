@@ -22,7 +22,7 @@ export default function DummyPage({ title }) {
     }, [title]);
 
     return (
-        <section className="relative min-h-screen pt-56 pb-20 px-6 overflow-hidden">
+        <section className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-50 mix-blend-screen" />
@@ -30,11 +30,11 @@ export default function DummyPage({ title }) {
             </div>
 
             <div ref={textRef} className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center">
-                <div className="text-center mb-14">
-                    <h1 className="stagger-text font-sans font-bold text-5xl md:text-6xl text-drago-contrast mb-4">
+                <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
+                    <h1 className="stagger-text font-sans text-5xl font-bold text-balance text-drago-contrast md:text-6xl">
                         {title}
                     </h1>
-                    <p className="stagger-text font-sans font-light text-lg md:text-xl text-gray-300">
+                    <p className="stagger-text mt-6 font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
                         <span className="text-drago-accent italic">Work in progress...</span>
                     </p>
                     <div className="stagger-text w-24 h-[1px] bg-drago-accent mx-auto mt-8" />

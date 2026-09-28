@@ -25,7 +25,7 @@ export default function CookiePolicy() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen pt-44 pb-24 px-6 overflow-x-hidden">
+        <section ref={containerRef} className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-x-hidden">
             {/* Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-30 mix-blend-screen" />
@@ -34,17 +34,17 @@ export default function CookiePolicy() {
 
             <div className="relative z-10 max-w-4xl mx-auto">
                 {/* Header */}
-                <div className="cookie-reveal opacity-0 text-center mb-16">
-                    <h1 className="font-sans font-bold text-4xl md:text-5xl text-drago-contrast mb-4">
+                <div className="cookie-reveal opacity-0 mx-auto mb-16 max-w-3xl text-center md:mb-20">
+                    <h1 className="font-sans text-5xl font-bold text-balance text-drago-contrast md:text-6xl">
                         Informativa sui Cookie
                     </h1>
-                    <p className="font-sans font-light text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+                    <p className="mt-6 font-sans text-lg font-light leading-relaxed text-gray-300 md:text-xl">
                         Informativa ed inventario sull'utilizzo dei cookie su Drago Labs.
                     </p>
                     <p className="font-sans text-xs text-drago-accent mt-3">
                         Ultimo aggiornamento: 26 settembre 2026
                     </p>
-                    <div className="w-20 h-[1px] bg-drago-accent mx-auto mt-6" />
+                    <div className="mx-auto mt-8 h-px w-24 bg-drago-accent" />
                 </div>
 
                 {/* Content Sections */}

@@ -74,10 +74,8 @@ export default function Services() {
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {services.map(({ title, description, deliverables, Icon }) => (
                         <article key={title} className="services-reveal group flex min-h-80 flex-col rounded-[1.5rem] border border-white/10 bg-drago-text/60 p-6 shadow-xl backdrop-blur-xl transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-drago-accent/60 hover:shadow-[0_0_24px_rgba(0,115,160,0.18)]">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-drago-accent/40 bg-drago-accent/10 text-drago-accent">
-                                {createElement(Icon, { className: 'h-6 w-6', 'aria-hidden': true })}
-                            </div>
-                            <h2 className="mt-6 font-sans text-2xl font-bold text-white">{title}</h2>
+                            {createElement(Icon, { className: 'mb-3 h-8 w-8 text-drago-accent', 'aria-hidden': true })}
+                            <h2 className="font-sans text-2xl font-bold text-white">{title}</h2>
                             <p className="mt-3 font-light leading-relaxed text-gray-300">{description}</p>
                             <ul className="mt-auto flex flex-wrap gap-2 pt-6" aria-label={`Cosa include ${title}`}>
                                 {deliverables.map((item) => <li key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-gray-300">{item}</li>)}
