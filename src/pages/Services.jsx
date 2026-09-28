@@ -2,6 +2,7 @@ import { createElement, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Bot, Globe2, MonitorSmartphone, Palette, ShoppingBag, Wrench } from 'lucide-react';
 import gsap from 'gsap';
+import PageBackground from '../components/PageBackground';
 
 const services = [
     {
@@ -58,10 +59,7 @@ export default function Services() {
 
     return (
         <section ref={containerRef} className="relative overflow-hidden bg-drago-bg px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44">
-            <div className="pointer-events-none fixed inset-0 z-0 opacity-40">
-                <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="h-full w-full object-cover mix-blend-screen" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-drago-bg/85 to-drago-bg" />
-            </div>
+            <PageBackground />
 
             <div className="relative z-10 mx-auto max-w-6xl">
                 <header className="services-reveal mx-auto mb-16 max-w-3xl text-center md:mb-20">

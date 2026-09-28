@@ -229,7 +229,7 @@ export default function Protocol() {
                     className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="portfolio-cta-glow card-inner relative w-[90%] md:w-[70%] lg:w-[55%] max-w-4xl rounded-[2rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl">
+                    <div className="portfolio-cta-glow card-inner relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl">
                         <div className="flex flex-col items-center justify-center px-8 sm:px-12 py-10 sm:py-14 text-center">
                             <h3
                                 className="font-sans font-bold leading-tight text-balance text-white mb-4"

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import PageBackground from '../components/PageBackground';
 
 export default function CalcioLive() {
     const containerRef = useRef(null);
@@ -24,10 +25,7 @@ export default function CalcioLive() {
     return (
         <section className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-hidden">
             {/* Background */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-50 mix-blend-screen" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-drago-bg" />
-            </div>
+            <PageBackground />
 
             <div ref={containerRef} className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
                 {/* Header */}

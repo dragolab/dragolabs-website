@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Database, Info, Mail, Shield } from 'lucide-react';
+import PageBackground from '../components/PageBackground';
 
 export default function PrivacyPolicy() {
     const containerRef = useRef(null);
@@ -21,10 +22,7 @@ export default function PrivacyPolicy() {
 
     return (
         <section ref={containerRef} className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-x-hidden">
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <img src="/img/optimized/background-1600.webp" srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w" sizes="100vw" width="2048" height="2048" alt="" decoding="async" className="w-full h-full object-cover opacity-30 mix-blend-screen" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-drago-bg" />
-            </div>
+            <PageBackground />
 
             <div className="relative z-10 max-w-4xl mx-auto">
                 <div className="privacy-reveal opacity-0 mx-auto mb-16 max-w-3xl text-center md:mb-20">
