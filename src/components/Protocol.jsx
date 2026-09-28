@@ -52,21 +52,21 @@ export default function Protocol() {
 
                 cards.forEach((card, index) => {
                     if (index < cards.length - 1) {
+                        const cardFrame = card.querySelector('.card-inner');
                         const motionLayer = card.querySelector('.card-motion');
+
+                        gsap.set(cardFrame, {
+                            transformOrigin: 'center center',
+                            willChange: 'transform, opacity',
+                        });
                         gsap.set(motionLayer, {
                             filter: 'blur(0.001px)',
-                            transformOrigin: 'center center',
-                            willChange: 'transform, filter, opacity',
+                            willChange: 'filter',
                             backfaceVisibility: 'hidden',
                             transformStyle: 'preserve-3d',
                         });
 
-                        gsap.to(motionLayer, {
-                            scale,
-                            filter: `blur(${blur}px)`,
-                            opacity,
-                            ease: 'none',
-                            force3D: true,
+                        const animation = gsap.timeline({
                             scrollTrigger: {
                                 trigger: cards[index + 1],
                                 start,
@@ -75,8 +75,11 @@ export default function Protocol() {
                                 invalidateOnRefresh: true,
                             }
                         });
-                    }
-                });
+
+                        animation
+                            .to(cardFrame, { scale, opacity, ease: 'none', force3D: true }, 0)
+                            .to(motionLayer, { filter: `blur(${blur}px)`, ease: 'none' }, 0);
+                    }                });
             };
 
             media.add('(min-width: 768px)', () => animateCards({
