@@ -54,15 +54,10 @@ export default function Protocol() {
                 cards.forEach((card, index) => {
                     if (index < cards.length - 1) {
                         const cardFrame = card.querySelector('.card-inner');
-                        const motionLayer = card.querySelector('.card-motion');
-
                         gsap.set(cardFrame, {
                             transformOrigin: 'center center',
-                            willChange: 'transform, opacity',
-                        });
-                        gsap.set(motionLayer, {
                             filter: 'blur(0.001px)',
-                            willChange: 'filter',
+                            willChange: 'transform, opacity, filter',
                             backfaceVisibility: 'hidden',
                             transformStyle: 'preserve-3d',
                         });
@@ -77,9 +72,13 @@ export default function Protocol() {
                             }
                         });
 
-                        animation
-                            .to(cardFrame, { scale, opacity, ease: 'none', force3D: true }, 0)
-                            .to(motionLayer, { filter: `blur(${blur}px)`, ease: 'none' }, 0);
+                        animation.to(cardFrame, {
+                            scale,
+                            opacity,
+                            filter: `blur(${blur}px)`,
+                            ease: 'none',
+                            force3D: true,
+                        }, 0);
                     }
                 });
             };
@@ -207,7 +206,7 @@ export default function Protocol() {
                     className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="portfolio-cta-glow card-inner isolate relative w-[90%] overflow-hidden rounded-[1.75rem] border border-drago-accent/50 bg-[#1b2b32]/95 shadow-2xl backdrop-blur-xl md:aspect-video md:w-[74%] md:max-w-[900px]">
+                    <div className="portfolio-cta-glow card-inner isolate relative w-[90%] overflow-hidden rounded-[1.75rem] border border-drago-accent/50 bg-[#1b2b32] shadow-2xl md:aspect-video md:w-[74%] md:max-w-[900px]">
                         <div className="flex h-full w-full flex-col items-center justify-center px-6 py-8 text-center sm:px-12 md:px-10 md:py-8">
                             <h3
                                 className="font-sans font-bold leading-tight text-balance text-white mb-4"
