@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,15 +22,48 @@ const Services = lazy(() => import('./pages/Services'));
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  // Global cleanups if necessary
+  const mainRef = useRef(null);
+
   useEffect(() => {
-    // Refresh ScrollTrigger after all components mounted
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
+    let frame;
+    let timer;
+    let active = true;
+
+    const refresh = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    };
+
+    const scheduleRefresh = () => {
+      refresh();
+      clearTimeout(timer);
+      timer = setTimeout(refresh, 250);
+    };
+
+    // Lazy routes replace the direct child of main after the initial mount.
+    const observer = new MutationObserver(scheduleRefresh);
+    if (mainRef.current) observer.observe(mainRef.current, { childList: true });
+
+    const refreshWhenVisible = () => {
+      if (!document.hidden) scheduleRefresh();
+    };
+
+    scheduleRefresh();
+    window.addEventListener('load', scheduleRefresh);
+    window.addEventListener('pageshow', scheduleRefresh);
+    document.addEventListener('visibilitychange', refreshWhenVisible);
+    document.fonts?.ready.then(() => {
+      if (active) scheduleRefresh();
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      active = false;
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+      window.removeEventListener('load', scheduleRefresh);
+      window.removeEventListener('pageshow', scheduleRefresh);
+      document.removeEventListener('visibilitychange', refreshWhenVisible);
     };
   }, []);
 
@@ -40,7 +73,7 @@ function App() {
         <Seo />
         <Navbar />
 
-        <main className="flex-grow">
+        <main ref={mainRef} className="flex-grow">
           <Suspense fallback={null}>
             <Routes>
               <Route path="/" element={<Home />} />
