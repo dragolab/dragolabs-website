@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ProjectPreview from './ProjectPreview';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,7 +80,8 @@ export default function Protocol() {
                         animation
                             .to(cardFrame, { scale, opacity, ease: 'none', force3D: true }, 0)
                             .to(motionLayer, { filter: `blur(${blur}px)`, ease: 'none' }, 0);
-                    }                });
+                    }
+                });
             };
 
             media.add('(min-width: 768px)', () => animateCards({
@@ -130,19 +132,7 @@ export default function Protocol() {
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
                                 {/* Image panel */}
                                 <div className="w-[70%] flex-shrink-0 p-4">
-                                    <div className="w-full h-full rounded-[1.25rem] overflow-hidden">
-                                        <img
-                                            src={project.image}
-                                            srcSet={project.imageSet}
-                                            sizes="(min-width: 768px) 840px, 100vw"
-                                            width={project.width}
-                                            height={project.height}
-                                            loading="lazy"
-                                            decoding="async"
-                                            alt={project.title}
-                                            className="h-full w-full bg-black/20 object-contain"
-                                        />
-                                    </div>
+                                    <ProjectPreview project={project} sizes="(min-width: 768px) 840px, 100vw" className="h-full w-full" />
                                 </div>
 
                                 {/* Info panel */}
@@ -176,19 +166,7 @@ export default function Protocol() {
                             <div className="flex md:hidden flex-col">
                                 {/* Image — aspect 16/10 for taller look on mobile */}
                                 <div className="p-3 pb-0">
-                                    <div className="w-full rounded-[1.25rem] overflow-hidden" style={{ aspectRatio: '16/10' }}>
-                                        <img
-                                            src={project.image}
-                                            srcSet={project.imageSet}
-                                            sizes="100vw"
-                                            width={project.width}
-                                            height={project.height}
-                                            loading="lazy"
-                                            decoding="async"
-                                            alt={project.title}
-                                            className="h-full w-full bg-black/20 object-contain"
-                                        />
-                                    </div>
+                                    <ProjectPreview project={project} sizes="100vw" className="aspect-[16/10] w-full" />
                                 </div>
 
                                 {/* Info */}
@@ -229,7 +207,7 @@ export default function Protocol() {
                     className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="portfolio-cta-glow card-inner relative flex aspect-auto w-[90%] items-center justify-center rounded-[1.75rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl md:aspect-video md:w-[74%] md:max-w-[900px]">
+                    <div className="portfolio-cta-glow card-inner isolate relative w-[90%] overflow-hidden rounded-[1.75rem] border border-drago-accent/50 bg-[#1b2b32]/95 shadow-2xl backdrop-blur-xl md:aspect-video md:w-[74%] md:max-w-[900px]">
                         <div className="flex h-full w-full flex-col items-center justify-center px-6 py-8 text-center sm:px-12 md:px-10 md:py-8">
                             <h3
                                 className="font-sans font-bold leading-tight text-balance text-white mb-4"
