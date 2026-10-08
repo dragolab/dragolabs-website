@@ -130,12 +130,12 @@ export default function Protocol() {
                             {/* ── DESKTOP: image left / info right ── */}
                             <div className="hidden md:flex flex-row h-[70vh] max-h-[660px]">
                                 {/* Image panel */}
-                                <div className="w-[70%] flex-shrink-0 p-4">
+                                <div className="w-[70%] flex-shrink-0 p-6">
                                     <ProjectPreview project={project} sizes="(min-width: 768px) 840px, 100vw" className="h-full w-full" />
                                 </div>
 
                                 {/* Info panel */}
-                                <div className="flex-1 flex flex-col justify-center px-10 py-8">
+                                <div className="flex-1 flex flex-col justify-center py-8 pl-0 pr-10">
                                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-drago-accent/50 text-drago-accent bg-drago-accent/10 w-fit mb-5">
                                         {project.type}
                                     </span>
@@ -164,7 +164,7 @@ export default function Protocol() {
                             {/* ── MOBILE: image top / info bottom ── */}
                             <div className="flex md:hidden flex-col">
                                 {/* Image — aspect 16/10 for taller look on mobile */}
-                                <div className="p-3 pb-0">
+                                <div className="px-5 pt-5">
                                     <ProjectPreview project={project} sizes="100vw" className="aspect-[16/10] w-full" />
                                 </div>
 

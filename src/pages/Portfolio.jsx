@@ -102,11 +102,11 @@ export default function Portfolio() {
                         return (
                             <article key={project.title} className="portfolio-reveal overflow-hidden rounded-[1.75rem] border border-white/10 bg-drago-text/60 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-drago-accent/50">
                                 <button type="button" onClick={() => setOpenProject(isOpen ? null : project.title)} aria-expanded={isOpen} aria-controls={detailId} className="group grid w-full text-left lg:grid-cols-[1.18fr_0.82fr]">
-                                    <div className="min-h-64 p-3 sm:p-4">
+                                    <div className="min-h-64 px-6 pt-6 sm:px-8 sm:pt-8 lg:p-6 lg:pr-0">
                                         <ProjectPreview project={project} sizes="(min-width: 1024px) 590px, 100vw" className="h-full min-h-64 w-full" />
                                     </div>
 
-                                    <div className="flex flex-col justify-center px-6 py-7 sm:px-8 sm:py-9">
+                                    <div className="flex flex-col justify-center px-6 py-7 sm:px-8 sm:py-9 lg:pl-6">
                                         <div className="mb-5 flex flex-wrap items-center gap-3">
                                             <span className="rounded-full border border-drago-accent/50 bg-drago-accent/10 px-3 py-1 text-xs font-semibold tracking-wide text-drago-accent">{project.category}</span>
                                             <span className="inline-flex items-center gap-1.5 text-sm text-gray-400"><CalendarDays className="h-4 w-4 text-drago-accent" aria-hidden="true" />{project.date}</span>
