@@ -63,9 +63,8 @@ export default function Services() {
 
             <div className="relative z-10 mx-auto max-w-6xl">
                 <header className="services-reveal mx-auto mb-16 max-w-3xl text-center md:mb-20">
-                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-drago-accent">Servizi</p>
-                    <h1 className="font-sans text-5xl font-bold text-balance text-drago-contrast md:text-6xl">Tecnologia utile, progettata intorno a te.</h1>
-                    <p className="mt-6 text-lg font-light leading-relaxed text-gray-300 md:text-xl">Dalla prima idea al supporto nel tempo, costruisco strumenti digitali che migliorano il modo in cui lavori e comunichi online.</p>
+                    <h1 className="font-sans text-5xl font-bold text-balance text-drago-contrast md:text-6xl">Servizi</h1>
+                    <p className="mt-6 text-lg font-light leading-relaxed text-gray-300 md:text-xl">Tecnologia utile, progettata intorno a te: dalla prima idea al supporto nel tempo, costruisco strumenti digitali che migliorano il modo in cui lavori e comunichi online.</p>
                     <div className="mx-auto mt-8 h-px w-24 bg-drago-accent" />
                 </header>
 

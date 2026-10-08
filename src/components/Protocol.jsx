@@ -140,7 +140,7 @@ export default function Protocol() {
                                             loading="lazy"
                                             decoding="async"
                                             alt={project.title}
-                                            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03] ${i === 1 ? 'object-[center_10%]' : ''}`}
+                                            className="h-full w-full bg-black/20 object-contain"
                                         />
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ export default function Protocol() {
                                             loading="lazy"
                                             decoding="async"
                                             alt={project.title}
-                                            className={`w-full h-full object-cover ${i === 1 ? 'object-[center_10%]' : ''}`}
+                                            className="h-full w-full bg-black/20 object-contain"
                                         />
                                     </div>
                                 </div>
@@ -229,8 +229,8 @@ export default function Protocol() {
                     className="card-wrapper sticky top-32 md:top-20 w-full min-h-[72svh] md:min-h-[80vh] py-5 md:py-0 flex items-center justify-center"
                     style={{ zIndex: projects.length }}
                 >
-                    <div className="portfolio-cta-glow card-inner relative w-[90%] max-w-[1200px] rounded-[1.75rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl">
-                        <div className="flex flex-col items-center justify-center px-8 sm:px-12 py-10 sm:py-14 text-center">
+                    <div className="portfolio-cta-glow card-inner relative flex aspect-auto w-[90%] items-center justify-center rounded-[1.75rem] border border-drago-accent/40 bg-white/5 backdrop-blur-xl md:aspect-video md:w-[74%] md:max-w-[900px]">
+                        <div className="flex h-full w-full flex-col items-center justify-center px-6 py-8 text-center sm:px-12 md:px-10 md:py-8">
                             <h3
                                 className="font-sans font-bold leading-tight text-balance text-white mb-4"
                                 style={{ fontSize: 'clamp(1.6rem, 4vw, 3.5rem)' }}

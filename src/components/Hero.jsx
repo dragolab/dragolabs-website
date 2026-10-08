@@ -36,22 +36,6 @@ export default function Hero() {
             ref={containerRef}
             className="relative min-h-[90svh] md:min-h-screen flex flex-col items-center pt-20 pb-8 md:pb-12 overflow-hidden"
         >
-            {/* Background with overlay */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <img
-                    src="/img/optimized/background-1600.webp"
-                    srcSet="/img/optimized/background-768.webp 768w, /img/optimized/background-1600.webp 1600w"
-                    sizes="100vw"
-                    width="2048"
-                    height="2048"
-                    alt=""
-                    fetchPriority="high"
-                    decoding="async"
-                    className="w-full h-full object-cover opacity-60 mix-blend-screen"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-drago-bg" />
-            </div>
-
             {/* Flexible top spacer — pushes content toward center */}
             <div className="flex-[0.55] md:flex-1" />
 
