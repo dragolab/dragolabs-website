@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Phone, Mail, MapPin, Instagram, Linkedin, Github } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,7 +113,7 @@ export default function ContactSection() {
 
     const [form, setForm] = useState({ nome: '', email: '', telefono: '', messaggio: '' });
     const [privacy, setPrivacy] = useState(false);
-    const [status, setStatus] = useState('idle'); // idle | sending | success | error
+    const [status, setStatus] = useState('idle');
     const [showErrors, setShowErrors] = useState(false);
 
     const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -181,34 +181,33 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative py-24 md:py-32 border-t border-white/5 overflow-hidden">
-            <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
 
                 {/* ── Header ── */}
                 <div className="contact-reveal mx-auto mb-16 max-w-3xl text-center">
-                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-4">
+                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3">
                         Iniziamo Insieme
                     </span>
-                    <h2 className="font-sans text-4xl md:text-5xl font-bold text-drago-contrast text-balance">
+                    <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight text-balance">
                         Hai un progetto in mente?
                     </h2>
-                    <p className="mt-4 font-sans text-base md:text-lg font-light leading-relaxed text-gray-300">
-                        Raccontaci cosa vorresti realizzare. La prima consulenza è sempre gratuita e senza impegno.
+                    <p className="mt-3 font-sans text-base sm:text-lg font-light leading-relaxed text-gray-300">
+                        Raccontami cosa vorresti realizzare. La prima consulenza è sempre gratuita e senza impegno.
                     </p>
-                    <div className="mx-auto mt-8 h-px w-24 bg-drago-accent" />
                 </div>
 
-                {/* ── Two-column grid — Form LEFT, Info RIGHT ── */}
+                {/* ── Two-column grid — Form LEFT, Info RIGHT (widescreen balanced) ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
                     {/* ── LEFT: Form (7 cols) ── */}
-                    <div className="contact-reveal lg:col-span-7 rounded-[1.75rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-7 md:p-9 hover:border-drago-accent/60 transition-all">
+                    <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-all">
                         {status === 'success' ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center gap-4" role="status" aria-live="polite">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">
                                     <Mail className="w-7 h-7 text-drago-accent" />
                                 </div>
-                                <h3 className="font-sans font-bold text-2xl text-white">Richiesta inviata con successo!</h3>
+                                <h3 className="font-display font-bold text-2xl text-white">Richiesta inviata con successo!</h3>
                                 <p className="font-sans font-light text-gray-300 max-w-xs">
                                     Ti risponderò il prima possibile. Grazie per aver contattato Drago Labs!
                                 </p>
@@ -221,7 +220,7 @@ export default function ContactSection() {
                             </div>
                         ) : (
                             <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-                                <h3 className="font-sans font-bold text-2xl text-white mb-1">
+                                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-1">
                                     Richiedi una consulenza
                                 </h3>
 
@@ -234,7 +233,7 @@ export default function ContactSection() {
                                 <AnimatedInput label="Nome e Cognome *" name="nome" placeholder="Mario Rossi" value={form.nome} onChange={handleChange} autoComplete="name" required error={showErrors ? errors.nome : ''} delay={300} />
                                 <AnimatedInput label="Email *" type="email" name="email" placeholder="mario.rossi@email.it" value={form.email} onChange={handleChange} autoComplete="email" required error={showErrors ? errors.email : ''} delay={600} />
                                 <AnimatedInput label="Telefono (opzionale)" type="tel" name="telefono" placeholder="+39 340 123 4567" value={form.telefono} onChange={handleChange} autoComplete="tel" delay={900} />
-                                <AnimatedTextarea label="Come possiamo aiutarti? *" name="messaggio" placeholder="Descrivi il tuo progetto: sito web, gestionale, e-commerce o consulenza..." value={form.messaggio} onChange={handleChange} required error={showErrors ? errors.messaggio : ''} delay={1200} />
+                                <AnimatedTextarea label="Come posso aiutarti? *" name="messaggio" placeholder="Descrivi il tuo progetto: sito web, gestionale, e-commerce o consulenza..." value={form.messaggio} onChange={handleChange} required error={showErrors ? errors.messaggio : ''} delay={1200} />
 
                                 {/* Error message */}
                                 {status === 'error' && (
@@ -278,7 +277,7 @@ export default function ContactSection() {
                                     disabled={status === 'sending'}
                                     className={`w-full py-4 rounded-xl font-sans font-bold text-base text-white transition-all duration-300 mt-2
                                         ${status !== 'sending'
-                                            ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] shadow-[0_0_20px_rgba(0,115,160,0.4)]'
+                                            ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] shadow-[0_0_25px_rgba(0,115,160,0.5)]'
                                             : 'bg-white/10 cursor-wait opacity-50'
                                         }`}
                                 >
@@ -295,7 +294,7 @@ export default function ContactSection() {
                             href="https://wa.me/393939450653"
                             target="_blank"
                             rel="noreferrer"
-                            className="rounded-[1.5rem] border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/15 p-6 backdrop-blur-xl transition-all duration-300 group flex items-start gap-4 hover:border-emerald-500/60 shadow-lg"
+                            className="rounded-[1.75rem] border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/15 p-7 backdrop-blur-xl transition-all duration-300 group flex items-start gap-4 hover:border-emerald-500/60 shadow-lg"
                         >
                             <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center flex-shrink-0 text-[#25D366] group-hover:scale-110 transition-transform">
                                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -304,21 +303,21 @@ export default function ContactSection() {
                                 </svg>
                             </div>
                             <div>
-                                <span className="text-[11px] font-mono uppercase text-emerald-400 tracking-wider font-semibold">Canale Rapido</span>
-                                <h4 className="font-sans font-bold text-lg text-white">Chatta su WhatsApp</h4>
+                                <span className="text-[11px] font-mono uppercase text-emerald-400 tracking-wider font-semibold">Canale Diretto Prioritario</span>
+                                <h4 className="font-display font-bold text-lg text-white">Chatta su WhatsApp</h4>
                                 <p className="text-xs text-gray-300 mt-1">Risposta rapida per richieste urgenti o prime domande sul progetto.</p>
                                 <span className="text-sm font-mono text-emerald-300 mt-2 block font-medium">+39 393 945 0653 →</span>
                             </div>
                         </a>
 
                         {/* Direct Info */}
-                        <div className="rounded-[1.5rem] border border-white/10 bg-drago-text/40 p-6 backdrop-blur-xl space-y-4">
+                        <div className="rounded-[1.75rem] border border-white/10 bg-drago-text/40 p-7 backdrop-blur-xl space-y-5">
                             <a href="mailto:info.dragolabs@gmail.com" className="flex items-center gap-4 group">
                                 <div className="w-10 h-10 rounded-xl bg-drago-accent/10 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-drago-accent group-hover:scale-105 transition-transform">
                                     <Mail className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
                                 </div>
                                 <div>
-                                    <span className="text-xs text-gray-400 block">Email ufficiale</span>
+                                    <span className="text-xs text-gray-400 block font-mono">Email diretta</span>
                                     <span className="text-sm font-medium text-white group-hover:text-drago-accent transition-colors">info.dragolabs@gmail.com</span>
                                 </div>
                             </a>
@@ -328,17 +327,17 @@ export default function ContactSection() {
                                     <MapPin className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <span className="text-xs text-gray-400 block">Sede & Raggio operativo</span>
-                                    <span className="text-sm font-medium text-white">Fasano (BR) — Operatività in tutta Italia da remoto</span>
+                                    <span className="text-xs text-gray-400 block font-mono">Sede & Raggio d'azione</span>
+                                    <span className="text-sm font-medium text-white">Fasano (BR), Puglia — Clienti in tutta Italia da remoto</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Operational Card */}
-                        <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                        <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
                             <span className="text-xs font-mono text-drago-accent uppercase tracking-wider block mb-2">[ DISPONIBILITÀ ATTUALE ]</span>
                             <p className="text-sm text-gray-300 leading-relaxed font-light">
-                                Attualmente disponibili per lo sviluppo di nuovi siti web, applicativi e consulenze tecniche. Rispondiamo a tutte le richieste entro 24 ore.
+                                Attualmente disponibile per l'avvio di nuovi progetti, sviluppo applicativi e consulenze tecniche. Rispondo a ogni richiesta entro 24 ore lavorative.
                             </p>
                         </div>
                     </div>

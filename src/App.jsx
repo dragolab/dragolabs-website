@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Seo from './components/Seo';
 import CookieConsent from './components/CookieConsent';
+import ClickSpark from './components/ClickSpark';
 
 const CalcioLive = lazy(() => import('./pages/CalcioLive'));
 const Terms = lazy(() => import('./pages/Terms'));
@@ -85,6 +86,7 @@ function App() {
   return (
     <Router>
       <ScrollToAnchor />
+      <ClickSpark sparkColor="#00E5FF" sparkCount={8} sparkRadius={26} />
       <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
         <Seo />
         <Navbar />

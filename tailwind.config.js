@@ -10,13 +10,20 @@ export default {
         'drago-text': '#40484e',
         'drago-secondary': '#616f79',
         'drago-accent': '#0073a0',
+        'drago-cyan': '#00E5FF',
+        'drago-glow': 'rgba(0, 115, 160, 0.35)',
         'drago-bg': '#000000',
         'drago-contrast': '#ffffff'
       },
       fontFamily: {
-        'sans': ['"Product Sans"', 'sans-serif'],
+        'sans': ['"Inter Tight"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        'display': ['"Inter Tight"', 'sans-serif'],
+        'mono': ['"JetBrains Mono"', 'monospace'],
         'serif': ['"Playfair Display"', 'serif'],
-        'mono': ['monospace']
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
       }
     },
   },

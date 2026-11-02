@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Github, Instagram, Mail, ExternalLink, GraduationCap, Code2, Cpu } from 'lucide-react';
+import { Linkedin, Github, Instagram, Mail, GraduationCap, Code2 } from 'lucide-react';
 import ArgoConsole from './ArgoConsole';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -46,27 +46,26 @@ export default function StaffSection() {
     }, []);
 
     return (
-        <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-32 border-t border-white/5 overflow-hidden">
-            <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 {/* Section Header */}
                 <header className="staff-reveal mx-auto mb-16 max-w-3xl text-center">
-                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-4">
-                        Il Team del Laboratorio
+                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3">
+                        Il Team & L'Intelligenza Virtuale
                     </span>
-                    <h2 className="font-sans text-4xl md:text-5xl font-bold text-drago-contrast text-balance">
+                    <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight text-balance">
                         Chi c'è dietro Drago Labs
                     </h2>
-                    <p className="mt-4 text-base md:text-lg font-light text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    <p className="mt-3 text-base sm:text-lg font-light text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Competenze umane ed intelligenza artificiale: una sinergia pensata per costruire prodotti digitali ad alte prestazioni.
                     </p>
-                    <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
                 </header>
 
                 {/* 2-Column Grid: Gianluca & Argo */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                    {/* Column 1: Gianluca Dragone (5 cols) */}
-                    <div className="staff-reveal lg:col-span-5 rounded-[1.75rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-7 md:p-8 flex flex-col h-full justify-between">
+                    {/* Column 1: Gianluca Dragone (5 cols on lg) */}
+                    <div className="staff-reveal lg:col-span-5 rounded-[2rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-7 sm:p-9 flex flex-col justify-between">
                         <div>
                             {/* Profile Header */}
                             <div className="flex items-center gap-4 mb-6">
@@ -78,9 +77,9 @@ export default function StaffSection() {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="font-sans font-bold text-2xl text-white">Gianluca Dragone</h3>
+                                    <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">Gianluca Dragone</h3>
                                     <p className="text-sm text-drago-accent font-medium">Founder & Software Developer</p>
-                                    <span className="text-xs text-gray-400 font-mono mt-0.5 block">Fasano (BR), Italia</span>
+                                    <span className="text-xs text-gray-400 font-mono mt-0.5 block">Fasano (BR), Puglia · Remoto</span>
                                 </div>
                             </div>
 
@@ -124,7 +123,7 @@ export default function StaffSection() {
 
                         {/* Social Links Bar */}
                         <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                            <span className="text-xs text-gray-400">Canali diretti</span>
+                            <span className="text-xs text-gray-400 font-mono">Canali diretti</span>
                             <div className="flex items-center gap-3">
                                 {socials.map((soc) => (
                                     <a
@@ -133,7 +132,7 @@ export default function StaffSection() {
                                         target="_blank"
                                         rel="noreferrer"
                                         title={soc.label}
-                                        className={`w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 ${soc.colorClass} hover:border-white/30 transition-all hover:scale-110`}
+                                        className={`w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 ${soc.colorClass} hover:border-white/30 transition-all hover:scale-110`}
                                     >
                                         {soc.icon}
                                     </a>
@@ -142,7 +141,7 @@ export default function StaffSection() {
                         </div>
                     </div>
 
-                    {/* Column 2: Argo AI Agent (7 cols) */}
+                    {/* Column 2: Argo AI Agent (7 cols on lg) */}
                     <div className="staff-reveal lg:col-span-7 flex flex-col">
                         <ArgoConsole />
                     </div>
