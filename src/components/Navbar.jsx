@@ -132,7 +132,7 @@ export default function Navbar() {
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="font-sans font-extrabold text-xl sm:text-2xl tracking-tight text-white hover:text-drago-cyan transition-colors"
+                        className="font-sans font-extrabold text-xl sm:text-2xl tracking-tight text-white hover:text-white transition-colors"
                     >
                         Drago Labs
                     </a>
@@ -147,8 +147,8 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`text-[17px] lg:text-[18px] font-bold tracking-tight transition-all ${
-                                    isActive ? 'text-drago-cyan drop-shadow-[0_0_12px_rgba(0,229,255,0.45)]' : 'text-gray-100 hover:text-white hover:scale-105'
+                                className={`text-[17px] lg:text-[18px] font-bold tracking-tight transition-all rounded-full px-4 py-1.5 ${
+                                    isActive ? 'text-white bg-white/15 border border-white/20 shadow-sm' : 'text-gray-300 hover:text-white hover:bg-white/5'
                                 }`}
                             >
                                 {link.label}
@@ -191,7 +191,7 @@ export default function Navbar() {
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
                                 className={`px-4 py-3.5 text-xl font-bold rounded-xl transition-colors ${
-                                    isActive ? 'text-drago-accent bg-white/5 font-semibold' : 'text-gray-200 hover:text-white hover:bg-white/5'
+                                    isActive ? 'text-white bg-white/15 font-bold border border-white/20' : 'text-gray-300 hover:text-white hover:bg-white/5'
                                 }`}
                             >
                                 {link.label}

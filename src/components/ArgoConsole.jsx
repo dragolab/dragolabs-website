@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles, RefreshCw } from 'lucide-react';
+import { Send, Bot, User, Sparkles, RefreshCw, ArrowLeft } from 'lucide-react';
 
 const SUGGESTED_PROMPTS = [
     "Parlami del caso Studio Palmisano",
@@ -64,7 +64,7 @@ function getArgoLocalResponse(rawQuery) {
     return "Grazie per la domanda! In **Drago Labs** progettiamo prodotti web su misura con un forte accento su velocità, chiarezza e assenza di compromessi tecnici. Puoi chiedermi dettagli sui nostri casi studio (es. *Studio Palmisano* o *Casa Vacanze Vistamare*), sulle tecnologie che utilizziamo, o descrivermi la tua idea di progetto.";
 }
 
-export default function ArgoConsole() {
+export default function ArgoConsole({ onClose, initialPrompt }) {
     const [messages, setMessages] = useState([
         {
             id: 'welcome',
@@ -76,6 +76,7 @@ export default function ArgoConsole() {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
+    const sentInitialRef = useRef(false);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -101,7 +102,6 @@ export default function ArgoConsole() {
         setIsTyping(true);
 
         try {
-            // Attempt to call the serverless API if available, otherwise fall back to local knowledge
             let replyText = '';
             try {
                 const res = await fetch('/api/argo', {
@@ -114,12 +114,11 @@ export default function ArgoConsole() {
                     if (data && data.reply) replyText = data.reply;
                 }
             } catch {
-                // Local dev or network offline
+                // Network offline or local dev
             }
 
             if (!replyText) {
-                // Realistic thinking delay
-                await new Promise((r) => setTimeout(r, 650));
+                await new Promise((r) => setTimeout(r, 600));
                 replyText = getArgoLocalResponse(query);
             }
 
@@ -134,6 +133,14 @@ export default function ArgoConsole() {
             setIsTyping(false);
         }
     };
+
+    useEffect(() => {
+        if (initialPrompt && !sentInitialRef.current) {
+            sentInitialRef.current = true;
+            handleSend(initialPrompt);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [initialPrompt]);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -153,16 +160,15 @@ export default function ArgoConsole() {
         ]);
     };
 
-    // Format bold and list markdown into simple clean JSX
     const renderFormattedText = (txt) => {
         const lines = txt.split('\n');
         return lines.map((line, idx) => {
-            if (!line.trim()) return <div key={idx} className="h-2" />;
+            if (!line.trim()) return <div key={idx} className="h-2.5" />;
 
             const parts = line.split(/(\*\*[^*]+\*\*)/g);
             const formatted = parts.map((part, pIdx) => {
                 if (part.startsWith('**') && part.endsWith('**')) {
-                    return <strong key={pIdx} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+                    return <strong key={pIdx} className="font-bold text-white">{part.slice(2, -2)}</strong>;
                 }
                 return part;
             });
@@ -176,34 +182,46 @@ export default function ArgoConsole() {
     };
 
     return (
-        <div className="w-full rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col h-[600px] xl:h-full min-h-[580px]">
+        <div className="w-full rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col h-[620px]">
             {/* Top Bar / Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50">
-                <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/60">
+                <div className="flex items-center gap-3.5">
                     <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-drago-cyan">
-                            <Bot className="w-5 h-5" />
+                        <div className="w-10 h-10 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-white">
+                            <Bot className="w-5 h-5 text-drago-accent" />
                         </div>
                         <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-black" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
                             <span className="font-sans font-bold text-base sm:text-lg text-white">Argo</span>
-                            <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-drago-accent/20 text-drago-cyan border border-drago-accent/30 uppercase tracking-wider">
+                            <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-white/10 text-gray-200 border border-white/15 uppercase tracking-wider">
                                 Lab AI
                             </span>
                         </div>
-                        <span className="text-xs sm:text-sm text-gray-200">Interagisci con l'assistente virtuale del laboratorio</span>
+                        <span className="text-xs sm:text-sm text-gray-300">Console di dialogo interattivo del laboratorio</span>
                     </div>
                 </div>
 
-                <button
-                    onClick={resetChat}
-                    title="Ricomincia conversazione"
-                    className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                    <RefreshCw className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                    {onClose && (
+                        <button
+                            onClick={onClose}
+                            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs sm:text-sm font-sans font-medium text-gray-200 hover:text-white transition-all"
+                            title="Torna alla scheda descrittiva"
+                        >
+                            <ArrowLeft className="w-4 h-4" />
+                            <span>Scheda descrittiva</span>
+                        </button>
+                    )}
+                    <button
+                        onClick={resetChat}
+                        title="Ricomincia conversazione"
+                        className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                    >
+                        <RefreshCw className="w-5 h-5" />
+                    </button>
+                </div>
             </div>
 
             {/* Messages Area */}
@@ -211,15 +229,15 @@ export default function ArgoConsole() {
                 {messages.map((m) => (
                     <div
                         key={m.id}
-                        className={`flex gap-3 max-w-[85%] ${m.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
+                        className={`flex gap-3.5 max-w-[88%] ${m.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
                     >
                         {m.sender === 'argo' ? (
-                            <div className="w-7 h-7 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-drago-accent mt-0.5">
-                                <Sparkles className="w-3.5 h-3.5" />
+                            <div className="w-8 h-8 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-white mt-0.5">
+                                <Sparkles className="w-4 h-4 text-drago-accent" />
                             </div>
                         ) : (
-                            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 text-gray-300 mt-0.5">
-                                <User className="w-3.5 h-3.5" />
+                            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 text-gray-300 mt-0.5">
+                                <User className="w-4 h-4" />
                             </div>
                         )}
 
@@ -240,13 +258,13 @@ export default function ArgoConsole() {
 
                 {isTyping && (
                     <div className="flex gap-3 max-w-[80%]">
-                        <div className="w-7 h-7 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-drago-accent mt-0.5 animate-pulse">
-                            <Sparkles className="w-3.5 h-3.5" />
+                        <div className="w-8 h-8 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-white mt-0.5 animate-pulse">
+                            <Sparkles className="w-4 h-4 text-drago-accent" />
                         </div>
-                        <div className="rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-gray-400 text-xs flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <span className="w-1.5 h-1.5 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <span className="w-1.5 h-1.5 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '300ms' }} />
+                        <div className="rounded-2xl px-5 py-3.5 bg-white/10 border border-white/15 text-gray-300 text-sm flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '300ms' }} />
                         </div>
                     </div>
                 )}
@@ -260,7 +278,7 @@ export default function ArgoConsole() {
                         key={i}
                         onClick={() => handleSend(prompt)}
                         disabled={isTyping}
-                        className="whitespace-nowrap px-4 py-1.5 rounded-full text-xs sm:text-sm font-sans font-medium bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 hover:text-white transition-all hover:border-drago-accent/60 flex-shrink-0 disabled:opacity-50"
+                        className="whitespace-nowrap px-4 py-1.5 rounded-full text-xs sm:text-sm font-sans font-medium bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 hover:text-white transition-all hover:border-drago-accent flex-shrink-0 disabled:opacity-50"
                     >
                         {prompt}
                     </button>

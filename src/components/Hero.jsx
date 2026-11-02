@@ -46,7 +46,7 @@ export default function Hero() {
                 {/* Main Headline — High impact, large & legible */}
                 <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.04] text-balance max-w-6xl text-white">
                     Dalla logica classica <br className="hidden sm:inline" />
-                    <span className="text-drago-cyan drop-shadow-[0_0_40px_rgba(0,229,255,0.4)] block sm:inline">
+                    <span className="text-white block sm:inline">
                         all'ingegneria del software.
                     </span>
                 </h1>

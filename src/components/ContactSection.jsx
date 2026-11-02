@@ -42,7 +42,7 @@ function AnimatedInput({ label, type = 'text', placeholder, value, onChange, nam
                 htmlFor={name}
                 className={`absolute left-4 font-sans text-base transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
-                        ? '-top-2.5 text-xs font-semibold text-drago-cyan bg-[#0f1a1e] px-1.5 rounded'
+                        ? '-top-2.5 text-xs font-semibold text-white bg-[#0f1a1e] px-1.5 rounded border border-white/20'
                         : 'top-3.5 text-gray-300'
                     }`}
             >
@@ -81,7 +81,7 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, required 
                 htmlFor={name}
                 className={`absolute left-4 font-sans text-base transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
-                        ? '-top-2.5 text-xs font-semibold text-drago-cyan bg-[#0f1a1e] px-1.5 rounded'
+                        ? '-top-2.5 text-xs font-semibold text-white bg-[#0f1a1e] px-1.5 rounded border border-white/20'
                         : 'top-3.5 text-gray-300'
                     }`}
             >
@@ -267,22 +267,28 @@ export default function ContactSection() {
                                         </span>
                                         <span className="font-sans text-base text-gray-200 font-normal">Ho preso visione dell’Informativa Privacy.</span>
                                     </label>
-                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-sm text-drago-cyan underline underline-offset-2 hover:text-white">Leggi l’Informativa Privacy</a>
+                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-sm text-gray-300 underline underline-offset-2 hover:text-white">Leggi l’Informativa Privacy</a>
                                     {showErrors && errors.privacy && <p id="privacy-error" className="mt-2 text-sm text-red-300" role="alert">{errors.privacy}</p>}
                                 </div>
 
-                                {/* Submit */}
-                                <button
-                                    type="submit"
-                                    disabled={status === 'sending'}
-                                    className={`w-full py-4.5 rounded-xl font-sans font-bold text-base sm:text-lg text-white transition-all duration-300 mt-2
-                                        ${status !== 'sending'
-                                            ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] shadow-[0_0_25px_rgba(0,115,160,0.5)]'
-                                            : 'bg-white/10 cursor-wait opacity-50'
-                                        }`}
-                                >
-                                    {status === 'sending' ? 'Invio in corso...' : 'Invia la richiesta'}
-                                </button>
+                                {/* Submit Action Area — Properly settled inside the box */}
+                                <div className="pt-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-white/10 mt-3">
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'sending'}
+                                        className={`inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-full font-sans font-bold text-base sm:text-lg text-white transition-all duration-300 shadow-[0_0_25px_rgba(0,115,160,0.45)]
+                                            ${status !== 'sending'
+                                                ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.02] active:scale-95'
+                                                : 'bg-white/10 cursor-wait opacity-50'
+                                            }`}
+                                    >
+                                        <span>{status === 'sending' ? 'Invio in corso...' : 'Invia la richiesta'}</span>
+                                        <ArrowUpRight className="w-5 h-5 text-white" />
+                                    </button>
+                                    <span className="text-xs sm:text-sm font-mono text-gray-300 text-center sm:text-right">
+                                        Risposta garantita entro 24h
+                                    </span>
+                                </div>
                             </form>
                         )}
                     </div>
