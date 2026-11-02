@@ -16,7 +16,8 @@ export default function Hero() {
                 duration: 1.1,
                 stagger: 0.08,
                 ease: 'power3.out',
-                delay: 0.1
+                delay: 0.1,
+                clearProps: 'transform'
             });
         }, containerRef);
 
@@ -50,9 +51,9 @@ export default function Hero() {
             <div ref={textRef} className="relative z-10 w-full flex flex-col items-center text-center my-auto">
                 
                 {/* Main Headline */}
-                <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.04] text-balance max-w-6xl text-white">
-                    {t.hero.titleLine1} <br className="hidden sm:inline" />
-                    <span className="bg-gradient-to-r from-white via-slate-100 to-[#38bdf8] bg-clip-text text-transparent block sm:inline drop-shadow-[0_2px_30px_rgba(56,189,248,0.25)]">
+                <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.06] max-w-6xl text-white">
+                    <span className="block text-white">{t.hero.titleLine1}</span>
+                    <span className="headline-gradient block sm:inline-block">
                         {t.hero.titleLine2}
                     </span>
                     <span className="sr-only"> - Drago Labs: Sviluppo Web Sartoriale, Applicativi Performanti e Automazioni AI a Bari e in tutta Italia</span>

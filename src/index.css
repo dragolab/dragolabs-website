@@ -135,6 +135,23 @@
     filter: none;
   }
 
+  .headline-gradient {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffffff 15%, #cbd5e1 45%, #00E5FF 82%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .headline-gradient {
+      color: #00E5FF !important;
+      -webkit-text-fill-color: #00E5FF !important;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .matrix-cell__fill,
     .cta-arrow-pulse,
