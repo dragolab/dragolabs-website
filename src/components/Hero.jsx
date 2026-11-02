@@ -43,12 +43,13 @@ export default function Hero() {
             {/* Main Stage */}
             <div ref={textRef} className="relative z-10 w-full flex flex-col items-center text-center my-auto">
                 
-                {/* Main Headline — High impact, large & legible */}
+                {/* Main Headline — High impact, large & legible + SEO Semantic Target */}
                 <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.04] text-balance max-w-6xl text-white">
                     Dalla logica classica <br className="hidden sm:inline" />
                     <span className="text-white block sm:inline">
                         all'ingegneria del software.
                     </span>
+                    <span className="sr-only"> - Drago Labs: Sviluppo Web Sartoriale, Applicativi Performanti e Automazioni AI a Bari e in tutta Italia</span>
                 </h1>
 
                 {/* Subtitle Statement — Legible, large font with high contrast */}
