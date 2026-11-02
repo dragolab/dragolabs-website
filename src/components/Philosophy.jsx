@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Search, Compass, Terminal, Cpu, ArrowUpRight } from 'lucide-react';
+import { Search, Compass, Terminal, Cpu } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,7 +67,7 @@ export default function Philosophy() {
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 
-                {/* Section Header — Consistent unified typography */}
+                {/* Section Header */}
                 <header className="method-reveal mx-auto mb-16 md:mb-20 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
                         La Visione & Il Metodo
@@ -112,25 +112,6 @@ export default function Philosophy() {
                             </div>
                         );
                     })}
-                </div>
-
-                {/* Original Authentic Manifesto Banner from old site */}
-                <div className="method-reveal mt-20 p-8 sm:p-12 md:p-14 rounded-[2.2rem] border border-white/15 bg-white/5 backdrop-blur-md text-center max-w-5xl mx-auto shadow-2xl">
-                    <p className="font-sans text-xl sm:text-2xl md:text-3xl text-gray-300 font-light leading-relaxed mb-4">
-                        Dicevano che un sito web sarebbe servito in futuro, poi il futuro è arrivato.
-                    </p>
-                    <p className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mt-4 leading-tight text-balance">
-                        Resta al passo: con noi hai l'opportunità per <span className="text-drago-accent not-italic font-bold">crescere online</span>.
-                    </p>
-                    <div className="mt-8 flex justify-center">
-                        <a
-                            href="#contatti"
-                            className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-drago-accent hover:bg-drago-accent/90 text-white font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-[0_0_25px_rgba(0,115,160,0.5)]"
-                        >
-                            <span>Inizia ora</span>
-                            <ArrowUpRight className="w-5 h-5" />
-                        </a>
-                    </div>
                 </div>
 
             </div>
