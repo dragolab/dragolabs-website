@@ -95,31 +95,14 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Bottom Telemetry & Navigation Dock — Legible text-sm */}
-            <div className="stagger-text relative z-10 w-full pt-8 md:pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-mono text-gray-200">
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-                    <div className="flex items-center gap-2">
-                        <Terminal className="w-4 h-4 text-drago-accent" />
-                        <span className="font-semibold text-white">CORE: REACT 19 · TYPESCRIPT · GSAP</span>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-2">
-                        <Cpu className="w-4 h-4 text-drago-accent" />
-                        <span className="font-semibold text-white">PERFORMANCE: LIGHTHOUSE 98+</span>
-                    </div>
-                    <div className="hidden lg:flex items-center gap-2">
-                        <Code2 className="w-4 h-4 text-drago-accent" />
-                        <span className="font-semibold text-white">ARCHITETTURE: ZERO BUILDER PESANTI</span>
-                    </div>
-                </div>
-
+            {/* Bottom Navigation Link — Minimalist & Clean */}
+            <div className="stagger-text relative z-10 w-full pt-8 md:pt-10 flex justify-center">
                 <a
                     href="#metodo"
-                    className="flex items-center gap-2.5 hover:text-drago-accent transition-colors group font-semibold"
+                    className="flex items-center gap-2.5 text-gray-300 hover:text-white transition-colors group font-sans text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15"
                 >
                     <span className="uppercase tracking-widest text-xs sm:text-sm">Scopri il Metodo</span>
-                    <div className="w-7 h-7 rounded-full bg-white/10 border border-white/15 flex items-center justify-center group-hover:bg-drago-accent group-hover:text-white transition-colors">
-                        <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-                    </div>
+                    <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-white" />
                 </a>
             </div>
         </section>

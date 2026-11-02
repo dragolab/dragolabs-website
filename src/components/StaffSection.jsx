@@ -63,7 +63,7 @@ export default function StaffSection() {
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
                         Chi c'è dietro Drago Labs
                     </h2>
-                    <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-100 max-w-3xl mx-auto leading-relaxed">
+                    <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
                         Competenze umane ed intelligenza artificiale: una sinergia pensata per costruire prodotti digitali ad alte prestazioni.
                     </p>
                 </header>
@@ -91,15 +91,7 @@ export default function StaffSection() {
                                     </div>
                                 </div>
 
-                                <a
-                                    href="https://wa.me/393939450653"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-mono font-medium hover:bg-emerald-500/25 transition-all w-fit"
-                                >
-                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span>Disponibile su WhatsApp →</span>
-                                </a>
+
                             </div>
 
                             {/* Bio — Legible, generous font sizes */}

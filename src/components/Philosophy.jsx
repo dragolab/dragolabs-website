@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Search, Compass, Terminal, Cpu } from 'lucide-react';
+import { Search, Compass, Terminal, Cpu, ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +12,6 @@ const steps = [
         subtitle: 'Analisi logica prima di scrivere codice',
         desc: 'Chi utilizzerà la piattaforma? Quale ostacolo operativo o commerciale dobbiamo eliminare? Identifico le priorità reali e taglio ciò che è superfluo, per concentrare le risorse su ciò che genera valore reale.',
         icon: Search,
-        tag: 'Analisi & Scope'
     },
     {
         num: '02',
@@ -20,7 +19,6 @@ const steps = [
         subtitle: 'Interfacce modellate sulle decisioni umane',
         desc: 'Nessun template prefabbricato: progetto la struttura informativa, la gerarchia visiva e l’esperienza utente affinché la navigazione sia istintiva, elegante e perfettamente coerente con l’identità del tuo brand.',
         icon: Compass,
-        tag: 'UX / UI Design'
     },
     {
         num: '03',
@@ -28,7 +26,6 @@ const steps = [
         subtitle: 'Codice moderno focalizzato sulla velocità',
         desc: 'Sviluppo con standard moderni (React, TypeScript, architetture serverless o temi sartoriali). Il risultato sono tempi di risposta istantanei (< 0.6s), punteggi Core Web Vitals massimi e totale sicurezza.',
         icon: Terminal,
-        tag: 'Ingegneria Web'
     },
     {
         num: '04',
@@ -36,7 +33,6 @@ const steps = [
         subtitle: 'Sistemi indipendenti e flussi intelligenti',
         desc: 'Consegno piattaforme semplici da gestire in totale autonomia, senza vincoli di dipendenza tecnica. Integro automazioni e agenti virtuali intelligenti per ridurre le mansioni ripetitive e supportare i clienti.',
         icon: Cpu,
-        tag: 'Autonomia & AI'
     }
 ];
 
@@ -71,22 +67,22 @@ export default function Philosophy() {
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 
-                {/* Section Header — Enlarged, crisp */}
+                {/* Section Header — Consistent unified typography */}
                 <header className="method-reveal mx-auto mb-16 md:mb-20 max-w-4xl text-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-4 font-semibold">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
                         La Visione & Il Metodo
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
                         Dal problema al prodotto.
                     </h2>
-                    <p className="mt-5 text-lg sm:text-2xl font-normal text-gray-100 leading-relaxed text-balance">
+                    <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 leading-relaxed text-balance">
                         Un sito web o una web application non dovrebbero mai essere un esercizio di stile fine a se stesso. Costruisco strumenti digitali attraverso un percorso rigoroso, trasparente e focalizzato sui risultati.
                     </p>
                 </header>
 
-                {/* 4 Process Cards Grid — Widescreen 4 columns on xl with legible font sizes */}
+                {/* 4 Process Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-7">
-                    {steps.map((s, i) => {
+                    {steps.map((s) => {
                         const Icon = s.icon;
                         return (
                             <div
@@ -95,47 +91,45 @@ export default function Philosophy() {
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-6">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-12 h-12 rounded-xl bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-cyan group-hover:scale-110 transition-transform">
-                                                <Icon className="w-6 h-6" />
-                                            </div>
-                                            <span className="font-mono text-xs sm:text-sm text-drago-cyan uppercase tracking-wider px-2.5 py-1 rounded bg-white/5 border border-white/10 font-semibold">
-                                                {s.tag}
-                                            </span>
+                                        <div className="w-12 h-12 rounded-xl bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                            <Icon className="w-6 h-6 text-drago-accent" />
                                         </div>
-                                        <span className="font-mono text-3xl font-extrabold text-white/30 group-hover:text-drago-accent/60 transition-colors">
+                                        <span className="font-mono text-3xl font-extrabold text-white/30 group-hover:text-drago-accent/70 transition-colors">
                                             {s.num}
                                         </span>
                                     </div>
 
-                                    <h3 className="font-display font-bold text-2xl xl:text-3xl text-white mb-2.5 group-hover:text-drago-contrast transition-colors tracking-tight">
+                                    <h3 className="font-display font-bold text-2xl xl:text-3xl text-white mb-2 group-hover:text-drago-contrast transition-colors tracking-tight">
                                         {s.title}
                                     </h3>
-                                    <p className="font-sans text-sm sm:text-base text-drago-cyan font-semibold mb-3.5">
+                                    <p className="font-sans text-sm sm:text-base text-gray-300 font-medium mb-4">
                                         {s.subtitle}
                                     </p>
                                     <p className="font-sans text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                         {s.desc}
                                     </p>
                                 </div>
-
-                                <div className="mt-8 pt-5 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-mono text-gray-300">
-                                    <span className="font-semibold text-white">FASE {i + 1} DI 4</span>
-                                    <span className="group-hover:text-drago-cyan transition-colors font-semibold">Precisione →</span>
-                                </div>
                             </div>
                         );
                     })}
                 </div>
 
-                {/* Manifesto quote banner — High-contrast & larger typography */}
-                <div className="method-reveal mt-16 p-8 sm:p-10 rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md text-center max-w-4xl mx-auto shadow-2xl">
-                    <p className="font-display text-xl sm:text-3xl font-normal text-white italic leading-relaxed sm:leading-[1.5]">
-                        "La bellezza di un'architettura software risiede nella sua essenzialità: quando ogni elemento ha un motivo d'esistere e nessun byte è sprecato."
+                {/* Original Authentic Manifesto Banner from old site */}
+                <div className="method-reveal mt-20 p-8 sm:p-12 md:p-14 rounded-[2.2rem] border border-white/15 bg-white/5 backdrop-blur-md text-center max-w-5xl mx-auto shadow-2xl">
+                    <p className="font-sans text-xl sm:text-2xl md:text-3xl text-gray-300 font-light leading-relaxed mb-4">
+                        Dicevano che un sito web sarebbe servito in futuro, poi il futuro è arrivato.
                     </p>
-                    <div className="mt-5 flex items-center justify-center gap-2.5 text-sm sm:text-base font-mono text-gray-200 font-medium">
-                        <span className="w-2 h-2 rounded-full bg-drago-cyan animate-pulse" />
-                        <span>Gianluca Dragone · Drago Labs</span>
+                    <p className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mt-4 leading-tight text-balance">
+                        Resta al passo: con noi hai l'opportunità per <span className="text-drago-accent not-italic font-bold">crescere online</span>.
+                    </p>
+                    <div className="mt-8 flex justify-center">
+                        <a
+                            href="#contatti"
+                            className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-drago-accent hover:bg-drago-accent/90 text-white font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-[0_0_25px_rgba(0,115,160,0.5)]"
+                        >
+                            <span>Inizia ora</span>
+                            <ArrowUpRight className="w-5 h-5" />
+                        </a>
                     </div>
                 </div>
 

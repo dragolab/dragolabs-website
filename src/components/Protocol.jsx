@@ -137,9 +137,9 @@ export default function Protocol() {
                             Casi Studio & Architetture
                         </span>
                         <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight">
-                            I Progetti Spiegati.
+                            I miei Progetti
                         </h2>
-                        <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-100 max-w-3xl leading-relaxed">
+                        <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl leading-relaxed">
                             Decostruzione dei progetti reali: la sfida iniziale del cliente, la strategia di progettazione e l’architettura tecnica sviluppata.
                         </p>
                     </div>

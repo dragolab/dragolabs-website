@@ -184,15 +184,15 @@ export default function ContactSection() {
         <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
 
-                {/* ── Header ── */}
-                <div className="contact-reveal mx-auto mb-16 max-w-3xl text-center">
-                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3">
+                {/* ── Header — Unified Scale ── */}
+                <div className="contact-reveal mx-auto mb-16 max-w-4xl text-center">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
                         Iniziamo Insieme
                     </span>
-                    <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight text-balance">
+                    <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
                         Hai un progetto in mente?
                     </h2>
-                    <p className="mt-4 font-sans text-lg sm:text-2xl font-normal leading-relaxed text-gray-200">
+                    <p className="mt-4 font-sans text-lg sm:text-2xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
                         Raccontami cosa vorresti realizzare. La prima consulenza è sempre gratuita e senza impegno.
                     </p>
                 </div>
@@ -271,23 +271,20 @@ export default function ContactSection() {
                                     {showErrors && errors.privacy && <p id="privacy-error" className="mt-2 text-sm text-red-300" role="alert">{errors.privacy}</p>}
                                 </div>
 
-                                {/* Submit Action Area — Properly settled inside the box */}
-                                <div className="pt-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-white/10 mt-3">
+                                {/* Submit Action Area — Solid, thick, full presence */}
+                                <div className="pt-6 border-t border-white/10 mt-4">
                                     <button
                                         type="submit"
                                         disabled={status === 'sending'}
-                                        className={`inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-full font-sans font-bold text-base sm:text-lg text-white transition-all duration-300 shadow-[0_0_25px_rgba(0,115,160,0.45)]
+                                        className={`w-full py-5 px-8 rounded-2xl font-sans font-extrabold text-lg sm:text-xl text-white transition-all duration-300 flex items-center justify-center gap-3
                                             ${status !== 'sending'
-                                                ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.02] active:scale-95'
+                                                ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] active:scale-98 shadow-[0_0_30px_rgba(0,115,160,0.55)]'
                                                 : 'bg-white/10 cursor-wait opacity-50'
                                             }`}
                                     >
                                         <span>{status === 'sending' ? 'Invio in corso...' : 'Invia la richiesta'}</span>
-                                        <ArrowUpRight className="w-5 h-5 text-white" />
+                                        <ArrowUpRight className="w-6 h-6 text-white" />
                                     </button>
-                                    <span className="text-xs sm:text-sm font-mono text-gray-300 text-center sm:text-right">
-                                        Risposta garantita entro 24h
-                                    </span>
                                 </div>
                             </form>
                         )}
