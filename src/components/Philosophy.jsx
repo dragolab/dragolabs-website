@@ -65,76 +65,76 @@ export default function Philosophy() {
     }, []);
 
     return (
-        <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden">
+        <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden">
             {/* Background texture */}
-            <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 
-                {/* Section Header */}
+                {/* Section Header — Enlarged, crisp */}
                 <header className="method-reveal mx-auto mb-16 md:mb-20 max-w-4xl text-center">
-                    <span className="font-mono text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-4 font-semibold">
                         La Visione & Il Metodo
                     </span>
-                    <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight text-balance">
+                    <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
                         Dal problema al prodotto.
                     </h2>
-                    <p className="mt-4 text-base sm:text-xl font-light text-gray-300 leading-relaxed text-balance">
+                    <p className="mt-5 text-lg sm:text-2xl font-normal text-gray-100 leading-relaxed text-balance">
                         Un sito web o una web application non dovrebbero mai essere un esercizio di stile fine a se stesso. Costruisco strumenti digitali attraverso un percorso rigoroso, trasparente e focalizzato sui risultati.
                     </p>
                 </header>
 
-                {/* 4 Process Cards Grid — Widescreen 4 columns on xl */}
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                {/* 4 Process Cards Grid — Widescreen 4 columns on xl with legible font sizes */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-7">
                     {steps.map((s, i) => {
                         const Icon = s.icon;
                         return (
                             <div
                                 key={s.num}
-                                className="method-reveal group rounded-[1.75rem] border border-white/10 bg-drago-text/40 p-7 xl:p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-drago-accent/60 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(0,115,160,0.2)] flex flex-col justify-between"
+                                className="method-reveal group rounded-[2rem] border border-white/15 bg-drago-text/40 p-7 xl:p-9 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-drago-accent hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(0,115,160,0.25)] flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-6">
-                                        <div className="flex items-center gap-2.5">
-                                            <div className="w-10 h-10 rounded-xl bg-drago-accent/10 border border-drago-accent/30 flex items-center justify-center text-drago-accent group-hover:scale-110 transition-transform">
-                                                <Icon className="w-5 h-5" />
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-12 h-12 rounded-xl bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center text-drago-cyan group-hover:scale-110 transition-transform">
+                                                <Icon className="w-6 h-6" />
                                             </div>
-                                            <span className="font-mono text-[11px] text-drago-accent uppercase tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/10">
+                                            <span className="font-mono text-xs sm:text-sm text-drago-cyan uppercase tracking-wider px-2.5 py-1 rounded bg-white/5 border border-white/10 font-semibold">
                                                 {s.tag}
                                             </span>
                                         </div>
-                                        <span className="font-mono text-2xl font-bold text-white/20 group-hover:text-drago-accent/50 transition-colors">
+                                        <span className="font-mono text-3xl font-extrabold text-white/30 group-hover:text-drago-accent/60 transition-colors">
                                             {s.num}
                                         </span>
                                     </div>
 
-                                    <h3 className="font-display font-bold text-xl xl:text-2xl text-white mb-2 group-hover:text-drago-contrast transition-colors">
+                                    <h3 className="font-display font-bold text-2xl xl:text-3xl text-white mb-2.5 group-hover:text-drago-contrast transition-colors tracking-tight">
                                         {s.title}
                                     </h3>
-                                    <p className="font-sans text-xs text-drago-accent font-medium mb-3">
+                                    <p className="font-sans text-sm sm:text-base text-drago-cyan font-semibold mb-3.5">
                                         {s.subtitle}
                                     </p>
-                                    <p className="font-sans text-xs sm:text-sm font-light text-gray-300 leading-relaxed">
+                                    <p className="font-sans text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                         {s.desc}
                                     </p>
                                 </div>
 
-                                <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-gray-400">
-                                    <span>FASE {i + 1} DI 4</span>
-                                    <span className="group-hover:text-drago-accent transition-colors font-sans">Precisione →</span>
+                                <div className="mt-8 pt-5 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-mono text-gray-300">
+                                    <span className="font-semibold text-white">FASE {i + 1} DI 4</span>
+                                    <span className="group-hover:text-drago-cyan transition-colors font-semibold">Precisione →</span>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
 
-                {/* Manifesto quote banner */}
-                <div className="method-reveal mt-16 p-8 rounded-[1.75rem] border border-white/10 bg-white/5 backdrop-blur-md text-center max-w-4xl mx-auto">
-                    <p className="font-display text-lg sm:text-2xl font-light text-gray-200 italic leading-relaxed">
+                {/* Manifesto quote banner — High-contrast & larger typography */}
+                <div className="method-reveal mt-16 p-8 sm:p-10 rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md text-center max-w-4xl mx-auto shadow-2xl">
+                    <p className="font-display text-xl sm:text-3xl font-normal text-white italic leading-relaxed sm:leading-[1.5]">
                         "La bellezza di un'architettura software risiede nella sua essenzialità: quando ogni elemento ha un motivo d'esistere e nessun byte è sprecato."
                     </p>
-                    <div className="mt-4 flex items-center justify-center gap-2 text-xs font-mono text-gray-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-drago-accent" />
+                    <div className="mt-5 flex items-center justify-center gap-2.5 text-sm sm:text-base font-mono text-gray-200 font-medium">
+                        <span className="w-2 h-2 rounded-full bg-drago-cyan animate-pulse" />
                         <span>Gianluca Dragone · Drago Labs</span>
                     </div>
                 </div>

@@ -168,7 +168,7 @@ export default function ArgoConsole() {
             });
 
             return (
-                <p key={idx} className="leading-relaxed">
+                <p key={idx} className="leading-relaxed text-base sm:text-[1.05rem] text-gray-100">
                     {formatted}
                 </p>
             );
@@ -176,38 +176,38 @@ export default function ArgoConsole() {
     };
 
     return (
-        <div className="w-full rounded-[1.75rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col h-[570px]">
+        <div className="w-full rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col h-[600px] xl:h-full min-h-[580px]">
             {/* Top Bar / Header */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-black/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/50">
                 <div className="flex items-center gap-3">
                     <div className="relative">
-                        <div className="w-9 h-9 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-drago-accent">
+                        <div className="w-10 h-10 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-drago-cyan">
                             <Bot className="w-5 h-5" />
                         </div>
                         <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-black" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <span className="font-sans font-bold text-sm text-white">Argo</span>
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-drago-accent/20 text-drago-accent border border-drago-accent/30 uppercase tracking-wider">
+                            <span className="font-sans font-bold text-base sm:text-lg text-white">Argo</span>
+                            <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-drago-accent/20 text-drago-cyan border border-drago-accent/30 uppercase tracking-wider">
                                 Lab AI
                             </span>
                         </div>
-                        <span className="text-xs text-gray-400">Interagisci con l'assistente virtuale del laboratorio</span>
+                        <span className="text-xs sm:text-sm text-gray-200">Interagisci con l'assistente virtuale del laboratorio</span>
                     </div>
                 </div>
 
                 <button
                     onClick={resetChat}
                     title="Ricomincia conversazione"
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                    className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                 >
-                    <RefreshCw className="w-4 h-4" />
+                    <RefreshCw className="w-5 h-5" />
                 </button>
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+            <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-5">
                 {messages.map((m) => (
                     <div
                         key={m.id}
@@ -224,14 +224,14 @@ export default function ArgoConsole() {
                         )}
 
                         <div
-                            className={`rounded-2xl px-4 py-3 text-sm font-sans ${
+                            className={`rounded-2xl px-5 py-3.5 text-base font-sans leading-relaxed ${
                                 m.sender === 'user'
                                     ? 'bg-drago-accent text-white rounded-tr-sm shadow-md'
-                                    : 'bg-white/5 border border-white/10 text-gray-200 rounded-tl-sm'
+                                    : 'bg-white/10 border border-white/15 text-gray-100 rounded-tl-sm'
                             }`}
                         >
                             {renderFormattedText(m.text)}
-                            <div className={`text-[10px] mt-1.5 opacity-40 font-mono ${m.sender === 'user' ? 'text-right' : 'text-left'}`}>
+                            <div className={`text-xs mt-2 opacity-60 font-mono ${m.sender === 'user' ? 'text-right text-white/80' : 'text-left text-gray-300'}`}>
                                 {m.timestamp}
                             </div>
                         </div>
@@ -254,13 +254,13 @@ export default function ArgoConsole() {
             </div>
 
             {/* Quick Suggestion Pills */}
-            <div className="px-4 py-2 border-t border-white/5 bg-black/20 flex gap-1.5 overflow-x-auto no-scrollbar">
+            <div className="px-5 py-2.5 border-t border-white/10 bg-black/30 flex gap-2 overflow-x-auto no-scrollbar">
                 {SUGGESTED_PROMPTS.map((prompt, i) => (
                     <button
                         key={i}
                         onClick={() => handleSend(prompt)}
                         disabled={isTyping}
-                        className="whitespace-nowrap px-3 py-1 rounded-full text-xs font-sans bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white transition-all hover:border-drago-accent/50 flex-shrink-0 disabled:opacity-50"
+                        className="whitespace-nowrap px-4 py-1.5 rounded-full text-xs sm:text-sm font-sans font-medium bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 hover:text-white transition-all hover:border-drago-accent/60 flex-shrink-0 disabled:opacity-50"
                     >
                         {prompt}
                     </button>
@@ -268,23 +268,23 @@ export default function ArgoConsole() {
             </div>
 
             {/* Input Bar */}
-            <div className="p-3 bg-black/50 border-t border-white/10 flex items-center gap-2">
+            <div className="p-4 bg-black/60 border-t border-white/10 flex items-center gap-3">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Fai una domanda ad Argo sui progetti o sul metodo..."
-                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-sans text-white placeholder-gray-400 focus:outline-none focus:border-drago-accent/80 transition-colors"
+                    className="flex-1 bg-white/10 border border-white/15 rounded-xl px-5 py-3 text-base font-sans text-white placeholder-gray-400 focus:outline-none focus:border-drago-accent transition-colors"
                     disabled={isTyping}
                 />
                 <button
                     onClick={() => handleSend()}
                     disabled={!input.trim() || isTyping}
-                    className="w-10 h-10 rounded-xl bg-drago-accent hover:bg-drago-accent/90 disabled:opacity-40 disabled:hover:bg-drago-accent text-white flex items-center justify-center transition-all flex-shrink-0"
+                    className="w-12 h-12 rounded-xl bg-drago-accent hover:bg-drago-accent/90 disabled:opacity-40 disabled:hover:bg-drago-accent text-white flex items-center justify-center transition-all flex-shrink-0 shadow-md"
                     title="Invia messaggio"
                 >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-5 h-5" />
                 </button>
             </div>
         </div>

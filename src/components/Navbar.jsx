@@ -132,14 +132,14 @@ export default function Navbar() {
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="font-sans font-bold text-lg tracking-wide hover:text-drago-accent transition-colors"
+                        className="font-sans font-bold text-xl tracking-wide hover:text-drago-cyan transition-colors"
                     >
                         Drago Labs
                     </a>
                 </div>
 
                 {/* Desktop links */}
-                <div className="hidden md:flex items-center gap-6 lg:gap-7">
+                <div className="hidden md:flex items-center gap-6 lg:gap-8">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
                         return (
@@ -147,8 +147,8 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`text-sm font-medium transition-colors ${
-                                    isActive ? 'text-drago-accent font-semibold' : 'text-gray-300 hover:text-white'
+                                className={`text-base font-semibold transition-colors ${
+                                    isActive ? 'text-drago-cyan font-bold' : 'text-gray-200 hover:text-white'
                                 }`}
                             >
                                 {link.label}
@@ -162,7 +162,7 @@ export default function Navbar() {
                     <a
                         href="/#contatti"
                         onClick={(e) => handleNavClick(e, 'contatti')}
-                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
+                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,115,160,0.5)]"
                     >
                         Inizia un Progetto
                     </a>
@@ -190,7 +190,7 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                                className={`px-4 py-3 text-lg font-semibold rounded-xl transition-colors ${
                                     isActive ? 'text-drago-accent bg-white/5 font-semibold' : 'text-gray-200 hover:text-white hover:bg-white/5'
                                 }`}
                             >
@@ -203,7 +203,7 @@ export default function Navbar() {
                         <a
                             href="/#contatti"
                             onClick={(e) => handleNavClick(e, 'contatti')}
-                            className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-3 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
+                            className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-6 py-3.5 rounded-full text-base font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,115,160,0.5)]"
                         >
                             Inizia un Progetto
                         </a>

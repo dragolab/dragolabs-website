@@ -40,10 +40,10 @@ function AnimatedInput({ label, type = 'text', placeholder, value, onChange, nam
         <div className="relative">
             <label
                 htmlFor={name}
-                className={`absolute left-4 font-sans text-sm transition-all duration-200 pointer-events-none z-10
+                className={`absolute left-4 font-sans text-base transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
-                        ? '-top-2.5 text-xs text-drago-accent bg-[#0f1a1e] px-1 rounded'
-                        : 'top-3.5 text-gray-400'
+                        ? '-top-2.5 text-xs font-semibold text-drago-cyan bg-[#0f1a1e] px-1.5 rounded'
+                        : 'top-3.5 text-gray-300'
                     }`}
             >
                 {label}
@@ -61,8 +61,8 @@ function AnimatedInput({ label, type = 'text', placeholder, value, onChange, nam
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 placeholder={focused ? typed + (typed.length < placeholder.length ? '|' : '') : ''}
-                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70
-                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/15'}`}
+                className={`w-full bg-white/5 border rounded-xl px-4 pt-5 pb-3 font-sans text-base sm:text-lg text-white outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70 placeholder-gray-400
+                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/20'}`}
             />
             {error && <p id={`${name}-error`} className="mt-2 text-sm text-red-300" role="alert">{error}</p>}
         </div>
@@ -79,10 +79,10 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, required 
         <div className="relative">
             <label
                 htmlFor={name}
-                className={`absolute left-4 font-sans text-sm transition-all duration-200 pointer-events-none z-10
+                className={`absolute left-4 font-sans text-base transition-all duration-200 pointer-events-none z-10
                     ${focused || hasValue
-                        ? '-top-2.5 text-xs text-drago-accent bg-[#0f1a1e] px-1 rounded'
-                        : 'top-3.5 text-gray-400'
+                        ? '-top-2.5 text-xs font-semibold text-drago-cyan bg-[#0f1a1e] px-1.5 rounded'
+                        : 'top-3.5 text-gray-300'
                     }`}
             >
                 {label}
@@ -99,8 +99,8 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, required 
                 onBlur={() => setFocused(false)}
                 rows={4}
                 placeholder={focused ? typed + (typed.length < placeholder.length ? '|' : '') : ''}
-                className={`w-full bg-transparent border rounded-xl px-4 pt-5 pb-3 font-sans text-base text-white outline-none resize-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70
-                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/15'}`}
+                className={`w-full bg-white/5 border rounded-xl px-4 pt-5 pb-3 font-sans text-base sm:text-lg text-white outline-none resize-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-drago-accent/70 placeholder-gray-400
+                    ${error ? 'border-red-400' : focused ? 'border-drago-accent' : 'border-white/20'}`}
             />
             {error && <p id={`${name}-error`} className="mt-2 text-sm text-red-300" role="alert">{error}</p>}
         </div>
@@ -192,7 +192,7 @@ export default function ContactSection() {
                     <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight text-balance">
                         Hai un progetto in mente?
                     </h2>
-                    <p className="mt-3 font-sans text-base sm:text-lg font-light leading-relaxed text-gray-300">
+                    <p className="mt-4 font-sans text-lg sm:text-2xl font-normal leading-relaxed text-gray-200">
                         Raccontami cosa vorresti realizzare. La prima consulenza è sempre gratuita e senza impegno.
                     </p>
                 </div>
@@ -220,7 +220,7 @@ export default function ContactSection() {
                             </div>
                         ) : (
                             <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-                                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-1">
+                                <h3 className="font-display font-bold text-3xl sm:text-4xl text-white mb-2">
                                     Richiedi una consulenza
                                 </h3>
 
@@ -265,9 +265,9 @@ export default function ContactSection() {
                                             </svg>
                                         )}
                                         </span>
-                                        <span className="font-sans text-sm text-gray-300">Ho preso visione dell’Informativa Privacy.</span>
+                                        <span className="font-sans text-base text-gray-200 font-normal">Ho preso visione dell’Informativa Privacy.</span>
                                     </label>
-                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-xs text-drago-accent underline underline-offset-2 hover:text-drago-accent/80">Leggi l’Informativa Privacy</a>
+                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-sm text-drago-cyan underline underline-offset-2 hover:text-white">Leggi l’Informativa Privacy</a>
                                     {showErrors && errors.privacy && <p id="privacy-error" className="mt-2 text-sm text-red-300" role="alert">{errors.privacy}</p>}
                                 </div>
 
@@ -275,7 +275,7 @@ export default function ContactSection() {
                                 <button
                                     type="submit"
                                     disabled={status === 'sending'}
-                                    className={`w-full py-4 rounded-xl font-sans font-bold text-base text-white transition-all duration-300 mt-2
+                                    className={`w-full py-4.5 rounded-xl font-sans font-bold text-base sm:text-lg text-white transition-all duration-300 mt-2
                                         ${status !== 'sending'
                                             ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] shadow-[0_0_25px_rgba(0,115,160,0.5)]'
                                             : 'bg-white/10 cursor-wait opacity-50'
@@ -303,10 +303,10 @@ export default function ContactSection() {
                                 </svg>
                             </div>
                             <div>
-                                <span className="text-[11px] font-mono uppercase text-emerald-400 tracking-wider font-semibold">Canale Diretto Prioritario</span>
-                                <h4 className="font-display font-bold text-lg text-white">Chatta su WhatsApp</h4>
-                                <p className="text-xs text-gray-300 mt-1">Risposta rapida per richieste urgenti o prime domande sul progetto.</p>
-                                <span className="text-sm font-mono text-emerald-300 mt-2 block font-medium">+39 393 945 0653 →</span>
+                                <span className="text-xs sm:text-sm font-mono uppercase text-emerald-300 tracking-wider font-bold">Canale Diretto Prioritario</span>
+                                <h4 className="font-display font-bold text-xl sm:text-2xl text-white mt-1">Chatta su WhatsApp</h4>
+                                <p className="text-sm sm:text-base text-gray-200 mt-1.5 leading-relaxed">Risposta rapida per richieste urgenti o prime domande sul tuo progetto.</p>
+                                <span className="text-base sm:text-lg font-mono text-emerald-300 mt-3 block font-bold">+39 393 945 0653 →</span>
                             </div>
                         </a>
 
@@ -317,8 +317,8 @@ export default function ContactSection() {
                                     <Mail className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
                                 </div>
                                 <div>
-                                    <span className="text-xs text-gray-400 block font-mono">Email diretta</span>
-                                    <span className="text-sm font-medium text-white group-hover:text-drago-accent transition-colors">info.dragolabs@gmail.com</span>
+                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">Email diretta</span>
+                                    <span className="text-base sm:text-lg font-semibold text-white group-hover:text-drago-cyan transition-colors">info.dragolabs@gmail.com</span>
                                 </div>
                             </a>
 
@@ -327,16 +327,16 @@ export default function ContactSection() {
                                     <MapPin className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <span className="text-xs text-gray-400 block font-mono">Sede & Raggio d'azione</span>
-                                    <span className="text-sm font-medium text-white">Fasano (BR), Puglia — Clienti in tutta Italia da remoto</span>
+                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">Sede & Raggio d'azione</span>
+                                    <span className="text-base sm:text-lg font-semibold text-white">Fasano (BR), Puglia — Clienti in tutta Italia da remoto</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Operational Card */}
                         <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
-                            <span className="text-xs font-mono text-drago-accent uppercase tracking-wider block mb-2">[ DISPONIBILITÀ ATTUALE ]</span>
-                            <p className="text-sm text-gray-300 leading-relaxed font-light">
+                            <span className="text-xs sm:text-sm font-mono text-drago-cyan uppercase tracking-wider block mb-2 font-bold">[ DISPONIBILITÀ ATTUALE ]</span>
+                            <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
                                 Attualmente disponibile per l'avvio di nuovi progetti, sviluppo applicativi e consulenze tecniche. Rispondo a ogni richiesta entro 24 ore lavorative.
                             </p>
                         </div>

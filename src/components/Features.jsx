@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Layout, GitMerge, ArrowUpRight } from 'lucide-react';
@@ -22,15 +21,15 @@ const useTypewriter = (textArray, delayStart = 0) => {
 
         const currentString = textArray[index];
         const stringLength = currentString.length || 1;
-        const typeSpeed = 2000 / stringLength;   // Takes exactly 2s to write full string
-        const deleteSpeed = 2000 / stringLength; // Takes exactly 2s to delete full string
+        const typeSpeed = 2000 / stringLength;
+        const deleteSpeed = 2000 / stringLength;
 
         if (isDeleting) {
             if (text === '') {
                 timeout = setTimeout(() => {
                     setIsDeleting(false);
                     setIndex((prev) => (prev + 1) % textArray.length);
-                }, 200); // 200ms pause before next word
+                }, 200);
             } else {
                 timeout = setTimeout(() => {
                     setText(currentString.substring(0, text.length - 1));
@@ -38,12 +37,10 @@ const useTypewriter = (textArray, delayStart = 0) => {
             }
         } else {
             if (text === currentString) {
-                // Done writing, hold for 3 seconds
                 timeout = setTimeout(() => {
                     setIsDeleting(true);
                 }, 3000);
             } else {
-                // Writing
                 timeout = setTimeout(() => {
                     setText(currentString.substring(0, text.length + 1));
                 }, typeSpeed);
@@ -60,25 +57,22 @@ export default function Features() {
     const containerRef = useRef(null);
     const gridRef = useRef(null);
 
-    // Initializing arrays outside render cycle
-    const techStack1 = useMemo(() => ["Università degli Studi di Bari \"Aldo Moro\"", "Pensiero critico e analisi", "Problem solving"], []);
-    const techStack2 = useMemo(() => ["Sviluppo siti web e e-commerce", "Assistenza informatica", "Consulenza strategica"], []);
+    const techStack1 = useMemo(() => ["Università degli Studi di Bari \"Aldo Moro\"", "Pensiero critico e logica classica", "Problem solving analitico"], []);
+    const techStack2 = useMemo(() => ["Sviluppo web e e-commerce su misura", "Applicativi performanti e veloci", "Workflow e automazioni AI"], []);
 
     const typewriterText1 = useTypewriter(techStack1, 0);
-    const typewriterText2 = useTypewriter(techStack2, 500); // 500ms offset start
+    const typewriterText2 = useTypewriter(techStack2, 500);
 
-    // Animations (Entrance + RGB Grid)
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // General Entrance
             gsap.from('.feature-card', {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: 'top 80%',
                 },
-                y: 60,
+                y: 50,
                 opacity: 0,
-                duration: 1,
+                duration: 0.9,
                 stagger: 0.15,
                 ease: 'power3.out'
             });
@@ -88,118 +82,134 @@ export default function Features() {
     }, []);
 
     useEffect(() => {
-        const grid = gridRef.current;
-        if (!grid) return undefined;
-
+        const element = gridRef.current;
+        if (!element) return undefined;
         const observer = new IntersectionObserver(([entry]) => {
-            grid.classList.toggle('is-in-viewport', entry.isIntersecting);
+            element.classList.toggle('is-in-viewport', entry.isIntersecting);
         }, { threshold: 0.1 });
-
-        observer.observe(grid);
+        observer.observe(element);
         return () => observer.disconnect();
     }, []);
 
     return (
-        <section ref={containerRef} className="py-16 md:py-24 px-6 container mx-auto">
+        <section ref={containerRef} className="py-24 md:py-36 relative border-t border-white/10 overflow-hidden">
             <style>
                 {`
                     @keyframes periodicTwitch {
-                        0%, 85%, 100% { transform: translate(0, 0); }
-                        92% { transform: translate(3px, -3px); }
-                        96% { transform: translate(1px, -1px); }
+                        0%, 90%, 100% {
+                            transform: translate(0, 0);
+                        }
+                        92% {
+                            transform: translate(2px, -2px);
+                        }
+                        94% {
+                            transform: translate(-1px, 1px);
+                        }
+                        96% {
+                            transform: translate(1px, -1px);
+                        }
                     }
                     .animate-periodic-twitch {
                         animation: periodicTwitch 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
                     }
                 `}
             </style>
-            <div className="text-center mb-10 md:mb-16">
-                <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance">
-                    Perché sceglierci
+            
+            <div className="text-center mb-16 md:mb-20 px-4">
+                <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
+                    I Pilastri del Laboratorio
+                </span>
+                <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white text-balance tracking-tight">
+                    Perché scegliere Drago Labs
                 </h2>
-                <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-8" />
+                <div className="w-24 h-[1px] bg-drago-accent mx-auto mt-6" />
             </div>
 
-            {/* Changed max-w to 1600px and 95% to allow wide text on single line, increased gaps drastically */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 w-[95%] max-w-[1600px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 w-full max-w-[1520px] px-4 sm:px-8 lg:px-12 xl:px-16 mx-auto">
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+                <div className="feature-card glass rounded-[2rem] p-7 xl:p-9 hover:border-drago-accent hover:shadow-[0_0_30px_rgba(0,115,160,0.25)] transition-all duration-300 group relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <Code className="w-10 h-10 text-drago-cyan mb-4" />
+                        <h3 className="font-display font-bold text-2xl lg:text-3xl mb-3 text-white">Logica e Metodo</h3>
+                        <p className="text-gray-100 font-normal text-base sm:text-lg leading-relaxed mb-6">
+                            L'unione tra studi classici e informatica definisce la mia forma mentis: un approccio analitico che non si ferma alla superficie, ma cerca la soluzione più strutturata ed elegante per risolvere ogni sfida.
+                        </p>
+                    </div>
 
-                    <Code className="w-8 h-8 text-drago-accent mb-3" />
-                    <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Logica e Metodo</h3>
-                    <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">
-                        L'unione tra studi classici e informatica definisce la mia forma mentis: un approccio analitico che non si ferma alla superficie, ma cerca la soluzione più strutturata ed elegante per risolvere ogni sfida.
-                    </p>
-
-                    {/* Compacted spacing above the dynamic element */}
-                    <div className="mt-auto pt-2 space-y-2 w-full overflow-hidden">
-                        <div className="bg-black/50 rounded-lg px-2 py-3 font-mono text-[10px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm tracking-tight font-normal border border-white/5 min-h-[48px] flex items-center overflow-hidden">
-                            <span className="text-drago-accent mr-1 shrink-0">&gt;</span>
+                    <div className="mt-auto pt-4 space-y-3 w-full">
+                        <div className="bg-black/60 rounded-xl px-3.5 py-3 font-mono text-xs sm:text-sm text-gray-200 tracking-tight font-medium border border-white/10 min-h-[50px] flex items-center overflow-hidden">
+                            <span className="text-drago-cyan mr-1.5 shrink-0">&gt;</span>
                             <span className="truncate">{typewriterText1}</span>
                             <span className="w-[2px] h-[1.2em] bg-white inline-block ml-1 shrink-0 animate-pulse" />
                         </div>
-                        <Link to="/chi-sono" className="group/btn w-full flex items-center justify-between p-3 rounded-xl border border-drago-accent hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
-                            <span className="font-sans text-base font-semibold text-drago-accent group-hover/btn:text-white transition-colors">Chi sono</span>
-                            <div className="w-6 h-6 rounded-full bg-drago-accent/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-drago-accent transition-colors">
-                                <ArrowUpRight className="w-3 h-3 text-drago-accent group-hover/btn:text-drago-accent animate-periodic-twitch" />
+                        <a href="#chi-sono" className="group/btn w-full flex items-center justify-between p-3.5 rounded-xl border border-drago-accent/50 hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
+                            <span className="font-sans text-base font-semibold text-white transition-colors">Scopri chi sono</span>
+                            <div className="w-7 h-7 rounded-full bg-drago-accent/20 flex items-center justify-center group-hover/btn:bg-white transition-colors">
+                                <ArrowUpRight className="w-4 h-4 text-drago-cyan group-hover/btn:text-drago-accent animate-periodic-twitch" />
                             </div>
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+                <div className="feature-card glass rounded-[2rem] p-7 xl:p-9 hover:border-drago-accent hover:shadow-[0_0_30px_rgba(0,115,160,0.25)] transition-all duration-300 group relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <Layout className="w-10 h-10 text-drago-cyan mb-4" />
+                        <h3 className="font-display font-bold text-2xl lg:text-3xl mb-3 text-white">Servizi Digitali</h3>
+                        <p className="text-gray-100 font-normal text-base sm:text-lg leading-relaxed mb-6">
+                            Drago Labs trasforma le tue necessità in realtà. Dalla creazione di siti web moderni all'assistenza tecnica dedicata, offriamo soluzioni informatiche progettate per semplificare la gestione della tua attività.
+                        </p>
+                    </div>
 
-                    <Layout className="w-8 h-8 text-drago-accent mb-3" />
-                    <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Servizi Digitali</h3>
-                    <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">
-                        Drago Labs trasforma le tue necessità in realtà. Dalla creazione di siti web moderni all'assistenza tecnica dedicata, offriamo soluzioni informatiche progettate per semplificare la gestione della tua attività.
-                    </p>
-
-                    {/* Compacted spacing above the dynamic element */}
-                    <div className="mt-auto pt-2 space-y-2 w-full overflow-hidden">
-                        <div className="bg-black/50 rounded-lg px-2 py-3 font-mono text-[10px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm tracking-tight font-normal border border-white/5 min-h-[48px] flex items-center overflow-hidden">
-                            <span className="text-drago-accent mr-1 shrink-0">&gt;</span>
+                    <div className="mt-auto pt-4 space-y-3 w-full">
+                        <div className="bg-black/60 rounded-xl px-3.5 py-3 font-mono text-xs sm:text-sm text-gray-200 tracking-tight font-medium border border-white/10 min-h-[50px] flex items-center overflow-hidden">
+                            <span className="text-drago-cyan mr-1.5 shrink-0">&gt;</span>
                             <span className="truncate">{typewriterText2}</span>
                             <span className="w-[2px] h-[1.2em] bg-white inline-block ml-1 shrink-0 animate-pulse" />
                         </div>
-                        <Link to="/servizi" className="group/btn w-full flex items-center justify-between p-3 rounded-xl border border-drago-accent hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
-                            <span className="font-sans text-base font-semibold text-drago-accent group-hover/btn:text-white transition-colors">Più servizi</span>
-                            <div className="w-6 h-6 rounded-full bg-drago-accent/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-drago-accent transition-colors">
-                                <ArrowUpRight className="w-3 h-3 text-drago-accent group-hover/btn:text-drago-accent animate-periodic-twitch" />
+                        <a href="#servizi" className="group/btn w-full flex items-center justify-between p-3.5 rounded-xl border border-drago-accent/50 hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
+                            <span className="font-sans text-base font-semibold text-white transition-colors">I nostri servizi</span>
+                            <div className="w-7 h-7 rounded-full bg-drago-accent/20 flex items-center justify-center group-hover/btn:bg-white transition-colors">
+                                <ArrowUpRight className="w-4 h-4 text-drago-cyan group-hover/btn:text-drago-accent animate-periodic-twitch" />
                             </div>
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
-                <div className="feature-card glass rounded-[1.5rem] p-5 xl:p-6 hover:border-drago-accent hover:shadow-[0_0_24px_rgba(0,115,160,0.2)] [transition:border-color_0.4s,box-shadow_0.4s] group relative overflow-hidden flex flex-col">
+                <div className="feature-card glass rounded-[2rem] p-7 xl:p-9 hover:border-drago-accent hover:shadow-[0_0_30px_rgba(0,115,160,0.25)] transition-all duration-300 group relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <GitMerge className="w-10 h-10 text-drago-cyan mb-4" />
+                        <h3 className="font-display font-bold text-2xl lg:text-3xl mb-3 text-white">Soluzioni Innovative</h3>
+                        <p className="text-gray-100 font-normal text-base sm:text-lg leading-relaxed mb-6">
+                            Ogni progetto nasce da un flusso di idee che prende forma: non sono semplici pagine web, ma strumenti capaci di comunicare l'identità del tuo business e farlo crescere online.
+                        </p>
+                    </div>
 
-                    <GitMerge className="w-8 h-8 text-drago-accent mb-3" />
-                    <h3 className="font-sans font-bold text-xl lg:text-2xl mb-2">Soluzioni Innovative</h3>
-                    <p className="text-gray-300 font-light text-base lg:text-lg mb-2 xl:mb-3 leading-relaxed text-balance">
-                        Ogni progetto nasce da un flusso di idee che prende forma: non sono semplici pagine web, ma strumenti capaci di comunicare l'identità del tuo business e farlo crescere online.
-                    </p>
-
-                    {/* Matrix RGB Grid & Link button, identical height spacing to dynamic box logic */}
-                    <div className="mt-auto pt-2 space-y-2 w-full">
-                        {/* Box mimicking the height of the black terminal boxes adjacent */}
-                        <div className="bg-black/20 rounded-lg p-2 min-h-[48px] flex items-center justify-center w-full">
-                            {/* 13x3 Grid (39 cells max) perfectly centered within the simulated box */}
-                            <div ref={gridRef} className="matrix-grid grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1 w-[90%] md:w-full">
+                    <div className="mt-auto pt-4 space-y-3 w-full">
+                        <div className="bg-black/30 rounded-xl p-2.5 min-h-[50px] flex items-center justify-center w-full border border-white/5">
+                            <div ref={gridRef} className="matrix-grid grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1.5 w-[90%] md:w-full">
                                 {[...Array(39)].map((_, i) => (
                                     <div
                                         key={i}
-                                        className="matrix-cell relative w-full aspect-square rounded-[2px] border border-drago-accent/30"
-                                        style={{ '--matrix-duration': `${1.6 + (i % 7) * 0.31}s`, '--matrix-delay': `${-(i % 11) * 0.23}s` }}
-                                    ><span className="matrix-cell__fill" /></div>
+                                        className="matrix-cell aspect-square rounded-[2px] bg-white/5 relative border border-white/5 overflow-hidden"
+                                    >
+                                        <div
+                                            className="matrix-cell__fill"
+                                            style={{
+                                                '--matrix-delay': `${(i * 0.08) % 2.5}s`,
+                                                '--matrix-duration': `${1.5 + (i % 5) * 0.3}s`
+                                            }}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         </div>
-                        <Link to="/portfolio" className="group/btn w-full flex items-center justify-between p-3 rounded-xl border border-drago-accent hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
-                            <span className="font-sans text-base font-semibold text-drago-accent group-hover/btn:text-white transition-colors">Guarda il portfolio</span>
-                            <div className="w-6 h-6 rounded-full bg-drago-accent/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-drago-accent transition-colors">
-                                <ArrowUpRight className="w-3 h-3 text-drago-accent group-hover/btn:text-drago-accent animate-periodic-twitch" />
+
+                        <a href="#progetti" className="group/btn w-full flex items-center justify-between p-3.5 rounded-xl border border-drago-accent/50 hover:bg-drago-accent hover:border-drago-accent transition-all duration-300">
+                            <span className="font-sans text-base font-semibold text-white transition-colors">Vedi i progetti</span>
+                            <div className="w-7 h-7 rounded-full bg-drago-accent/20 flex items-center justify-center group-hover/btn:bg-white transition-colors">
+                                <ArrowUpRight className="w-4 h-4 text-drago-cyan group-hover/btn:text-drago-accent animate-periodic-twitch" />
                             </div>
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
