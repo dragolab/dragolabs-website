@@ -33,8 +33,7 @@ const rawCaseStudies = {
                 { label: 'Velocità Caricamento', value: '< 0.6s' },
                 { label: 'Builder Pesanti', value: '0% (Codice Puro)' },
                 { label: 'Autonomia Staff', value: '100% Autonomo' },
-            ],
-            tags: ['WordPress Sartoriale', 'Diritto Ambientale', 'Core Web Vitals 99+', 'Schema.org SEO']
+            ]
         },
         {
             id: 'vistamare',
@@ -61,8 +60,7 @@ const rawCaseStudies = {
                 { label: 'Tempo di risposta', value: '< 0.5s' },
                 { label: 'Mobile Optimization', value: '100% Fluido' },
                 { label: 'Costi Server Fissi', value: '0€ / mese' },
-            ],
-            tags: ['React 19', 'Tailwind CSS', 'Vite', 'Booking Diretto', 'Edge Serverless']
+            ]
         },
         {
             id: 'aunpasso-dalfaro',
@@ -89,8 +87,7 @@ const rawCaseStudies = {
                 { label: 'Tempo di lettura', value: '< 1 min' },
                 { label: 'SEO Territoriale', value: 'Indicizzato Maps' },
                 { label: 'Gestione Tecnica', value: 'Zero Pensieri' },
-            ],
-            tags: ['Hospitality', 'SEO Locale', 'Responsive Design', 'Puglia Experience']
+            ]
         }
     ],
     en: [
@@ -119,8 +116,7 @@ const rawCaseStudies = {
                 { label: 'Loading Speed', value: '< 0.6s' },
                 { label: 'Heavy Builders', value: '0% (Pure Code)' },
                 { label: 'Staff Autonomy', value: '100% Autonomous' },
-            ],
-            tags: ['Custom WordPress', 'Environmental Law', 'Core Web Vitals 99+', 'Schema.org SEO']
+            ]
         },
         {
             id: 'vistamare',
@@ -147,8 +143,7 @@ const rawCaseStudies = {
                 { label: 'Response Time', value: '< 0.5s' },
                 { label: 'Mobile Optimization', value: '100% Fluid' },
                 { label: 'Fixed Server Cost', value: '€0 / month' },
-            ],
-            tags: ['React 19', 'Tailwind CSS', 'Vite', 'Direct Booking', 'Edge Serverless']
+            ]
         },
         {
             id: 'aunpasso-dalfaro',
@@ -175,8 +170,7 @@ const rawCaseStudies = {
                 { label: 'Reading Time', value: '< 1 min' },
                 { label: 'Local SEO', value: 'Maps Indexed' },
                 { label: 'Technical Care', value: 'Zero Worries' },
-            ],
-            tags: ['Hospitality', 'Local SEO', 'Responsive Design', 'Puglia Experience']
+            ]
         }
     ]
 };
@@ -469,16 +463,8 @@ export default function Protocol() {
                                 </div>
                             </div>
 
-                            {/* Tags & Action Bar */}
-                            <div className="pt-6 mt-7 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tagString) => (
-                                        <span key={tagString} className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-gray-300 font-medium">
-                                            {tagString}
-                                        </span>
-                                    ))}
-                                </div>
-
+                            {/* Action Bar */}
+                            <div className="pt-6 mt-7 border-t border-white/10 flex items-center justify-end">
                                 {project.url && (
                                     <a
                                         href={project.url}
