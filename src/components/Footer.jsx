@@ -3,9 +3,7 @@ import { Linkedin, Instagram, Github, Mail } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="relative bg-black pt-20 pb-8 mt-auto">
-            {/* Top Separator Line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] max-w-4xl h-px bg-white/20" />
+        <footer className="relative bg-black pt-20 pb-8 mt-auto border-t border-white/10">
             <div className="container mx-auto px-6">
 
                 {/* Top Section - 3 Columns */}
@@ -20,7 +18,7 @@ export default function Footer() {
                             <span className="font-sans font-bold text-xl tracking-wide">Drago Labs</span>
                         </div>
                         <p className="font-sans text-drago-secondary text-sm leading-relaxed max-w-xs text-center">
-                            Laboratorio digitale per lo sviluppo web e la crescita online del tuo business.
+                            Dalla logica classica all'ingegneria del software. Esperienze digitali veloci, pulite e senza compromessi.
                         </p>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://www.linkedin.com/in/gianluca-dragone/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
@@ -46,19 +44,20 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Esplora</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Navigazione</h4>
                         <nav className="flex flex-col items-center gap-3">
-                            <a href="/#hero" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Home</a>
-                            <a href="/#progetti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Progetti</a>
+                            <a href="/#hero" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Visione</a>
+                            <a href="/#metodo" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Il Metodo</a>
+                            <a href="/#progetti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Casi Studio</a>
                             <a href="/#servizi" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Servizi</a>
-                            <a href="/#chi-sono" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Team & Argo</a>
+                            <a href="/#chi-sono" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Team & Argo AI</a>
                             <a href="/#contatti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Contatti</a>
                         </nav>
                     </div>
 
                     {/* Column 3: Contacts */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Contatti</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Contatti Diretti</h4>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://wa.me/393939450653" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
                                 <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-all group-hover:scale-105 text-drago-secondary group-hover:bg-white/10">

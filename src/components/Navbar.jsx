@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, X, Bot } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-    { id: 'hero', label: 'Home' },
+    { id: 'hero', label: 'Visione' },
+    { id: 'metodo', label: 'Metodo' },
     { id: 'progetti', label: 'Progetti' },
     { id: 'servizi', label: 'Servizi' },
     { id: 'chi-sono', label: 'Team & Argo' },
@@ -138,7 +139,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop links */}
-                <div className="hidden md:flex items-center gap-7">
+                <div className="hidden md:flex items-center gap-6 lg:gap-7">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
                         return (
@@ -163,7 +164,7 @@ export default function Navbar() {
                         onClick={(e) => handleNavClick(e, 'contatti')}
                         className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
                     >
-                        Consulenza Gratuita
+                        Inizia un Progetto
                     </a>
                     <button
                         className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -204,7 +205,7 @@ export default function Navbar() {
                             onClick={(e) => handleNavClick(e, 'contatti')}
                             className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-3 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
                         >
-                            Consulenza Gratuita
+                            Inizia un Progetto
                         </a>
                     </div>
                 </div>

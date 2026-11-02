@@ -1,6 +1,6 @@
 import Hero from '../components/Hero';
-import Features from '../components/Features';
 import Philosophy from '../components/Philosophy';
+import Features from '../components/Features';
 import Protocol from '../components/Protocol';
 import ServicesSection from '../components/ServicesSection';
 import StaffSection from '../components/StaffSection';
@@ -13,8 +13,8 @@ export default function Home() {
             <PageBackground />
             <main className="relative z-10">
                 <Hero />
-                <Features />
                 <Philosophy />
+                <Features />
                 <Protocol />
                 <ServicesSection />
                 <StaffSection />
