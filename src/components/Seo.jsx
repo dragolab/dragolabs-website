@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DEFAULT_IMAGE, pageMetadata, SITE_URL } from '../data/seoMetadata';
+import { useLanguage } from '../context/LanguageContext';
 
 function upsertMeta(selector, attributes, content) {
     let element = document.head.querySelector(selector);
@@ -14,19 +15,28 @@ function upsertMeta(selector, attributes, content) {
 
 export default function Seo() {
     const { pathname } = useLocation();
+    const { isEn } = useLanguage();
     const canonicalPath = pathname === '/terms' ? '/termini-e-condizioni' : pathname;
     const metadata = pageMetadata[canonicalPath] ?? pageMetadata['/'];
     const canonicalUrl = `${SITE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`;
 
+    const title = isEn && canonicalPath === '/'
+        ? "Drago Labs | Bespoke Web Engineering & Fast Software Architectures"
+        : metadata.title;
+
+    const description = isEn && canonicalPath === '/'
+        ? "From classical logic to software engineering. Custom websites, fast web apps, and intelligent AI workflows by Gianluca Dragone."
+        : metadata.description;
+
     useEffect(() => {
-        document.title = metadata.title;
-        upsertMeta('meta[name="description"]', { name: 'description' }, metadata.description);
-        upsertMeta('meta[property="og:title"]', { property: 'og:title' }, metadata.title);
-        upsertMeta('meta[property="og:description"]', { property: 'og:description' }, metadata.description);
+        document.title = title;
+        upsertMeta('meta[name="description"]', { name: 'description' }, description);
+        upsertMeta('meta[property="og:title"]', { property: 'og:title' }, title);
+        upsertMeta('meta[property="og:description"]', { property: 'og:description' }, description);
         upsertMeta('meta[property="og:url"]', { property: 'og:url' }, canonicalUrl);
         upsertMeta('meta[property="og:image"]', { property: 'og:image' }, DEFAULT_IMAGE);
-        upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title' }, metadata.title);
-        upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description' }, metadata.description);
+        upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title' }, title);
+        upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description' }, description);
         upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image' }, DEFAULT_IMAGE);
 
         let canonical = document.head.querySelector('link[rel="canonical"]');
@@ -36,7 +46,7 @@ export default function Seo() {
             document.head.appendChild(canonical);
         }
         canonical.setAttribute('href', canonicalUrl);
-    }, [canonicalUrl, metadata]);
+    }, [canonicalUrl, title, description]);
 
     return null;
 }

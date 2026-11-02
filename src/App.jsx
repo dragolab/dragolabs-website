@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Seo from './components/Seo';
 import CookieConsent from './components/CookieConsent';
 import ClickSpark from './components/ClickSpark';
+import { LanguageProvider } from './context/LanguageContext';
 
 const CalcioLive = lazy(() => import('./pages/CalcioLive'));
 const Terms = lazy(() => import('./pages/Terms'));
@@ -84,42 +85,44 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <ScrollToAnchor />
-      <ClickSpark sparkColor="#00E5FF" sparkCount={8} sparkRadius={26} />
-      <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
-        <Seo />
-        <Navbar />
+    <LanguageProvider>
+      <Router>
+        <ScrollToAnchor />
+        <ClickSpark sparkColor="#00E5FF" sparkCount={8} sparkRadius={26} />
+        <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
+          <Seo />
+          <Navbar />
 
-        <main ref={mainRef} className="flex-grow">
-          <Suspense fallback={null}>
-            <Routes>
-              {/* Core Monopagina */}
-              <Route path="/" element={<Home />} />
+          <main ref={mainRef} className="flex-grow">
+            <Suspense fallback={null}>
+              <Routes>
+                {/* Core Monopagina */}
+                <Route path="/" element={<Home />} />
 
-              {/* Redirects from old routes to single-page anchors */}
-              <Route path="/chi-sono" element={<Navigate to="/#chi-sono" replace />} />
-              <Route path="/servizi" element={<Navigate to="/#servizi" replace />} />
-              <Route path="/portfolio" element={<Navigate to="/#progetti" replace />} />
-              <Route path="/blog" element={<Navigate to="/#hero" replace />} />
-              <Route path="/contatti" element={<Navigate to="/#contatti" replace />} />
+                {/* Redirects from old routes to single-page anchors */}
+                <Route path="/chi-sono" element={<Navigate to="/#chi-sono" replace />} />
+                <Route path="/servizi" element={<Navigate to="/#servizi" replace />} />
+                <Route path="/portfolio" element={<Navigate to="/#progetti" replace />} />
+                <Route path="/blog" element={<Navigate to="/#hero" replace />} />
+                <Route path="/contatti" element={<Navigate to="/#contatti" replace />} />
 
-              {/* Hidden direct route for Calcio Live */}
-              <Route path="/calcio-live" element={<CalcioLive />} />
+                {/* Hidden direct route for Calcio Live */}
+                <Route path="/calcio-live" element={<CalcioLive />} />
 
-              {/* Legal & Compliance Routes */}
-              <Route path="/termini-e-condizioni" element={<Terms />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/cookie-policy" element={<CookiePolicy />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-            </Routes>
-          </Suspense>
-        </main>
+                {/* Legal & Compliance Routes */}
+                <Route path="/termini-e-condizioni" element={<Terms />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+              </Routes>
+            </Suspense>
+          </main>
 
-        <Footer />
-        <CookieConsent />
-      </div>
-    </Router>
+          <Footer />
+          <CookieConsent />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

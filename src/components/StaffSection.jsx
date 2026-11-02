@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Linkedin, Github, Instagram, Mail, GraduationCap, Code2, Bot, MessageSquare, ArrowRight } from 'lucide-react';
 import ArgoConsole from './ArgoConsole';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,18 +22,26 @@ const socials = [
 
 const skills = ['React 19', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Vite', 'Python', 'C', 'Java', 'Git'];
 
-const quickArgoQuestions = [
-    { title: "I Miei Progetti", query: "Parlami dei progetti e dei casi studio che ha realizzato Gianluca" },
-    { title: "Metodo di Lavoro", query: "Qual è il metodo di lavoro e la visione di Drago Labs?" },
-    { title: "Consiglio Stack", query: "Quali tecnologie consiglieresti per la mia idea di progetto?" },
-    { title: "Preventivo & Tempi", query: "Quanto tempo richiede un progetto e come richiedere una consulenza gratuita?" },
-];
-
 export default function StaffSection() {
     const sectionRef = useRef(null);
+    const { isEn, t } = useLanguage();
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [isChatExpanded, setIsChatExpanded] = useState(false);
     const [activePrompt, setActivePrompt] = useState('');
+
+    const quickArgoQuestions = useMemo(() => {
+        return isEn ? [
+            { title: "My Projects", query: "Tell me about the projects and case studies Gianluca built" },
+            { title: "Working Method", query: "What is Drago Labs' vision and engineering process?" },
+            { title: "Stack Advice", query: "Which technologies would you suggest for my project idea?" },
+            { title: "Pricing & Timelines", query: "How long does a project take and how to request a free consultation?" },
+        ] : [
+            { title: "I Miei Progetti", query: "Parlami dei progetti e dei casi studio che ha realizzato Gianluca" },
+            { title: "Metodo di Lavoro", query: "Qual è il metodo di lavoro e la visione di Drago Labs?" },
+            { title: "Consiglio Stack", query: "Quali tecnologie consiglieresti per la mia idea di progetto?" },
+            { title: "Preventivo & Tempi", query: "Quanto tempo richiede un progetto e come richiedere una consulenza gratuita?" },
+        ];
+    }, [isEn]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -63,7 +72,7 @@ export default function StaffSection() {
     return (
         <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#07090e]">
             
-            {/* Distinct Staff Background: Dual Ambient Glows (Warm for Gianluca, Cyan/Emerald for Argo) */}
+            {/* Distinct Staff Background */}
             <div className="absolute top-1/3 left-[15%] w-[45vw] h-[45vw] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute top-1/3 right-[10%] w-[45vw] h-[45vw] bg-drago-accent/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
@@ -72,17 +81,17 @@ export default function StaffSection() {
                 {/* Section Header */}
                 <header className="staff-reveal mx-auto mb-16 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
-                        Chi C'è Dietro Drago Labs
+                        {t.staff.badge}
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
-                        La mia visione e il mio assistente IA
+                        {t.staff.title}
                     </h2>
                     <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                        Competenze umane ed intelligenza artificiale: la mia sinergia per costruire prodotti digitali ad alte prestazioni.
+                        {t.staff.subtitle}
                     </p>
                 </header>
 
-                {/* 2-Column Responsive Grid: Gianluca LARGER (7 cols), Argo (5 cols) or expanded */}
+                {/* 2-Column Responsive Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
                     {/* Column 1: Gianluca Dragone */}
@@ -100,8 +109,8 @@ export default function StaffSection() {
                                     </div>
                                     <div>
                                         <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-white">Gianluca Dragone</h3>
-                                        <p className="text-base sm:text-lg text-gray-300 font-semibold mt-0.5">Founder & Software Developer</p>
-                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">Fasano (BR), Puglia · Clienti in tutta Italia da remoto</span>
+                                        <p className="text-base sm:text-lg text-gray-300 font-semibold mt-0.5">{t.staff.gianlucaRole}</p>
+                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">{t.staff.location}</span>
                                     </div>
                                 </div>
                             </div>
@@ -109,13 +118,25 @@ export default function StaffSection() {
                             {/* Bio */}
                             <div className="space-y-4 text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                 <p>
-                                    Ho fondato <strong>Drago Labs</strong> per trasformare la complessità tecnologica in soluzioni digitali concrete, veloci e affidabili per professionisti e imprese.
+                                    {isEn ? (
+                                        <>I founded <strong>Drago Labs</strong> to transform technological complexity into concrete, fast, and dependable digital solutions for professionals and businesses.</>
+                                    ) : (
+                                        <>Ho fondato <strong>Drago Labs</strong> per trasformare la complessità tecnologica in soluzioni digitali concrete, veloci e affidabili per professionisti e imprese.</>
+                                    )}
                                 </p>
                                 <p>
-                                    Con una solida base negli <strong>studi classici</strong> che mi ha insegnato il pensiero analitico e la strutturazione logica, studio <em>Informatica e Tecnologie per la Produzione del Software</em> presso l'Università degli Studi di Bari "Aldo Moro".
+                                    {isEn ? (
+                                        <>With a solid foundation in <strong>classical studies</strong> that taught me analytical thinking and logical structuring, I study <em>Computer Science and Software Engineering</em> at the University of Bari "Aldo Moro".</>
+                                    ) : (
+                                        <>Con una solida base negli <strong>studi classici</strong> che mi ha insegnato il pensiero analitico e la strutturazione logica, studio <em>Informatica e Tecnologie per la Produzione del Software</em> presso l'Università degli Studi di Bari "Aldo Moro".</>
+                                    )}
                                 </p>
                                 <p>
-                                    Il mio approccio è guidato da una regola semplice: <em>zero fuffa, codice pulito e architetture scalabili</em> progettate intorno alle reali necessità del cliente.
+                                    {isEn ? (
+                                        <>My approach is driven by a simple rule: <em>zero fluff, clean code, and scalable architectures</em> engineered around the real needs of the client.</>
+                                    ) : (
+                                        <>Il mio approccio è guidato da una regola semplice: <em>zero fuffa, codice pulito e architetture scalabili</em> progettate intorno alle reali necessità del cliente.</>
+                                    )}
                                 </p>
                             </div>
 
@@ -123,17 +144,17 @@ export default function StaffSection() {
                             <div className="mt-7 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
                                     <GraduationCap className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
-                                    <span>UniBa · Informatica e Tecnologie per la Produzione del Software</span>
+                                    <span>{t.staff.highlight1}</span>
                                 </div>
                                 <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
                                     <Code2 className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
-                                    <span>Specializzazione in sviluppo Frontend, Web App & Architetture Serverless</span>
+                                    <span>{t.staff.highlight2}</span>
                                 </div>
                             </div>
 
                             {/* Tech Stack Chips */}
                             <div className="mt-7 pt-6 border-t border-white/10">
-                                <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">Competenze & Stack Operativo</span>
+                                <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">{t.staff.skillsTitle}</span>
                                 <div className="flex flex-wrap gap-2">
                                     {skills.map((s) => (
                                         <span key={s} className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-mono text-gray-300 font-medium hover:border-white/20 hover:text-white transition-all">
@@ -146,7 +167,7 @@ export default function StaffSection() {
 
                         {/* Social Links Bar */}
                         <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                            <span className="text-sm text-gray-400 font-mono font-medium">I miei canali di contatto diretto:</span>
+                            <span className="text-sm text-gray-400 font-mono font-medium">{t.staff.directChannels}</span>
                             <div className="flex items-center gap-3">
                                 {socials.map((soc) => (
                                     <a
@@ -164,7 +185,7 @@ export default function StaffSection() {
                         </div>
                     </div>
 
-                    {/* Column 2: Argo AI Agent (Embedded side-by-side or expanded full-width) */}
+                    {/* Column 2: Argo AI Agent */}
                     <div className={`staff-reveal ${isChatExpanded ? 'lg:col-span-12' : 'lg:col-span-5'} flex flex-col transition-all duration-300`}>
                         {isChatOpen ? (
                             <ArgoConsole
@@ -180,7 +201,7 @@ export default function StaffSection() {
                         ) : (
                             <div className="rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-all duration-300 h-full min-h-[640px] relative overflow-hidden group">
                                 
-                                {/* Ambient glow in background */}
+                                {/* Ambient glow */}
                                 <div className="absolute -top-24 -right-24 w-52 h-52 bg-drago-accent/15 rounded-full blur-3xl pointer-events-none group-hover:bg-drago-accent/25 transition-all duration-700" />
 
                                 <div>
@@ -202,7 +223,7 @@ export default function StaffSection() {
                                                         <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-0.5">Live</span>
                                                     </div>
                                                 </div>
-                                                <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">Il Mio Assistente Virtuale</p>
+                                                <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">{t.staff.argoRole}</p>
                                             </div>
                                         </div>
 
@@ -211,20 +232,28 @@ export default function StaffSection() {
                                         </span>
                                     </div>
 
-                                    {/* Argo Description — Removed old case study parenthesis & added project advisory capabilities */}
+                                    {/* Argo Description */}
                                     <div className="space-y-4 text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                         <p>
-                                            <strong>Argo</strong> è il mio assistente virtuale integrato nel laboratorio, addestrato su tutte le mie decisioni architetturali, i protocolli tecnici e le metodologie di sviluppo che applico.
+                                            {isEn ? (
+                                                <><strong>Argo</strong> is my virtual assistant integrated into the lab, trained on all my architectural decisions, technical protocols, and software methodologies.</>
+                                            ) : (
+                                                <><strong>Argo</strong> è il mio assistente virtuale integrato nel laboratorio, addestrato su tutte le mie decisioni architetturali, i protocolli tecnici e le metodologie di sviluppo che applico.</>
+                                            )}
                                         </p>
                                         <p>
-                                            Puoi parlargli per verificare la fattibilità della tua idea, ricevere consigli sullo stack tecnologico ideale per le tue esigenze, stimare i tempi orientativi di rilascio o approfondire i casi studio prima di confrontarti direttamente con me.
+                                            {isEn ? (
+                                                <>You can talk with him to assess the technical feasibility of your idea, get advice on the best stack for your requirements, estimate timelines, or explore case studies before reaching out directly to me.</>
+                                            ) : (
+                                                <>Puoi parlargli per verificare la fattibilità della tua idea, ricevere consigli sullo stack tecnologico ideale per le tue esigenze, stimare i tempi orientativi di rilascio o approfondire i casi studio prima di confrontarti direttamente con me.</>
+                                            )}
                                         </p>
                                     </div>
 
                                     {/* Interactive Quick Prompts with Instant Launch */}
                                     <div className="mt-7 pt-6 border-t border-white/10">
                                         <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">
-                                            Fai una domanda ad Argo sul tuo progetto:
+                                            {t.staff.argoQuestionsTitle}
                                         </span>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                             {quickArgoQuestions.map((q, i) => (
@@ -247,14 +276,14 @@ export default function StaffSection() {
                                 <div className="mt-8 pt-6 border-t border-white/10">
                                     <button
                                         onClick={() => handleOpenWithPrompt('')}
-                                        className="w-full py-4 px-6 rounded-2xl bg-white text-black hover:bg-gray-100 font-sans font-bold text-base sm:text-lg flex items-center justify-between transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.25)] group hover:scale-[1.01]"
+                                        className="w-full py-4 px-6 rounded-2xl bg-white text-black hover:bg-gray-100 font-sans font-bold text-base sm:text-lg flex items-center justify-between transition-all duration-300 shadow-md group hover:scale-[1.01] active:scale-95"
                                     >
                                         <span className="flex items-center gap-3">
                                             <MessageSquare className="w-5 h-5 text-black" />
-                                            <span>Parla con Argo</span>
+                                            <span>{t.staff.talkWithArgo}</span>
                                         </span>
                                         <span className="text-xs sm:text-sm font-mono flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                            Apri Console →
+                                            {t.staff.openConsole}
                                         </span>
                                     </button>
                                 </div>

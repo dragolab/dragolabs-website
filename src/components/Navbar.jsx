@@ -1,19 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const navLinks = [
-    { id: 'hero', label: 'Visione' },
-    { id: 'metodo', label: 'Metodo' },
-    { id: 'progetti', label: 'Progetti' },
-    { id: 'servizi', label: 'Servizi' },
-    { id: 'chi-sono', label: 'Chi Sono & Argo' },
-    { id: 'contatti', label: 'Contatti' },
-];
 
 export default function Navbar() {
     const navRef = useRef(null);
@@ -21,6 +13,16 @@ export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('hero');
     const location = useLocation();
+    const { isEn, toggleLanguage, t } = useLanguage();
+
+    const navLinks = useMemo(() => [
+        { id: 'hero', label: t.nav.hero },
+        { id: 'metodo', label: t.nav.metodo },
+        { id: 'progetti', label: t.nav.progetti },
+        { id: 'servizi', label: t.nav.servizi },
+        { id: 'chi-sono', label: t.nav.chiSono },
+        { id: 'contatti', label: t.nav.contatti },
+    ], [t.nav]);
 
     // GSAP scroll → glass morphing on the pill
     useEffect(() => {
@@ -64,7 +66,7 @@ export default function Navbar() {
 
         sections.forEach((sec) => observer.observe(sec));
         return () => observer.disconnect();
-    }, [location.pathname]);
+    }, [location.pathname, navLinks]);
 
     // Animate dropdown open/close with GSAP
     useEffect(() => {
@@ -127,28 +129,41 @@ export default function Navbar() {
             {/* ── Pill bar ── always pill-shaped */}
             <div
                 ref={navRef}
-                className="flex items-center justify-between px-7 py-3.5 rounded-full bg-transparent border border-transparent transition-all duration-500 ease-out"
+                className="flex items-center justify-between px-5 sm:px-7 py-3 rounded-full bg-transparent border border-transparent transition-all duration-500 ease-out"
             >
-                {/* Logo + Name */}
-                <div className="flex items-center gap-3">
+                {/* Logo + Name + Language Switcher right next to Drago Labs */}
+                <div className="flex items-center gap-2.5 sm:gap-3.5">
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="w-11 h-11 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0 transition-transform active:scale-90"
+                        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0 transition-transform active:scale-90"
                     >
                         <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                     </a>
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="font-sans font-extrabold text-xl sm:text-2xl tracking-tight text-white hover:text-white transition-transform active:scale-95"
+                        className="font-sans font-extrabold text-lg sm:text-2xl tracking-tight text-white hover:text-white transition-transform active:scale-95"
                     >
                         Drago Labs
                     </a>
+
+                    {/* Language Switcher Selector directly to the right of Drago Labs */}
+                    <button
+                        onClick={toggleLanguage}
+                        className="ml-1 px-2.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/20 text-xs font-mono font-bold text-gray-200 hover:text-white transition-all flex items-center gap-1.5 active:scale-90 shadow-sm"
+                        title={isEn ? 'Passa alla lingua Italiana' : 'Switch to English Language'}
+                        aria-label="Language Selector"
+                    >
+                        <Globe className="w-3 h-3 text-drago-accent" />
+                        <span className={!isEn ? 'text-white font-extrabold' : 'text-gray-400 font-normal'}>IT</span>
+                        <span className="text-white/20">|</span>
+                        <span className={isEn ? 'text-white font-extrabold' : 'text-gray-400 font-normal'}>EN</span>
+                    </button>
                 </div>
 
                 {/* Desktop links — High tactile click response */}
-                <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
+                <div className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-7">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
                         return (
@@ -156,9 +171,9 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`text-[17px] lg:text-[18px] font-bold tracking-tight transition-all duration-200 rounded-full px-4 py-1.5 active:scale-90 ${
+                                className={`text-[16px] lg:text-[17px] font-bold tracking-tight transition-all duration-200 rounded-full px-3.5 py-1.5 active:scale-90 ${
                                     isActive
-                                        ? 'text-white bg-white/15 border border-white/25 shadow-[0_0_15px_rgba(255,255,255,0.15)] scale-105'
+                                        ? 'text-white bg-white/15 border border-white/25 shadow-sm scale-105'
                                         : 'text-gray-300 hover:text-white hover:bg-white/10'
                                 }`}
                             >
@@ -169,13 +184,13 @@ export default function Navbar() {
                 </div>
 
                 {/* Right side CTA */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                     <a
                         href="/#contatti"
                         onClick={(e) => handleNavClick(e, 'contatti')}
-                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-7 py-3 rounded-full text-base font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(0,115,160,0.6)]"
+                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-6 py-2.5 rounded-full text-sm sm:text-base font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,115,160,0.5)]"
                     >
-                        Inizia un Progetto
+                        {t.nav.cta}
                     </a>
                     <button
                         className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors active:scale-90"
@@ -201,7 +216,7 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`px-4 py-3.5 text-xl font-bold rounded-xl transition-all active:scale-95 ${
+                                className={`px-4 py-3 text-lg font-bold rounded-xl transition-all active:scale-95 ${
                                     isActive ? 'text-white bg-white/15 font-bold border border-white/20' : 'text-gray-300 hover:text-white hover:bg-white/5'
                                 }`}
                             >
@@ -209,6 +224,15 @@ export default function Navbar() {
                             </a>
                         );
                     })}
+                    <div className="pt-2 mt-1 border-t border-white/10 flex items-center justify-between px-3">
+                        <span className="text-xs font-mono text-gray-400">Lingua / Language</span>
+                        <button
+                            onClick={toggleLanguage}
+                            className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold text-white flex items-center gap-1.5"
+                        >
+                            <span>{isEn ? 'Switch to Italiano' : 'Passa a English'}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

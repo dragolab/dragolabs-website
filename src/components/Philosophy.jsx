@@ -2,42 +2,15 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Search, Compass, Terminal, Cpu } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-    {
-        num: '01',
-        title: 'Comprendere & Decostruire',
-        subtitle: 'Analisi logica prima di scrivere codice',
-        desc: 'Chi utilizzerà la piattaforma? Quale ostacolo operativo o commerciale vuoi eliminare? Identifico le priorità reali e taglio ciò che è superfluo, per concentrare le risorse su ciò che genera valore reale per la tua attività.',
-        icon: Search,
-    },
-    {
-        num: '02',
-        title: 'Architettura & Design',
-        subtitle: 'Interfacce modellate sulle decisioni umane',
-        desc: 'Nessun template prefabbricato: progetto la struttura informativa, la gerarchia visiva e l’esperienza utente affinché la navigazione sia istintiva, elegante e perfettamente coerente con l’identità del tuo brand.',
-        icon: Compass,
-    },
-    {
-        num: '03',
-        title: 'Ingegneria & Prestazioni',
-        subtitle: 'Codice moderno focalizzato sulla velocità',
-        desc: 'Sviluppo con standard moderni (React 19, TypeScript, architetture serverless o temi sartoriali). Garantisco tempi di risposta istantanei (< 0.6s), punteggi Core Web Vitals massimi e totale sicurezza.',
-        icon: Terminal,
-    },
-    {
-        num: '04',
-        title: 'Autonomia, Flussi & AI',
-        subtitle: 'Sistemi indipendenti e flussi intelligenti',
-        desc: 'Consegno piattaforme semplici da gestire in totale autonomia, senza vincoli di dipendenza tecnica. Integro automazioni e il mio assistente virtuale intelligente per ridurre le mansioni ripetitive e supportare i tuoi clienti.',
-        icon: Cpu,
-    }
-];
+const icons = [Search, Compass, Terminal, Cpu];
 
 export default function Philosophy() {
     const sectionRef = useRef(null);
+    const { t } = useLanguage();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -62,7 +35,7 @@ export default function Philosophy() {
 
     return (
         <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#070b12]">
-            {/* Distinct Philosophy Background: Blueprint Grid & Subtle Slate Radial */}
+            {/* Distinct Philosophy Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[45vh] bg-blue-500/5 blur-[150px] pointer-events-none" />
 
@@ -71,20 +44,20 @@ export default function Philosophy() {
                 {/* Section Header */}
                 <header className="method-reveal mx-auto mb-16 md:mb-20 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
-                        Il Mio Metodo di Lavoro
+                        {t.philosophy.badge}
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
-                        Dal problema al prodotto.
+                        {t.philosophy.title}
                     </h2>
                     <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 leading-relaxed text-balance">
-                        Un sito web o una web application non dovrebbero mai essere un esercizio di stile fine a se stesso. Costruisco strumenti digitali attraverso un percorso rigoroso, trasparente e focalizzato sui risultati.
+                        {t.philosophy.subtitle}
                     </p>
                 </header>
 
                 {/* 4 Process Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-7">
-                    {steps.map((s) => {
-                        const Icon = s.icon;
+                    {t.philosophy.steps.map((s, idx) => {
+                        const Icon = icons[idx] || Search;
                         return (
                             <div
                                 key={s.num}

@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Send, Bot, User, Sparkles, RefreshCw, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
-const SUGGESTED_PROMPTS = [
+const PROMPTS_IT = [
     "Parlami dei progetti realizzati da Gianluca",
     "Che stack consiglieresti per la mia idea?",
     "Qual è il metodo di lavoro di Drago Labs?",
@@ -10,10 +11,59 @@ const SUGGESTED_PROMPTS = [
     "Perché codice puro e zero builder pesanti?",
 ];
 
-// Rich fallback knowledge engine: handles natural questions without requiring an external API key
-function getArgoLocalResponse(rawQuery) {
+const PROMPTS_EN = [
+    "Tell me about the projects Gianluca built",
+    "What tech stack do you recommend for my idea?",
+    "What is Drago Labs' engineering method?",
+    "How long does a project take?",
+    "How can I request a free consultation?",
+    "Why pure code and zero heavy builders?",
+];
+
+function getArgoLocalResponse(rawQuery, isEn = false) {
     const q = rawQuery.toLowerCase();
 
+    if (isEn) {
+        if (q.includes('who are you') || q.includes('who r u') || q.includes('argo') || q.includes('introduce')) {
+            return "I am **Argo**, the virtual AI assistant engineered inside **Drago Labs**.\n\nMy role is to explain Gianluca's engineering methodology, the technologies he uses, analyze the feasibility of your project idea, and guide you before talking directly with him.";
+        }
+
+        if (q.includes('recommend') || q.includes('my idea') || q.includes('my project') || q.includes('suitable') || q.includes('stack')) {
+            return "If you have a project idea or want to understand what architecture fits best, here is what Gianluca evaluates:\n\n• **Showcase or Corporate Website**: custom bespoke WordPress theme without bloated builders or static React for <0.6s loads and immediate Google indexing.\n• **Web App / Internal Tools**: React 19, TypeScript, and serverless Edge backends for lightning-fast workflows and zero fixed monthly server costs.\n• **E-commerce**: lightweight catalog with Stripe/PayPal high-conversion checkouts.\n\nTell me a bit about your goal, audience, and timeline, and I will outline the architectural path Gianluca recommends!";
+        }
+
+        if (q.includes('vision') || q.includes('philosophy') || q.includes('classical') || q.includes('approach') || q.includes('why')) {
+            return "The vision of **Drago Labs** stems from combining the **analytical and logical rigor of classical studies** with the **precision of software engineering**.\n\nGianluca does not build cookie-cutter websites with bloated templates and sluggish plugins. Every project is deconstructed to its core: clean code, instantaneous loading speeds, and bespoke design.";
+        }
+
+        if (q.includes('gianluca') || q.includes('founder') || q.includes('team') || q.includes('creator') || q.includes('who is')) {
+            return "**Gianluca Dragone** is the founder and software developer of Drago Labs.\n\nWith a background in classical humanities and studying *Computer Science and Software Engineering* at the University of Bari 'Aldo Moro', he designs ultra-fast, scalable web architectures free from technical debt, serving clients worldwide from Fasano (Puglia, Italy).";
+        }
+
+        if (q.includes('palmisano') || q.includes('law') || q.includes('lawyer')) {
+            return "For **Palmisano Environmental Law Firm** (a national benchmark in Italian environmental law), Gianluca engineered a strategic institutional platform:\n\n• **The Challenge**: Overcoming an obsolete website, conveying absolute institutional authority, and enabling lawyers to publish rulings independently.\n• **The Solution**: A tailored bespoke WordPress theme engineered from scratch without heavy page builders (no Elementor).\n• **Results**: Core Web Vitals score of **99/100**, loading in < 0.6s, specialized Schema.org structured data, and complete editorial autonomy for the legal staff.";
+        }
+
+        if (q.includes('vistamare') || q.includes('holiday')) {
+            return "For **Casa Vacanze Vistamare**, Gianluca's strategy focused on economic disintermediation:\n\n• **The Challenge**: Eliminating dependency on OTA platforms (Booking/Airbnb) that take 15-20% commissions on every reservation.\n• **The Solution**: An immersive web app in React 19 + Tailwind CSS with high-definition coastal imagery and direct WhatsApp booking.\n• **Results**: 0% OTA fees on direct bookings, loading in under 0.5s, and zero monthly server maintenance costs via Edge serverless deployment.";
+        }
+
+        if (q.includes('projects') || q.includes('case studies') || q.includes('portfolio') || q.includes('works')) {
+            return "In Gianluca's portfolio you will find case studies with diverse architectural demands:\n\n• **Palmisano Environmental Law**: bespoke WordPress theme, Core Web Vitals 99/100, zero builders.\n• **Casa Vacanze Vistamare**: React 19 web app with direct booking and Edge hosting.\n• **A Un Passo Dal Faro**: ultra-lightweight portal indexed on Google Maps.\n\nYou can explore each project in the **Project Theater** above!";
+        }
+
+        if (q.includes('cost') || q.includes('price') || q.includes('timeline') || q.includes('quote') || q.includes('how much') || q.includes('how long')) {
+            return "Every project is bespoke: a professional showcase website typically takes **1 to 2 weeks**, while complex web applications or structured e-commerce platforms take a bit longer depending on functional scope.\n\nThe **initial consultation is always free and without obligation**: you can describe your idea via the contact form or message Gianluca directly on WhatsApp at [+39 393 945 0653](https://wa.me/393939450653)!";
+        }
+
+        if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('where')) {
+            return "You can get in touch with Gianluca at any time:\n\n• **Direct WhatsApp**: [+39 393 945 0653](https://wa.me/393939450653)\n• **Email**: [info.dragolabs@gmail.com](mailto:info.dragolabs@gmail.com)\n• **Headquarters**: Fasano (BR), Italy — working with clients globally via remote pairing.\n\nOr simply fill out the form in the Contact section below!";
+        }
+
+        return "Thank you for asking! Inside **Drago Labs**, Gianluca engineers custom web solutions with an uncompromising focus on speed, clarity, and structural clean code.\n\nTell me about your project idea, or ask me about the architectures behind Gianluca's case studies!";
+    }
+
+    // Italian fallback
     if (q.includes('chi sei') || q.includes('tu chi') || q.includes('argo') || q.includes('presentati')) {
         return "Sono **Argo**, l'assistente virtuale integrato nel laboratorio di **Drago Labs**.\n\nIl mio compito è illustrarti il metodo di lavoro di Gianluca, lo stack tecnologico che impiega nei progetti, analizzare la fattibilità della tua idea e guidarti prima del contatto diretto con lui.";
     }
@@ -78,11 +128,19 @@ function getArgoLocalResponse(rawQuery) {
 }
 
 export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onToggleExpand }) {
+    const { isEn } = useLanguage();
+
+    const initialWelcome = useMemo(() => {
+        return isEn
+            ? "Hello! I am **Argo**, Drago Labs' virtual AI assistant.\n\nHow can I help you today? You can describe your project idea, ask how Gianluca works, or explore the engineering choices behind his case studies."
+            : "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs.\n\nCome posso aiutarti oggi? Puoi descrivermi la tua idea di progetto, chiedermi come lavora Gianluca o approfondire le scelte tecniche dei casi studio.";
+    }, [isEn]);
+
     const [messages, setMessages] = useState([
         {
             id: 'welcome',
             sender: 'argo',
-            text: "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs.\n\nCome posso aiutarti oggi? Puoi descrivermi la tua idea di progetto, chiedermi come lavora Gianluca o approfondire le scelte tecniche dei casi studio.",
+            text: initialWelcome,
             timestamp: 'Online',
         }
     ]);
@@ -90,6 +148,8 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
     const sentInitialRef = useRef(false);
+
+    const prompts = isEn ? PROMPTS_EN : PROMPTS_IT;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -120,7 +180,7 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                 const res = await fetch('/api/argo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: query }),
+                    body: JSON.stringify({ message: query, language: isEn ? 'en' : 'it' }),
                 });
                 if (res.ok) {
                     const data = await res.json();
@@ -131,8 +191,8 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
             }
 
             if (!replyText) {
-                await new Promise((r) => setTimeout(r, 550));
-                replyText = getArgoLocalResponse(query);
+                await new Promise((r) => setTimeout(r, 450));
+                replyText = getArgoLocalResponse(query, isEn);
             }
 
             const argoMsg = {
@@ -167,7 +227,9 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
             {
                 id: 'welcome',
                 sender: 'argo',
-                text: "Chat reimpostata. Sono a tua disposizione: seleziona uno dei suggerimenti o chiedimi quello che desideri sul tuo progetto!",
+                text: isEn
+                    ? "Chat reset. How can I help you? Choose one of the suggestions or ask me anything about your project!"
+                    : "Chat reimpostata. Sono a tua disposizione: seleziona uno dei suggerimenti o chiedimi quello che desideri sul tuo progetto!",
                 timestamp: 'Online',
             }
         ]);
@@ -254,7 +316,9 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                                 <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-1">Live</span>
                             </div>
                         </div>
-                        <span className="text-xs text-gray-400 font-mono">Assistente Virtuale di Drago Labs</span>
+                        <span className="text-xs text-gray-400 font-mono">
+                            {isEn ? "Drago Labs Virtual Assistant" : "Assistente Virtuale di Drago Labs"}
+                        </span>
                     </div>
                 </div>
 
@@ -263,14 +327,14 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                         <button
                             onClick={onToggleExpand}
                             className="hidden sm:flex p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-                            title={isExpanded ? 'Riduci visuale' : 'Espandi a tutta larghezza'}
+                            title={isExpanded ? (isEn ? 'Collapse view' : 'Riduci visuale') : (isEn ? 'Expand full width' : 'Espandi a tutta larghezza')}
                         >
                             {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
                         </button>
                     )}
                     <button
                         onClick={resetChat}
-                        title="Ricomincia conversazione"
+                        title={isEn ? "Reset conversation" : "Ricomincia conversazione"}
                         className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                     >
                         <RefreshCw className="w-4 h-4" />
@@ -279,10 +343,10 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                         <button
                             onClick={onClose}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-sans font-medium text-gray-200 hover:text-white transition-all ml-1"
-                            title="Torna alla scheda descrittiva"
+                            title={isEn ? "Back to card" : "Torna alla scheda descrittiva"}
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />
-                            <span>Scheda</span>
+                            <span>{isEn ? "Card" : "Scheda"}</span>
                         </button>
                     )}
                 </div>
@@ -308,7 +372,7 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                         <div
                             className={`rounded-2xl px-5 py-3.5 font-sans leading-relaxed text-sm sm:text-base ${
                                 m.sender === 'user'
-                                    ? 'bg-white text-black font-medium rounded-tr-sm shadow-[0_4px_20px_rgba(255,255,255,0.15)]'
+                                    ? 'bg-white text-black font-medium rounded-tr-sm shadow-md'
                                     : 'bg-white/[0.04] border border-white/15 text-gray-100 rounded-tl-sm shadow-md'
                             }`}
                         >
@@ -333,7 +397,9 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                             <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '0ms' }} />
                             <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '150ms' }} />
                             <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '300ms' }} />
-                            <span className="text-xs font-mono text-gray-400 ml-1.5">Argo sta elaborando...</span>
+                            <span className="text-xs font-mono text-gray-400 ml-1.5">
+                                {isEn ? "Argo is thinking..." : "Argo sta elaborando..."}
+                            </span>
                         </div>
                     </div>
                 )}
@@ -342,14 +408,14 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
 
             {/* Quick Suggestion Pills */}
             <div className="px-5 py-2.5 border-t border-white/10 bg-black/40 flex gap-2 overflow-x-auto no-scrollbar">
-                {SUGGESTED_PROMPTS.map((prompt, i) => (
+                {prompts.map((promptString, i) => (
                     <button
                         key={i}
-                        onClick={() => handleSend(prompt)}
+                        onClick={() => handleSend(promptString)}
                         disabled={isTyping}
                         className="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/10 border border-white/10 hover:border-white/25 text-gray-300 hover:text-white transition-all flex-shrink-0 disabled:opacity-40"
                     >
-                        {prompt}
+                        {promptString}
                     </button>
                 ))}
             </div>
@@ -361,15 +427,15 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Chiedi ad Argo sui casi studio, stack o preventivo..."
+                    placeholder={isEn ? "Ask Argo about case studies, tech stack, or quote..." : "Chiedi ad Argo sui casi studio, stack o preventivo..."}
                     className="flex-1 bg-white/[0.05] border border-white/15 rounded-2xl px-5 py-3.5 text-sm sm:text-base font-sans text-white placeholder-gray-400 focus:outline-none focus:border-white/40 transition-colors"
                     disabled={isTyping}
                 />
                 <button
                     onClick={() => handleSend()}
                     disabled={!input.trim() || isTyping}
-                    className="w-12 h-12 rounded-2xl bg-white text-black hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-white flex items-center justify-center transition-all flex-shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                    title="Invia messaggio"
+                    className="w-12 h-12 rounded-2xl bg-white text-black hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-white flex items-center justify-center transition-all flex-shrink-0 shadow-md active:scale-95"
+                    title={isEn ? "Send message" : "Invia messaggio"}
                 >
                     <Send className="w-4 h-4" />
                 </button>

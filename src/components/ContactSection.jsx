@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,6 +111,7 @@ function AnimatedTextarea({ label, placeholder, value, onChange, name, required 
 export default function ContactSection() {
     const containerRef = useRef(null);
     const formRef = useRef(null);
+    const { isEn, t } = useLanguage();
 
     const [form, setForm] = useState({ nome: '', email: '', telefono: '', messaggio: '' });
     const [privacy, setPrivacy] = useState(false);
@@ -120,10 +122,10 @@ export default function ContactSection() {
 
     const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
     const errors = {
-        nome: form.nome.trim() ? '' : 'Inserisci nome e cognome.',
-        email: !form.email.trim() ? 'Inserisci un indirizzo email.' : !emailIsValid ? 'Inserisci un indirizzo email valido.' : '',
-        messaggio: form.messaggio.trim() ? '' : 'Descrivi brevemente il tuo progetto o la tua richiesta.',
-        privacy: privacy ? '' : 'Devi prendere visione dell’informativa privacy per inviare la richiesta.',
+        nome: form.nome.trim() ? '' : (isEn ? 'Please enter your name.' : 'Inserisci nome e cognome.'),
+        email: !form.email.trim() ? (isEn ? 'Please enter an email address.' : 'Inserisci un indirizzo email.') : !emailIsValid ? (isEn ? 'Please enter a valid email address.' : 'Inserisci un indirizzo email valido.') : '',
+        messaggio: form.messaggio.trim() ? '' : (isEn ? 'Please describe your project or inquiry.' : 'Descrivi brevemente il tuo progetto o la tua richiesta.'),
+        privacy: privacy ? '' : (isEn ? 'You must accept the privacy policy to proceed.' : 'Devi prendere visione dell’informativa privacy per inviare la richiesta.'),
     };
     const isValid = !Object.values(errors).some(Boolean);
 
@@ -183,68 +185,71 @@ export default function ContactSection() {
     return (
         <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black">
             
-            {/* Distinct Contact Background: Ambient Bottom Radiance */}
+            {/* Distinct Contact Background */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.1),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
 
-                {/* ── Header — Unified Scale ── */}
+                {/* ── Header ── */}
                 <div className="contact-reveal mx-auto mb-16 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
-                        Iniziamo Insieme
+                        {t.contact.badge}
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
-                        Hai un progetto in mente?
+                        {t.contact.title}
                     </h2>
                     <p className="mt-4 font-sans text-lg sm:text-2xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
-                        Raccontami cosa vorresti realizzare. La prima consulenza è sempre gratuita e senza impegno.
+                        {t.contact.subtitle}
                     </p>
                 </div>
 
-                {/* ── Two-column grid — Form LEFT, Info RIGHT (widescreen balanced) ── */}
+                {/* ── Two-column grid ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-                    {/* ── LEFT: Form (7 cols) ── */}
+                    {/* ── LEFT: Form ── */}
                     <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-all">
                         {status === 'success' ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center gap-4" role="status" aria-live="polite">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">
                                     <Mail className="w-7 h-7 text-drago-accent" />
                                 </div>
-                                <h3 className="font-display font-bold text-2xl text-white">Richiesta inviata con successo!</h3>
+                                <h3 className="font-display font-bold text-2xl text-white">{t.contact.successTitle}</h3>
                                 <p className="font-sans font-light text-gray-300 max-w-xs">
-                                    Ti risponderò personalmente il prima possibile. Grazie per aver contattato Drago Labs!
+                                    {t.contact.successDesc}
                                 </p>
                                 <button
                                     onClick={() => setStatus('idle')}
                                     className="mt-4 text-drago-accent text-sm underline underline-offset-2 hover:text-drago-accent/80 transition-colors"
                                 >
-                                    Invia un altro messaggio
+                                    {t.contact.sendAnother}
                                 </button>
                             </div>
                         ) : (
                             <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
                                 <h3 className="font-display font-bold text-3xl sm:text-4xl text-white mb-2">
-                                    Richiedi una consulenza
+                                    {t.contact.formTitle}
                                 </h3>
 
                                 {showErrors && !isValid && (
                                     <p className="rounded-lg border border-red-400/50 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">
-                                        Controlla i campi evidenziati prima di inviare la richiesta.
+                                        {isEn ? 'Please check highlighted fields before submitting.' : 'Controlla i campi evidenziati prima di inviare la richiesta.'}
                                     </p>
                                 )}
 
-                                <AnimatedInput label="Nome e Cognome *" name="nome" placeholder="Mario Rossi" value={form.nome} onChange={handleChange} autoComplete="name" required error={showErrors ? errors.nome : ''} delay={300} />
-                                <AnimatedInput label="Email *" type="email" name="email" placeholder="mario.rossi@email.it" value={form.email} onChange={handleChange} autoComplete="email" required error={showErrors ? errors.email : ''} delay={600} />
-                                <AnimatedInput label="Telefono (opzionale)" type="tel" name="telefono" placeholder="+39 340 123 4567" value={form.telefono} onChange={handleChange} autoComplete="tel" delay={900} />
-                                <AnimatedTextarea label="Come posso aiutarti? *" name="messaggio" placeholder="Descrivi il tuo progetto: sito web, gestionale, e-commerce o consulenza..." value={form.messaggio} onChange={handleChange} required error={showErrors ? errors.messaggio : ''} delay={1200} />
+                                <AnimatedInput label={t.contact.nameLabel} name="nome" placeholder={t.contact.namePlaceholder} value={form.nome} onChange={handleChange} autoComplete="name" required error={showErrors ? errors.nome : ''} delay={300} />
+                                <AnimatedInput label={t.contact.emailLabel} type="email" name="email" placeholder={t.contact.emailPlaceholder} value={form.email} onChange={handleChange} autoComplete="email" required error={showErrors ? errors.email : ''} delay={600} />
+                                <AnimatedInput label={t.contact.phoneLabel} type="tel" name="telefono" placeholder={t.contact.phonePlaceholder} value={form.telefono} onChange={handleChange} autoComplete="tel" delay={900} />
+                                <AnimatedTextarea label={t.contact.messageLabel} name="messaggio" placeholder={t.contact.messagePlaceholder} value={form.messaggio} onChange={handleChange} required error={showErrors ? errors.messaggio : ''} delay={1200} />
 
                                 {/* Error message */}
                                 {status === 'error' && (
                                     <p className="text-red-400 text-sm font-sans" role="alert">
-                                        Qualcosa è andato storto. Riprova o scrivimi direttamente a{' '}
-                                        <a href="mailto:info.dragolabs@gmail.com" className="underline">info.dragolabs@gmail.com</a>.
+                                        {isEn ? (
+                                            <>Something went wrong. Please retry or email directly at <a href="mailto:info.dragolabs@gmail.com" className="underline">info.dragolabs@gmail.com</a>.</>
+                                        ) : (
+                                            <>Qualcosa è andato storto. Riprova o scrivimi direttamente a <a href="mailto:info.dragolabs@gmail.com" className="underline">info.dragolabs@gmail.com</a>.</>
+                                        )}
                                     </p>
                                 )}
 
@@ -270,24 +275,24 @@ export default function ContactSection() {
                                             </svg>
                                         )}
                                         </span>
-                                        <span className="font-sans text-base text-gray-200 font-normal">Ho preso visione dell’Informativa Privacy.</span>
+                                        <span className="font-sans text-base text-gray-200 font-normal">{t.contact.privacyNotice}</span>
                                     </label>
-                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-sm text-gray-300 underline underline-offset-2 hover:text-white">Leggi l’Informativa Privacy</a>
+                                    <a href="/privacy" target="_blank" rel="noreferrer" className="ml-8 text-sm text-gray-300 underline underline-offset-2 hover:text-white">{t.contact.readPrivacy}</a>
                                     {showErrors && errors.privacy && <p id="privacy-error" className="mt-2 text-sm text-red-300" role="alert">{errors.privacy}</p>}
                                 </div>
 
-                                {/* Submit Action Area — Solid, thick, full presence */}
+                                {/* Submit Action Area */}
                                 <div className="pt-6 border-t border-white/10 mt-4">
                                     <button
                                         type="submit"
                                         disabled={status === 'sending'}
                                         className={`w-full py-5 px-8 rounded-2xl font-sans font-extrabold text-lg sm:text-xl text-white transition-all duration-300 flex items-center justify-center gap-3
                                             ${status !== 'sending'
-                                                ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] active:scale-98 shadow-[0_0_30px_rgba(0,115,160,0.55)]'
+                                                ? 'bg-drago-accent hover:bg-drago-accent/90 hover:scale-[1.01] active:scale-98 shadow-[0_0_25px_rgba(0,115,160,0.55)]'
                                                 : 'bg-white/10 cursor-wait opacity-50'
                                             }`}
                                     >
-                                        <span>{status === 'sending' ? 'Invio in corso...' : 'Invia la richiesta'}</span>
+                                        <span>{status === 'sending' ? t.contact.sending : t.contact.submit}</span>
                                         <ArrowUpRight className="w-6 h-6 text-white" />
                                     </button>
                                 </div>
@@ -295,7 +300,7 @@ export default function ContactSection() {
                         )}
                     </div>
 
-                    {/* ── RIGHT: Info Cards (5 cols) ── */}
+                    {/* ── RIGHT: Info Cards ── */}
                     <div className="contact-reveal lg:col-span-5 flex flex-col gap-5">
                         {/* WhatsApp Priority Card */}
                         <a
@@ -311,9 +316,9 @@ export default function ContactSection() {
                                 </svg>
                             </div>
                             <div>
-                                <span className="text-xs sm:text-sm font-mono uppercase text-emerald-300 tracking-wider font-bold">Canale Diretto Prioritario</span>
-                                <h4 className="font-display font-bold text-xl sm:text-2xl text-white mt-1">Chatta su WhatsApp</h4>
-                                <p className="text-sm sm:text-base text-gray-200 mt-1.5 leading-relaxed">Risposta rapida direttamente da me per richieste urgenti o prime domande sul tuo progetto.</p>
+                                <span className="text-xs sm:text-sm font-mono uppercase text-emerald-300 tracking-wider font-bold">{t.contact.whatsappBadge}</span>
+                                <h4 className="font-display font-bold text-xl sm:text-2xl text-white mt-1">{t.contact.whatsappTitle}</h4>
+                                <p className="text-sm sm:text-base text-gray-200 mt-1.5 leading-relaxed">{t.contact.whatsappDesc}</p>
                                 <span className="text-base sm:text-lg font-mono text-emerald-300 mt-3 block font-bold">+39 393 945 0653 →</span>
                             </div>
                         </a>
@@ -325,7 +330,7 @@ export default function ContactSection() {
                                     <Mail className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
                                 </div>
                                 <div>
-                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">Email diretta</span>
+                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">{t.contact.emailDirect}</span>
                                     <span className="text-base sm:text-lg font-semibold text-white group-hover:text-drago-accent transition-colors">info.dragolabs@gmail.com</span>
                                 </div>
                             </a>
@@ -335,17 +340,17 @@ export default function ContactSection() {
                                     <MapPin className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">Sede & Raggio d'azione</span>
-                                    <span className="text-base sm:text-lg font-semibold text-white">Fasano (BR), Puglia — Clienti in tutta Italia da remoto</span>
+                                    <span className="text-xs sm:text-sm text-gray-300 block font-mono">{t.contact.locationDirect}</span>
+                                    <span className="text-base sm:text-lg font-semibold text-white">{t.contact.locationDesc}</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Operational Card */}
                         <div className="rounded-[1.75rem] border border-white/15 bg-white/[0.03] p-7 backdrop-blur-xl">
-                            <span className="text-xs sm:text-sm font-mono text-drago-accent uppercase tracking-wider block mb-2 font-bold">[ DISPONIBILITÀ ATTUALE ]</span>
+                            <span className="text-xs sm:text-sm font-mono text-drago-accent uppercase tracking-wider block mb-2 font-bold">{t.contact.availabilityBadge}</span>
                             <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
-                                Attualmente disponibile per l'avvio di nuovi progetti, sviluppo applicativi e consulenze tecniche. Rispondo personalmente a ogni richiesta entro 24 ore lavorative.
+                                {t.contact.availabilityDesc}
                             </p>
                         </div>
                     </div>

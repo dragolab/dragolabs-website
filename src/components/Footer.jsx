@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Linkedin, Instagram, Github, Mail } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+    const { t } = useLanguage();
+
     return (
         <footer className="relative bg-black pt-20 pb-8 mt-auto border-t border-white/10">
             <div className="container mx-auto px-6">
@@ -15,10 +18,10 @@ export default function Footer() {
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-white/10 flex items-center justify-center">
                                 <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                             </div>
-                            <span className="font-sans font-bold text-xl tracking-wide">Drago Labs</span>
+                            <span className="font-sans font-bold text-xl tracking-wide text-white">Drago Labs</span>
                         </div>
                         <p className="font-sans text-gray-200 text-base leading-relaxed max-w-sm text-center">
-                            Dalla logica classica all'ingegneria del software. Esperienze digitali veloci, pulite e senza compromessi.
+                            {t.footer.tagline}
                         </p>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://www.linkedin.com/in/gianluca-dragone/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
@@ -44,20 +47,20 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="h-12 flex items-center font-sans font-bold text-lg text-white mb-2">Navigazione</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-lg text-white mb-2">{t.footer.navigation}</h4>
                         <nav className="flex flex-col items-center gap-3">
-                            <a href="/#hero" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Visione</a>
-                            <a href="/#metodo" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Il Metodo</a>
-                            <a href="/#progetti" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Casi Studio</a>
-                            <a href="/#servizi" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Servizi</a>
-                            <a href="/#chi-sono" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Team & Argo AI</a>
-                            <a href="/#contatti" className="text-gray-200 hover:text-drago-cyan transition-colors text-base font-medium w-fit">Contatti</a>
+                            <a href="/#hero" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.hero}</a>
+                            <a href="/#metodo" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.metodo}</a>
+                            <a href="/#progetti" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.progetti}</a>
+                            <a href="/#servizi" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.servizi}</a>
+                            <a href="/#chi-sono" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.chiSono}</a>
+                            <a href="/#contatti" className="text-gray-200 hover:text-white transition-colors text-base font-medium w-fit">{t.nav.contatti}</a>
                         </nav>
                     </div>
 
                     {/* Column 3: Contacts */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="h-12 flex items-center font-sans font-bold text-lg text-white mb-2">Contatti Diretti</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-lg text-white mb-2">{t.footer.directContacts}</h4>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://wa.me/393939450653" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
                                 <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-all group-hover:scale-105 text-drago-secondary group-hover:bg-white/10">
@@ -83,17 +86,17 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
                     <div className="flex items-center gap-4 text-xs sm:text-sm font-mono text-gray-300">
-                        <Link to="/termini-e-condizioni" className="hover:text-drago-accent transition-colors">Termini di Servizio</Link>
+                        <Link to="/termini-e-condizioni" className="hover:text-drago-accent transition-colors">{t.footer.terms}</Link>
                         <span>|</span>
-                        <Link to="/privacy" className="hover:text-drago-accent transition-colors">Privacy Policy</Link>
+                        <Link to="/privacy" className="hover:text-drago-accent transition-colors">{t.footer.privacy}</Link>
                         <span>|</span>
-                        <Link to="/cookie-policy" className="hover:text-drago-accent transition-colors">Cookie Policy</Link>
+                        <Link to="/cookie-policy" className="hover:text-drago-accent transition-colors">{t.footer.cookies}</Link>
                         <span>|</span>
-                        <button type="button" onClick={() => window.dispatchEvent(new Event('drago:open-cookie-settings'))} className="hover:text-drago-accent transition-colors">Preferenze cookie</button>
+                        <button type="button" onClick={() => window.dispatchEvent(new Event('drago:open-cookie-settings'))} className="hover:text-drago-accent transition-colors">{t.footer.cookieSettings}</button>
                     </div>
 
                     <p className="font-sans text-sm sm:text-base text-gray-300 text-center md:text-right">
-                        © 2026 DragoLabs di Gianluca Dragone - Sede Legale: Fasano (BR) - Tutti i diritti riservati.
+                        {t.footer.copyright}
                     </p>
                 </div>
             </div>
