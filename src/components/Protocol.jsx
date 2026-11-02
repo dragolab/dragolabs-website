@@ -11,9 +11,8 @@ const caseStudies = [
         number: '01',
         title: 'Studio Legale Ambientale Palmisano',
         shortTitle: 'Studio Palmisano',
-        category: 'Diritto Ambientale & Consulenza Forense',
+        type: 'Sito Web',
         year: '2026',
-        status: 'In Produzione · Live',
         url: 'https://www.avvstefanopalmisano.it',
         image: '/img/optimized/avvstefanopalmisano-sito-1600.webp',
         imageSet: '/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w',
@@ -39,9 +38,8 @@ const caseStudies = [
         number: '02',
         title: 'Casa Vacanze Vistamare',
         shortTitle: 'Casa Vistamare',
-        category: 'Hospitality & Turismo di Pregio',
+        type: 'Web App',
         year: '2025',
-        status: 'In Produzione · Live',
         url: 'https://dragolabs.vercel.app',
         image: '/img/optimized/casavacanze-vistamare-1600.webp',
         imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
@@ -67,9 +65,8 @@ const caseStudies = [
         number: '03',
         title: 'A Un Passo Dal Faro',
         shortTitle: 'A Un Passo Dal Faro',
-        category: 'Dimora Turistica & Territorio',
+        type: 'Sito Web',
         year: '2024 / 2025',
-        status: 'In Produzione · Live',
         url: 'https://dragolabs.vercel.app',
         image: '/img/optimized/aunpasso-dalfaro-1200.webp',
         imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
@@ -239,15 +236,20 @@ export default function Protocol() {
                         {/* Column 1: Case Autopsy & Story (5-6 cols on lg) */}
                         <div className="lg:col-span-6 xl:col-span-5 p-6 sm:p-9 xl:p-11 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/25">
                             <div>
-                                {/* Header / Category / Year */}
+                                {/* Header / Tags (Type & Year) */}
                                 <div className="project-transition mb-5">
-                                    <span className="text-xs sm:text-sm font-mono uppercase text-drago-cyan tracking-wider font-bold">
-                                        {project.category} · {project.year}
-                                    </span>
+                                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                                        <span className="text-xs sm:text-sm font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
+                                            {project.type}
+                                        </span>
+                                        <span className="text-xs sm:text-sm font-mono px-3 py-1 rounded-full bg-drago-accent/25 border border-drago-accent/50 text-white font-semibold">
+                                            {project.year}
+                                        </span>
+                                    </div>
                                     <h3 className="font-display font-extrabold text-3xl sm:text-4xl xl:text-5xl text-white mt-2 tracking-tight leading-tight">
                                         {project.title}
                                     </h3>
-                                    <p className="font-sans text-base sm:text-xl font-normal text-gray-100 mt-4 leading-relaxed">
+                                    <p className="font-sans text-base sm:text-xl font-normal text-gray-100 mt-3 leading-relaxed">
                                         {project.summary}
                                     </p>
                                 </div>
@@ -370,7 +372,7 @@ export default function Protocol() {
                                             <span className="w-2.5 h-2.5 rounded-full bg-white/30" />
                                         </div>
                                         <span className="truncate px-3 font-semibold text-gray-200">{project.title}</span>
-                                        <span className="text-xs text-drago-cyan font-bold">LIVE</span>
+                                        <div className="w-4" />
                                     </div>
 
                                     {/* High-res Image preview */}
@@ -382,9 +384,14 @@ export default function Protocol() {
                                             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">
-                                            <span className="text-sm font-mono text-white bg-black/80 px-3.5 py-1.5 rounded-full border border-white/20 backdrop-blur-sm font-semibold">
-                                                {project.category} · {project.year}
-                                            </span>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-xs sm:text-sm font-mono text-white bg-black/80 px-3 py-1 rounded-full border border-white/20 backdrop-blur-sm font-semibold">
+                                                    {project.type}
+                                                </span>
+                                                <span className="text-xs sm:text-sm font-mono text-white bg-black/80 px-3 py-1 rounded-full border border-white/20 backdrop-blur-sm font-semibold">
+                                                    {project.year}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

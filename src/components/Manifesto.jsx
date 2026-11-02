@@ -43,7 +43,7 @@ export default function Manifesto() {
             <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDAiPjwvcmVjdD4KPC9zdmc+')] pointer-events-none" />
 
             <div ref={manifestoRef} className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
-                <p className="manifesto-text font-sans text-xl md:text-3xl text-drago-secondary/80 font-light leading-relaxed mb-6">
+                <p className="manifesto-text font-productsans text-xl md:text-3xl text-gray-200 font-normal leading-relaxed mb-6">
                     Dicevano che un sito web sarebbe servito in futuro, poi il futuro è arrivato.
                 </p>
                 <p className="manifesto-text font-serif italic text-4xl md:text-5xl lg:text-7xl text-drago-contrast mt-8 leading-tight text-balance">

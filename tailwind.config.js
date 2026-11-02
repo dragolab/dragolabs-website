@@ -20,6 +20,7 @@ export default {
         'display': ['"Inter Tight"', 'sans-serif'],
         'mono': ['"JetBrains Mono"', 'monospace'],
         'serif': ['"Playfair Display"', 'serif'],
+        'productsans': ['"Product Sans"', 'sans-serif'],
       },
       maxWidth: {
         '8xl': '88rem',
