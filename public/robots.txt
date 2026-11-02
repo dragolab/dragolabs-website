@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
 
-# Disallow private API endpoints
+# Disallow private API endpoints & experimental unlisted tools
 Disallow: /api/
+Disallow: /calcio-live/
+Disallow: /calcio-live
+Disallow: /calcio-live-apk/
+Disallow: /calcio-live-win/
 
 Sitemap: https://dragolabs.vercel.app/sitemap.xml

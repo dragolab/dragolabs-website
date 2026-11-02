@@ -1,24 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, X } from 'lucide-react';
-import { Link, NavLink } from 'react-router-dom';
+import { Menu, X, Bot } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-    { to: '/', label: 'Home', onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
-    { to: '/chi-sono', label: 'Chi sono' },
-    { to: '/servizi', label: 'Servizi' },
-    { to: '/portfolio', label: 'Portfolio' },
-    { to: '/blog', label: 'Blog' },
-    { to: '/contatti', label: 'Contatti' },
+    { id: 'hero', label: 'Home' },
+    { id: 'progetti', label: 'Progetti' },
+    { id: 'servizi', label: 'Servizi' },
+    { id: 'chi-sono', label: 'Team & Argo' },
+    { id: 'contatti', label: 'Contatti' },
 ];
 
 export default function Navbar() {
     const navRef = useRef(null);
     const dropdownRef = useRef(null);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('hero');
+    const location = useLocation();
 
     // GSAP scroll → glass morphing on the pill
     useEffect(() => {
@@ -34,15 +35,35 @@ export default function Navbar() {
                 toggleClass: { className: 'bg-transparent', targets: navRef.current },
                 onToggle: (self) => {
                     if (self.isActive) {
-                        navRef.current.classList.remove('bg-transparent', 'border-transparent');
+                        navRef.current?.classList.remove('bg-transparent', 'border-transparent');
                     } else {
-                        navRef.current.classList.add('bg-transparent', 'border-transparent');
+                        navRef.current?.classList.add('bg-transparent', 'border-transparent');
                     }
                 }
             });
         }, navRef);
         return () => ctx.revert();
     }, []);
+
+    // IntersectionObserver to highlight currently visible section
+    useEffect(() => {
+        if (location.pathname !== '/') return;
+
+        const sections = navLinks.map((l) => document.getElementById(l.id)).filter(Boolean);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: '-20% 0px -60% 0px' }
+        );
+
+        sections.forEach((sec) => observer.observe(sec));
+        return () => observer.disconnect();
+    }, [location.pathname]);
 
     // Animate dropdown open/close with GSAP
     useEffect(() => {
@@ -77,6 +98,19 @@ export default function Navbar() {
         return () => document.removeEventListener('mousedown', handler);
     }, [mobileOpen]);
 
+    const handleNavClick = (e, sectionId) => {
+        setMobileOpen(false);
+        if (location.pathname === '/') {
+            e.preventDefault();
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            } else if (sectionId === 'hero') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    };
+
     return (
         <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300">
 
@@ -87,44 +121,50 @@ export default function Navbar() {
             >
                 {/* Logo + Name */}
                 <div className="flex items-center gap-3">
-                    <Link
-                        to="/"
+                    <a
+                        href="/#hero"
+                        onClick={(e) => handleNavClick(e, 'hero')}
                         className="w-10 h-10 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0"
-                        onClick={() => setMobileOpen(false)}
                     >
                         <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
-                    </Link>
-                    <Link
-                        to="/"
-                        className="font-sans font-bold text-lg tracking-wide"
-                        onClick={() => setMobileOpen(false)}
+                    </a>
+                    <a
+                        href="/#hero"
+                        onClick={(e) => handleNavClick(e, 'hero')}
+                        className="font-sans font-bold text-lg tracking-wide hover:text-drago-accent transition-colors"
                     >
                         Drago Labs
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Desktop links */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <NavLink
-                            key={link.to}
-                            to={link.to}
-                            onClick={link.onClick}
-                            className={({ isActive }) => `text-lg font-medium transition-colors ${isActive ? 'text-drago-accent' : 'hover:text-drago-accent'}`}
-                        >
-                            {link.label}
-                        </NavLink>
-                    ))}
+                <div className="hidden md:flex items-center gap-7">
+                    {navLinks.map((link) => {
+                        const isActive = location.pathname === '/' && activeSection === link.id;
+                        return (
+                            <a
+                                key={link.id}
+                                href={`/#${link.id}`}
+                                onClick={(e) => handleNavClick(e, link.id)}
+                                className={`text-sm font-medium transition-colors ${
+                                    isActive ? 'text-drago-accent font-semibold' : 'text-gray-300 hover:text-white'
+                                }`}
+                            >
+                                {link.label}
+                            </a>
+                        );
+                    })}
                 </div>
 
-                {/* Right side */}
+                {/* Right side CTA */}
                 <div className="flex items-center gap-3">
-                    <Link
-                        to="/contatti"
-                        className="hidden md:inline-block bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-2 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95"
+                    <a
+                        href="/#contatti"
+                        onClick={(e) => handleNavClick(e, 'contatti')}
+                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
                     >
                         Consulenza Gratuita
-                    </Link>
+                    </a>
                     <button
                         className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
                         onClick={() => setMobileOpen((o) => !o)}
@@ -142,29 +182,33 @@ export default function Navbar() {
                 style={{ display: 'none', height: 0, opacity: 0 }}
             >
                 <div className="flex flex-col py-3 px-3">
-                    {navLinks.map((link) => (
-                        <NavLink
-                            key={link.to}
-                            to={link.to}
-                            onClick={() => { link.onClick?.(); setMobileOpen(false); }}
-                            className={({ isActive }) => `px-4 py-3 text-lg font-medium rounded-xl transition-colors ${isActive ? 'text-drago-accent bg-white/5' : 'hover:text-drago-accent hover:bg-white/5'}`}
-                        >
-                            {link.label}
-                        </NavLink>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = location.pathname === '/' && activeSection === link.id;
+                        return (
+                            <a
+                                key={link.id}
+                                href={`/#${link.id}`}
+                                onClick={(e) => handleNavClick(e, link.id)}
+                                className={`px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                                    isActive ? 'text-drago-accent bg-white/5 font-semibold' : 'text-gray-200 hover:text-white hover:bg-white/5'
+                                }`}
+                            >
+                                {link.label}
+                            </a>
+                        );
+                    })}
 
                     <div className="px-2 pt-3 pb-1">
-                        <Link
-                            to="/contatti"
-                            className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-3 rounded-full text-base font-bold transition-all hover:scale-105 active:scale-95"
-                            onClick={() => setMobileOpen(false)}
+                        <a
+                            href="/#contatti"
+                            onClick={(e) => handleNavClick(e, 'contatti')}
+                            className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-5 py-3 rounded-full text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,115,160,0.4)]"
                         >
                             Consulenza Gratuita
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>
-
         </nav>
     );
 }

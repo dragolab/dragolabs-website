@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -9,17 +9,32 @@ import Home from './pages/Home';
 import Seo from './components/Seo';
 import CookieConsent from './components/CookieConsent';
 
-const DummyPage = lazy(() => import('./pages/DummyPage'));
-const Contact = lazy(() => import('./pages/Contact'));
-const About = lazy(() => import('./pages/About'));
 const CalcioLive = lazy(() => import('./pages/CalcioLive'));
 const Terms = lazy(() => import('./pages/Terms'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const Portfolio = lazy(() => import('./pages/Portfolio'));
-const Services = lazy(() => import('./pages/Services'));
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Helper component to handle smooth scroll on hash changes or redirects
+function ScrollToAnchor() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const targetId = hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [hash]);
+
+  return null;
+}
 
 function App() {
   const mainRef = useRef(null);
@@ -69,6 +84,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToAnchor />
       <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
         <Seo />
         <Navbar />
@@ -76,13 +92,20 @@ function App() {
         <main ref={mainRef} className="flex-grow">
           <Suspense fallback={null}>
             <Routes>
+              {/* Core Monopagina */}
               <Route path="/" element={<Home />} />
-              <Route path="/chi-sono" element={<About />} />
-              <Route path="/servizi" element={<Services />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/blog" element={<DummyPage title="Blog" />} />
-              <Route path="/contatti" element={<Contact />} />
+
+              {/* Redirects from old routes to single-page anchors */}
+              <Route path="/chi-sono" element={<Navigate to="/#chi-sono" replace />} />
+              <Route path="/servizi" element={<Navigate to="/#servizi" replace />} />
+              <Route path="/portfolio" element={<Navigate to="/#progetti" replace />} />
+              <Route path="/blog" element={<Navigate to="/#hero" replace />} />
+              <Route path="/contatti" element={<Navigate to="/#contatti" replace />} />
+
+              {/* Hidden direct route for Calcio Live */}
               <Route path="/calcio-live" element={<CalcioLive />} />
+
+              {/* Legal & Compliance Routes */}
               <Route path="/termini-e-condizioni" element={<Terms />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />

@@ -106,7 +106,8 @@ export default function Protocol() {
     }, []);
 
     return (
-        <section id="portfolio" ref={containerRef} className="relative bg-drago-bg pb-16 md:pb-32">
+        <section id="progetti" ref={containerRef} className="relative bg-drago-bg pb-16 md:pb-32">
+            <span id="portfolio" className="sr-only" />
             {/* Section Title */}
             <div className="text-center pt-16 mb-10 md:pt-24 md:mb-16 w-full z-10 pointer-events-none">
                 <h2 className="font-sans font-semibold text-4xl md:text-5xl text-balance text-drago-contrast">

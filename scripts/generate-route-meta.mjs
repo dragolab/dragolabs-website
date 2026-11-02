@@ -4,12 +4,6 @@ import { dirname, join } from 'node:path';
 const siteUrl = 'https://dragolabs.vercel.app';
 const imageUrl = `${siteUrl}/img/logo-dragolabs.png`;
 const routes = {
-  '/chi-sono': ['Chi sono | Drago Labs', 'Conosci Gianluca Dragone e l’approccio analitico di Drago Labs allo sviluppo web, alla consulenza IT e alla crescita digitale.'],
-  '/servizi': ['Servizi digitali | Drago Labs', 'Sviluppo siti web, e-commerce, consulenza strategica e assistenza IT su misura per far crescere la presenza online del tuo business.'],
-  '/portfolio': ['Portfolio | Drago Labs', 'Scopri alcuni progetti di siti web e soluzioni digitali realizzati da Drago Labs per attività e strutture ricettive.'],
-  '/blog': ['Blog | Drago Labs', 'Approfondimenti di Drago Labs su sviluppo web, presenza digitale, performance e consulenza tecnologica.'],
-  '/contatti': ['Contatti | Drago Labs', 'Raccontaci il tuo progetto: richiedi una consulenza a Drago Labs per sviluppo web, e-commerce e assistenza IT.'],
-  '/calcio-live': ['Calcio Live | Drago Labs', 'Informazioni e aggiornamenti sull’applicazione sperimentale Calcio Live.'],
   '/termini-e-condizioni': ['Termini di servizio | Drago Labs', 'Consulta i termini di servizio di Drago Labs per lo sviluppo web, la consulenza e l’assistenza IT.'],
   '/terms': ['Termini di servizio | Drago Labs', 'Consulta i termini di servizio di Drago Labs per lo sviluppo web, la consulenza e l’assistenza IT.'],
   '/cookie-policy': ['Cookie Policy | Drago Labs', 'Informativa sui cookie utilizzati dal sito Drago Labs.'],

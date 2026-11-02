@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <footer className="relative bg-black pt-20 pb-8 mt-auto">
             {/* Top Separator Line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] max-w-4xl h-px bg-white/50" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] max-w-4xl h-px bg-white/20" />
             <div className="container mx-auto px-6">
 
                 {/* Top Section - 3 Columns */}
@@ -20,7 +20,7 @@ export default function Footer() {
                             <span className="font-sans font-bold text-xl tracking-wide">Drago Labs</span>
                         </div>
                         <p className="font-sans text-drago-secondary text-sm leading-relaxed max-w-xs text-center">
-                            Soluzioni per la crescita online del tuo business
+                            Laboratorio digitale per lo sviluppo web e la crescita online del tuo business.
                         </p>
                         <div className="flex flex-col items-start gap-4 mt-2">
                             <a href="https://www.linkedin.com/in/gianluca-dragone/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-drago-secondary hover:text-white transition-all group">
@@ -46,14 +46,13 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div className="flex flex-col items-center gap-4">
-                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Link Rapidi</h4>
+                        <h4 className="h-12 flex items-center font-sans font-bold text-white mb-2">Esplora</h4>
                         <nav className="flex flex-col items-center gap-3">
-                            <Link to="/" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Home</Link>
-                            <Link to="/chi-sono" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Chi Sono</Link>
-                            <Link to="/servizi" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Servizi</Link>
-                            <Link to="/portfolio" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Portfolio</Link>
-                            <Link to="/blog" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Blog</Link>
-                            <Link to="/contatti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Contatti</Link>
+                            <a href="/#hero" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Home</a>
+                            <a href="/#progetti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Progetti</a>
+                            <a href="/#servizi" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Servizi</a>
+                            <a href="/#chi-sono" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Team & Argo</a>
+                            <a href="/#contatti" className="text-drago-secondary hover:text-drago-accent transition-colors text-sm w-fit">Contatti</a>
                         </nav>
                     </div>
 
@@ -97,9 +96,7 @@ export default function Footer() {
                     <p className="font-sans text-sm text-drago-secondary text-center md:text-right">
                         © 2026 DragoLabs di Gianluca Dragone - Sede Legale: Fasano (BR) - Tutti i diritti riservati.
                     </p>
-
                 </div>
-
             </div>
         </footer>
     );

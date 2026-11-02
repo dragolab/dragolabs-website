@@ -4,31 +4,7 @@ export const DEFAULT_IMAGE = `${SITE_URL}/img/logo-dragolabs.png`;
 export const pageMetadata = {
     '/': {
         title: 'Drago Labs | Sviluppo Web e Soluzioni Digitali',
-        description: 'Drago Labs di Gianluca Dragone: sviluppo web su misura, applicativi ad alte prestazioni, ottimizzazione SEO e consulenza IT per la crescita online del tuo business.',
-    },
-    '/chi-sono': {
-        title: 'Chi sono | Drago Labs',
-        description: 'Conosci Gianluca Dragone e l’approccio analitico di Drago Labs allo sviluppo web, alla consulenza IT e alla crescita digitale.',
-    },
-    '/servizi': {
-        title: 'Servizi digitali | Drago Labs',
-        description: 'Siti web, web app, app Android, e-commerce, branding, workflow AI multiagente e assistenza informatica su misura.',
-    },
-    '/portfolio': {
-        title: 'Portfolio | Drago Labs',
-        description: 'Scopri alcuni progetti di siti web e soluzioni digitali realizzati da Drago Labs per attività e strutture ricettive.',
-    },
-    '/blog': {
-        title: 'Blog | Drago Labs',
-        description: 'Approfondimenti di Drago Labs su sviluppo web, presenza digitale, performance e consulenza tecnologica.',
-    },
-    '/contatti': {
-        title: 'Contatti | Drago Labs',
-        description: 'Raccontaci il tuo progetto: richiedi una consulenza a Drago Labs per sviluppo web, e-commerce e assistenza IT.',
-    },
-    '/calcio-live': {
-        title: 'Calcio Live | Drago Labs',
-        description: 'Informazioni e aggiornamenti sull’applicazione sperimentale Calcio Live.',
+        description: 'Drago Labs di Gianluca Dragone: sviluppo web su misura, applicativi ad alte prestazioni, ottimizzazione SEO, automazioni AI e consulenza per la crescita online del tuo business.',
     },
     '/termini-e-condizioni': {
         title: 'Termini di servizio | Drago Labs',
