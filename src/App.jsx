@@ -89,11 +89,11 @@ function App() {
       <Router>
         <ScrollToAnchor />
         <ClickSpark sparkColor="#00E5FF" sparkCount={8} sparkRadius={26} />
-        <div className="bg-drago-bg min-h-screen text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col">
+        <div className="bg-drago-bg min-h-screen w-full text-drago-contrast font-sans selection:bg-drago-accent/30 selection:text-white flex flex-col overflow-x-hidden">
           <Seo />
           <Navbar />
 
-          <main ref={mainRef} className="flex-grow">
+          <main ref={mainRef} className="flex-grow w-full">
             <Suspense fallback={null}>
               <Routes>
                 {/* Core Monopagina */}

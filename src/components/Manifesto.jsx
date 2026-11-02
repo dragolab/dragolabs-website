@@ -40,9 +40,9 @@ export default function Manifesto() {
     }, []);
 
     return (
-        <section className="relative py-24 md:py-40 border-t border-white/10 overflow-hidden bg-black">
+        <section className="relative w-full py-24 md:py-40 border-t border-white/10 overflow-hidden bg-[#03060a]">
             {/* Distinct Theatrical Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-drago-accent/15 blur-[140px] pointer-events-none rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1100px] h-[450px] bg-drago-accent/15 blur-[150px] pointer-events-none rounded-full" />
             <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div ref={manifestoRef} className="container mx-auto px-6 max-w-5xl relative z-10 text-center">

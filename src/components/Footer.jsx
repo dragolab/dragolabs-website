@@ -6,7 +6,7 @@ export default function Footer() {
     const { t } = useLanguage();
 
     return (
-        <footer className="relative bg-black pt-20 pb-8 mt-auto border-t border-white/10">
+        <footer className="relative w-full bg-black pt-20 pb-8 mt-auto border-t border-white/10">
             <div className="container mx-auto px-6">
 
                 {/* Top Section - 3 Columns */}

@@ -34,10 +34,10 @@ export default function Philosophy() {
     }, []);
 
     return (
-        <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#070b12]">
+        <section id="metodo" ref={sectionRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#070b12]">
             {/* Distinct Philosophy Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[45vh] bg-blue-500/5 blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1400px] h-[55vh] bg-blue-500/5 blur-[150px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 

@@ -226,11 +226,11 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#060a0f]">
+        <section id="progetti" className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#060a0f]">
             <span id="portfolio" className="sr-only" />
 
             {/* Distinct Project Theater Background: Dark Navy Blueprint Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[55vh] bg-[radial-gradient(ellipse_60%_40%_at_50%_40%,rgba(0,115,160,0.12),transparent_70%)] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1500px] h-[65vh] bg-[radial-gradient(ellipse_60%_40%_at_50%_40%,rgba(0,115,160,0.14),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">

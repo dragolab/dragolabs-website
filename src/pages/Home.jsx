@@ -9,9 +9,9 @@ import PageBackground from '../components/PageBackground';
 
 export default function Home() {
     return (
-        <div className="relative bg-drago-bg">
+        <div className="relative w-full bg-drago-bg overflow-x-hidden">
             <PageBackground />
-            <main className="relative z-10">
+            <div className="relative z-10 w-full">
                 <Hero />
                 <Philosophy />
                 <Manifesto />
@@ -19,7 +19,7 @@ export default function Home() {
                 <ServicesSection />
                 <StaffSection />
                 <ContactSection />
-            </main>
+            </div>
         </div>
     );
 }

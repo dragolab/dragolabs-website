@@ -38,17 +38,19 @@ export default function Hero() {
         <section
             id="hero"
             ref={containerRef}
-            className="relative min-h-[92svh] md:min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-10 md:pb-14 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1520px] mx-auto overflow-hidden bg-[#030508]"
+            className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#030508]"
         >
-            {/* Distinct Hero Atmospheric Lighting */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[85vw] max-w-[1200px] h-[55vh] bg-[radial-gradient(ellipse_75%_50%_at_50%_0%,rgba(0,115,160,0.22),transparent_70%)] pointer-events-none" />
+            {/* Distinct Hero Atmospheric Lighting spanning full width */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[65vh] bg-[radial-gradient(ellipse_75%_50%_at_50%_0%,rgba(0,115,160,0.22),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
 
-            {/* Top spacer */}
-            <div className="hidden lg:block h-6" />
+            {/* Content Container constrained and centered */}
+            <div className="relative z-10 w-full max-w-[1520px] mx-auto flex-1 flex flex-col justify-between pt-28 md:pt-36 pb-10 md:pb-14 px-4 sm:px-8 lg:px-12 xl:px-16">
+                {/* Top spacer */}
+                <div className="hidden lg:block h-6" />
 
-            {/* Main Stage */}
-            <div ref={textRef} className="relative z-10 w-full flex flex-col items-center text-center my-auto">
+                {/* Main Stage */}
+                <div ref={textRef} className="relative z-10 w-full flex flex-col items-center text-center my-auto">
                 
                 {/* Main Headline */}
                 <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.06] max-w-6xl text-white">
@@ -112,6 +114,7 @@ export default function Hero() {
                     <span className="uppercase tracking-widest text-xs sm:text-sm">{t.hero.discoverMethod}</span>
                     <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-white" />
                 </a>
+            </div>
             </div>
         </section>
     );

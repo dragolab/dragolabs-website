@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-x-hidden">
+        <section ref={containerRef} className="relative w-full min-h-screen px-5 pb-24 pt-36 sm:px-8 md:pb-32 md:pt-44 overflow-x-hidden">
             <PageBackground />
 
             <div className="relative z-10 max-w-4xl mx-auto">

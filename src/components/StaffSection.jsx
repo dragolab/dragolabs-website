@@ -70,11 +70,11 @@ export default function StaffSection() {
     };
 
     return (
-        <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#07090e]">
+        <section id="chi-sono" ref={sectionRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#07090e]">
             
             {/* Distinct Staff Background */}
-            <div className="absolute top-1/3 left-[15%] w-[45vw] h-[45vw] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute top-1/3 right-[10%] w-[45vw] h-[45vw] bg-drago-accent/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/3 left-[10%] w-[50vw] max-w-[900px] h-[50vw] max-h-[900px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute top-1/3 right-[10%] w-[50vw] max-w-[900px] h-[50vw] max-h-[900px] bg-drago-accent/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">

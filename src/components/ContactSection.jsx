@@ -183,10 +183,10 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black">
+        <section id="contatti" ref={containerRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black">
             
             {/* Distinct Contact Background */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.1),transparent_70%)] pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[55vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.12),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">

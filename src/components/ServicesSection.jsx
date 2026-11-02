@@ -34,10 +34,10 @@ export default function ServicesSection() {
     }, []);
 
     return (
-        <section id="servizi" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060a0f] via-[#0b1018] to-[#070b10]">
+        <section id="servizi" ref={sectionRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060a0f] via-[#0b1018] to-[#070b10]">
             
             {/* Distinct Services Background */}
-            <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(0,115,160,0.1),transparent_60%)] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[60vw] max-w-[1200px] h-[60vw] max-h-[900px] bg-[radial-gradient(ellipse_at_top_right,rgba(0,115,160,0.12),transparent_65%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
