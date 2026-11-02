@@ -2,12 +2,12 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Sparkles, RefreshCw, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
 
 const SUGGESTED_PROMPTS = [
-    "Parlami del caso Studio Palmisano",
-    "Come avete affrontato Casa Vacanze Vistamare?",
+    "Parlami dei progetti realizzati da Gianluca",
+    "Che stack consiglieresti per la mia idea?",
     "Qual è il metodo di lavoro di Drago Labs?",
-    "Quali tecnologie usate per i progetti?",
-    "Come posso richiedere una consulenza?",
-    "Perché zero builder pesanti?",
+    "Quanto tempo richiede un progetto?",
+    "Come richiedere una consulenza gratuita?",
+    "Perché codice puro e zero builder pesanti?",
 ];
 
 // Rich fallback knowledge engine: handles natural questions without requiring an external API key
@@ -15,11 +15,15 @@ function getArgoLocalResponse(rawQuery) {
     const q = rawQuery.toLowerCase();
 
     if (q.includes('chi sei') || q.includes('tu chi') || q.includes('argo') || q.includes('presentati')) {
-        return "Sono **Argo**, l'assistente virtuale integrato nel laboratorio di **Drago Labs**.\n\nIl mio compito è illustrarti il nostro metodo di lavoro, lo stack tecnologico, la filosofia dei progetti e guidarti nell'analisi delle tue esigenze prima del contatto con Gianluca.";
+        return "Sono **Argo**, l'assistente virtuale integrato nel laboratorio di **Drago Labs**.\n\nIl mio compito è illustrarti il metodo di lavoro di Gianluca, lo stack tecnologico che impiega nei progetti, analizzare la fattibilità della tua idea e guidarti prima del contatto diretto con lui.";
+    }
+
+    if (q.includes('consigl') || q.includes('mia idea') || q.includes('mio progetto') || q.includes('adatto a me')) {
+        return "Se hai in mente un progetto o vuoi capire quale soluzione si adatta meglio alle tue esigenze, ecco i fattori chiave che Gianluca valuta sempre:\n\n• **Sito Vetrina o Istituzionale**: tema WordPress sartoriale senza builder o codice React statico per caricamenti <0.6s e indicizzazione Google immediata.\n• **Web App / Gestionale Interno**: React 19, TypeScript e backend serverless Edge per flussi di lavoro rapidi e zero costi fissi di server.\n• **E-commerce**: catalogo leggero con checkout Stripe/PayPal ad alta conversione.\n\nDescrivimi brevemente cosa vorresti realizzare (obiettivo, pubblico, tempistiche) e ti dirò quale architettura consiglia Gianluca!";
     }
 
     if (q.includes('visione') || q.includes('filosofia') || q.includes('classico') || q.includes('approccio') || q.includes('perché')) {
-        return "La visione di **Drago Labs** nasce dall'unione tra la **struttura logica e analitica degli studi classici** e il **rigore ingegneristico del software**.\n\nNon creiamo siti fotocopia con template preconfezionati e plugin lenti. Ogni progetto viene decostruito alla radice per capire cosa serve davvero all'attività del cliente: codice pulito, tempi di caricamento istantanei e design sartoriale.";
+        return "La visione di **Drago Labs** nasce dall'unione tra la **struttura logica e analitica degli studi classici** e il **rigore ingegneristico del software**.\n\nGianluca non crea siti fotocopia con template preconfezionati e plugin lenti. Ogni progetto viene decostruito alla radice per capire cosa serve davvero all'attività del cliente: codice pulito, tempi di caricamento istantanei e design sartoriale.";
     }
 
     if (q.includes('gianluca') || q.includes('fondatore') || q.includes('team') || q.includes('creatore') || q.includes('chi c\'è') || q.includes('chi c e')) {
@@ -27,27 +31,31 @@ function getArgoLocalResponse(rawQuery) {
     }
 
     if (q.includes('palmisano') || q.includes('studio legale') || q.includes('avvocato')) {
-        return "Per lo **Studio Legale Ambientale Palmisano** (riferimento nazionale nel diritto ambientale) abbiamo sviluppato un restyling strategico:\n\n• **La Sfida**: Superare un sito web obsoleto e trasmettere la massima autorevolezza istituzionale a magistrati, aziende e clienti, permettendo ai legali di pubblicare sentenze e articoli in autonomia.\n• **La Soluzione**: Un tema WordPress sviluppato da zero su misura, senza builder pesanti come Elementor.\n• **I Risultati**: Punteggio Core Web Vitals di **99/100**, caricamento in < 0.6s, dati strutturati Schema.org specialistici e autonomia editoriale completa per lo staff.";
+        return "Per lo **Studio Legale Ambientale Palmisano** (riferimento nazionale nel diritto ambientale), Gianluca ha sviluppato un restyling strategico:\n\n• **La Sfida**: Superare un sito web obsoleto e trasmettere la massima autorevolezza istituzionale a magistrati, aziende e clienti, permettendo ai legali di pubblicare sentenze e articoli in autonomia.\n• **La Soluzione**: Un tema WordPress sviluppato da zero su misura, senza builder pesanti come Elementor.\n• **I Risultati**: Punteggio Core Web Vitals di **99/100**, caricamento in < 0.6s, dati strutturati Schema.org specialistici e autonomia editoriale completa per lo staff.";
     }
 
     if (q.includes('vistamare') || q.includes('casa vacanze')) {
-        return "Per **Casa Vacanze Vistamare** l'obiettivo era la disintermediazione economica:\n\n• **La Sfida**: Ridurre la dipendenza dalle piattaforme OTA (Booking/Airbnb) che trattengono il 15-20% di commissioni su ogni soggiorno.\n• **La Soluzione**: Una web app immersiva in React 19 + Tailwind CSS con fotografia costiera ad alta definizione e canale diretto WhatsApp.\n• **I Risultati**: Commissioni azzerate sulle prenotazioni dirette, caricamento in meno di 0.5s e zero costi mensili fissi di server grazie al deploy serverless su Edge Vercel.";
+        return "Per **Casa Vacanze Vistamare**, la strategia impostata da Gianluca mirava alla disintermediazione economica:\n\n• **La Sfida**: Ridurre la dipendenza dalle piattaforme OTA (Booking/Airbnb) che trattengono il 15-20% di commissioni su ogni soggiorno.\n• **La Soluzione**: Una web app immersiva in React 19 + Tailwind CSS con fotografia costiera ad alta definizione e canale diretto WhatsApp.\n• **I Risultati**: Commissioni azzerate sulle prenotazioni dirette, caricamento in meno di 0.5s e zero costi mensili fissi di server grazie al deploy serverless su Edge Vercel.";
     }
 
     if (q.includes('faro') || q.includes('aunpasso')) {
         return "Per **A Un Passo Dal Faro** (struttura turistica sulla costa pugliese):\n\n• **La Sfida**: Farsi scoprire da viaggiatori con connessioni mobili 4G/5G in mobilità.\n• **La Soluzione**: Portale ultra-leggero con georeferenziazione, mappe dei dintorni e richiesta disponibilità rapida.\n• **I Risultati**: Asset grafici WebP compressi, zero attese al caricamento e presenza indicizzata su Google Maps.";
     }
 
+    if (q.includes('progetti') || q.includes('casi studio') || q.includes('portfolio') || q.includes('lavori')) {
+        return "Nel portfolio di Gianluca trovi casi studio con requisiti ingegneristici molto differenti:\n\n• **Studio Legale Ambientale Palmisano**: sito web istituzionale in WordPress sartoriale, Core Web Vitals 99/100, zero builder.\n• **Casa Vacanze Vistamare**: web app React 19 ad alta risoluzione con prenotazione diretta WhatsApp ed Edge hosting.\n• **A Un Passo Dal Faro**: portale ultra-leggero geolocalizzato con SEO locale per Google Maps.\n\nPuoi esplorare ciascun progetto nel **Project Theater** qui sopra, testando anche la vista smartphone con Dynamic Island!";
+    }
+
     if (q.includes('cosa fa') || q.includes('servizi') || q.includes('servizio') || q.includes('cosa offrite') || q.includes('cosa potete fare')) {
-        return "In **Drago Labs** ingegnerizziamo:\n\n• **Siti Web & E-Commerce Sartoriali**: piattaforme ad alta conversione, veloci, responsive e senza plugin ingombranti.\n• **Web App & Piattaforme su Misura**: gestionali interni, dashboard operative e strumenti digitali proprietari.\n• **Workflow AI & Automazioni**: agenti intelligenti e integrazioni per eliminare attività ripetitive e velocizzare i processi aziendali.";
+        return "Nel laboratorio di **Drago Labs**, Gianluca ingegnerizza:\n\n• **Siti Web & E-Commerce Sartoriali**: piattaforme ad alta conversione, veloci, responsive e senza plugin ingombranti.\n• **Web App & Piattaforme su Misura**: gestionali interni, dashboard operative e strumenti digitali proprietari.\n• **Workflow AI & Automazioni**: agenti intelligenti e integrazioni per eliminare attività ripetitive e velocizzare i processi aziendali.";
     }
 
     if (q.includes('tecnolog') || q.includes('stack') || q.includes('linguagg') || q.includes('framework') || q.includes('react') || q.includes('codice')) {
-        return "Il nostro stack tecnologico è incentrato su **prestazioni estreme, sicurezza e scalabilità**:\n\n• **Frontend**: React 19, JavaScript/TypeScript, Tailwind CSS, animazioni fluide con GSAP e build istantanee con Vite.\n• **Backend & Serverless**: Node.js, architetture Edge serverless su Vercel e database cloud ad alta velocità (PostgreSQL / Supabase).\n• **CMS**: WordPress configurato esclusivamente con temi proprietari scritti da zero in codice pulito, senza builder terzi.\n• **AI**: Integrazioni mirate con modelli LLM per automazioni e assistenti intelligenti.";
+        return "Lo stack tecnologico che Gianluca impiega è incentrato su **prestazioni estreme, sicurezza e longevità**:\n\n• **Frontend**: React 19, JavaScript/TypeScript, Tailwind CSS, animazioni fluide con GSAP e build istantanee con Vite.\n• **Backend & Serverless**: Node.js, architetture Edge serverless su Vercel e database cloud ad alta velocità (PostgreSQL / Supabase).\n• **CMS Sartoriali**: WordPress configurato esclusivamente con temi proprietari scritti da zero in codice puro, senza builder terzi.\n• **AI**: Integrazioni mirate con modelli LLM per automazioni e assistenti intelligenti.";
     }
 
     if (q.includes('builder') || q.includes('elementor') || q.includes('divi') || q.includes('wix') || q.includes('wordpress')) {
-        return "Rifiutiamo l'uso di builder pesanti (come Elementor o Divi) perché sovraccaricano il browser con centinaia di script non necessari, peggiorando il posizionamento Google (Core Web Vitals) e rendendo il sito vulnerabile agli attacchi.\n\nSviluppando in **codice puro e temi sartoriali**, garantiamo tempi di caricamento istantanei (<0.6s) e una longevità incomparabile nel tempo.";
+        return "Nel laboratorio rifiutiamo l'uso di builder pesanti (come Elementor o Divi) perché sovraccaricano il browser con centinaia di script non necessari, peggiorando il posizionamento Google (Core Web Vitals) e rendendo il sito vulnerabile agli attacchi.\n\nSviluppando in **codice puro e temi sartoriali**, Gianluca garantisce tempi di caricamento istantanei (<0.6s) e una longevità incomparabile nel tempo.";
     }
 
     if (q.includes('calcio')) {
@@ -55,18 +63,18 @@ function getArgoLocalResponse(rawQuery) {
     }
 
     if (q.includes('metodo') || q.includes('processo') || q.includes('come funziona') || q.includes('fasi') || q.includes('sviluppo')) {
-        return "Il nostro metodo si articola in 4 fasi rigorose:\n\n1. **Comprendere & Decostruire**: analisi degli obiettivi di business e delle priorità reali prima di scrivere una sola riga di codice.\n2. **Architettura & Design**: progettazione di flussi utente intuitivi e identità visiva coordinata.\n3. **Ingegneria & Sviluppo**: codice pulito, test di velocità (Lighthouse 98+) e responsive design fluido.\n4. **Autonomia & Formazione**: consegna della piattaforma con formazione per gestire i contenuti in totale libertà, più supporto continuativo.";
+        return "Il metodo di sviluppo di Gianluca si articola in 4 fasi rigorose:\n\n1. **Comprendere & Decostruire**: analisi degli obiettivi di business e delle priorità reali prima di scrivere una sola riga di codice.\n2. **Architettura & Design**: progettazione di flussi utente intuitivi e identità visiva coordinata.\n3. **Ingegneria & Sviluppo**: codice pulito, test di velocità (Lighthouse 98+) e responsive design fluido.\n4. **Autonomia & Formazione**: consegna della piattaforma con formazione per gestire i contenuti in totale libertà, più supporto continuativo.";
     }
 
     if (q.includes('preventivo') || q.includes('costo') || q.includes('prezzo') || q.includes('quanto costa') || q.includes('tempi') || q.includes('quanto tempo') || q.includes('iniziare')) {
-        return "Ogni progetto è unico: un sito professionale o istituzionale richiede generalmente da **1 a 2 settimane**, mentre web app o e-commerce strutturati richiedono qualche settimana in più in base alle funzionalità richieste.\n\nLa **prima consulenza è sempre gratuita e senza impegno**: puoi descriverci la tua idea tramite il form in basso nella pagina oppure scriverci direttamente su WhatsApp al [+39 393 945 0653](https://wa.me/393939450653)!";
+        return "Ogni progetto è unico: un sito professionale o istituzionale richiede generalmente da **1 a 2 settimane**, mentre web app o e-commerce strutturati richiedono qualche settimana in più in base alle funzionalità richieste.\n\nLa **prima consulenza è sempre gratuita e senza impegno**: puoi descrivere la tua idea tramite il form in basso nella pagina oppure scrivere direttamente a Gianluca su WhatsApp al [+39 393 945 0653](https://wa.me/393939450653)!";
     }
 
     if (q.includes('contatt') || q.includes('email') || q.includes('telefono') || q.includes('whatsapp') || q.includes('dove')) {
         return "Puoi metterti in contatto con Gianluca in qualsiasi momento:\n\n• **WhatsApp Diretto**: [+39 393 945 0653](https://wa.me/393939450653)\n• **Email**: [info.dragolabs@gmail.com](mailto:info.dragolabs@gmail.com)\n• **Sede**: Fasano (BR), Puglia — operiamo con clienti in tutta Italia da remoto.\n\nOppure compila direttamente il form nella sezione Contatti qui in basso!";
     }
 
-    return "Grazie per la domanda! In **Drago Labs** progettiamo prodotti web su misura con un forte accento su velocità, chiarezza e assenza di compromessi tecnici.\n\nPuoi chiedermi dettagli sui nostri casi studio (es. *Studio Palmisano* o *Casa Vacanze Vistamare*), sulle tecnologie che utilizziamo, o descrivermi la tua idea di progetto.";
+    return "Grazie per la domanda! Nel laboratorio di **Drago Labs**, Gianluca progetta prodotti web su misura con un forte accento su velocità, chiarezza e assenza di compromessi tecnici.\n\nPuoi parlarmi della tua idea di progetto, chiedermi quale architettura sarebbe ideale per te, o approfondire i casi studio reali.";
 }
 
 export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onToggleExpand }) {
@@ -74,7 +82,7 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
         {
             id: 'welcome',
             sender: 'argo',
-            text: "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs.\n\nCome posso aiutarti oggi? Puoi chiedermi come lavoriamo, approfondire i casi studio reali o descrivermi la tua idea di progetto.",
+            text: "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs.\n\nCome posso aiutarti oggi? Puoi descrivermi la tua idea di progetto, chiedermi come lavora Gianluca o approfondire le scelte tecniche dei casi studio.",
             timestamp: 'Online',
         }
     ]);
@@ -159,7 +167,7 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
             {
                 id: 'welcome',
                 sender: 'argo',
-                text: "Chat reimpostata. Sono a tua disposizione: seleziona uno dei suggerimenti o chiedimi quello che desideri!",
+                text: "Chat reimpostata. Sono a tua disposizione: seleziona uno dei suggerimenti o chiedimi quello che desideri sul tuo progetto!",
                 timestamp: 'Online',
             }
         ]);

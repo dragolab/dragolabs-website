@@ -11,7 +11,7 @@ const navLinks = [
     { id: 'metodo', label: 'Metodo' },
     { id: 'progetti', label: 'Progetti' },
     { id: 'servizi', label: 'Servizi' },
-    { id: 'chi-sono', label: 'Team & Argo' },
+    { id: 'chi-sono', label: 'Chi Sono & Argo' },
     { id: 'contatti', label: 'Contatti' },
 ];
 
@@ -99,13 +99,22 @@ export default function Navbar() {
         return () => document.removeEventListener('mousedown', handler);
     }, [mobileOpen]);
 
+    // Click handler with immediate feedback & smooth offset scroll
     const handleNavClick = (e, sectionId) => {
         setMobileOpen(false);
+        setActiveSection(sectionId);
+
         if (location.pathname === '/') {
             e.preventDefault();
             const target = document.getElementById(sectionId);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                const navOffset = 90;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             } else if (sectionId === 'hero') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -125,21 +134,21 @@ export default function Navbar() {
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="w-11 h-11 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0"
+                        className="w-11 h-11 rounded-full overflow-hidden bg-white/10 flex items-center justify-center flex-shrink-0 transition-transform active:scale-90"
                     >
                         <img src="/img/optimized/logo-dragolabs-256.webp" width="256" height="256" alt="Drago Labs Logo" className="w-full h-full object-cover" />
                     </a>
                     <a
                         href="/#hero"
                         onClick={(e) => handleNavClick(e, 'hero')}
-                        className="font-sans font-extrabold text-xl sm:text-2xl tracking-tight text-white hover:text-white transition-colors"
+                        className="font-sans font-extrabold text-xl sm:text-2xl tracking-tight text-white hover:text-white transition-transform active:scale-95"
                     >
                         Drago Labs
                     </a>
                 </div>
 
-                {/* Desktop links */}
-                <div className="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-9">
+                {/* Desktop links — High tactile click response */}
+                <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
                         return (
@@ -147,8 +156,10 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`text-[17px] lg:text-[18px] font-bold tracking-tight transition-all rounded-full px-4 py-1.5 ${
-                                    isActive ? 'text-white bg-white/15 border border-white/20 shadow-sm' : 'text-gray-300 hover:text-white hover:bg-white/5'
+                                className={`text-[17px] lg:text-[18px] font-bold tracking-tight transition-all duration-200 rounded-full px-4 py-1.5 active:scale-90 ${
+                                    isActive
+                                        ? 'text-white bg-white/15 border border-white/25 shadow-[0_0_15px_rgba(255,255,255,0.15)] scale-105'
+                                        : 'text-gray-300 hover:text-white hover:bg-white/10'
                                 }`}
                             >
                                 {link.label}
@@ -167,7 +178,7 @@ export default function Navbar() {
                         Inizia un Progetto
                     </a>
                     <button
-                        className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
+                        className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors active:scale-90"
                         onClick={() => setMobileOpen((o) => !o)}
                         aria-label={mobileOpen ? 'Chiudi menu' : 'Apri menu'}
                     >
@@ -176,7 +187,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* ── Mobile dropdown — separate panel below the pill ── */}
+            {/* ── Mobile dropdown ── */}
             <div
                 ref={dropdownRef}
                 className="md:hidden mt-2 rounded-[1.5rem] glass border border-white/10 flex-col overflow-hidden"
@@ -190,7 +201,7 @@ export default function Navbar() {
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`px-4 py-3.5 text-xl font-bold rounded-xl transition-colors ${
+                                className={`px-4 py-3.5 text-xl font-bold rounded-xl transition-all active:scale-95 ${
                                     isActive ? 'text-white bg-white/15 font-bold border border-white/20' : 'text-gray-300 hover:text-white hover:bg-white/5'
                                 }`}
                             >
@@ -198,16 +209,6 @@ export default function Navbar() {
                             </a>
                         );
                     })}
-
-                    <div className="px-2 pt-3 pb-1">
-                        <a
-                            href="/#contatti"
-                            onClick={(e) => handleNavClick(e, 'contatti')}
-                            className="block w-full text-center bg-drago-accent hover:bg-drago-accent/90 text-white px-6 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(0,115,160,0.6)]"
-                        >
-                            Inizia un Progetto
-                        </a>
-                    </div>
                 </div>
             </div>
         </nav>

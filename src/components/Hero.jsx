@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ArrowDown, Sparkles, Terminal, Code2, Cpu, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, Sparkles, ArrowUpRight } from 'lucide-react';
 
 export default function Hero() {
     const containerRef = useRef(null);
@@ -35,36 +35,40 @@ export default function Hero() {
         <section
             id="hero"
             ref={containerRef}
-            className="relative min-h-[92svh] md:min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-10 md:pb-14 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1520px] mx-auto overflow-hidden"
+            className="relative min-h-[92svh] md:min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-10 md:pb-14 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1520px] mx-auto overflow-hidden bg-[#030508]"
         >
+            {/* Distinct Hero Atmospheric Lighting: Top Radial Spotlight & Grid */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[85vw] max-w-[1200px] h-[55vh] bg-[radial-gradient(ellipse_75%_50%_at_50%_0%,rgba(0,115,160,0.22),transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
+
             {/* Top spacer */}
             <div className="hidden lg:block h-6" />
 
             {/* Main Stage */}
             <div ref={textRef} className="relative z-10 w-full flex flex-col items-center text-center my-auto">
                 
-                {/* Main Headline — High impact, large & legible + SEO Semantic Target */}
+                {/* Main Headline — High impact, large & legible with Radiant Gradient */}
                 <h1 className="stagger-text font-display font-extrabold text-5xl sm:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-[-0.035em] leading-[1.04] text-balance max-w-6xl text-white">
                     Dalla logica classica <br className="hidden sm:inline" />
-                    <span className="text-white block sm:inline">
+                    <span className="bg-gradient-to-r from-white via-slate-100 to-[#38bdf8] bg-clip-text text-transparent block sm:inline drop-shadow-[0_2px_30px_rgba(56,189,248,0.25)]">
                         all'ingegneria del software.
                     </span>
                     <span className="sr-only"> - Drago Labs: Sviluppo Web Sartoriale, Applicativi Performanti e Automazioni AI a Bari e in tutta Italia</span>
                 </h1>
 
-                {/* Subtitle Statement — Legible, large font with high contrast */}
+                {/* Subtitle Statement — Consistent First-Person, legible, high contrast */}
                 <p className="stagger-text font-sans font-normal text-lg sm:text-2xl lg:text-[1.75rem] text-gray-100 max-w-4xl mx-auto mt-7 sm:mt-9 leading-relaxed sm:leading-[1.45] text-balance">
                     Progetto e sviluppo prodotti digitali ad alte prestazioni. Siti web veloci, piattaforme su misura e automazioni intelligenti: <span className="text-white font-semibold">nessun template prefabbricato, nessun codice superfluo</span>. Solo architetture pulite, veloci e costruite per durare.
                 </p>
 
-                {/* Actions & Interactive Elements — Bigger buttons */}
+                {/* Actions & Interactive Elements */}
                 <div className="stagger-text pt-9 sm:pt-11 flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center w-full max-w-md sm:max-w-none">
                     <a
                         href="#progetti"
                         className="group relative inline-flex items-center justify-center px-9 sm:px-11 py-4 sm:py-4.5 font-sans font-bold text-base sm:text-lg text-white transition-all duration-300 bg-drago-accent rounded-full hover:bg-drago-accent/90 hover:scale-105 overflow-hidden shadow-[0_0_30px_rgba(0,115,160,0.5)] w-full sm:w-auto"
                     >
                         <span className="relative z-10 flex items-center gap-2.5">
-                            Esplora i Progetti
+                            Esplora i Miei Progetti
                             <svg className="w-5 h-5 transition-transform group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                             </svg>
@@ -82,7 +86,7 @@ export default function Hero() {
                     </a>
                 </div>
 
-                {/* Interactive Argo prompt badge — Increased font & contrast */}
+                {/* Interactive Argo prompt badge — "il mio assistente IA" */}
                 <div className="stagger-text pt-7 sm:pt-8">
                     <a
                         href="#chi-sono"
@@ -90,19 +94,19 @@ export default function Hero() {
                     >
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                         <Sparkles className="w-4 h-4 text-drago-accent group-hover:rotate-12 transition-transform" />
-                        <span>Chiedi qualsiasi cosa ad <strong>Argo</strong>, l'assistente del Lab</span>
+                        <span>Chiedi qualsiasi cosa ad <strong>Argo</strong>, il mio assistente IA</span>
                         <span className="text-drago-accent font-bold group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                 </div>
             </div>
 
-            {/* Bottom Navigation Link — Minimalist & Clean */}
+            {/* Bottom Navigation Link */}
             <div className="stagger-text relative z-10 w-full pt-8 md:pt-10 flex justify-center">
                 <a
                     href="#metodo"
                     className="flex items-center gap-2.5 text-gray-300 hover:text-white transition-colors group font-sans text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15"
                 >
-                    <span className="uppercase tracking-widest text-xs sm:text-sm">Scopri il Metodo</span>
+                    <span className="uppercase tracking-widest text-xs sm:text-sm">Scopri il Mio Metodo</span>
                     <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-white" />
                 </a>
             </div>

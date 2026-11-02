@@ -10,7 +10,7 @@ const steps = [
         num: '01',
         title: 'Comprendere & Decostruire',
         subtitle: 'Analisi logica prima di scrivere codice',
-        desc: 'Chi utilizzerà la piattaforma? Quale ostacolo operativo o commerciale dobbiamo eliminare? Identifico le priorità reali e taglio ciò che è superfluo, per concentrare le risorse su ciò che genera valore reale.',
+        desc: 'Chi utilizzerà la piattaforma? Quale ostacolo operativo o commerciale vuoi eliminare? Identifico le priorità reali e taglio ciò che è superfluo, per concentrare le risorse su ciò che genera valore reale per la tua attività.',
         icon: Search,
     },
     {
@@ -24,14 +24,14 @@ const steps = [
         num: '03',
         title: 'Ingegneria & Prestazioni',
         subtitle: 'Codice moderno focalizzato sulla velocità',
-        desc: 'Sviluppo con standard moderni (React, TypeScript, architetture serverless o temi sartoriali). Il risultato sono tempi di risposta istantanei (< 0.6s), punteggi Core Web Vitals massimi e totale sicurezza.',
+        desc: 'Sviluppo con standard moderni (React 19, TypeScript, architetture serverless o temi sartoriali). Garantisco tempi di risposta istantanei (< 0.6s), punteggi Core Web Vitals massimi e totale sicurezza.',
         icon: Terminal,
     },
     {
         num: '04',
         title: 'Autonomia, Flussi & AI',
         subtitle: 'Sistemi indipendenti e flussi intelligenti',
-        desc: 'Consegno piattaforme semplici da gestire in totale autonomia, senza vincoli di dipendenza tecnica. Integro automazioni e agenti virtuali intelligenti per ridurre le mansioni ripetitive e supportare i clienti.',
+        desc: 'Consegno piattaforme semplici da gestire in totale autonomia, senza vincoli di dipendenza tecnica. Integro automazioni e il mio assistente virtuale intelligente per ridurre le mansioni ripetitive e supportare i tuoi clienti.',
         icon: Cpu,
     }
 ];
@@ -61,16 +61,17 @@ export default function Philosophy() {
     }, []);
 
     return (
-        <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden">
-            {/* Background texture */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <section id="metodo" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#070b12]">
+            {/* Distinct Philosophy Background: Blueprint Grid & Subtle Slate Radial */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[45vh] bg-blue-500/5 blur-[150px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 
                 {/* Section Header */}
                 <header className="method-reveal mx-auto mb-16 md:mb-20 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
-                        La Visione & Il Metodo
+                        Il Mio Metodo di Lavoro
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
                         Dal problema al prodotto.
@@ -87,7 +88,7 @@ export default function Philosophy() {
                         return (
                             <div
                                 key={s.num}
-                                className="method-reveal group rounded-[2rem] border border-white/15 bg-drago-text/40 p-7 xl:p-9 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-drago-accent hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(0,115,160,0.25)] flex flex-col justify-between"
+                                className="method-reveal group rounded-[2rem] border border-white/15 bg-black/40 p-7 xl:p-9 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-drago-accent hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(0,115,160,0.25)] flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-6">

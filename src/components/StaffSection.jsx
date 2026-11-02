@@ -22,10 +22,10 @@ const socials = [
 const skills = ['React 19', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Vite', 'Python', 'C', 'Java', 'Git'];
 
 const quickArgoQuestions = [
-    { title: "Casi Studio", query: "Parlami del caso Studio Palmisano" },
-    { title: "Metodo di Lavoro", query: "Qual è il metodo di lavoro di Drago Labs?" },
-    { title: "Stack Tecnologico", query: "Quali tecnologie usate per i progetti?" },
-    { title: "Consulenza & Costi", query: "Come posso richiedere una consulenza o preventivo?" },
+    { title: "I Miei Progetti", query: "Parlami dei progetti e dei casi studio che ha realizzato Gianluca" },
+    { title: "Metodo di Lavoro", query: "Qual è il metodo di lavoro e la visione di Drago Labs?" },
+    { title: "Consiglio Stack", query: "Quali tecnologie consiglieresti per la mia idea di progetto?" },
+    { title: "Preventivo & Tempi", query: "Quanto tempo richiede un progetto e come richiedere una consulenza gratuita?" },
 ];
 
 export default function StaffSection() {
@@ -61,22 +61,24 @@ export default function StaffSection() {
     };
 
     return (
-        <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden">
+        <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#07090e]">
             
-            {/* Background radial gradient */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[45vh] bg-drago-accent/5 blur-[160px] pointer-events-none" />
+            {/* Distinct Staff Background: Dual Ambient Glows (Warm for Gianluca, Cyan/Emerald for Argo) */}
+            <div className="absolute top-1/3 left-[15%] w-[45vw] h-[45vw] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute top-1/3 right-[10%] w-[45vw] h-[45vw] bg-drago-accent/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 {/* Section Header */}
                 <header className="staff-reveal mx-auto mb-16 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
-                        Il Team & L'Intelligenza Virtuale
+                        Chi C'è Dietro Drago Labs
                     </span>
                     <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
-                        Chi c'è dietro Drago Labs
+                        La mia visione e il mio assistente IA
                     </h2>
                     <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                        Competenze umane ed intelligenza artificiale: una sinergia pensata per costruire prodotti digitali ad alte prestazioni.
+                        Competenze umane ed intelligenza artificiale: la mia sinergia per costruire prodotti digitali ad alte prestazioni.
                     </p>
                 </header>
 
@@ -99,7 +101,7 @@ export default function StaffSection() {
                                     <div>
                                         <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-white">Gianluca Dragone</h3>
                                         <p className="text-base sm:text-lg text-gray-300 font-semibold mt-0.5">Founder & Software Developer</p>
-                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">Fasano (BR), Puglia · Clienti in tutta Italia</span>
+                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">Fasano (BR), Puglia · Clienti in tutta Italia da remoto</span>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +146,7 @@ export default function StaffSection() {
 
                         {/* Social Links Bar */}
                         <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                            <span className="text-sm text-gray-400 font-mono font-medium">Canali di contatto diretto:</span>
+                            <span className="text-sm text-gray-400 font-mono font-medium">I miei canali di contatto diretto:</span>
                             <div className="flex items-center gap-3">
                                 {socials.map((soc) => (
                                     <a
@@ -200,7 +202,7 @@ export default function StaffSection() {
                                                         <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-0.5">Live</span>
                                                     </div>
                                                 </div>
-                                                <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">Assistente Virtuale del Lab</p>
+                                                <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">Il Mio Assistente Virtuale</p>
                                             </div>
                                         </div>
 
@@ -209,20 +211,20 @@ export default function StaffSection() {
                                         </span>
                                     </div>
 
-                                    {/* Argo Description */}
+                                    {/* Argo Description — Removed old case study parenthesis & added project advisory capabilities */}
                                     <div className="space-y-4 text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                         <p>
-                                            <strong>Argo</strong> è l'assistente virtuale integrato nello staff di Drago Labs, addestrato sull'intero ecosistema del nostro laboratorio.
+                                            <strong>Argo</strong> è il mio assistente virtuale integrato nel laboratorio, addestrato su tutte le mie decisioni architetturali, i protocolli tecnici e le metodologie di sviluppo che applico.
                                         </p>
                                         <p>
-                                            Conosce nel dettaglio ogni decisione architetturale, i protocolli tecnici e tutti i casi studio reali (da <em>Studio Palmisano</em> a <em>Casa Vistamare</em>).
+                                            Puoi parlargli per verificare la fattibilità della tua idea, ricevere consigli sullo stack tecnologico ideale per le tue esigenze, stimare i tempi orientativi di rilascio o approfondire i casi studio prima di confrontarti direttamente con me.
                                         </p>
                                     </div>
 
                                     {/* Interactive Quick Prompts with Instant Launch */}
                                     <div className="mt-7 pt-6 border-t border-white/10">
                                         <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">
-                                            Domande rapide al laboratorio:
+                                            Fai una domanda ad Argo sul tuo progetto:
                                         </span>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                             {quickArgoQuestions.map((q, i) => (

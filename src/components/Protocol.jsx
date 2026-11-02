@@ -19,7 +19,7 @@ const caseStudies = [
         imageSet: '/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w',
         summary: 'Restyling istituzionale ad alta autorevolezza con tema WordPress sartoriale e gestione autonoma delle pubblicazioni forensi.',
         challenge: 'Lo Studio Legale Ambientale Palmisano, riferimento nazionale per materie ambientali complesse, necessitava di superare un sito datato. L’obiettivo: trasmettere rigore istituzionale e consentire allo staff di pubblicare sentenze, articoli e aree legali in completa autonomia, senza builder pesanti.',
-        solution: 'Architettura dell’informazione riprogettata da zero: gerarchia visiva sobria, navigazione fluida tra le aree di competenza e moduli di contatto riservati con piena conformità deontologica.',
+        solution: 'Ho riprogettato l’architettura dell’informazione da zero: gerarchia visiva sobria, navigazione fluida tra le aree di competenza e moduli di contatto riservati con piena conformità deontologica.',
         engineering: [
             { label: 'Architettura CMS', desc: 'WordPress con tema sartoriale su misura: zero builder pesanti (no Elementor), codice essenziale e manutenibile.' },
             { label: 'Prestazioni Estreme', desc: 'Core Web Vitals 99/100, tempo di caricamento inferiore a 0.6s sia su desktop che da mobile.' },
@@ -47,7 +47,7 @@ const caseStudies = [
         imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
         summary: 'Web app immersiva per disintermediare i soggiorni turistici ed azzerare le commissioni delle piattaforme OTA.',
         challenge: 'Le strutture ricettive cedono ogni anno dal 15% al 20% di commissioni a piattaforme come Airbnb e Booking. Vistamare voleva uno strumento digitale proprietario capace di emozionare visivamente gli ospiti e convertire le visite in prenotazioni dirette.',
-        solution: 'Applicazione web fluida in React 19 e Tailwind CSS: la fotografia ad alta definizione guida l’ospite tra le camere e la costa. Canale diretto su WhatsApp ed email integrato per richiedere disponibilità con un solo click.',
+        solution: 'Ho sviluppato un’applicazione web fluida in React 19 e Tailwind CSS: la fotografia ad alta definizione guida l’ospite tra le camere e la costa. Ho integrato il canale diretto su WhatsApp ed email per richiedere disponibilità con un solo click.',
         engineering: [
             { label: 'Stack Frontend', desc: 'React 19, TypeScript, Tailwind CSS e build istantanea con Vite.' },
             { label: 'Asset WebP Adattivi', desc: 'Immagini progressive servite in formati multi-risoluzione per caricamento istantaneo in mobilità.' },
@@ -75,12 +75,12 @@ const caseStudies = [
         imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
         summary: 'Piattaforma di presentazione territoriale con georeferenziazione, tariffe trasparenti e contatto immediato.',
         challenge: 'Farsi trovare online da viaggiatori italiani e internazionali con connessioni mobili 4G/5G in mobilità, comunicando la vicinanza strategica al faro e alle spiagge pugliesi senza tempi d’attesa.',
-        solution: 'Narrazione visiva pulita e leggera, mappe interattive dei luoghi caratteristici, tariffe chiare e contatto diretto per prenotare il soggiorno.',
+        solution: 'Ho impostato una narrazione visiva pulita e leggera, mappe interattive dei luoghi caratteristici, tariffe chiare e contatto diretto per prenotare il soggiorno.',
         engineering: [
             { label: 'Codice Ultra Leggero', desc: 'Struttura responsive ultra-essenziale progettata per una navigazione istantanea da smartphone.' },
             { label: 'Local SEO & Maps', desc: 'Integrazione schema turistico e geolocalizzazione per comparire nelle ricerche Google Maps locali.' },
             { label: 'Esperienza Utente Immediata', desc: 'Accesso alle informazioni su check-in, servizi e tariffe stagionali in un solo colpo d’occhio.' },
-            { label: 'Manutenzione Laboratorio', desc: 'Monitoraggio continuativo e aggiornamenti gestiti direttamente dal laboratorio Drago Labs.' }
+            { label: 'Manutenzione Continuativa', desc: 'Monitoraggio continuativo e aggiornamenti tecnici gestiti direttamente da me nel laboratorio.' }
         ],
         metrics: [
             { label: 'Target Connessioni', value: 'Ottimizzato 4G/5G' },
@@ -121,12 +121,12 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden">
+        <section id="progetti" className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#060a0f]">
             <span id="portfolio" className="sr-only" />
 
-            {/* Background texture & soft radial gradient */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[50vh] bg-drago-accent/5 blur-[160px] pointer-events-none" />
+            {/* Distinct Project Theater Background: Dark Navy Blueprint Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[55vh] bg-[radial-gradient(ellipse_60%_40%_at_50%_40%,rgba(0,115,160,0.12),transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
 
@@ -140,7 +140,7 @@ export default function Protocol() {
                             I miei Progetti
                         </h2>
                         <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl leading-relaxed">
-                            Decostruzione dei progetti reali: la sfida iniziale del cliente, la strategia di progettazione e l’architettura tecnica sviluppata.
+                            Decostruzione dei progetti che ho sviluppato: la sfida iniziale del cliente, la mia strategia di progettazione e l’architettura tecnica che ho realizzato.
                         </p>
                     </div>
 
@@ -185,7 +185,7 @@ export default function Protocol() {
                 {/* Unified Interactive Showcase Theatre (Widescreen Split Screen) */}
                 <div
                     ref={stageRef}
-                    className="rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300"
+                    className="rounded-[2.4rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300"
                 >
                     {/* Theatre Chrome Bar */}
                     <div className="flex flex-wrap items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-white/10 bg-black/80 backdrop-blur-md gap-4">
@@ -255,7 +255,7 @@ export default function Protocol() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[640px]">
 
                         {/* Column 1: Case Autopsy & Story */}
-                        <div className="lg:col-span-6 xl:col-span-5 p-6 sm:p-9 xl:p-11 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/30">
+                        <div className="lg:col-span-6 xl:col-span-5 p-6 sm:p-9 xl:p-11 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/40">
                             <div>
                                 {/* Header / Tags (Type & Year) */}
                                 <div className="project-transition mb-5">
@@ -279,7 +279,7 @@ export default function Protocol() {
                                 <div className="project-transition flex p-1.5 rounded-2xl bg-white/[0.04] border border-white/10 my-7 gap-1 overflow-x-auto no-scrollbar">
                                     {[
                                         { id: 'overview', label: '1. Obiettivi & Dati' },
-                                        { id: 'challenge', label: '2. La Sfida & Strategia' },
+                                        { id: 'challenge', label: '2. La Mia Strategia' },
                                         { id: 'engineering', label: '3. Ingegneria & Stack' },
                                     ].map((t) => (
                                         <button
@@ -336,7 +336,7 @@ export default function Protocol() {
                                                 <div className="flex items-center gap-2 mb-2">
                                                     <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
                                                     <span className="font-mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
-                                                        La Risposta di Drago Labs
+                                                        La Mia Soluzione Architetturale
                                                     </span>
                                                 </div>
                                                 <p className="font-sans text-sm sm:text-base font-normal text-gray-200 leading-relaxed">
@@ -389,7 +389,7 @@ export default function Protocol() {
                         </div>
 
                         {/* Column 2: Cinematic Viewport Screen (macOS Browser or Smartphone Chassis) */}
-                        <div className="lg:col-span-6 xl:col-span-7 p-6 sm:p-9 xl:p-11 flex flex-col items-center justify-center bg-black/50 relative overflow-hidden">
+                        <div className="lg:col-span-6 xl:col-span-7 p-6 sm:p-9 xl:p-11 flex flex-col items-center justify-center bg-black/60 relative overflow-hidden">
                             
                             {/* Desktop macOS Browser Window Frame */}
                             {viewMode === 'desktop' && (
@@ -501,11 +501,11 @@ export default function Protocol() {
                 </div>
 
                 {/* Section Bottom Callout */}
-                <div className="mt-16 p-8 sm:p-10 rounded-[2rem] border border-white/15 bg-white/[0.03] backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-xl">
+                <div className="mt-16 p-8 sm:p-10 rounded-[2rem] border border-white/15 bg-black/40 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-xl">
                     <div>
                         <h4 className="font-display font-bold text-2xl sm:text-3xl text-white">Hai un'esigenza specifica per la tua attività?</h4>
                         <p className="text-base sm:text-lg font-normal text-gray-200 mt-2 max-w-2xl leading-relaxed">
-                            Non applico template predefiniti: studio il tuo problema e progetto la soluzione architetturale più adatta.
+                            Non applico template predefiniti: studio il tuo problema e progetto la soluzione architetturale più adatta a te.
                         </p>
                     </div>
                     <a

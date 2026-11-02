@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,7 +122,7 @@ export default function ContactSection() {
     const errors = {
         nome: form.nome.trim() ? '' : 'Inserisci nome e cognome.',
         email: !form.email.trim() ? 'Inserisci un indirizzo email.' : !emailIsValid ? 'Inserisci un indirizzo email valido.' : '',
-        messaggio: form.messaggio.trim() ? '' : 'Descrivi brevemente come possiamo aiutarti.',
+        messaggio: form.messaggio.trim() ? '' : 'Descrivi brevemente il tuo progetto o la tua richiesta.',
         privacy: privacy ? '' : 'Devi prendere visione dell’informativa privacy per inviare la richiesta.',
     };
     const isValid = !Object.values(errors).some(Boolean);
@@ -181,7 +181,12 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/5 overflow-hidden">
+        <section id="contatti" ref={containerRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black">
+            
+            {/* Distinct Contact Background: Ambient Bottom Radiance */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] h-[50vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.1),transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
 
                 {/* ── Header — Unified Scale ── */}
@@ -201,7 +206,7 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
                     {/* ── LEFT: Form (7 cols) ── */}
-                    <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/10 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-all">
+                    <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-all">
                         {status === 'success' ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center gap-4" role="status" aria-live="polite">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">
@@ -209,7 +214,7 @@ export default function ContactSection() {
                                 </div>
                                 <h3 className="font-display font-bold text-2xl text-white">Richiesta inviata con successo!</h3>
                                 <p className="font-sans font-light text-gray-300 max-w-xs">
-                                    Ti risponderò il prima possibile. Grazie per aver contattato Drago Labs!
+                                    Ti risponderò personalmente il prima possibile. Grazie per aver contattato Drago Labs!
                                 </p>
                                 <button
                                     onClick={() => setStatus('idle')}
@@ -308,20 +313,20 @@ export default function ContactSection() {
                             <div>
                                 <span className="text-xs sm:text-sm font-mono uppercase text-emerald-300 tracking-wider font-bold">Canale Diretto Prioritario</span>
                                 <h4 className="font-display font-bold text-xl sm:text-2xl text-white mt-1">Chatta su WhatsApp</h4>
-                                <p className="text-sm sm:text-base text-gray-200 mt-1.5 leading-relaxed">Risposta rapida per richieste urgenti o prime domande sul tuo progetto.</p>
+                                <p className="text-sm sm:text-base text-gray-200 mt-1.5 leading-relaxed">Risposta rapida direttamente da me per richieste urgenti o prime domande sul tuo progetto.</p>
                                 <span className="text-base sm:text-lg font-mono text-emerald-300 mt-3 block font-bold">+39 393 945 0653 →</span>
                             </div>
                         </a>
 
                         {/* Direct Info */}
-                        <div className="rounded-[1.75rem] border border-white/10 bg-drago-text/40 p-7 backdrop-blur-xl space-y-5">
+                        <div className="rounded-[1.75rem] border border-white/15 bg-black/40 p-7 backdrop-blur-xl space-y-5">
                             <a href="mailto:info.dragolabs@gmail.com" className="flex items-center gap-4 group">
                                 <div className="w-10 h-10 rounded-xl bg-drago-accent/10 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-drago-accent group-hover:scale-105 transition-transform">
                                     <Mail className="w-5 h-5 group-hover:text-yellow-400 transition-colors" />
                                 </div>
                                 <div>
                                     <span className="text-xs sm:text-sm text-gray-300 block font-mono">Email diretta</span>
-                                    <span className="text-base sm:text-lg font-semibold text-white group-hover:text-drago-cyan transition-colors">info.dragolabs@gmail.com</span>
+                                    <span className="text-base sm:text-lg font-semibold text-white group-hover:text-drago-accent transition-colors">info.dragolabs@gmail.com</span>
                                 </div>
                             </a>
 
@@ -337,10 +342,10 @@ export default function ContactSection() {
                         </div>
 
                         {/* Operational Card */}
-                        <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
-                            <span className="text-xs sm:text-sm font-mono text-drago-cyan uppercase tracking-wider block mb-2 font-bold">[ DISPONIBILITÀ ATTUALE ]</span>
+                        <div className="rounded-[1.75rem] border border-white/15 bg-white/[0.03] p-7 backdrop-blur-xl">
+                            <span className="text-xs sm:text-sm font-mono text-drago-accent uppercase tracking-wider block mb-2 font-bold">[ DISPONIBILITÀ ATTUALE ]</span>
                             <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
-                                Attualmente disponibile per l'avvio di nuovi progetti, sviluppo applicativi e consulenze tecniche. Rispondo a ogni richiesta entro 24 ore lavorative.
+                                Attualmente disponibile per l'avvio di nuovi progetti, sviluppo applicativi e consulenze tecniche. Rispondo personalmente a ogni richiesta entro 24 ore lavorative.
                             </p>
                         </div>
                     </div>
