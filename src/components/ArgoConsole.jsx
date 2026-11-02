@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles, RefreshCw, ArrowLeft } from 'lucide-react';
+import { Send, Bot, User, Sparkles, RefreshCw, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
 
 const SUGGESTED_PROMPTS = [
     "Parlami del caso Studio Palmisano",
     "Come avete affrontato Casa Vacanze Vistamare?",
-    "Qual è la visione e il metodo di lavoro?",
+    "Qual è il metodo di lavoro di Drago Labs?",
     "Quali tecnologie usate per i progetti?",
     "Come posso richiedere una consulenza?",
+    "Perché zero builder pesanti?",
 ];
 
 // Rich fallback knowledge engine: handles natural questions without requiring an external API key
@@ -14,35 +15,39 @@ function getArgoLocalResponse(rawQuery) {
     const q = rawQuery.toLowerCase();
 
     if (q.includes('chi sei') || q.includes('tu chi') || q.includes('argo') || q.includes('presentati')) {
-        return "Sono **Argo**, l'assistente virtuale del laboratorio di **Drago Labs**. Sono stato addestrato per illustrarti le nostre competenze, il metodo di lavoro, lo stack tecnologico e approfondire i nostri casi studio reali.";
+        return "Sono **Argo**, l'assistente virtuale integrato nel laboratorio di **Drago Labs**.\n\nIl mio compito è illustrarti il nostro metodo di lavoro, lo stack tecnologico, la filosofia dei progetti e guidarti nell'analisi delle tue esigenze prima del contatto con Gianluca.";
     }
 
     if (q.includes('visione') || q.includes('filosofia') || q.includes('classico') || q.includes('approccio') || q.includes('perché')) {
-        return "La visione di **Drago Labs** nasce da un percorso singolare: l'unione tra la **struttura logica e analitica degli studi classici** e il **rigore ingegneristico dell'informatica** (studiata all'Università di Bari 'Aldo Moro').\n\nNon creiamo siti fotocopia con template preconfezionati e plugin lenti. Ogni progetto viene decostruito alla radice per capire cosa serve davvero all'attività del cliente: codice pulito, tempi di caricamento istantanei e design sartoriale.";
+        return "La visione di **Drago Labs** nasce dall'unione tra la **struttura logica e analitica degli studi classici** e il **rigore ingegneristico del software**.\n\nNon creiamo siti fotocopia con template preconfezionati e plugin lenti. Ogni progetto viene decostruito alla radice per capire cosa serve davvero all'attività del cliente: codice pulito, tempi di caricamento istantanei e design sartoriale.";
     }
 
     if (q.includes('gianluca') || q.includes('fondatore') || q.includes('team') || q.includes('creatore') || q.includes('chi c\'è') || q.includes('chi c e')) {
-        return "Drago Labs è fondata da **Gianluca Dragone**, software developer con formazione classica e studente di *Informatica e Tecnologie per la Produzione del Software* all'Università degli Studi di Bari 'Aldo Moro'. Combina rigore logico, cura del codice e attenzione al design per creare prodotti digitali veloci, scalabili e affidabili.";
+        return "**Gianluca Dragone** è il fondatore e software developer di Drago Labs.\n\nCon una formazione classica e studi in *Informatica e Tecnologie per la Produzione del Software* all'Università degli Studi di Bari 'Aldo Moro', progetta architetture web veloci, scalabili e prive di compromessi tecnici, operando con clienti in tutta Italia da Fasano (Puglia).";
     }
 
     if (q.includes('palmisano') || q.includes('studio legale') || q.includes('avvocato')) {
-        return "Per lo **Studio Legale Ambientale Palmisano** (riferimento nazionale nel diritto ambientale) abbiamo risolto un problema concreto:\n\n• **La Sfida**: Superare un sito web obsoleto e trasmettere la massima autorevolezza istituzionale a magistrati, aziende e clienti, permettendo ai legali di pubblicare sentenze e articoli in autonomia.\n• **La Soluzione**: Un tema WordPress sviluppato da zero su misura, senza builder pesanti come Elementor.\n• **I Risultati**: Punteggio Core Web Vitals di **99/100**, caricamento in < 0.6s, SEO specialistico Schema.org e autonomia editoriale completa per lo staff dello studio.";
+        return "Per lo **Studio Legale Ambientale Palmisano** (riferimento nazionale nel diritto ambientale) abbiamo sviluppato un restyling strategico:\n\n• **La Sfida**: Superare un sito web obsoleto e trasmettere la massima autorevolezza istituzionale a magistrati, aziende e clienti, permettendo ai legali di pubblicare sentenze e articoli in autonomia.\n• **La Soluzione**: Un tema WordPress sviluppato da zero su misura, senza builder pesanti come Elementor.\n• **I Risultati**: Punteggio Core Web Vitals di **99/100**, caricamento in < 0.6s, dati strutturati Schema.org specialistici e autonomia editoriale completa per lo staff.";
     }
 
     if (q.includes('vistamare') || q.includes('casa vacanze')) {
-        return "Per **Casa Vacanze Vistamare** l'obiettivo era economico e strategico:\n\n• **La Sfida**: Ridurre la dipendenza dalle piattaforme OTA (Booking/Airbnb) che trattengono il 15-20% di commissioni su ogni prenotazione.\n• **La Soluzione**: Un'applicazione web immersiva (React 19 + Tailwind + Vite) con narrazione visiva ad alta risoluzione del panorama costiero.\n• **I Risultati**: Canale diretto su WhatsApp ed email, caricamento in meno di 0.5s con immagini WebP progressive, e zero costi mensili fissi di server grazie al deploy serverless su Edge Vercel.";
+        return "Per **Casa Vacanze Vistamare** l'obiettivo era la disintermediazione economica:\n\n• **La Sfida**: Ridurre la dipendenza dalle piattaforme OTA (Booking/Airbnb) che trattengono il 15-20% di commissioni su ogni soggiorno.\n• **La Soluzione**: Una web app immersiva in React 19 + Tailwind CSS con fotografia costiera ad alta definizione e canale diretto WhatsApp.\n• **I Risultati**: Commissioni azzerate sulle prenotazioni dirette, caricamento in meno di 0.5s e zero costi mensili fissi di server grazie al deploy serverless su Edge Vercel.";
     }
 
     if (q.includes('faro') || q.includes('aunpasso')) {
-        return "Per **A Un Passo Dal Faro** (struttura turistica sulla costa pugliese):\n\n• **La Sfida**: Farsi scoprire da viaggiatori italiani e internazionali con connessioni mobili 4G/5G in mobilità.\n• **La Soluzione**: Portale ultra-leggero con georeferenziazione, mappe dei dintorni e richiesta disponibilità rapida.\n• **I Risultati**: Asset grafici compressi, zero attese al caricamento e presenza indicizzata su Google Maps.";
+        return "Per **A Un Passo Dal Faro** (struttura turistica sulla costa pugliese):\n\n• **La Sfida**: Farsi scoprire da viaggiatori con connessioni mobili 4G/5G in mobilità.\n• **La Soluzione**: Portale ultra-leggero con georeferenziazione, mappe dei dintorni e richiesta disponibilità rapida.\n• **I Risultati**: Asset grafici WebP compressi, zero attese al caricamento e presenza indicizzata su Google Maps.";
     }
 
     if (q.includes('cosa fa') || q.includes('servizi') || q.includes('servizio') || q.includes('cosa offrite') || q.includes('cosa potete fare')) {
-        return "In **Drago Labs** ingegnerizziamo:\n\n• **Siti Web & Portali Istituzionali**: veloci, ottimizzati per la SEO e progettati per convertire visitatori in contatti reali.\n• **Web App & Applicativi su misura**: gestionali interni, dashboard operative e strumenti PWA.\n• **E-commerce Sartoriali**: cataloghi curati, pagamenti sicuri (Stripe/PayPal) e gestione autonoma del magazzino.\n• **Workflow Agentici & Automazioni AI**: integrazione di agenti virtuali e automazioni per eliminare attività ripetitive.\n• **Supporto IT Continuativo**: manutenzione, sicurezza serverless e consulenza informatica costante.";
+        return "In **Drago Labs** ingegnerizziamo:\n\n• **Siti Web & E-Commerce Sartoriali**: piattaforme ad alta conversione, veloci, responsive e senza plugin ingombranti.\n• **Web App & Piattaforme su Misura**: gestionali interni, dashboard operative e strumenti digitali proprietari.\n• **Workflow AI & Automazioni**: agenti intelligenti e integrazioni per eliminare attività ripetitive e velocizzare i processi aziendali.";
     }
 
     if (q.includes('tecnolog') || q.includes('stack') || q.includes('linguagg') || q.includes('framework') || q.includes('react') || q.includes('codice')) {
-        return "Il nostro stack tecnologico è focalizzato sulle **massime performance e manutenibilità**:\n\n• **Frontend**: React 19, JavaScript/TypeScript moderno, Tailwind CSS, animazioni GSAP e bundling istantaneo con Vite.\n• **Backend & Serverless**: Node.js, Python, architetture serverless distribuite su Vercel, Supabase e Neon PostgreSQL.\n• **CMS Su Misura**: WordPress configurato con temi sartoriali proprietari senza plugin gonfi.\n• **AI**: Integrazioni avanzate con modelli LLM (Google Gemini, agenti multiagente).";
+        return "Il nostro stack tecnologico è incentrato su **prestazioni estreme, sicurezza e scalabilità**:\n\n• **Frontend**: React 19, JavaScript/TypeScript, Tailwind CSS, animazioni fluide con GSAP e build istantanee con Vite.\n• **Backend & Serverless**: Node.js, architetture Edge serverless su Vercel e database cloud ad alta velocità (PostgreSQL / Supabase).\n• **CMS**: WordPress configurato esclusivamente con temi proprietari scritti da zero in codice pulito, senza builder terzi.\n• **AI**: Integrazioni mirate con modelli LLM per automazioni e assistenti intelligenti.";
+    }
+
+    if (q.includes('builder') || q.includes('elementor') || q.includes('divi') || q.includes('wix') || q.includes('wordpress')) {
+        return "Rifiutiamo l'uso di builder pesanti (come Elementor o Divi) perché sovraccaricano il browser con centinaia di script non necessari, peggiorando il posizionamento Google (Core Web Vitals) e rendendo il sito vulnerabile agli attacchi.\n\nSviluppando in **codice puro e temi sartoriali**, garantiamo tempi di caricamento istantanei (<0.6s) e una longevità incomparabile nel tempo.";
     }
 
     if (q.includes('calcio')) {
@@ -50,26 +55,26 @@ function getArgoLocalResponse(rawQuery) {
     }
 
     if (q.includes('metodo') || q.includes('processo') || q.includes('come funziona') || q.includes('fasi') || q.includes('sviluppo')) {
-        return "Il nostro metodo si articola in 4 fasi rigorose:\n\n1. **Comprendere & Decostruire**: analisi degli obiettivi di business e delle priorità reali prima di scrivere codice.\n2. **Architettura & Design**: progettazione di flussi utente intuitivi e identità visiva coordinata.\n3. **Ingegneria & Sviluppo**: scrittura di codice pulito, test di velocità (Lighthouse 95+) e responsive design.\n4. **Autonomia & Formazione**: consegna della piattaforma con formazione per gestire i contenuti in totale libertà, più supporto continuo.";
+        return "Il nostro metodo si articola in 4 fasi rigorose:\n\n1. **Comprendere & Decostruire**: analisi degli obiettivi di business e delle priorità reali prima di scrivere una sola riga di codice.\n2. **Architettura & Design**: progettazione di flussi utente intuitivi e identità visiva coordinata.\n3. **Ingegneria & Sviluppo**: codice pulito, test di velocità (Lighthouse 98+) e responsive design fluido.\n4. **Autonomia & Formazione**: consegna della piattaforma con formazione per gestire i contenuti in totale libertà, più supporto continuativo.";
     }
 
     if (q.includes('preventivo') || q.includes('costo') || q.includes('prezzo') || q.includes('quanto costa') || q.includes('tempi') || q.includes('quanto tempo') || q.includes('iniziare')) {
-        return "Ogni progetto è unico: un sito vetrina o istituzionale richiede generalmente da **1 a 2 settimane**, mentre web app o e-commerce strutturati richiedono qualche settimana in più in base alle funzionalità richieste.\n\nLa **prima consulenza è sempre gratuita e senza impegno**: puoi descriverci la tua idea tramite il form in basso nella pagina oppure scriverci direttamente su WhatsApp al **+39 393 945 0653**!";
+        return "Ogni progetto è unico: un sito professionale o istituzionale richiede generalmente da **1 a 2 settimane**, mentre web app o e-commerce strutturati richiedono qualche settimana in più in base alle funzionalità richieste.\n\nLa **prima consulenza è sempre gratuita e senza impegno**: puoi descriverci la tua idea tramite il form in basso nella pagina oppure scriverci direttamente su WhatsApp al [+39 393 945 0653](https://wa.me/393939450653)!";
     }
 
     if (q.includes('contatt') || q.includes('email') || q.includes('telefono') || q.includes('whatsapp') || q.includes('dove')) {
-        return "Puoi metterti in contatto con Gianluca in qualsiasi momento:\n\n• **WhatsApp Rapido**: [+39 393 945 0653](https://wa.me/393939450653)\n• **Email**: [info.dragolabs@gmail.com](mailto:info.dragolabs@gmail.com)\n• **Sede**: Fasano (BR), Puglia — operiamo con clienti in tutta Italia da remoto.\n\nOppure compila direttamente il form qui sotto nella sezione Contatti!";
+        return "Puoi metterti in contatto con Gianluca in qualsiasi momento:\n\n• **WhatsApp Diretto**: [+39 393 945 0653](https://wa.me/393939450653)\n• **Email**: [info.dragolabs@gmail.com](mailto:info.dragolabs@gmail.com)\n• **Sede**: Fasano (BR), Puglia — operiamo con clienti in tutta Italia da remoto.\n\nOppure compila direttamente il form nella sezione Contatti qui in basso!";
     }
 
-    return "Grazie per la domanda! In **Drago Labs** progettiamo prodotti web su misura con un forte accento su velocità, chiarezza e assenza di compromessi tecnici. Puoi chiedermi dettagli sui nostri casi studio (es. *Studio Palmisano* o *Casa Vacanze Vistamare*), sulle tecnologie che utilizziamo, o descrivermi la tua idea di progetto.";
+    return "Grazie per la domanda! In **Drago Labs** progettiamo prodotti web su misura con un forte accento su velocità, chiarezza e assenza di compromessi tecnici.\n\nPuoi chiedermi dettagli sui nostri casi studio (es. *Studio Palmisano* o *Casa Vacanze Vistamare*), sulle tecnologie che utilizziamo, o descrivermi la tua idea di progetto.";
 }
 
-export default function ArgoConsole({ onClose, initialPrompt }) {
+export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onToggleExpand }) {
     const [messages, setMessages] = useState([
         {
             id: 'welcome',
             sender: 'argo',
-            text: "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs. Come posso aiutarti oggi? Puoi chiedermi come lavoriamo, approfondire i nostri casi studio reali o descrivermi la tua idea di progetto.",
+            text: "Ciao! Sono **Argo**, l'assistente virtuale di Drago Labs.\n\nCome posso aiutarti oggi? Puoi chiedermi come lavoriamo, approfondire i casi studio reali o descrivermi la tua idea di progetto.",
             timestamp: 'Online',
         }
     ]);
@@ -118,7 +123,7 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
             }
 
             if (!replyText) {
-                await new Promise((r) => setTimeout(r, 600));
+                await new Promise((r) => setTimeout(r, 550));
                 replyText = getArgoLocalResponse(query);
             }
 
@@ -163,55 +168,96 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
     const renderFormattedText = (txt) => {
         const lines = txt.split('\n');
         return lines.map((line, idx) => {
-            if (!line.trim()) return <div key={idx} className="h-2.5" />;
+            if (!line.trim()) return <div key={idx} className="h-2" />;
 
-            const parts = line.split(/(\*\*[^*]+\*\*)/g);
-            const formatted = parts.map((part, pIdx) => {
+            const isBullet = line.trim().startsWith('•') || line.trim().startsWith('-');
+            const cleanLine = isBullet ? line.trim().replace(/^[•-]\s*/, '') : line;
+
+            // Tokenize by link [text](url), bold **bold**, or italic *italic*
+            const tokenRegex = /(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g;
+            const parts = cleanLine.split(tokenRegex);
+
+            const renderedParts = parts.map((part, pIdx) => {
+                if (!part) return null;
+                if (part.startsWith('[') && part.includes('](') && part.endsWith(')')) {
+                    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                    if (match) {
+                        const [, label, url] = match;
+                        return (
+                            <a
+                                key={pIdx}
+                                href={url}
+                                target={url.startsWith('http') ? '_blank' : undefined}
+                                rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                className="text-white underline underline-offset-4 decoration-drago-accent hover:text-drago-accent font-semibold transition-colors"
+                            >
+                                {label}
+                            </a>
+                        );
+                    }
+                }
                 if (part.startsWith('**') && part.endsWith('**')) {
                     return <strong key={pIdx} className="font-bold text-white">{part.slice(2, -2)}</strong>;
+                }
+                if (part.startsWith('*') && part.endsWith('*')) {
+                    return <em key={pIdx} className="italic text-gray-200">{part.slice(1, -1)}</em>;
                 }
                 return part;
             });
 
+            if (isBullet) {
+                return (
+                    <div key={idx} className="flex items-start gap-2.5 my-1.5 pl-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-drago-accent mt-2 flex-shrink-0" />
+                        <p className="leading-relaxed text-sm sm:text-base text-gray-200 flex-1">
+                            {renderedParts}
+                        </p>
+                    </div>
+                );
+            }
+
             return (
-                <p key={idx} className="leading-relaxed text-base sm:text-[1.05rem] text-gray-100">
-                    {formatted}
+                <p key={idx} className="leading-relaxed text-sm sm:text-base text-gray-200 my-1">
+                    {renderedParts}
                 </p>
             );
         });
     };
 
     return (
-        <div className="w-full rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col h-[620px]">
+        <div className="w-full rounded-[2.4rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden flex flex-col h-full min-h-[640px] max-h-[720px] transition-all duration-300">
             {/* Top Bar / Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/60">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/80 backdrop-blur-md">
                 <div className="flex items-center gap-3.5">
                     <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-white">
-                            <Bot className="w-5 h-5 text-drago-accent" />
+                        <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shadow-lg">
+                            <Bot className="w-5 h-5 text-white" />
                         </div>
-                        <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-black" />
+                        <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-black shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
                             <span className="font-sans font-bold text-base sm:text-lg text-white">Argo</span>
-                            <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-white/10 text-gray-200 border border-white/15 uppercase tracking-wider">
-                                Lab AI
-                            </span>
+                            {/* Live waveform indicator */}
+                            <div className="flex items-center gap-1 h-4 px-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                                <span className="w-1 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                                <span className="w-1 h-3 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                                <span className="w-1 h-2.5 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                                <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-1">Live</span>
+                            </div>
                         </div>
-                        <span className="text-xs sm:text-sm text-gray-300">Console di dialogo interattivo del laboratorio</span>
+                        <span className="text-xs text-gray-400 font-mono">Assistente Virtuale di Drago Labs</span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    {onClose && (
+                    {onToggleExpand && (
                         <button
-                            onClick={onClose}
-                            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs sm:text-sm font-sans font-medium text-gray-200 hover:text-white transition-all"
-                            title="Torna alla scheda descrittiva"
+                            onClick={onToggleExpand}
+                            className="hidden sm:flex p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                            title={isExpanded ? 'Riduci visuale' : 'Espandi a tutta larghezza'}
                         >
-                            <ArrowLeft className="w-4 h-4" />
-                            <span>Scheda descrittiva</span>
+                            {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
                         </button>
                     )}
                     <button
@@ -219,37 +265,51 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
                         title="Ricomincia conversazione"
                         className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                     >
-                        <RefreshCw className="w-5 h-5" />
+                        <RefreshCw className="w-4 h-4" />
                     </button>
+                    {onClose && (
+                        <button
+                            onClick={onClose}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-sans font-medium text-gray-200 hover:text-white transition-all ml-1"
+                            title="Torna alla scheda descrittiva"
+                        >
+                            <ArrowLeft className="w-3.5 h-3.5" />
+                            <span>Scheda</span>
+                        </button>
+                    )}
                 </div>
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-5">
+            <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
                 {messages.map((m) => (
                     <div
                         key={m.id}
-                        className={`flex gap-3.5 max-w-[88%] ${m.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
+                        className={`flex gap-3 max-w-[90%] ${m.sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`}
                     >
                         {m.sender === 'argo' ? (
-                            <div className="w-8 h-8 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-white mt-0.5">
-                                <Sparkles className="w-4 h-4 text-drago-accent" />
+                            <div className="w-7 h-7 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 text-white mt-1">
+                                <Sparkles className="w-3.5 h-3.5 text-drago-accent" />
                             </div>
                         ) : (
-                            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 text-gray-300 mt-0.5">
-                                <User className="w-4 h-4" />
+                            <div className="w-7 h-7 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center flex-shrink-0 text-white mt-1">
+                                <User className="w-3.5 h-3.5" />
                             </div>
                         )}
 
                         <div
-                            className={`rounded-2xl px-5 py-3.5 text-base font-sans leading-relaxed ${
+                            className={`rounded-2xl px-5 py-3.5 font-sans leading-relaxed text-sm sm:text-base ${
                                 m.sender === 'user'
-                                    ? 'bg-drago-accent text-white rounded-tr-sm shadow-md'
-                                    : 'bg-white/10 border border-white/15 text-gray-100 rounded-tl-sm'
+                                    ? 'bg-white text-black font-medium rounded-tr-sm shadow-[0_4px_20px_rgba(255,255,255,0.15)]'
+                                    : 'bg-white/[0.04] border border-white/15 text-gray-100 rounded-tl-sm shadow-md'
                             }`}
                         >
-                            {renderFormattedText(m.text)}
-                            <div className={`text-xs mt-2 opacity-60 font-mono ${m.sender === 'user' ? 'text-right text-white/80' : 'text-left text-gray-300'}`}>
+                            {m.sender === 'user' ? (
+                                <p className="leading-relaxed">{m.text}</p>
+                            ) : (
+                                renderFormattedText(m.text)
+                            )}
+                            <div className={`text-[10px] mt-2 opacity-50 font-mono ${m.sender === 'user' ? 'text-right text-black' : 'text-left text-gray-400'}`}>
                                 {m.timestamp}
                             </div>
                         </div>
@@ -258,13 +318,14 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
 
                 {isTyping && (
                     <div className="flex gap-3 max-w-[80%]">
-                        <div className="w-8 h-8 rounded-full bg-drago-accent/20 border border-drago-accent/30 flex items-center justify-center flex-shrink-0 text-white mt-0.5 animate-pulse">
-                            <Sparkles className="w-4 h-4 text-drago-accent" />
+                        <div className="w-7 h-7 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 text-white mt-1 animate-pulse">
+                            <Sparkles className="w-3.5 h-3.5 text-drago-accent" />
                         </div>
-                        <div className="rounded-2xl px-5 py-3.5 bg-white/10 border border-white/15 text-gray-300 text-sm flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <span className="w-2 h-2 rounded-full bg-drago-accent animate-bounce" style={{ animationDelay: '300ms' }} />
+                        <div className="rounded-2xl px-5 py-3.5 bg-white/[0.04] border border-white/15 text-gray-300 text-sm flex items-center gap-2.5">
+                            <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <span className="w-2 h-2 rounded-full bg-white animate-bounce" style={{ animationDelay: '300ms' }} />
+                            <span className="text-xs font-mono text-gray-400 ml-1.5">Argo sta elaborando...</span>
                         </div>
                     </div>
                 )}
@@ -272,13 +333,13 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
             </div>
 
             {/* Quick Suggestion Pills */}
-            <div className="px-5 py-2.5 border-t border-white/10 bg-black/30 flex gap-2 overflow-x-auto no-scrollbar">
+            <div className="px-5 py-2.5 border-t border-white/10 bg-black/40 flex gap-2 overflow-x-auto no-scrollbar">
                 {SUGGESTED_PROMPTS.map((prompt, i) => (
                     <button
                         key={i}
                         onClick={() => handleSend(prompt)}
                         disabled={isTyping}
-                        className="whitespace-nowrap px-4 py-1.5 rounded-full text-xs sm:text-sm font-sans font-medium bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 hover:text-white transition-all hover:border-drago-accent flex-shrink-0 disabled:opacity-50"
+                        className="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/10 border border-white/10 hover:border-white/25 text-gray-300 hover:text-white transition-all flex-shrink-0 disabled:opacity-40"
                     >
                         {prompt}
                     </button>
@@ -286,23 +347,23 @@ export default function ArgoConsole({ onClose, initialPrompt }) {
             </div>
 
             {/* Input Bar */}
-            <div className="p-4 bg-black/60 border-t border-white/10 flex items-center gap-3">
+            <div className="p-4 bg-black/70 border-t border-white/10 flex items-center gap-3">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Fai una domanda ad Argo sui progetti o sul metodo..."
-                    className="flex-1 bg-white/10 border border-white/15 rounded-xl px-5 py-3 text-base font-sans text-white placeholder-gray-400 focus:outline-none focus:border-drago-accent transition-colors"
+                    placeholder="Chiedi ad Argo sui casi studio, stack o preventivo..."
+                    className="flex-1 bg-white/[0.05] border border-white/15 rounded-2xl px-5 py-3.5 text-sm sm:text-base font-sans text-white placeholder-gray-400 focus:outline-none focus:border-white/40 transition-colors"
                     disabled={isTyping}
                 />
                 <button
                     onClick={() => handleSend()}
                     disabled={!input.trim() || isTyping}
-                    className="w-12 h-12 rounded-xl bg-drago-accent hover:bg-drago-accent/90 disabled:opacity-40 disabled:hover:bg-drago-accent text-white flex items-center justify-center transition-all flex-shrink-0 shadow-md"
+                    className="w-12 h-12 rounded-2xl bg-white text-black hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-white flex items-center justify-center transition-all flex-shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                     title="Invia messaggio"
                 >
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                 </button>
             </div>
         </div>

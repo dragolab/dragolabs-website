@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Github, Instagram, Mail, GraduationCap, Code2, Bot, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Github, Instagram, Mail, GraduationCap, Code2, Bot, MessageSquare, ArrowRight } from 'lucide-react';
 import ArgoConsole from './ArgoConsole';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,9 +21,17 @@ const socials = [
 
 const skills = ['React 19', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Vite', 'Python', 'C', 'Java', 'Git'];
 
+const quickArgoQuestions = [
+    { title: "Casi Studio", query: "Parlami del caso Studio Palmisano" },
+    { title: "Metodo di Lavoro", query: "Qual è il metodo di lavoro di Drago Labs?" },
+    { title: "Stack Tecnologico", query: "Quali tecnologie usate per i progetti?" },
+    { title: "Consulenza & Costi", query: "Come posso richiedere una consulenza o preventivo?" },
+];
+
 export default function StaffSection() {
     const sectionRef = useRef(null);
     const [isChatOpen, setIsChatOpen] = useState(false);
+    const [isChatExpanded, setIsChatExpanded] = useState(false);
     const [activePrompt, setActivePrompt] = useState('');
 
     useEffect(() => {
@@ -54,6 +62,10 @@ export default function StaffSection() {
 
     return (
         <section id="chi-sono" ref={sectionRef} className="relative py-24 md:py-36 border-t border-white/10 overflow-hidden">
+            
+            {/* Background radial gradient */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[45vh] bg-drago-accent/5 blur-[160px] pointer-events-none" />
+
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
                 {/* Section Header */}
                 <header className="staff-reveal mx-auto mb-16 max-w-4xl text-center">
@@ -68,11 +80,11 @@ export default function StaffSection() {
                     </p>
                 </header>
 
-                {/* 2-Column Grid: Gianluca LARGER (7 cols), Argo SMALLER (5 cols) or expanded */}
+                {/* 2-Column Responsive Grid: Gianluca LARGER (7 cols), Argo (5 cols) or expanded */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                    {/* Column 1: Gianluca Dragone (7 cols on lg, larger horizontally) */}
-                    <div className={`staff-reveal ${isChatOpen ? 'lg:col-span-12' : 'lg:col-span-7'} rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-8 sm:p-10 xl:p-12 flex flex-col justify-between transition-all duration-300`}>
+                    {/* Column 1: Gianluca Dragone */}
+                    <div className={`staff-reveal ${isChatExpanded ? 'lg:col-span-12 mb-4' : 'lg:col-span-7'} rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 xl:p-12 flex flex-col justify-between hover:border-white/25 transition-all duration-300`}>
                         <div>
                             {/* Profile Header */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-7 pb-6 border-b border-white/10">
@@ -86,16 +98,14 @@ export default function StaffSection() {
                                     </div>
                                     <div>
                                         <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-white">Gianluca Dragone</h3>
-                                        <p className="text-base sm:text-lg text-drago-accent font-semibold mt-0.5">Founder & Software Developer</p>
-                                        <span className="text-xs sm:text-sm text-gray-300 font-mono mt-1 block">Fasano (BR), Puglia · Clienti in tutta Italia</span>
+                                        <p className="text-base sm:text-lg text-gray-300 font-semibold mt-0.5">Founder & Software Developer</p>
+                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">Fasano (BR), Puglia · Clienti in tutta Italia</span>
                                     </div>
                                 </div>
-
-
                             </div>
 
-                            {/* Bio — Legible, generous font sizes */}
-                            <div className="space-y-4 text-base sm:text-lg font-normal text-gray-100 leading-relaxed">
+                            {/* Bio */}
+                            <div className="space-y-4 text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
                                 <p>
                                     Ho fondato <strong>Drago Labs</strong> per trasformare la complessità tecnologica in soluzioni digitali concrete, veloci e affidabili per professionisti e imprese.
                                 </p>
@@ -109,11 +119,11 @@ export default function StaffSection() {
 
                             {/* Background Highlights */}
                             <div className="mt-7 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/5 p-4 rounded-xl border border-white/10">
+                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
                                     <GraduationCap className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
                                     <span>UniBa · Informatica e Tecnologie per la Produzione del Software</span>
                                 </div>
-                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/5 p-4 rounded-xl border border-white/10">
+                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
                                     <Code2 className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
                                     <span>Specializzazione in sviluppo Frontend, Web App & Architetture Serverless</span>
                                 </div>
@@ -121,10 +131,10 @@ export default function StaffSection() {
 
                             {/* Tech Stack Chips */}
                             <div className="mt-7 pt-6 border-t border-white/10">
-                                <span className="text-xs font-mono uppercase text-gray-300 tracking-wider block mb-3 font-semibold">Competenze & Stack Operativo</span>
+                                <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">Competenze & Stack Operativo</span>
                                 <div className="flex flex-wrap gap-2">
                                     {skills.map((s) => (
-                                        <span key={s} className="px-3.5 py-1.5 rounded-md bg-white/5 border border-white/10 text-xs sm:text-sm font-mono text-gray-200 font-medium">
+                                        <span key={s} className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-mono text-gray-300 font-medium hover:border-white/20 hover:text-white transition-all">
                                             {s}
                                         </span>
                                     ))}
@@ -134,7 +144,7 @@ export default function StaffSection() {
 
                         {/* Social Links Bar */}
                         <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                            <span className="text-sm text-gray-300 font-mono font-medium">Canali di contatto diretto:</span>
+                            <span className="text-sm text-gray-400 font-mono font-medium">Canali di contatto diretto:</span>
                             <div className="flex items-center gap-3">
                                 {socials.map((soc) => (
                                     <a
@@ -152,113 +162,103 @@ export default function StaffSection() {
                         </div>
                     </div>
 
-                    {/* Column 2: Argo AI Agent (5 cols when compact, expands when chatting) */}
-                    {isChatOpen ? (
-                        <div className="staff-reveal lg:col-span-12 flex flex-col transition-all duration-300">
+                    {/* Column 2: Argo AI Agent (Embedded side-by-side or expanded full-width) */}
+                    <div className={`staff-reveal ${isChatExpanded ? 'lg:col-span-12' : 'lg:col-span-5'} flex flex-col transition-all duration-300`}>
+                        {isChatOpen ? (
                             <ArgoConsole
                                 initialPrompt={activePrompt}
+                                isExpanded={isChatExpanded}
+                                onToggleExpand={() => setIsChatExpanded((prev) => !prev)}
                                 onClose={() => {
                                     setIsChatOpen(false);
+                                    setIsChatExpanded(false);
                                     setActivePrompt('');
                                 }}
                             />
-                        </div>
-                    ) : (
-                        <div className="staff-reveal lg:col-span-5 rounded-[2.2rem] border border-white/15 bg-drago-text/40 shadow-2xl backdrop-blur-xl p-8 sm:p-10 flex flex-col justify-between hover:border-drago-accent transition-all duration-300">
-                            <div>
-                                {/* Argo Profile Header */}
-                                <div className="flex items-center justify-between mb-7 pb-6 border-b border-white/10">
-                                    <div className="flex items-center gap-4">
-                                        <div className="relative">
-                                            <div className="w-16 h-16 rounded-2xl bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center text-white shadow-lg">
-                                                <Bot className="w-8 h-8 text-drago-accent" />
+                        ) : (
+                            <div className="rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-all duration-300 h-full min-h-[640px] relative overflow-hidden group">
+                                
+                                {/* Ambient glow in background */}
+                                <div className="absolute -top-24 -right-24 w-52 h-52 bg-drago-accent/15 rounded-full blur-3xl pointer-events-none group-hover:bg-drago-accent/25 transition-all duration-700" />
+
+                                <div>
+                                    {/* Argo Profile Header */}
+                                    <div className="flex items-center justify-between mb-7 pb-6 border-b border-white/10">
+                                        <div className="flex items-center gap-4">
+                                            <div className="relative">
+                                                <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shadow-xl">
+                                                    <Bot className="w-8 h-8 text-white" />
+                                                </div>
+                                                <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-black shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                                             </div>
-                                            <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-black" />
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-2">
-                                                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">Argo</h3>
-                                                <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
-                                                    Online
-                                                </span>
+                                            <div>
+                                                <div className="flex items-center gap-2">
+                                                    <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">Argo</h3>
+                                                    <div className="flex items-center gap-1 h-4 px-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                                                        <span className="w-1 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                                                        <span className="w-1 h-3 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                                                        <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-0.5">Live</span>
+                                                    </div>
+                                                </div>
+                                                <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">Assistente Virtuale del Lab</p>
                                             </div>
-                                            <p className="text-base text-drago-accent font-semibold mt-0.5">Assistente Virtuale del Lab</p>
+                                        </div>
+
+                                        <span className="hidden sm:inline-block text-xs font-mono text-gray-300 border border-white/10 rounded-full px-3 py-1 bg-white/5">
+                                            AI Agent v1.0
+                                        </span>
+                                    </div>
+
+                                    {/* Argo Description */}
+                                    <div className="space-y-4 text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
+                                        <p>
+                                            <strong>Argo</strong> è l'assistente virtuale integrato nello staff di Drago Labs, addestrato sull'intero ecosistema del nostro laboratorio.
+                                        </p>
+                                        <p>
+                                            Conosce nel dettaglio ogni decisione architetturale, i protocolli tecnici e tutti i casi studio reali (da <em>Studio Palmisano</em> a <em>Casa Vistamare</em>).
+                                        </p>
+                                    </div>
+
+                                    {/* Interactive Quick Prompts with Instant Launch */}
+                                    <div className="mt-7 pt-6 border-t border-white/10">
+                                        <span className="text-xs font-mono uppercase text-gray-400 tracking-wider block mb-3 font-semibold">
+                                            Domande rapide al laboratorio:
+                                        </span>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                            {quickArgoQuestions.map((q, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => handleOpenWithPrompt(q.query)}
+                                                    className="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all text-left flex items-center justify-between group/prompt"
+                                                >
+                                                    <span className="text-xs sm:text-sm font-sans font-medium text-gray-200 group-hover/prompt:text-white">
+                                                        {q.title}
+                                                    </span>
+                                                    <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover/prompt:text-white group-hover/prompt:translate-x-1 transition-all flex-shrink-0" />
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
-                                    <span className="hidden sm:inline-block text-xs font-mono text-gray-300 border border-white/10 rounded-full px-3 py-1 bg-white/5">
-                                        AI Agent v1.0
-                                    </span>
                                 </div>
 
-                                {/* Argo Description */}
-                                <div className="space-y-4 text-base sm:text-lg font-normal text-gray-100 leading-relaxed">
-                                    <p>
-                                        <strong>Argo</strong> è l'assistente virtuale integrato nello staff di Drago Labs, addestrato sull'intero ecosistema del nostro laboratorio.
-                                    </p>
-                                    <p>
-                                        Conosce nel dettaglio ogni decisione architetturale, i protocolli tecnici e tutti i casi studio reali (da <em>Studio Palmisano</em> a <em>Casa Vistamare</em>).
-                                    </p>
-                                </div>
-
-                                {/* What Argo does / Competencies */}
-                                <div className="mt-7 pt-6 border-t border-white/10 space-y-3">
-                                    <span className="text-xs font-mono uppercase text-gray-300 tracking-wider block font-semibold">
-                                        Cosa puoi chiedergli
-                                    </span>
-                                    <div className="space-y-2.5 text-sm sm:text-base text-gray-200">
-                                        <div className="flex items-start gap-2.5">
-                                            <span className="text-drago-accent mt-0.5">✦</span>
-                                            <span><strong>Casi Studio reali:</strong> sfide, metriche e codice sviluppato</span>
-                                        </div>
-                                        <div className="flex items-start gap-2.5">
-                                            <span className="text-drago-accent mt-0.5">✦</span>
-                                            <span><strong>Stack Tecnico:</strong> perché React 19, Serverless e temi sartoriali</span>
-                                        </div>
-                                        <div className="flex items-start gap-2.5">
-                                            <span className="text-drago-accent mt-0.5">✦</span>
-                                            <span><strong>Visione & Metodo:</strong> la filosofia di lavoro e come richiedere un preventivo</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Quick Question Pills */}
-                                <div className="mt-6 pt-5 border-t border-white/10">
-                                    <span className="text-xs font-mono text-gray-400 block mb-2.5">Domande rapide suggerite:</span>
-                                    <div className="flex flex-wrap gap-2">
-                                        {[
-                                            "Parlami di Studio Palmisano",
-                                            "Qual è il vostro metodo di lavoro?",
-                                            "Quali tecnologie utilizzate?",
-                                        ].map((prompt, i) => (
-                                            <button
-                                                key={i}
-                                                onClick={() => handleOpenWithPrompt(prompt)}
-                                                className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-sans bg-white/5 hover:bg-white/15 border border-white/10 text-gray-200 hover:text-white transition-all text-left"
-                                            >
-                                                "{prompt}" →
-                                            </button>
-                                        ))}
-                                    </div>
+                                {/* Primary CTA Button: Parla con Argo */}
+                                <div className="mt-8 pt-6 border-t border-white/10">
+                                    <button
+                                        onClick={() => handleOpenWithPrompt('')}
+                                        className="w-full py-4 px-6 rounded-2xl bg-white text-black hover:bg-gray-100 font-sans font-bold text-base sm:text-lg flex items-center justify-between transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.25)] group hover:scale-[1.01]"
+                                    >
+                                        <span className="flex items-center gap-3">
+                                            <MessageSquare className="w-5 h-5 text-black" />
+                                            <span>Parla con Argo</span>
+                                        </span>
+                                        <span className="text-xs sm:text-sm font-mono flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Apri Console →
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
-
-                            {/* Primary CTA Button: Parla con Argo (expands the box) */}
-                            <div className="mt-8 pt-6 border-t border-white/10">
-                                <button
-                                    onClick={() => handleOpenWithPrompt('')}
-                                    className="w-full py-4 px-6 rounded-2xl bg-drago-accent hover:bg-drago-accent/90 text-white font-sans font-bold text-base sm:text-lg flex items-center justify-between transition-all duration-300 shadow-[0_0_25px_rgba(0,115,160,0.5)] group hover:scale-[1.01]"
-                                >
-                                    <span className="flex items-center gap-3">
-                                        <MessageSquare className="w-5 h-5 text-white" />
-                                        <span>Parla con Argo</span>
-                                    </span>
-                                    <span className="text-sm font-mono flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                        Espandi Console →
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
 
                 </div>
             </div>
