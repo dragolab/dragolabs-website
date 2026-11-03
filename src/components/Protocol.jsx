@@ -439,7 +439,7 @@ export default function Protocol() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-0">
 
                         {/* Column 1: Case Autopsy & Story (Appears 2nd on vertical/mobile, 1st on desktop) */}
-                        <div className="order-2 lg:order-1 project-quick-fade lg:col-span-5 p-5 sm:p-7 xl:p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
+                        <div className="order-2 lg:order-1 project-quick-fade lg:col-span-5 p-5 sm:p-7 xl:p-8 flex flex-col justify-start border-t lg:border-t-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
                             <div>
                                 {/* Header / Tags */}
                                 <div className="mb-3">
@@ -480,8 +480,8 @@ export default function Protocol() {
                                     ))}
                                 </div>
 
-                                {/* Dynamic Tab Content with expanded breathing room */}
-                                <div className="min-h-[220px] xl:min-h-[260px]">
+                                {/* Dynamic Tab Content - Full text visibility without internal sliders */}
+                                <div className="pt-1">
                                     {activeTab === 'overview' && (
                                         <div className="space-y-4">
                                             <p className="font-sans text-xs sm:text-sm xl:text-base font-normal text-gray-200 leading-relaxed">
@@ -501,7 +501,7 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'challenge' && (
-                                        <div className="space-y-3 max-h-[270px] xl:max-h-[330px] overflow-y-auto no-scrollbar">
+                                        <div className="space-y-3">
                                             {/* Challenge Box */}
                                             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
                                                 <div className="flex items-center gap-2 mb-1.5">
@@ -531,7 +531,7 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'engineering' && (
-                                        <div className="space-y-2.5 max-h-[270px] xl:max-h-[330px] overflow-y-auto pr-1 no-scrollbar">
+                                        <div className="space-y-2.5">
                                             {project.engineering.map((eng) => (
                                                 <div key={eng.label} className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-drago-accent/30 transition-all">
                                                     <div className="flex items-center gap-1.5 mb-1">
@@ -545,25 +545,6 @@ export default function Protocol() {
                                             ))}
                                         </div>
                                     )}
-                                </div>
-                            </div>
-
-                            {/* Architecture Specifications & Status Bar (Utilizing saved space) */}
-                            <div className="pt-4 mt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                                <div className="flex items-center gap-2 text-gray-300">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                                    </span>
-                                    <span className="font-semibold text-gray-200">{isEn ? 'Tailored Architecture' : 'Architettura Sartoriale'}</span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 font-mono">
-                                        {isEn ? 'Zero Builders' : 'Zero Builder'}
-                                    </span>
-                                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-drago-accent/15 border border-drago-accent/30 text-white font-mono font-semibold">
-                                        {isEn ? 'Production Live' : 'Testato Live'}
-                                    </span>
                                 </div>
                             </div>
                         </div>
