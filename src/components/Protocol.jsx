@@ -316,57 +316,55 @@ export default function Protocol() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 max-w-[1520px] relative z-10 w-full">
 
-                {/* Section Header */}
-                <div className="protocol-reveal flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 lg:mb-4 xl:mb-6 gap-3 sm:gap-4">
-                    <div>
-                        <span className="font-mono text-xs sm:text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2 font-semibold">
-                            {t.protocol.badge}
-                        </span>
-                        <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white tracking-tight">
-                            {t.protocol.title}
-                        </h2>
-                        <p className="mt-1 text-xs sm:text-sm lg:text-sm xl:text-base font-normal text-gray-300 max-w-2xl leading-normal">
-                            {t.protocol.subtitle}
-                        </p>
-                    </div>
+                {/* Section Header - Centered & Cohesive */}
+                <header className="protocol-reveal mx-auto mb-6 sm:mb-8 lg:mb-5 xl:mb-7 max-w-4xl text-center flex flex-col items-center">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
+                        {t.protocol.badge}
+                    </span>
+                    <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
+                        {t.protocol.title}
+                    </h2>
+                    <p className="mt-2 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed text-balance">
+                        {t.protocol.subtitle}
+                    </p>
 
-                    {/* Navigation Pills & Arrow Controls */}
-                    <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
-                        <div className="flex items-center gap-1 p-1 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
+                    {/* Centered Project Selector Pill Bar with Arrow Controls */}
+                    <div className="mt-4 sm:mt-5 flex items-center justify-center gap-2.5 flex-wrap">
+                        <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md shadow-lg">
                             {caseStudies.map((item, idx) => (
                                 <button
                                     key={item.id}
                                     onClick={() => { setCurrentIndex(idx); setActiveTab('overview'); setActiveImageIndex(0); }}
-                                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-150 font-semibold active:scale-95 ${
+                                    className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-mono transition-all duration-150 font-semibold active:scale-95 ${
                                         currentIndex === idx
-                                            ? 'bg-white text-black shadow-sm border border-white/40'
+                                            ? 'bg-white text-black shadow-md border border-white/40'
                                             : 'text-gray-300 hover:text-white hover:bg-white/10'
                                     }`}
                                 >
-                                    <span className="opacity-60 mr-1">{item.number}.</span>
+                                    <span className="opacity-60 mr-1.5">{item.number}.</span>
                                     <span>{item.shortTitle}</span>
                                 </button>
                             ))}
                         </div>
 
-                        <div className="flex items-center gap-1.5 pl-1">
+                        <div className="flex items-center gap-1.5 pl-0.5 sm:pl-1">
                             <button
                                 onClick={prevProject}
-                                aria-label="Progetto precedente"
-                                className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
+                                aria-label={isEn ? "Previous project" : "Progetto precedente"}
+                                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-sm"
                             >
                                 <ChevronLeft className="w-4 h-4" />
                             </button>
                             <button
                                 onClick={nextProject}
-                                aria-label="Prossimo progetto"
-                                className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
+                                aria-label={isEn ? "Next project" : "Prossimo progetto"}
+                                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-sm"
                             >
                                 <ChevronRight className="w-4 h-4" />
                             </button>
                         </div>
                     </div>
-                </div>
+                </header>
 
                 {/* Unified Interactive Showcase Theatre */}
                 <div
