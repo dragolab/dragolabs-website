@@ -15,16 +15,16 @@ export default function Philosophy() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.method-reveal',
-                { y: 35, opacity: 0 },
+                { y: 28, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: 'top 75%',
+                        start: 'top 85%',
                     },
                     y: 0,
                     opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.1,
+                    duration: 0.85,
+                    stagger: 0.08,
                     ease: 'power3.out'
                 }
             );

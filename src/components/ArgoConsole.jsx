@@ -308,12 +308,13 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                     <div>
                         <div className="flex items-center gap-2">
                             <span className="font-sans font-bold text-base sm:text-lg text-white">Argo</span>
-                            {/* Live waveform indicator */}
-                            <div className="flex items-center gap-1 h-4 px-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                                <span className="w-1 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                <span className="w-1 h-3 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                                <span className="w-1 h-2.5 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                                <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-1">Live</span>
+                            {/* Live radar beacon indicator */}
+                            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                                </span>
+                                <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-300 uppercase">Live</span>
                             </div>
                         </div>
                         <span className="text-xs text-gray-400 font-mono">

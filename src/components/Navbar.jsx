@@ -163,18 +163,21 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop links — High tactile click response */}
-                <div className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-7">
+                <div className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
+                        const isContact = link.id === 'contatti';
                         return (
                             <a
                                 key={link.id}
                                 href={`/#${link.id}`}
                                 onClick={(e) => handleNavClick(e, link.id)}
-                                className={`text-[16px] lg:text-[17px] font-bold tracking-tight transition-all duration-200 rounded-full px-3.5 py-1.5 active:scale-90 ${
-                                    isActive
-                                        ? 'text-white bg-white/15 border border-white/25 shadow-sm scale-105'
-                                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                                className={`text-[15px] xl:text-[16px] tracking-tight transition-all duration-200 rounded-full active:scale-95 ${
+                                    isContact
+                                        ? 'font-bold bg-white text-black hover:bg-gray-200 px-4 py-1.5 shadow-sm ml-1.5 xl:ml-3'
+                                        : isActive
+                                            ? 'font-bold text-white bg-white/15 border border-white/25 shadow-sm px-3.5 py-1.5'
+                                            : 'font-semibold text-gray-300 hover:text-white hover:bg-white/10 px-3.5 py-1.5'
                                 }`}
                             >
                                 {link.label}
@@ -183,17 +186,10 @@ export default function Navbar() {
                     })}
                 </div>
 
-                {/* Right side CTA */}
+                {/* Right side Mobile/Tablet Menu Button */}
                 <div className="flex items-center gap-2.5">
-                    <a
-                        href="/#contatti"
-                        onClick={(e) => handleNavClick(e, 'contatti')}
-                        className="hidden md:inline-flex items-center gap-2 bg-drago-accent hover:bg-drago-accent/90 text-white px-6 py-2.5 rounded-full text-sm sm:text-base font-bold transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,115,160,0.5)]"
-                    >
-                        {t.nav.cta}
-                    </a>
                     <button
-                        className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors active:scale-90"
+                        className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors active:scale-90"
                         onClick={() => setMobileOpen((o) => !o)}
                         aria-label={mobileOpen ? 'Chiudi menu' : 'Apri menu'}
                     >
@@ -202,10 +198,10 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* ── Mobile dropdown ── */}
+            {/* ── Mobile/Tablet dropdown ── */}
             <div
                 ref={dropdownRef}
-                className="md:hidden mt-2 rounded-[1.5rem] glass border border-white/10 flex-col overflow-hidden"
+                className="lg:hidden mt-2 rounded-[1.5rem] glass border border-white/10 flex-col overflow-hidden"
                 style={{ display: 'none', height: 0, opacity: 0 }}
             >
                 <div className="flex flex-col py-3 px-3">

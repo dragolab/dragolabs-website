@@ -46,16 +46,16 @@ export default function StaffSection() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.staff-reveal',
-                { y: 35, opacity: 0 },
+                { y: 28, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.12,
+                    duration: 0.85,
+                    stagger: 0.1,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: 'top 75%',
+                        start: 'top 85%',
                     }
                 }
             );
@@ -110,7 +110,6 @@ export default function StaffSection() {
                                     <div>
                                         <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-white">Gianluca Dragone</h3>
                                         <p className="text-base sm:text-lg text-gray-300 font-semibold mt-0.5">{t.staff.gianlucaRole}</p>
-                                        <span className="text-xs sm:text-sm text-gray-400 font-mono mt-1 block">{t.staff.location}</span>
                                     </div>
                                 </div>
                             </div>
@@ -217,10 +216,12 @@ export default function StaffSection() {
                                             <div>
                                                 <div className="flex items-center gap-2">
                                                     <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">Argo</h3>
-                                                    <div className="flex items-center gap-1 h-4 px-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                                                        <span className="w-1 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                                        <span className="w-1 h-3 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                                                        <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider ml-0.5">Live</span>
+                                                    <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]">
+                                                        <span className="relative flex h-2 w-2">
+                                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                                                        </span>
+                                                        <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-300 uppercase">Live</span>
                                                     </div>
                                                 </div>
                                                 <p className="text-sm sm:text-base text-gray-300 font-semibold mt-0.5">{t.staff.argoRole}</p>

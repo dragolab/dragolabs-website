@@ -14,17 +14,30 @@ export default function ServicesSection() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo('.service-card',
-                { y: 35, opacity: 0 },
+            gsap.fromTo('.service-reveal',
+                { y: 28, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.75,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 85%',
+                    }
+                }
+            );
+            gsap.fromTo('.service-card',
+                { y: 32, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.85,
                     stagger: 0.1,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: 'top 75%',
+                        start: 'top 82%',
                     }
                 }
             );
@@ -42,7 +55,7 @@ export default function ServicesSection() {
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Unified Section Header */}
-                <header className="mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
+                <header className="service-reveal mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
                     <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
                         {t.services.badge}
                     </span>

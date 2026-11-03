@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, ShieldCheck, Zap, ChevronLeft, ChevronRight, Laptop, Smartphone, ArrowUpRight, Lock } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Zap, ChevronLeft, ChevronRight, Laptop, Smartphone, ArrowUpRight, Lock, X, Maximize2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -199,7 +199,9 @@ export default function Protocol() {
     const [activeTab, setActiveTab] = useState('overview');
     const [viewMode, setViewMode] = useState('desktop');
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
     const stageRef = useRef(null);
+    const sectionRef = useRef(null);
 
     const caseStudies = useMemo(() => {
         return isEn ? rawCaseStudies.en : rawCaseStudies.it;
@@ -227,6 +229,23 @@ export default function Protocol() {
     const safeImageIndex = activeImageIndex < desktopImages.length ? activeImageIndex : 0;
     const activeDesktopImage = desktopImages[safeImageIndex] || project.image;
 
+    // Lightbox keyboard controls and body lock
+    useEffect(() => {
+        if (!isLightboxOpen) return;
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setIsLightboxOpen(false);
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = originalOverflow;
+        };
+    }, [isLightboxOpen, prevImage, nextImage]);
+
     // Image Preloader: Cache all project screenshots on mount to eliminate image decode lag
     useEffect(() => {
         caseStudies.forEach((p) => {
@@ -250,6 +269,28 @@ export default function Protocol() {
         setActiveImageIndex(0);
     }, [caseStudies.length]);
 
+    // Entrance animation for project cards & text
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo('.protocol-reveal',
+                { y: 28, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.85,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top 85%',
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     // Snappy, lag-free transition: animate only the main content stage swiftly (0.22s) without staggered lag
     useEffect(() => {
         const stage = stageRef.current;
@@ -264,7 +305,7 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" className="relative w-full border-t border-white/10 overflow-hidden bg-[#060a0f] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="progetti" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-[#060a0f] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             <span id="portfolio" className="sr-only" />
 
             {/* Distinct Project Theater Background: Dark Navy Blueprint Glow */}
@@ -274,7 +315,7 @@ export default function Protocol() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 max-w-[1520px] relative z-10 w-full">
 
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 lg:mb-4 xl:mb-6 gap-3 sm:gap-4">
+                <div className="protocol-reveal flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 lg:mb-4 xl:mb-6 gap-3 sm:gap-4">
                     <div>
                         <span className="font-mono text-xs sm:text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2 font-semibold">
                             {t.protocol.badge}
@@ -328,7 +369,7 @@ export default function Protocol() {
                 {/* Unified Interactive Showcase Theatre */}
                 <div
                     ref={stageRef}
-                    className="rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300 w-full"
+                    className="protocol-reveal rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300 w-full"
                 >
                     {/* Theatre Chrome Bar */}
                     <div className="flex flex-wrap items-center justify-between px-5 sm:px-7 py-2.5 sm:py-3 border-b border-white/10 bg-black/80 backdrop-blur-md gap-3">
@@ -350,7 +391,7 @@ export default function Protocol() {
                             <span className="truncate">{project.domain || project.url}</span>
                         </div>
 
-                        {/* Viewport switch: Desktop / Mobile */}
+                        {/* Viewport switch: Desktop / Mobile + Visit Website Button */}
                         <div className="flex items-center gap-2.5">
                             <div className="flex items-center gap-1 bg-white/[0.06] p-1 rounded-full border border-white/15">
                                 <button
@@ -382,21 +423,21 @@ export default function Protocol() {
                                     href={project.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-mono text-gray-200 hover:text-white transition-all"
-                                    title="Open website in new tab"
+                                    className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-white text-black hover:bg-gray-100 font-sans text-xs font-bold transition-all shadow-md hover:scale-105 active:scale-95 flex-shrink-0"
+                                    title={t.protocol.visitWebsite}
                                 >
                                     <span>{t.protocol.visitWebsite}</span>
-                                    <ExternalLink className="w-3 h-3" />
+                                    <ExternalLink className="w-3.5 h-3.5 text-black" />
                                 </a>
                             )}
                         </div>
                     </div>
 
-                    {/* Stage Grid: 2 Columns on desktop */}
+                    {/* Stage Grid: 2 Columns on desktop (Image first on vertical/mobile) */}
                     <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-0">
 
-                        {/* Column 1: Case Autopsy & Story (Fast hardware-accelerated fade) */}
-                        <div className="project-quick-fade lg:col-span-5 p-5 sm:p-7 xl:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
+                        {/* Column 1: Case Autopsy & Story (Appears 2nd on vertical/mobile, 1st on desktop) */}
+                        <div className="order-2 lg:order-1 project-quick-fade lg:col-span-5 p-5 sm:p-7 xl:p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
                             <div>
                                 {/* Header / Tags */}
                                 <div className="mb-3">
@@ -504,25 +545,10 @@ export default function Protocol() {
                                     )}
                                 </div>
                             </div>
-
-                            {/* Action Bar */}
-                            <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-end">
-                                {project.url && (
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black hover:bg-gray-100 font-sans text-xs sm:text-sm font-bold transition-all hover:scale-105 shadow-md active:scale-95"
-                                    >
-                                        <span>{t.protocol.visitWebsite}</span>
-                                        <ExternalLink className="w-3.5 h-3.5" />
-                                    </a>
-                                )}
-                            </div>
                         </div>
 
-                        {/* Column 2: Cinematic Viewport Screen */}
-                        <div className="project-quick-fade lg:col-span-7 p-4 sm:p-6 lg:p-4 xl:p-8 flex flex-col items-center justify-center bg-black/60 relative overflow-hidden will-change-[opacity,transform]">
+                        {/* Column 2: Cinematic Viewport Screen (Appears 1st on vertical/mobile, 2nd on desktop) */}
+                        <div className="order-1 lg:order-2 project-quick-fade lg:col-span-7 p-4 sm:p-6 lg:p-4 xl:p-8 flex flex-col items-center justify-center bg-black/60 relative overflow-hidden will-change-[opacity,transform]">
                             
                             {/* Desktop macOS Browser Window Frame */}
                             {viewMode === 'desktop' && (
@@ -558,15 +584,24 @@ export default function Protocol() {
                                             )}
                                         </div>
 
-                                        {/* Viewport - Full Natural Proportions without any margin cropping */}
-                                        <div className="relative w-full flex items-center justify-center bg-[#07090c] p-2 sm:p-3 overflow-hidden rounded-b-2xl">
+                                        {/* Viewport - Click to Open Fullscreen Lightbox */}
+                                        <div
+                                            onClick={() => setIsLightboxOpen(true)}
+                                            className="relative w-full flex items-center justify-center bg-[#07090c] p-2 sm:p-3 overflow-hidden rounded-b-2xl cursor-zoom-in group/screen"
+                                            title={isEn ? "Click to view full screen" : "Clicca per ingrandire a tutto schermo"}
+                                        >
                                             <img
                                                 key={activeDesktopImage}
                                                 src={activeDesktopImage}
                                                 alt={`${project.title} - Drago Labs`}
-                                                className="w-full h-auto max-h-[290px] sm:max-h-[340px] lg:max-h-[320px] xl:max-h-[390px] 2xl:max-h-[460px] object-contain rounded-lg block shadow-lg transition-opacity duration-200"
+                                                className="w-full h-auto max-h-[290px] sm:max-h-[340px] lg:max-h-[320px] xl:max-h-[390px] 2xl:max-h-[460px] object-contain rounded-lg block shadow-lg transition-transform duration-300 group-hover/screen:scale-[1.01]"
                                                 loading="eager"
                                             />
+                                            {/* Subtle zoom hint on hover */}
+                                            <div className="absolute bottom-3.5 right-3.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono opacity-0 group-hover/screen:opacity-100 transition-opacity flex items-center gap-1.5 pointer-events-none shadow-xl">
+                                                <Maximize2 className="w-3 h-3 text-drago-accent" />
+                                                <span>{isEn ? "Zoom" : "Ingrandisci"}</span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -574,7 +609,7 @@ export default function Protocol() {
                                     <div className="mt-3 flex items-center justify-between w-full px-2">
                                         <div className="flex items-center gap-2">
                                             <span className="text-xs font-mono text-gray-400 font-medium">
-                                                {isEn ? 'Preview' : 'Schermata'} {activeImageIndex + 1} / {desktopImages.length}
+                                                {isEn ? 'Preview' : 'Schermata'} {safeImageIndex + 1} / {desktopImages.length}
                                             </span>
                                             {desktopImages.length > 1 && (
                                                 <div className="flex items-center gap-1.5 ml-2">
@@ -584,7 +619,7 @@ export default function Protocol() {
                                                             onClick={() => setActiveImageIndex(dotIdx)}
                                                             aria-label={`Schermata ${dotIdx + 1}`}
                                                             className={`h-1.5 rounded-full transition-all ${
-                                                                activeImageIndex === dotIdx ? 'w-5 bg-drago-accent' : 'w-1.5 bg-white/20 hover:bg-white/40'
+                                                                safeImageIndex === dotIdx ? 'w-5 bg-drago-accent' : 'w-1.5 bg-white/20 hover:bg-white/40'
                                                             }`}
                                                         />
                                                     ))}
@@ -643,7 +678,11 @@ export default function Protocol() {
                                             </div>
 
                                             {/* Screen Viewport with smooth scroll glide */}
-                                            <div className="relative w-full flex-1 overflow-hidden my-1">
+                                            <div
+                                                onClick={() => setIsLightboxOpen(true)}
+                                                className="relative w-full flex-1 overflow-hidden my-1 cursor-zoom-in"
+                                                title={isEn ? "Click to view full screen" : "Clicca per ingrandire a tutto schermo"}
+                                            >
                                                 <img
                                                     key={project.id + '-mobile'}
                                                     src={project.image}
@@ -698,6 +737,99 @@ export default function Protocol() {
                 </div>
 
             </div>
+
+            {/* ── Fullscreen Lightbox Modal ── */}
+            {isLightboxOpen && (
+                <div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${project.title} - Fullscreen View`}
+                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-between p-4 sm:p-6 select-none animate-fadeIn"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setIsLightboxOpen(false);
+                    }}
+                >
+                    {/* Top bar: Title + counter + close */}
+                    <div className="w-full max-w-6xl flex items-center justify-between z-10 py-2 border-b border-white/10">
+                        <div className="flex items-center gap-3">
+                            <span className="text-white font-bold text-sm sm:text-base">{project.title}</span>
+                            <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-gray-300">
+                                {safeImageIndex + 1} / {desktopImages.length}
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            {project.url && (
+                                <a
+                                    href={project.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-xs font-mono text-white transition-colors"
+                                >
+                                    <span>{t.protocol.visitWebsite}</span>
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                            )}
+                            <button
+                                onClick={() => setIsLightboxOpen(false)}
+                                aria-label={isEn ? "Close fullscreen" : "Chiudi tutto schermo"}
+                                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Center: Image + side arrows */}
+                    <div
+                        className="relative w-full flex-1 flex items-center justify-center my-3 max-h-[82vh]"
+                        onClick={(e) => {
+                            if (e.target === e.currentTarget) setIsLightboxOpen(false);
+                        }}
+                    >
+                        {desktopImages.length > 1 && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                                aria-label={isEn ? "Previous image" : "Immagine precedente"}
+                                className="absolute left-2 sm:left-6 z-20 w-12 h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95"
+                            >
+                                <ChevronLeft className="w-6 h-6" />
+                            </button>
+                        )}
+
+                        <img
+                            src={desktopImages[safeImageIndex]}
+                            alt={`${project.title} - Ingrandimento`}
+                            className="max-h-[80vh] max-w-[92vw] sm:max-w-[85vw] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.9)] border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+
+                        {desktopImages.length > 1 && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                                aria-label={isEn ? "Next image" : "Immagine successiva"}
+                                className="absolute right-2 sm:right-6 z-20 w-12 h-12 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all shadow-2xl hover:scale-110 active:scale-95"
+                            >
+                                <ChevronRight className="w-6 h-6" />
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Bottom thumbnail / indicators bar */}
+                    <div className="w-full max-w-md flex items-center justify-center gap-2 py-2">
+                        {desktopImages.length > 1 && desktopImages.map((_, dotIdx) => (
+                            <button
+                                key={dotIdx}
+                                onClick={() => setActiveImageIndex(dotIdx)}
+                                className={`h-2 rounded-full transition-all ${
+                                    safeImageIndex === dotIdx ? 'w-8 bg-drago-accent' : 'w-2 bg-white/25 hover:bg-white/50'
+                                }`}
+                                aria-label={`Slide ${dotIdx + 1}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
