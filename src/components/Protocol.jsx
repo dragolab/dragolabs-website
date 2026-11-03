@@ -39,8 +39,38 @@ const rawCaseStudies = {
             ]
         },
         {
-            id: 'vistamare',
+            id: 'workflow-multiagente',
             number: '02',
+            title: 'Ecosistema Autonomo Multi-Agente',
+            shortTitle: 'Workflow Multi-Agente',
+            type: 'Sistema AI & Orchestrazione',
+            year: '2026',
+            url: 'https://dragolabs.vercel.app/#servizi',
+            domain: 'workflow.dragolabs.internal',
+            image: '/img/optimized/multiagent-workflow-1600.jpg',
+            imageSet: '/img/optimized/multiagent-workflow-1600.jpg 1600w',
+            images: [
+                '/img/optimized/multiagent-workflow-1600.jpg'
+            ],
+            summary: 'Architettura ad agenti autonomi cooperativi per il monitoraggio fonti, analisi strategica, redazione documentale e supervisione Human-in-the-Loop.',
+            challenge: 'La gestione di flussi operativi complessi (monitoraggio costante di fonti eterogenee, elaborazione di sintesi strategiche, redazione di bozze e smistamento comunicazioni) genera colli di bottiglia e un enorme dispendio di tempo per i professionisti, con elevato rischio di errori e ritardi se gestiti manualmente o con automazioni lineari rigide.',
+            solution: 'Ho ingegnerizzato un’infrastruttura modulare guidata da un Orchestratore Centrale e 6 sub-agenti specializzati con memoria persistente isolata (SOUL/MEMORY), routing asimmetrico dei modelli LLM in base al costo computazionale, un rigoroso gatekeeper Human-in-the-Loop (nessun output esterno viene pubblicato senza consenso esplicito) e telemetria locale su SQLite.',
+            engineering: [
+                { label: 'Orchestrazione Asimmetrica', desc: 'Routing dinamico dei modelli: task leggeri affidati a modelli veloci a basso costo, sintesi complesse e ragionamento strategico instradati su modelli frontier ad alta capacità.' },
+                { label: 'Human-in-the-Loop Rigoroso', desc: 'Protocollo di sicurezza a permessi bloccati: pubblicazioni, invio comunicazioni e modifiche operative richiedono validazione umana esplicita con preview interattiva.' },
+                { label: 'Memoria & Isolamento Agenti', desc: 'Ogni sub-agente possiede un perimetro operativo isolato con file SOUL.md e log cronologici MEMORY.md, prevenendo contaminazioni di contesto e allucinazioni cross-task.' },
+                { label: 'Telemetria & Manutenzione Zero-Leak', desc: 'Database SQLite locale per tracciamento eventi, vacuum e rotazione mensile dei log, audit notturno di sicurezza e Mission Control via Server-Sent Events.' }
+            ],
+            metrics: [
+                { label: 'Risparmio Tempo Operativo', value: '-85% Carico Routine' },
+                { label: 'Sicurezza & Controllo', value: '100% Validato Human-in-the-Loop' },
+                { label: 'Sub-Agenti Cooperativi', value: '6 Agenti Specializzati' },
+                { label: 'Tracciabilità Eventi', value: 'SQLite Zero-Leak' },
+            ]
+        },
+        {
+            id: 'vistamare',
+            number: '03',
             title: 'Casa Vacanze Vistamare',
             shortTitle: 'Casa Vistamare',
             type: 'Web App',
@@ -66,36 +96,6 @@ const rawCaseStudies = {
                 { label: 'Tempo di risposta', value: '< 0.5s' },
                 { label: 'Mobile Optimization', value: '100% Fluido' },
                 { label: 'Costi Server Fissi', value: '0€ / mese' },
-            ]
-        },
-        {
-            id: 'aunpasso-dalfaro',
-            number: '03',
-            title: 'A Un Passo Dal Faro',
-            shortTitle: 'A Un Passo Dal Faro',
-            type: 'Sito Web',
-            year: '2024 / 2025',
-            url: 'https://dragolabs.vercel.app',
-            domain: 'aunpassodalfaro.it',
-            image: '/img/optimized/aunpasso-dalfaro-1200.webp',
-            imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
-            images: [
-                '/img/optimized/aunpasso-dalfaro-1200.webp'
-            ],
-            summary: 'Piattaforma di presentazione territoriale con georeferenziazione, tariffe trasparenti e contatto immediato.',
-            challenge: 'Farsi trovare online da viaggiatori italiani e internazionali con connessioni mobili 4G/5G in mobilità, comunicando la vicinanza strategica al faro e alle spiagge pugliesi senza tempi d’attesa.',
-            solution: 'Ho impostato una narrazione visiva pulita e leggera, mappe interattive dei luoghi caratteristici, tariffe chiare e contatto diretto per prenotare il soggiorno.',
-            engineering: [
-                { label: 'Codice Ultra Leggero', desc: 'Struttura responsive ultra-essenziale progettata per una navigazione istantanea da smartphone.' },
-                { label: 'Local SEO & Maps', desc: 'Integrazione schema turistico e geolocalizzazione per comparire nelle ricerche Google Maps locali.' },
-                { label: 'Esperienza Utente Immediata', desc: 'Accesso alle informazioni su check-in, servizi e tariffe stagionali in un solo colpo d’occhio.' },
-                { label: 'Manutenzione Continuativa', desc: 'Monitoraggio continuativo e aggiornamenti tecnici gestiti direttamente da me nel laboratorio.' }
-            ],
-            metrics: [
-                { label: 'Target Connessioni', value: 'Ottimizzato 4G/5G' },
-                { label: 'Tempo di lettura', value: '< 1 min' },
-                { label: 'SEO Territoriale', value: 'Indicizzato Maps' },
-                { label: 'Gestione Tecnica', value: 'Zero Pensieri' },
             ]
         }
     ],
@@ -131,8 +131,38 @@ const rawCaseStudies = {
             ]
         },
         {
-            id: 'vistamare',
+            id: 'workflow-multiagente',
             number: '02',
+            title: 'Autonomous Multi-Agent Ecosystem',
+            shortTitle: 'Multi-Agent Workflow',
+            type: 'AI System & Orchestration',
+            year: '2026',
+            url: 'https://dragolabs.vercel.app/#servizi',
+            domain: 'workflow.dragolabs.internal',
+            image: '/img/optimized/multiagent-workflow-1600.jpg',
+            imageSet: '/img/optimized/multiagent-workflow-1600.jpg 1600w',
+            images: [
+                '/img/optimized/multiagent-workflow-1600.jpg'
+            ],
+            summary: 'Cooperative autonomous multi-agent architecture for continuous source monitoring, strategic synthesis, automated drafts, and strict Human-in-the-Loop governance.',
+            challenge: 'Managing complex knowledge workflows—monitoring diverse feeds, generating strategic syntheses, drafting specialized publications, and triaging multi-channel communications—creates massive operational bottlenecks and manual drag, which legacy linear scripts cannot handle flexibly.',
+            solution: 'I engineered a distributed multi-agent system driven by a Central Orchestrator and 6 persistent specialized sub-agents with isolated memory states (SOUL/MEMORY), cost-optimized model routing, an uncompromising Human-in-the-Loop approval gatekeeper, and local SQLite telemetry.',
+            engineering: [
+                { label: 'Asymmetric Model Routing', desc: 'Dynamic model assignment: routine triage tasks run on fast cost-efficient models, while complex cross-source reasoning routes to high-capacity frontier models.' },
+                { label: 'Human-in-the-Loop Gatekeeper', desc: 'Zero-trust authorization protocol: communications, updates, and external publications mandate explicit human approval via interactive staging.' },
+                { label: 'Isolated Persistent Memory', desc: 'Strict sandbox boundaries for each agent using isolated SOUL.md definitions and rolling MEMORY.md logs, eliminating context contamination and hallucinations.' },
+                { label: 'Local Telemetry & Zero-Leak Audits', desc: 'SQLite logging with automated log vacuum/rotation, scheduled nightly security scans, and live Mission Control streaming via Server-Sent Events.' }
+            ],
+            metrics: [
+                { label: 'Operational Time Saved', value: '-85% Routine Load' },
+                { label: 'Security & Control', value: '100% Human-in-the-Loop' },
+                { label: 'Cooperative Sub-Agents', value: '6 Specialized Agents' },
+                { label: 'Event Traceability', value: 'Zero-Leak SQLite' },
+            ]
+        },
+        {
+            id: 'vistamare',
+            number: '03',
             title: 'Casa Vacanze Vistamare',
             shortTitle: 'Casa Vistamare',
             type: 'Web App',
@@ -158,36 +188,6 @@ const rawCaseStudies = {
                 { label: 'Response Time', value: '< 0.5s' },
                 { label: 'Mobile Optimization', value: '100% Fluid' },
                 { label: 'Fixed Server Cost', value: '€0 / month' },
-            ]
-        },
-        {
-            id: 'aunpasso-dalfaro',
-            number: '03',
-            title: 'A Un Passo Dal Faro',
-            shortTitle: 'A Un Passo Dal Faro',
-            type: 'Website',
-            year: '2024 / 2025',
-            url: 'https://dragolabs.vercel.app',
-            domain: 'aunpassodalfaro.it',
-            image: '/img/optimized/aunpasso-dalfaro-1200.webp',
-            imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
-            images: [
-                '/img/optimized/aunpasso-dalfaro-1200.webp'
-            ],
-            summary: 'Territorial presentation platform with geolocation, transparent seasonal pricing, and immediate contact.',
-            challenge: 'Reaching domestic and international travelers browsing on 4G/5G mobile connections, communicating strategic proximity to the lighthouse and beaches without waiting times.',
-            solution: 'I designed a clean, featherlight visual narrative, interactive area maps, clear pricing, and direct contact to book the stay.',
-            engineering: [
-                { label: 'Ultralight Codebase', desc: 'Ultra-essential responsive structure designed for instantaneous mobile browsing on the move.' },
-                { label: 'Local SEO & Maps', desc: 'Tourism schema integration and geolocation to appear prominently on local Google Maps searches.' },
-                { label: 'Instant UX', desc: 'Clear access to check-in details, amenities, and seasonal rates at a single glance.' },
-                { label: 'Ongoing Maintenance', desc: 'Continuous monitoring and technical updates handled directly by me in the lab.' }
-            ],
-            metrics: [
-                { label: 'Target Connections', value: '4G/5G Optimized' },
-                { label: 'Reading Time', value: '< 1 min' },
-                { label: 'Local SEO', value: 'Maps Indexed' },
-                { label: 'Technical Care', value: 'Zero Worries' },
             ]
         }
     ]
