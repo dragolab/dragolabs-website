@@ -46,13 +46,15 @@ export default function StaffSection() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.staff-reveal',
-                { y: 28, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    stagger: 0.1,
-                    ease: 'power3.out',
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: 'top 85%',
@@ -95,7 +97,7 @@ export default function StaffSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
                     {/* Column 1: Gianluca Dragone */}
-                    <div className={`staff-reveal ${isChatExpanded ? 'lg:col-span-12 mb-4' : 'lg:col-span-7'} rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 xl:p-12 flex flex-col justify-between hover:border-white/25 transition-all duration-300`}>
+                    <div className={`staff-reveal ${isChatExpanded ? 'lg:col-span-12 mb-4' : 'lg:col-span-7'} rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 xl:p-12 flex flex-col justify-between hover:border-white/25 transition-[border-color,box-shadow] duration-300 will-change-[transform,opacity]`}>
                         <div>
                             {/* Profile Header */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-7 pb-6 border-b border-white/10">
@@ -198,7 +200,7 @@ export default function StaffSection() {
                                 }}
                             />
                         ) : (
-                            <div className="rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-all duration-300 h-full min-h-[640px] relative overflow-hidden group">
+                            <div className="rounded-[2.4rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-[border-color,box-shadow] duration-300 h-full min-h-[640px] relative overflow-hidden group">
                                 
                                 {/* Ambient glow */}
                                 <div className="absolute -top-24 -right-24 w-52 h-52 bg-drago-accent/15 rounded-full blur-3xl pointer-events-none group-hover:bg-drago-accent/25 transition-all duration-700" />

@@ -273,13 +273,15 @@ export default function Protocol() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.protocol-reveal',
-                { y: 28, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    stagger: 0.1,
-                    ease: 'power3.out',
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: 'top 85%',
@@ -369,7 +371,7 @@ export default function Protocol() {
                 {/* Unified Interactive Showcase Theatre */}
                 <div
                     ref={stageRef}
-                    className="protocol-reveal rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300 w-full"
+                    className="protocol-reveal rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-[border-color,box-shadow] duration-300 will-change-[transform,opacity] w-full"
                 >
                     {/* Theatre Chrome Bar */}
                     <div className="flex flex-wrap items-center justify-between px-5 sm:px-7 py-2.5 sm:py-3 border-b border-white/10 bg-black/80 backdrop-blur-md gap-3">
@@ -478,18 +480,18 @@ export default function Protocol() {
                                     ))}
                                 </div>
 
-                                {/* Dynamic Tab Content */}
-                                <div className="min-h-[160px] xl:min-h-[190px]">
+                                {/* Dynamic Tab Content with expanded breathing room */}
+                                <div className="min-h-[220px] xl:min-h-[260px]">
                                     {activeTab === 'overview' && (
-                                        <div className="space-y-3">
-                                            <p className="font-sans text-xs sm:text-sm font-normal text-gray-200 leading-relaxed">
+                                        <div className="space-y-4">
+                                            <p className="font-sans text-xs sm:text-sm xl:text-base font-normal text-gray-200 leading-relaxed">
                                                 {project.solution}
                                             </p>
-                                            <div className="grid grid-cols-2 gap-2.5 pt-1">
+                                            <div className="grid grid-cols-2 gap-3 pt-1">
                                                 {project.metrics.map((m) => (
-                                                    <div key={m.label} className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                    <div key={m.label} className="p-3 sm:p-3.5 xl:p-4 rounded-xl bg-white/[0.035] border border-white/10 hover:border-drago-accent/40 transition-colors shadow-sm">
                                                         <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 block font-medium">{m.label}</span>
-                                                        <span className="text-base sm:text-xl font-mono font-bold text-white mt-1 block tracking-tight">
+                                                        <span className="text-lg sm:text-2xl font-mono font-bold text-white mt-1 block tracking-tight">
                                                             {m.value}
                                                         </span>
                                                     </div>
@@ -499,23 +501,23 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'challenge' && (
-                                        <div className="space-y-2.5 max-h-[190px] xl:max-h-[230px] overflow-y-auto no-scrollbar">
+                                        <div className="space-y-3 max-h-[270px] xl:max-h-[330px] overflow-y-auto no-scrollbar">
                                             {/* Challenge Box */}
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                <div className="flex items-center gap-2 mb-1">
+                                            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                <div className="flex items-center gap-2 mb-1.5">
                                                     <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.5)]" />
                                                     <span className="font-mono text-xs uppercase tracking-widest text-amber-300 font-bold">
                                                         {t.protocol.challengeLabel}
                                                     </span>
                                                 </div>
-                                                <p className="font-sans text-xs sm:text-sm font-normal text-gray-300 leading-relaxed">
+                                                <p className="font-sans text-xs sm:text-sm font-normal text-gray-200 leading-relaxed">
                                                     {project.challenge}
                                                 </p>
                                             </div>
 
                                             {/* Solution Box */}
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                <div className="flex items-center gap-2 mb-1">
+                                            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                <div className="flex items-center gap-2 mb-1.5">
                                                     <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
                                                     <span className="font-mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
                                                         {t.protocol.solutionLabel}
@@ -529,20 +531,39 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'engineering' && (
-                                        <div className="space-y-2 max-h-[190px] xl:max-h-[230px] overflow-y-auto pr-1 no-scrollbar">
+                                        <div className="space-y-2.5 max-h-[270px] xl:max-h-[330px] overflow-y-auto pr-1 no-scrollbar">
                                             {project.engineering.map((eng) => (
-                                                <div key={eng.label} className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                <div key={eng.label} className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-drago-accent/30 transition-all">
                                                     <div className="flex items-center gap-1.5 mb-1">
                                                         <Zap className="w-3.5 h-3.5 text-drago-accent" />
                                                         <span className="font-sans font-bold text-xs sm:text-sm text-white">{eng.label}</span>
                                                     </div>
-                                                    <p className="font-sans text-xs sm:text-xs text-gray-300 leading-relaxed font-normal">
+                                                    <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
                                                         {eng.desc}
                                                     </p>
                                                 </div>
                                             ))}
                                         </div>
                                     )}
+                                </div>
+                            </div>
+
+                            {/* Architecture Specifications & Status Bar (Utilizing saved space) */}
+                            <div className="pt-4 mt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                                <div className="flex items-center gap-2 text-gray-300">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                                    </span>
+                                    <span className="font-semibold text-gray-200">{isEn ? 'Tailored Architecture' : 'Architettura Sartoriale'}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 font-mono">
+                                        {isEn ? 'Zero Builders' : 'Zero Builder'}
+                                    </span>
+                                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-drago-accent/15 border border-drago-accent/30 text-white font-mono font-semibold">
+                                        {isEn ? 'Production Live' : 'Testato Live'}
+                                    </span>
                                 </div>
                             </div>
                         </div>

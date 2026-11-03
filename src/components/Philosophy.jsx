@@ -15,7 +15,7 @@ export default function Philosophy() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.method-reveal',
-                { y: 28, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: sectionRef.current,
@@ -23,9 +23,11 @@ export default function Philosophy() {
                     },
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    stagger: 0.08,
-                    ease: 'power3.out'
+                    duration: 0.65,
+                    stagger: 0.07,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                 }
             );
         }, sectionRef);
@@ -61,7 +63,7 @@ export default function Philosophy() {
                         return (
                             <div
                                 key={s.num}
-                                className="method-reveal group rounded-[2rem] border border-white/15 bg-black/40 p-7 xl:p-9 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-drago-accent hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(0,115,160,0.25)] flex flex-col justify-between"
+                                className="method-reveal group rounded-[2rem] border border-white/15 bg-black/40 p-7 xl:p-9 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-drago-accent hover:shadow-[0_0_35px_rgba(0,115,160,0.25)] flex flex-col justify-between will-change-[transform,opacity]"
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-6">

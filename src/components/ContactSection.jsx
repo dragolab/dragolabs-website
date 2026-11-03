@@ -164,7 +164,7 @@ export default function ContactSection() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.contact-reveal', 
-                { y: 28, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     scrollTrigger: {
                         trigger: containerRef.current,
@@ -172,9 +172,11 @@ export default function ContactSection() {
                     },
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    stagger: 0.1,
-                    ease: 'power3.out',
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                 }
             );
         }, containerRef);
@@ -208,7 +210,7 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
                     {/* ── LEFT: Form ── */}
-                    <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-all">
+                    <div className="contact-reveal lg:col-span-7 rounded-[2rem] border border-white/15 bg-black/40 shadow-2xl backdrop-blur-xl p-7 sm:p-10 hover:border-drago-accent/60 transition-[border-color,box-shadow] duration-300 will-change-[transform,opacity]">
                         {status === 'success' ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center gap-4" role="status" aria-live="polite">
                                 <div className="w-16 h-16 rounded-full bg-drago-accent/20 border border-drago-accent/40 flex items-center justify-center mb-2">

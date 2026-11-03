@@ -15,12 +15,14 @@ export default function ServicesSection() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo('.service-reveal',
-                { y: 28, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    ease: 'power3.out',
+                    duration: 0.65,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: 'top 85%',
@@ -28,13 +30,15 @@ export default function ServicesSection() {
                 }
             );
             gsap.fromTo('.service-card',
-                { y: 32, opacity: 0 },
+                { y: 28, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.85,
-                    stagger: 0.1,
-                    ease: 'power3.out',
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    force3D: true,
+                    clearProps: 'transform,opacity',
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: 'top 82%',
@@ -74,7 +78,7 @@ export default function ServicesSection() {
                         return (
                             <article
                                 key={title}
-                                className="service-card group flex flex-col justify-between rounded-[2.2rem] border border-white/15 bg-black/40 p-8 xl:p-10 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-drago-accent hover:shadow-[0_0_30px_rgba(0,115,160,0.25)]"
+                                className="service-card group flex flex-col justify-between rounded-[2.2rem] border border-white/15 bg-black/40 p-8 xl:p-10 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-drago-accent hover:shadow-[0_0_30px_rgba(0,115,160,0.25)] will-change-[transform,opacity]"
                             >
                                 <div>
                                     <div className="w-14 h-14 rounded-2xl bg-drago-accent/15 border border-drago-accent/40 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-drago-accent/25 transition-all text-white">
