@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Github, Instagram, Mail, GraduationCap, Code2, Bot, MessageSquare, ArrowRight } from 'lucide-react';
+import { Linkedin, Github, Instagram, Mail, Bot, MessageSquare, ArrowRight } from 'lucide-react';
 import ArgoConsole from './ArgoConsole';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -20,7 +20,7 @@ const socials = [
     { href: 'https://www.instagram.com/gianl.drag/', label: 'Instagram', colorClass: 'hover:text-[#E1306C]', icon: <Instagram className="w-5 h-5" /> },
 ];
 
-const skills = ['React 19', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Vite', 'Python', 'C', 'Java', 'Git'];
+const skills = ['React 19', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Edge Serverless', 'Agenti AI Autonomi'];
 
 export default function StaffSection() {
     const sectionRef = useRef(null);
@@ -87,9 +87,6 @@ export default function StaffSection() {
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Section Header */}
                 <header className="staff-reveal mx-auto mb-8 sm:mb-10 lg:mb-6 xl:mb-10 max-w-4xl text-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
-                        {t.staff.badge}
-                    </span>
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.staff.title}
                     </h2>
@@ -144,18 +141,6 @@ export default function StaffSection() {
                                         <>Il mio approccio è guidato da una regola semplice: <em>zero fuffa, codice pulito e architetture scalabili</em> progettate intorno alle reali necessità del cliente.</>
                                     )}
                                 </p>
-                            </div>
-
-                            {/* Background Highlights */}
-                            <div className="mt-7 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
-                                    <GraduationCap className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
-                                    <span>{t.staff.highlight1}</span>
-                                </div>
-                                <div className="flex items-start gap-3.5 text-sm sm:text-base text-gray-200 bg-white/[0.03] p-4 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
-                                    <Code2 className="w-5 h-5 text-drago-accent flex-shrink-0 mt-0.5" />
-                                    <span>{t.staff.highlight2}</span>
-                                </div>
                             </div>
 
                             {/* Tech Stack Chips */}

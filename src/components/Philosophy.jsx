@@ -45,9 +45,6 @@ export default function Philosophy() {
                 
                 {/* Section Header */}
                 <header className="method-reveal mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
-                        {t.philosophy.badge}
-                    </span>
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.philosophy.title}
                     </h2>

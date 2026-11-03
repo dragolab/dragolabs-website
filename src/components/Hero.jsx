@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ArrowDown, Sparkles, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import HeroAtmosphere from './HeroAtmosphere';
 
@@ -88,19 +88,6 @@ export default function Hero() {
                             {t.hero.startProject}
                             <ArrowUpRight className="w-5 h-5 text-drago-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </span>
-                    </a>
-                </div>
-
-                {/* Interactive Argo prompt badge */}
-                <div className="stagger-text pt-7 sm:pt-8">
-                    <a
-                        href="#chi-sono"
-                        className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 transition-all text-sm sm:text-base font-mono text-gray-200 hover:text-white hover:border-drago-accent/60"
-                    >
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <Sparkles className="w-4 h-4 text-drago-accent group-hover:rotate-12 transition-transform" />
-                        <span>{t.hero.argoBadge}</span>
-                        <span className="text-drago-accent font-bold group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                 </div>
             </div>

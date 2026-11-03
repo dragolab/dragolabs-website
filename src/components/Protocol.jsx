@@ -320,9 +320,6 @@ export default function Protocol() {
 
                 {/* Section Header - Centered & Cohesive */}
                 <header className="protocol-reveal mx-auto mb-6 sm:mb-8 lg:mb-5 xl:mb-7 max-w-4xl text-center flex flex-col items-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
-                        {t.protocol.badge}
-                    </span>
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.protocol.title}
                     </h2>
