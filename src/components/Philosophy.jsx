@@ -36,7 +36,7 @@ export default function Philosophy() {
     }, []);
 
     return (
-        <section id="metodo" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-[#070b12] py-16 sm:py-20 lg:py-12 xl:py-16 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="metodo" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-[#070b12] py-16 sm:py-20 lg:py-24 xl:py-28 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             {/* Distinct Philosophy Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1400px] h-[55vh] bg-blue-500/5 blur-[150px] pointer-events-none" />

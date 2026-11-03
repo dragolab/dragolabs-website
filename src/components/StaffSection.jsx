@@ -72,7 +72,7 @@ export default function StaffSection() {
     };
 
     return (
-        <section id="chi-sono" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#050f14] via-[#090b16] to-[#060810] py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="chi-sono" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#050f14] via-[#090b16] to-[#060810] py-16 sm:py-20 lg:py-24 xl:py-28 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
             {/* Distinct Dual-Core Command Station Background */}
             <div className="absolute top-1/4 left-[5%] w-[45vw] max-w-[700px] h-[45vw] max-h-[700px] bg-[radial-gradient(circle,rgba(226,232,240,0.05),transparent_65%)] blur-2xl pointer-events-none" />
@@ -86,11 +86,11 @@ export default function StaffSection() {
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Section Header */}
-                <header className="staff-reveal mx-auto mb-8 sm:mb-10 lg:mb-6 xl:mb-10 max-w-4xl text-center">
+                <header className="staff-reveal mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.staff.title}
                     </h2>
-                    <p className="mt-2 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    <p className="mt-2.5 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
                         {t.staff.subtitle}
                     </p>
                 </header>

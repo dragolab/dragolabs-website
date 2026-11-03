@@ -319,7 +319,7 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#05060d] via-[#05111f] to-[#07131e] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="progetti" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#05060d] via-[#05111f] to-[#07131e] py-16 sm:py-20 lg:py-28 xl:py-36 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             <span id="portfolio" className="sr-only" />
 
             {/* Distinct Project Theater Background: High-Tech Blueprint Spotlight */}
@@ -328,14 +328,14 @@ export default function Protocol() {
             <div className="absolute -top-32 right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,229,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,229,255,0.025)_1px,transparent_1px)] [background-size:48px_48px] pointer-events-none" />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 max-w-[1520px] relative z-10 w-full">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
 
                 {/* Section Header - Centered & Cohesive */}
-                <header className="protocol-reveal mx-auto mb-6 sm:mb-8 lg:mb-5 xl:mb-7 max-w-4xl text-center flex flex-col items-center">
+                <header className="protocol-reveal mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center flex flex-col items-center">
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.protocol.title}
                     </h2>
-                    <p className="mt-2 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed text-balance">
+                    <p className="mt-2.5 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed text-balance">
                         {t.protocol.subtitle}
                     </p>
 

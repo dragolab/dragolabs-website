@@ -185,7 +185,7 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060810] via-[#050b14] to-[#020306] py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="contatti" ref={containerRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060810] via-[#050b14] to-[#020306] py-16 sm:py-20 lg:py-24 xl:py-28 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
             {/* Distinct Contact Background: Atmospheric Horizon Terminal */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[65vh] bg-[radial-gradient(ellipse_90%_65%_at_50%_100%,rgba(0,229,255,0.18),rgba(0,115,160,0.08)_45%,transparent_75%)] pointer-events-none" />
@@ -196,11 +196,11 @@ export default function ContactSection() {
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
 
                 {/* ── Header ── */}
-                <div className="contact-reveal mx-auto mb-8 sm:mb-10 lg:mb-6 xl:mb-10 max-w-4xl text-center">
+                <div className="contact-reveal mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
                     <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.contact.title}
                     </h2>
-                    <p className="mt-2 font-sans text-base sm:text-xl lg:text-lg xl:text-xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
+                    <p className="mt-2.5 font-sans text-base sm:text-xl lg:text-lg xl:text-xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
                         {t.contact.subtitle}
                     </p>
                 </div>

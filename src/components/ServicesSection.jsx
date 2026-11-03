@@ -51,7 +51,7 @@ export default function ServicesSection() {
     }, []);
 
     return (
-        <section id="servizi" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07131e] via-[#071c22] to-[#050f14] py-16 sm:py-20 lg:py-12 xl:py-16 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="servizi" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07131e] via-[#071c22] to-[#050f14] py-16 sm:py-20 lg:py-24 xl:py-28 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
             {/* Distinct Services Background: High-Tech Emerald-Teal Workshop */}
             <div className="absolute top-0 right-0 w-[55vw] max-w-[900px] h-[55vw] max-h-[900px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),rgba(0,229,255,0.06)_50%,transparent_70%)] pointer-events-none" />
