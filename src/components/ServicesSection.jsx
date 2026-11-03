@@ -34,22 +34,22 @@ export default function ServicesSection() {
     }, []);
 
     return (
-        <section id="servizi" ref={sectionRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060a0f] via-[#0b1018] to-[#070b10]">
+        <section id="servizi" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060a0f] via-[#0b1018] to-[#070b10] py-16 sm:py-20 lg:py-12 xl:py-16 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
             {/* Distinct Services Background */}
             <div className="absolute top-0 right-0 w-[60vw] max-w-[1200px] h-[60vw] max-h-[900px] bg-[radial-gradient(ellipse_at_top_right,rgba(0,115,160,0.12),transparent_65%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Unified Section Header */}
-                <header className="mx-auto mb-16 max-w-4xl text-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
+                <header className="mx-auto mb-10 sm:mb-12 lg:mb-8 xl:mb-12 max-w-4xl text-center">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
                         {t.services.badge}
                     </span>
-                    <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
+                    <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.services.title}
                     </h2>
-                    <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    <p className="mt-2.5 text-base sm:text-xl lg:text-lg xl:text-xl font-normal text-gray-200 max-w-3xl mx-auto leading-relaxed">
                         {t.services.subtitle}
                     </p>
                 </header>

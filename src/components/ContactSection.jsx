@@ -183,23 +183,23 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black">
+        <section id="contatti" ref={containerRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
             {/* Distinct Contact Background */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[55vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.12),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
+            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
 
                 {/* ── Header ── */}
-                <div className="contact-reveal mx-auto mb-16 max-w-4xl text-center">
-                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
+                <div className="contact-reveal mx-auto mb-8 sm:mb-10 lg:mb-6 xl:mb-10 max-w-4xl text-center">
+                    <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2.5 font-semibold">
                         {t.contact.badge}
                     </span>
-                    <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight text-balance">
+                    <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-white tracking-tight text-balance">
                         {t.contact.title}
                     </h2>
-                    <p className="mt-4 font-sans text-lg sm:text-2xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
+                    <p className="mt-2 font-sans text-base sm:text-xl lg:text-lg xl:text-xl font-normal leading-relaxed text-gray-200 max-w-3xl mx-auto">
                         {t.contact.subtitle}
                     </p>
                 </div>

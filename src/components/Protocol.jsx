@@ -19,6 +19,9 @@ const rawCaseStudies = {
             domain: 'avvstefanopalmisano.it',
             image: '/img/optimized/avvstefanopalmisano-sito-1600.webp',
             imageSet: '/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w',
+            images: [
+                '/img/optimized/avvstefanopalmisano-sito-1600.webp'
+            ],
             summary: 'Restyling istituzionale ad alta autorevolezza con tema WordPress sartoriale e gestione autonoma delle pubblicazioni forensi.',
             challenge: 'Lo Studio Legale Ambientale Palmisano, riferimento nazionale per materie ambientali complesse, necessitava di superare un sito datato. L’obiettivo: trasmettere rigore istituzionale e consentire allo staff di pubblicare sentenze, articoli e aree legali in completa autonomia, senza builder pesanti.',
             solution: 'Ho riprogettato l’architettura dell’informazione da zero: gerarchia visiva sobria, navigazione fluida tra le aree di competenza e moduli di contatto riservati con piena conformità deontologica.',
@@ -46,6 +49,9 @@ const rawCaseStudies = {
             domain: 'casavacanze-vistamare.it',
             image: '/img/optimized/casavacanze-vistamare-1600.webp',
             imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
+            images: [
+                '/img/optimized/casavacanze-vistamare-1600.webp'
+            ],
             summary: 'Web app immersiva per disintermediare i soggiorni turistici ed azzerare le commissioni delle piattaforme OTA.',
             challenge: 'Le strutture ricettive cedono ogni anno dal 15% al 20% di commissioni a piattaforme come Airbnb e Booking. Vistamare voleva uno strumento digitale proprietario capace di emozionare visivamente gli ospiti e convertire le visite in prenotazioni dirette.',
             solution: 'Ho sviluppato un’applicazione web fluida in React 19 e Tailwind CSS: la fotografia ad alta definizione guida l’ospite tra le camere e la costa. Ho integrato il canale diretto su WhatsApp ed email per richiedere disponibilità con un solo click.',
@@ -73,6 +79,9 @@ const rawCaseStudies = {
             domain: 'aunpassodalfaro.it',
             image: '/img/optimized/aunpasso-dalfaro-1200.webp',
             imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
+            images: [
+                '/img/optimized/aunpasso-dalfaro-1200.webp'
+            ],
             summary: 'Piattaforma di presentazione territoriale con georeferenziazione, tariffe trasparenti e contatto immediato.',
             challenge: 'Farsi trovare online da viaggiatori italiani e internazionali con connessioni mobili 4G/5G in mobilità, comunicando la vicinanza strategica al faro e alle spiagge pugliesi senza tempi d’attesa.',
             solution: 'Ho impostato una narrazione visiva pulita e leggera, mappe interattive dei luoghi caratteristici, tariffe chiare e contatto diretto per prenotare il soggiorno.',
@@ -102,6 +111,9 @@ const rawCaseStudies = {
             domain: 'avvstefanopalmisano.it',
             image: '/img/optimized/avvstefanopalmisano-sito-1600.webp',
             imageSet: '/img/optimized/avvstefanopalmisano-sito-960.webp 960w, /img/optimized/avvstefanopalmisano-sito-1600.webp 1600w',
+            images: [
+                '/img/optimized/avvstefanopalmisano-sito-1600.webp'
+            ],
             summary: 'High-authority institutional redesign with a custom WordPress theme and autonomous legal publication management.',
             challenge: 'Palmisano Environmental Law Firm, a national reference in complex environmental law, needed to replace an outdated website. The goal: convey institutional rigor and allow the legal team to publish rulings, articles, and legal areas independently, with zero heavy page builders.',
             solution: 'I redesigned the information architecture from scratch: sober visual hierarchy, seamless navigation across practice areas, and private contact forms adhering strictly to legal ethics.',
@@ -129,6 +141,9 @@ const rawCaseStudies = {
             domain: 'casavacanze-vistamare.it',
             image: '/img/optimized/casavacanze-vistamare-1600.webp',
             imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
+            images: [
+                '/img/optimized/casavacanze-vistamare-1600.webp'
+            ],
             summary: 'Immersive web app designed to disintermediate holiday bookings and eliminate OTA commission fees.',
             challenge: 'Hospitality properties surrender 15% to 20% in commissions to OTA platforms like Airbnb and Booking on every stay. Vistamare wanted a proprietary digital tool capable of captivating guests visually and converting visits into direct bookings.',
             solution: 'I engineered a fluid web application in React 19 and Tailwind CSS: high-definition photography guides guests through rooms and coastlines. I integrated direct WhatsApp and email channels to request availability in one click.',
@@ -156,6 +171,9 @@ const rawCaseStudies = {
             domain: 'aunpassodalfaro.it',
             image: '/img/optimized/aunpasso-dalfaro-1200.webp',
             imageSet: '/img/optimized/aunpasso-dalfaro-960.webp 960w, /img/optimized/aunpasso-dalfaro-1200.webp 1200w',
+            images: [
+                '/img/optimized/aunpasso-dalfaro-1200.webp'
+            ],
             summary: 'Territorial presentation platform with geolocation, transparent seasonal pricing, and immediate contact.',
             challenge: 'Reaching domestic and international travelers browsing on 4G/5G mobile connections, communicating strategic proximity to the lighthouse and beaches without waiting times.',
             solution: 'I designed a clean, featherlight visual narrative, interactive area maps, clear pricing, and direct contact to book the stay.',
@@ -180,6 +198,7 @@ export default function Protocol() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeTab, setActiveTab] = useState('overview');
     const [viewMode, setViewMode] = useState('desktop');
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
     const stageRef = useRef(null);
 
     const caseStudies = useMemo(() => {
@@ -188,22 +207,47 @@ export default function Protocol() {
 
     const project = caseStudies[currentIndex] || caseStudies[0];
 
+    const desktopImages = useMemo(() => {
+        if (project.images && Array.isArray(project.images) && project.images.length > 0) {
+            return project.images;
+        }
+        return [project.image];
+    }, [project]);
+
+    const nextImage = useCallback(() => {
+        if (desktopImages.length <= 1) return;
+        setActiveImageIndex((prev) => (prev + 1) % desktopImages.length);
+    }, [desktopImages.length]);
+
+    const prevImage = useCallback(() => {
+        if (desktopImages.length <= 1) return;
+        setActiveImageIndex((prev) => (prev - 1 + desktopImages.length) % desktopImages.length);
+    }, [desktopImages.length]);
+
+    const safeImageIndex = activeImageIndex < desktopImages.length ? activeImageIndex : 0;
+    const activeDesktopImage = desktopImages[safeImageIndex] || project.image;
+
     // Image Preloader: Cache all project screenshots on mount to eliminate image decode lag
     useEffect(() => {
         caseStudies.forEach((p) => {
-            const img = new Image();
-            img.src = p.image;
+            const list = (p.images && p.images.length > 0) ? p.images : [p.image];
+            list.forEach((imgUrl) => {
+                const img = new Image();
+                img.src = imgUrl;
+            });
         });
     }, [caseStudies]);
 
     const nextProject = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % caseStudies.length);
         setActiveTab('overview');
+        setActiveImageIndex(0);
     }, [caseStudies.length]);
 
     const prevProject = useCallback(() => {
         setCurrentIndex((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
         setActiveTab('overview');
+        setActiveImageIndex(0);
     }, [caseStudies.length]);
 
     // Snappy, lag-free transition: animate only the main content stage swiftly (0.22s) without staggered lag
@@ -220,37 +264,37 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" className="relative w-full py-24 md:py-36 border-t border-white/10 overflow-hidden bg-[#060a0f]">
+        <section id="progetti" className="relative w-full border-t border-white/10 overflow-hidden bg-[#060a0f] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             <span id="portfolio" className="sr-only" />
 
             {/* Distinct Project Theater Background: Dark Navy Blueprint Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1500px] h-[65vh] bg-[radial-gradient(ellipse_60%_40%_at_50%_40%,rgba(0,115,160,0.14),transparent_70%)] pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px] pointer-events-none" />
 
-            <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 max-w-[1520px] relative z-10 w-full">
 
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 lg:mb-4 xl:mb-6 gap-3 sm:gap-4">
                     <div>
-                        <span className="font-mono text-xs sm:text-sm text-drago-accent uppercase tracking-widest px-4 py-1.5 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-3 font-semibold">
+                        <span className="font-mono text-xs sm:text-xs text-drago-accent uppercase tracking-widest px-3.5 py-1 rounded-full border border-drago-accent/30 bg-drago-accent/10 inline-block mb-2 font-semibold">
                             {t.protocol.badge}
                         </span>
-                        <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight">
+                        <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-white tracking-tight">
                             {t.protocol.title}
                         </h2>
-                        <p className="mt-4 text-lg sm:text-2xl font-normal text-gray-200 max-w-3xl leading-relaxed">
+                        <p className="mt-1 text-xs sm:text-sm lg:text-sm xl:text-base font-normal text-gray-300 max-w-2xl leading-normal">
                             {t.protocol.subtitle}
                         </p>
                     </div>
 
-                    {/* Navigation Pills & Arrow Controls — Refined subtle shadows */}
-                    <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
-                        <div className="flex items-center gap-1.5 p-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
+                    {/* Navigation Pills & Arrow Controls */}
+                    <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+                        <div className="flex items-center gap-1 p-1 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md">
                             {caseStudies.map((item, idx) => (
                                 <button
                                     key={item.id}
-                                    onClick={() => { setCurrentIndex(idx); setActiveTab('overview'); }}
-                                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-mono transition-all duration-150 font-semibold active:scale-95 ${
+                                    onClick={() => { setCurrentIndex(idx); setActiveTab('overview'); setActiveImageIndex(0); }}
+                                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-150 font-semibold active:scale-95 ${
                                         currentIndex === idx
                                             ? 'bg-white text-black shadow-sm border border-white/40'
                                             : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -262,20 +306,20 @@ export default function Protocol() {
                             ))}
                         </div>
 
-                        <div className="flex items-center gap-2 pl-2">
+                        <div className="flex items-center gap-1.5 pl-1">
                             <button
                                 onClick={prevProject}
                                 aria-label="Progetto precedente"
-                                className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
+                                className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
                             >
-                                <ChevronLeft className="w-5 h-5" />
+                                <ChevronLeft className="w-4 h-4" />
                             </button>
                             <button
                                 onClick={nextProject}
                                 aria-label="Prossimo progetto"
-                                className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
+                                className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 flex items-center justify-center text-gray-200 hover:text-white transition-all hover:scale-105 active:scale-95"
                             >
-                                <ChevronRight className="w-5 h-5" />
+                                <ChevronRight className="w-4 h-4" />
                             </button>
                         </div>
                     </div>
@@ -284,51 +328,49 @@ export default function Protocol() {
                 {/* Unified Interactive Showcase Theatre */}
                 <div
                     ref={stageRef}
-                    className="rounded-[2.4rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300"
+                    className="rounded-[1.8rem] sm:rounded-[2.2rem] border border-white/15 bg-black/50 shadow-2xl backdrop-blur-2xl overflow-hidden hover:border-white/25 transition-all duration-300 w-full"
                 >
                     {/* Theatre Chrome Bar */}
-                    <div className="flex flex-wrap items-center justify-between px-6 sm:px-8 py-4 sm:py-5 border-b border-white/10 bg-black/80 backdrop-blur-md gap-4">
+                    <div className="flex flex-wrap items-center justify-between px-5 sm:px-7 py-2.5 sm:py-3 border-b border-white/10 bg-black/80 backdrop-blur-md gap-3">
                         {/* Traffic light dots & Project Counter */}
-                        <div className="flex items-center gap-3">
-                            <div className="flex items-center gap-2">
-                                <span className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] border border-white/10" />
-                                <span className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] border border-white/10" />
-                                <span className="w-3.5 h-3.5 rounded-full bg-[#27c93f] border border-white/10" />
+                        <div className="flex items-center gap-2.5">
+                            <div className="flex items-center gap-1.5">
+                                <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-white/10" />
+                                <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-white/10" />
+                                <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-white/10" />
                             </div>
-                            <span className="font-mono text-xs sm:text-sm text-gray-300 pl-3 border-l border-white/15 font-semibold tracking-wider">
+                            <span className="font-mono text-xs text-gray-300 pl-2.5 border-l border-white/15 font-semibold tracking-wider">
                                 {t.protocol.caseLabel} {project.number} {t.protocol.of} 0{caseStudies.length}
                             </span>
                         </div>
 
                         {/* Simulated URL bar */}
-                        <div className="flex items-center gap-2.5 px-4 sm:px-5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 text-xs sm:text-sm font-mono text-gray-200 max-w-sm truncate">
-                            <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                        <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/15 text-xs font-mono text-gray-200 max-w-sm truncate">
+                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                             <span className="truncate">{project.domain || project.url}</span>
                         </div>
 
-                        {/* Viewport switch: Desktop / Mobile — Subtle shadows */}
-                        <div className="flex items-center gap-3">
+                        {/* Viewport switch: Desktop / Mobile */}
+                        <div className="flex items-center gap-2.5">
                             <div className="flex items-center gap-1 bg-white/[0.06] p-1 rounded-full border border-white/15">
                                 <button
                                     onClick={() => setViewMode('desktop')}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all font-semibold ${
+                                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all font-semibold ${
                                         viewMode === 'desktop'
                                             ? 'bg-white text-black shadow-sm'
                                             : 'text-gray-300 hover:text-white'
                                     }`}
-                                    title="Vista Desktop"
                                 >
                                     <Laptop className="w-3.5 h-3.5" />
                                     <span className="hidden sm:inline">Desktop</span>
                                 </button>
                                 <button
                                     onClick={() => setViewMode('mobile')}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all font-semibold ${
+                                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all font-semibold ${
                                         viewMode === 'mobile'
                                             ? 'bg-white text-black shadow-sm'
                                             : 'text-gray-300 hover:text-white'
                                     }`}
-                                    title="Vista Mobile"
                                 >
                                     <Smartphone className="w-3.5 h-3.5" />
                                     <span className="hidden sm:inline">Mobile</span>
@@ -340,42 +382,42 @@ export default function Protocol() {
                                     href={project.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-mono text-gray-200 hover:text-white transition-all"
+                                    className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-mono text-gray-200 hover:text-white transition-all"
                                     title="Open website in new tab"
                                 >
                                     <span>{t.protocol.visitWebsite}</span>
-                                    <ExternalLink className="w-3.5 h-3.5" />
+                                    <ExternalLink className="w-3 h-3" />
                                 </a>
                             )}
                         </div>
                     </div>
 
                     {/* Stage Grid: 2 Columns on desktop */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[640px]">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-0">
 
                         {/* Column 1: Case Autopsy & Story (Fast hardware-accelerated fade) */}
-                        <div className="project-quick-fade lg:col-span-6 xl:col-span-5 p-6 sm:p-9 xl:p-11 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
+                        <div className="project-quick-fade lg:col-span-5 p-5 sm:p-7 xl:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 bg-black/40 will-change-[opacity,transform]">
                             <div>
                                 {/* Header / Tags */}
-                                <div className="mb-5">
-                                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                                        <span className="text-xs sm:text-sm font-mono px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
+                                <div className="mb-3">
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                        <span className="text-xs font-mono px-3 py-0.5 rounded-full bg-white/10 border border-white/20 text-white font-semibold">
                                             {project.type}
                                         </span>
-                                        <span className="text-xs sm:text-sm font-mono px-3.5 py-1 rounded-full bg-drago-accent/25 border border-drago-accent/50 text-white font-semibold">
+                                        <span className="text-xs font-mono px-3 py-0.5 rounded-full bg-drago-accent/25 border border-drago-accent/50 text-white font-semibold">
                                             {project.year}
                                         </span>
                                     </div>
-                                    <h3 className="font-display font-extrabold text-3xl sm:text-4xl xl:text-5xl text-white mt-2 tracking-tight leading-tight">
+                                    <h3 className="font-display font-extrabold text-2xl sm:text-3xl xl:text-4xl text-white mt-1 tracking-tight leading-snug">
                                         {project.title}
                                     </h3>
-                                    <p className="font-sans text-base sm:text-lg font-normal text-gray-200 mt-3 leading-relaxed">
+                                    <p className="font-sans text-xs sm:text-sm font-normal text-gray-200 mt-2 leading-relaxed">
                                         {project.summary}
                                     </p>
                                 </div>
 
                                 {/* Tab Selector */}
-                                <div className="flex p-1.5 rounded-2xl bg-white/[0.04] border border-white/10 my-7 gap-1 overflow-x-auto no-scrollbar">
+                                <div className="flex p-1 rounded-xl bg-white/[0.04] border border-white/10 my-3.5 xl:my-4 gap-1 overflow-x-auto no-scrollbar">
                                     {[
                                         { id: 'overview', label: t.protocol.tabs.overview },
                                         { id: 'challenge', label: t.protocol.tabs.challenge },
@@ -384,7 +426,7 @@ export default function Protocol() {
                                         <button
                                             key={tabItem.id}
                                             onClick={() => setActiveTab(tabItem.id)}
-                                            className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-sans font-semibold transition-all whitespace-nowrap text-center ${
+                                            className={`flex-1 py-1.5 px-2.5 rounded-lg text-xs font-sans font-semibold transition-all whitespace-nowrap text-center ${
                                                 activeTab === tabItem.id
                                                     ? 'bg-white/15 text-white border border-white/20 shadow-sm'
                                                     : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
@@ -396,17 +438,17 @@ export default function Protocol() {
                                 </div>
 
                                 {/* Dynamic Tab Content */}
-                                <div className="min-h-[240px]">
+                                <div className="min-h-[160px] xl:min-h-[190px]">
                                     {activeTab === 'overview' && (
-                                        <div className="space-y-6">
-                                            <p className="font-sans text-base sm:text-lg font-normal text-gray-200 leading-relaxed">
+                                        <div className="space-y-3">
+                                            <p className="font-sans text-xs sm:text-sm font-normal text-gray-200 leading-relaxed">
                                                 {project.solution}
                                             </p>
-                                            <div className="grid grid-cols-2 gap-3.5 pt-2">
+                                            <div className="grid grid-cols-2 gap-2.5 pt-1">
                                                 {project.metrics.map((m) => (
-                                                    <div key={m.label} className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                        <span className="text-xs font-mono uppercase tracking-wider text-gray-400 block font-medium">{m.label}</span>
-                                                        <span className="text-lg sm:text-2xl font-mono font-bold text-white mt-1.5 block tracking-tight">
+                                                    <div key={m.label} className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 block font-medium">{m.label}</span>
+                                                        <span className="text-base sm:text-xl font-mono font-bold text-white mt-1 block tracking-tight">
                                                             {m.value}
                                                         </span>
                                                     </div>
@@ -416,29 +458,29 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'challenge' && (
-                                        <div className="space-y-4">
+                                        <div className="space-y-2.5 max-h-[190px] xl:max-h-[230px] overflow-y-auto no-scrollbar">
                                             {/* Challenge Box */}
-                                            <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                <div className="flex items-center gap-2 mb-2">
+                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                <div className="flex items-center gap-2 mb-1">
                                                     <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.5)]" />
                                                     <span className="font-mono text-xs uppercase tracking-widest text-amber-300 font-bold">
                                                         {t.protocol.challengeLabel}
                                                     </span>
                                                 </div>
-                                                <p className="font-sans text-sm sm:text-base font-normal text-gray-300 leading-relaxed">
+                                                <p className="font-sans text-xs sm:text-sm font-normal text-gray-300 leading-relaxed">
                                                     {project.challenge}
                                                 </p>
                                             </div>
 
                                             {/* Solution Box */}
-                                            <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                <div className="flex items-center gap-2 mb-2">
+                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                <div className="flex items-center gap-2 mb-1">
                                                     <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
                                                     <span className="font-mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
                                                         {t.protocol.solutionLabel}
                                                     </span>
                                                 </div>
-                                                <p className="font-sans text-sm sm:text-base font-normal text-gray-200 leading-relaxed">
+                                                <p className="font-sans text-xs sm:text-sm font-normal text-gray-200 leading-relaxed">
                                                     {project.solution}
                                                 </p>
                                             </div>
@@ -446,14 +488,14 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'engineering' && (
-                                        <div className="space-y-3">
+                                        <div className="space-y-2 max-h-[190px] xl:max-h-[230px] overflow-y-auto pr-1 no-scrollbar">
                                             {project.engineering.map((eng) => (
-                                                <div key={eng.label} className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
-                                                    <div className="flex items-center gap-2 mb-1.5">
-                                                        <Zap className="w-4 h-4 text-drago-accent" />
-                                                        <span className="font-sans font-bold text-sm sm:text-base text-white">{eng.label}</span>
+                                                <div key={eng.label} className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all">
+                                                    <div className="flex items-center gap-1.5 mb-1">
+                                                        <Zap className="w-3.5 h-3.5 text-drago-accent" />
+                                                        <span className="font-sans font-bold text-xs sm:text-sm text-white">{eng.label}</span>
                                                     </div>
-                                                    <p className="font-sans text-sm text-gray-300 leading-relaxed font-normal">
+                                                    <p className="font-sans text-xs sm:text-xs text-gray-300 leading-relaxed font-normal">
                                                         {eng.desc}
                                                     </p>
                                                 </div>
@@ -464,31 +506,31 @@ export default function Protocol() {
                             </div>
 
                             {/* Action Bar */}
-                            <div className="pt-6 mt-7 border-t border-white/10 flex items-center justify-end">
+                            <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-end">
                                 {project.url && (
                                     <a
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black hover:bg-gray-100 font-sans text-sm sm:text-base font-bold transition-all hover:scale-105 shadow-md active:scale-95"
+                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black hover:bg-gray-100 font-sans text-xs sm:text-sm font-bold transition-all hover:scale-105 shadow-md active:scale-95"
                                     >
                                         <span>{t.protocol.visitWebsite}</span>
-                                        <ExternalLink className="w-4 h-4" />
+                                        <ExternalLink className="w-3.5 h-3.5" />
                                     </a>
                                 )}
                             </div>
                         </div>
 
-                        {/* Column 2: Cinematic Viewport Screen (Instant fade & preloaded images) */}
-                        <div className="project-quick-fade lg:col-span-6 xl:col-span-7 p-6 sm:p-9 xl:p-11 flex flex-col items-center justify-center bg-black/60 relative overflow-hidden will-change-[opacity,transform]">
+                        {/* Column 2: Cinematic Viewport Screen */}
+                        <div className="project-quick-fade lg:col-span-7 p-4 sm:p-6 lg:p-4 xl:p-8 flex flex-col items-center justify-center bg-black/60 relative overflow-hidden will-change-[opacity,transform]">
                             
                             {/* Desktop macOS Browser Window Frame */}
                             {viewMode === 'desktop' && (
                                 <div className="transition-all duration-300 w-full max-w-[760px] flex flex-col items-center justify-center">
-                                    <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-[#0d1117] group/screen">
+                                    <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-[#0d1117]">
                                         
                                         {/* macOS Window Title Bar */}
-                                        <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-white/10">
+                                        <div className="flex items-center justify-between px-4 py-2.5 bg-[#161b22] border-b border-white/10">
                                             <div className="flex items-center gap-2">
                                                 <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
                                                 <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
@@ -496,7 +538,7 @@ export default function Protocol() {
                                             </div>
 
                                             {/* Centered address capsule */}
-                                            <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-black/60 border border-white/15 text-xs font-mono text-gray-300 max-w-[320px] truncate">
+                                            <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/60 border border-white/15 text-xs font-mono text-gray-300 max-w-[300px] truncate">
                                                 <Lock className="w-3 h-3 text-emerald-400 flex-shrink-0" />
                                                 <span className="truncate text-gray-200">{project.domain || project.url}</span>
                                             </div>
@@ -516,21 +558,65 @@ export default function Protocol() {
                                             )}
                                         </div>
 
-                                        {/* Interactive Hover Auto-Scroll Viewport */}
-                                        <div className="relative overflow-hidden aspect-[16/10] bg-[#07090c]">
+                                        {/* Viewport - Full Natural Proportions without any margin cropping */}
+                                        <div className="relative w-full flex items-center justify-center bg-[#07090c] p-2 sm:p-3 overflow-hidden rounded-b-2xl">
                                             <img
-                                                key={project.id + '-desktop'}
-                                                src={project.image}
-                                                srcSet={project.imageSet}
-                                                alt={`Project ${project.title} - Drago Labs`}
-                                                className="w-full h-auto min-h-full object-cover object-top transition-transform duration-[3800ms] ease-out group-hover/screen:-translate-y-[28%]"
+                                                key={activeDesktopImage}
+                                                src={activeDesktopImage}
+                                                alt={`${project.title} - Drago Labs`}
+                                                className="w-full h-auto max-h-[290px] sm:max-h-[340px] lg:max-h-[320px] xl:max-h-[390px] 2xl:max-h-[460px] object-contain rounded-lg block shadow-lg transition-opacity duration-200"
                                                 loading="eager"
                                             />
+                                        </div>
+                                    </div>
 
-                                            {/* Floating hover hint pill */}
-                                            <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-[11px] font-mono text-gray-300 pointer-events-none flex items-center gap-1.5 group-hover/screen:opacity-0 transition-opacity duration-300 shadow-md">
-                                                <span>{t.protocol.hoverToScroll}</span>
-                                            </div>
+                                    {/* Carousel navigation controls below desktop frame */}
+                                    <div className="mt-3 flex items-center justify-between w-full px-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs font-mono text-gray-400 font-medium">
+                                                {isEn ? 'Preview' : 'Schermata'} {activeImageIndex + 1} / {desktopImages.length}
+                                            </span>
+                                            {desktopImages.length > 1 && (
+                                                <div className="flex items-center gap-1.5 ml-2">
+                                                    {desktopImages.map((_, dotIdx) => (
+                                                        <button
+                                                            key={dotIdx}
+                                                            onClick={() => setActiveImageIndex(dotIdx)}
+                                                            aria-label={`Schermata ${dotIdx + 1}`}
+                                                            className={`h-1.5 rounded-full transition-all ${
+                                                                activeImageIndex === dotIdx ? 'w-5 bg-drago-accent' : 'w-1.5 bg-white/20 hover:bg-white/40'
+                                                            }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="flex items-center gap-1.5">
+                                            <button
+                                                onClick={prevImage}
+                                                disabled={desktopImages.length <= 1}
+                                                aria-label={isEn ? "Previous screenshot" : "Schermata precedente"}
+                                                className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
+                                                    desktopImages.length <= 1
+                                                        ? 'opacity-30 border-white/10 text-gray-500 cursor-not-allowed'
+                                                        : 'bg-white/5 hover:bg-white/15 border-white/20 text-gray-200 hover:text-white active:scale-95'
+                                                }`}
+                                            >
+                                                <ChevronLeft className="w-4 h-4" />
+                                            </button>
+                                            <button
+                                                onClick={nextImage}
+                                                disabled={desktopImages.length <= 1}
+                                                aria-label={isEn ? "Next screenshot" : "Schermata successiva"}
+                                                className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
+                                                    desktopImages.length <= 1
+                                                        ? 'opacity-30 border-white/10 text-gray-500 cursor-not-allowed'
+                                                        : 'bg-white/5 hover:bg-white/15 border-white/20 text-gray-200 hover:text-white active:scale-95'
+                                                }`}
+                                            >
+                                                <ChevronRight className="w-4 h-4" />
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -581,10 +667,10 @@ export default function Protocol() {
                             )}
 
                             {/* Theater Bottom Switcher Prompt */}
-                            <div className="w-full mt-7 pt-5 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-mono text-gray-300">
+                            <div className="w-full mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-300">
                                 <span>{t.protocol.footerPrompt}</span>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-white font-bold text-base">{project.number}</span>
+                                    <span className="text-white font-bold text-sm sm:text-base">{project.number}</span>
                                     <span>/</span>
                                     <span className="text-gray-400 font-medium">0{caseStudies.length}</span>
                                 </div>
@@ -595,19 +681,19 @@ export default function Protocol() {
                 </div>
 
                 {/* Section Bottom Callout */}
-                <div className="mt-16 p-8 sm:p-10 rounded-[2rem] border border-white/15 bg-black/40 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-xl">
+                <div className="mt-6 sm:mt-8 p-5 sm:p-7 rounded-[1.5rem] border border-white/15 bg-black/40 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left shadow-xl">
                     <div>
-                        <h4 className="font-display font-bold text-2xl sm:text-3xl text-white">{t.protocol.calloutTitle}</h4>
-                        <p className="text-base sm:text-lg font-normal text-gray-200 mt-2 max-w-2xl leading-relaxed">
+                        <h4 className="font-display font-bold text-xl sm:text-2xl text-white">{t.protocol.calloutTitle}</h4>
+                        <p className="text-xs sm:text-sm font-normal text-gray-300 mt-1 max-w-xl leading-relaxed">
                             {t.protocol.calloutSubtitle}
                         </p>
                     </div>
                     <a
                         href="#contatti"
-                        className="inline-flex items-center gap-2 px-9 py-4 rounded-full bg-white text-black hover:bg-gray-100 font-sans text-base font-bold transition-all hover:scale-105 shadow-md flex-shrink-0 active:scale-95"
+                        className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-black hover:bg-gray-100 font-sans text-sm font-bold transition-all hover:scale-105 shadow-md flex-shrink-0 active:scale-95"
                     >
                         {t.protocol.calloutCta}
-                        <ArrowUpRight className="w-5 h-5" />
+                        <ArrowUpRight className="w-4 h-4" />
                     </a>
                 </div>
 
