@@ -40,10 +40,11 @@ export default function Manifesto() {
     }, []);
 
     return (
-        <section className="relative w-full py-24 md:py-40 border-t border-white/10 overflow-hidden bg-[#03060a]">
-            {/* Distinct Theatrical Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1100px] h-[450px] bg-drago-accent/15 blur-[150px] pointer-events-none rounded-full" />
-            <div className="absolute inset-0 opacity-[0.025] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <section className="relative w-full py-24 md:py-40 border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#070b12] via-[#0c0918] to-[#05060d]">
+            {/* Distinct Theatrical Amethyst & Obsidian Background */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-[radial-gradient(ellipse_65%_50%_at_50%_50%,rgba(147,51,234,0.14),rgba(59,130,246,0.06)_50%,transparent_75%)] blur-2xl pointer-events-none" />
+            <div className="absolute top-1/2 inset-x-0 -translate-y-1/2 h-[1px] bg-gradient-to-r from-transparent via-purple-400/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#c084fc_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
 
             <div ref={manifestoRef} className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
                 <p className="manifesto-text font-productsans text-xl md:text-3xl text-gray-200 font-normal leading-relaxed mb-6">

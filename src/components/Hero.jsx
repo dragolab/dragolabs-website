@@ -2,6 +2,7 @@ import { useLayoutEffect, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowDown, Sparkles, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import HeroAtmosphere from './HeroAtmosphere';
 
 export default function Hero() {
     const containerRef = useRef(null);
@@ -40,9 +41,8 @@ export default function Hero() {
             ref={containerRef}
             className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#030508]"
         >
-            {/* Distinct Hero Atmospheric Lighting spanning full width */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[65vh] bg-[radial-gradient(ellipse_75%_50%_at_50%_0%,rgba(0,115,160,0.22),transparent_70%)] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
+            {/* Distinct Hero Atmospheric Lighting & Interactive Particle Constellation */}
+            <HeroAtmosphere />
 
             {/* Content Container constrained and centered */}
             <div className="relative z-10 w-full max-w-[1520px] mx-auto flex-1 flex flex-col justify-between pt-28 md:pt-36 pb-10 md:pb-14 px-4 sm:px-8 lg:px-12 xl:px-16">

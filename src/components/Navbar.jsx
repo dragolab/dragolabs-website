@@ -162,8 +162,8 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                {/* Desktop links — High tactile click response */}
-                <div className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6">
+                {/* Desktop links — High tactile click response, aligned to the right */}
+                <div className="hidden lg:flex items-center gap-1.5 xl:gap-3 2xl:gap-4 lg:ml-auto">
                     {navLinks.map((link) => {
                         const isActive = location.pathname === '/' && activeSection === link.id;
                         const isContact = link.id === 'contatti';
@@ -187,7 +187,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Right side Mobile/Tablet Menu Button */}
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 lg:hidden">
                     <button
                         className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors active:scale-90"
                         onClick={() => setMobileOpen((o) => !o)}

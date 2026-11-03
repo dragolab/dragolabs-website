@@ -72,12 +72,17 @@ export default function StaffSection() {
     };
 
     return (
-        <section id="chi-sono" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-[#07090e] py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="chi-sono" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#050f14] via-[#090b16] to-[#060810] py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
-            {/* Distinct Staff Background */}
-            <div className="absolute top-1/3 left-[10%] w-[50vw] max-w-[900px] h-[50vw] max-h-[900px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute top-1/3 right-[10%] w-[50vw] max-w-[900px] h-[50vw] max-h-[900px] bg-drago-accent/10 rounded-full blur-[150px] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+            {/* Distinct Dual-Core Command Station Background */}
+            <div className="absolute top-1/4 left-[5%] w-[45vw] max-w-[700px] h-[45vw] max-h-[700px] bg-[radial-gradient(circle,rgba(226,232,240,0.05),transparent_65%)] blur-2xl pointer-events-none" />
+            <div className="absolute top-1/4 right-[5%] w-[45vw] max-w-[700px] h-[45vw] max-h-[700px] bg-[radial-gradient(circle,rgba(0,229,255,0.13),rgba(16,185,129,0.05)_50%,transparent_70%)] blur-2xl pointer-events-none" />
+            
+            {/* AI Radar Coordinate Ring Accents */}
+            <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-drago-accent/10 pointer-events-none hidden xl:block" />
+            <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-drago-accent/[0.06] border-dashed pointer-events-none hidden xl:block" />
+
+            <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Section Header */}

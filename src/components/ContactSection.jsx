@@ -185,11 +185,13 @@ export default function ContactSection() {
     }, []);
 
     return (
-        <section id="contatti" ref={containerRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07090e] via-[#040608] to-black py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="contatti" ref={containerRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060810] via-[#050b14] to-[#020306] py-16 sm:py-20 lg:py-10 xl:py-14 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
-            {/* Distinct Contact Background */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[55vh] bg-[radial-gradient(ellipse_at_bottom,rgba(0,115,160,0.12),transparent_70%)] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+            {/* Distinct Contact Background: Atmospheric Horizon Terminal */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[65vh] bg-[radial-gradient(ellipse_90%_65%_at_50%_100%,rgba(0,229,255,0.18),rgba(0,115,160,0.08)_45%,transparent_75%)] pointer-events-none" />
+            <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:72px_100%] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
 

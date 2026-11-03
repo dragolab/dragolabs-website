@@ -307,12 +307,14 @@ export default function Protocol() {
     }, [currentIndex]);
 
     return (
-        <section id="progetti" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-[#060a0f] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="progetti" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#05060d] via-[#05111f] to-[#07131e] py-14 sm:py-16 lg:py-8 xl:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             <span id="portfolio" className="sr-only" />
 
-            {/* Distinct Project Theater Background: Dark Navy Blueprint Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1500px] h-[65vh] bg-[radial-gradient(ellipse_60%_40%_at_50%_40%,rgba(0,115,160,0.14),transparent_70%)] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px] pointer-events-none" />
+            {/* Distinct Project Theater Background: High-Tech Blueprint Spotlight */}
+            <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-[1500px] h-[75vh] bg-[radial-gradient(ellipse_75%_55%_at_50%_35%,rgba(0,180,255,0.18),rgba(0,115,160,0.06)_55%,transparent_75%)] pointer-events-none" />
+            <div className="absolute -top-32 left-[-10%] w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute -top-32 right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,229,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,229,255,0.025)_1px,transparent_1px)] [background-size:48px_48px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 max-w-[1520px] relative z-10 w-full">
 

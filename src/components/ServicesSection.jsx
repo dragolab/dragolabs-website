@@ -51,11 +51,13 @@ export default function ServicesSection() {
     }, []);
 
     return (
-        <section id="servizi" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#060a0f] via-[#0b1018] to-[#070b10] py-16 sm:py-20 lg:py-12 xl:py-16 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+        <section id="servizi" ref={sectionRef} className="relative w-full border-t border-white/10 overflow-hidden bg-gradient-to-b from-[#07131e] via-[#071c22] to-[#050f14] py-16 sm:py-20 lg:py-12 xl:py-16 lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
             
-            {/* Distinct Services Background */}
-            <div className="absolute top-0 right-0 w-[60vw] max-w-[1200px] h-[60vw] max-h-[900px] bg-[radial-gradient(ellipse_at_top_right,rgba(0,115,160,0.12),transparent_65%)] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+            {/* Distinct Services Background: High-Tech Emerald-Teal Workshop */}
+            <div className="absolute top-0 right-0 w-[55vw] max-w-[900px] h-[55vw] max-h-[900px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),rgba(0,229,255,0.06)_50%,transparent_70%)] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[50vw] max-w-[800px] h-[50vw] max-h-[800px] bg-[radial-gradient(circle_at_bottom_left,rgba(0,140,210,0.14),transparent_65%)] pointer-events-none" />
+            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[600px] bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.04),transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(45deg,rgba(0,229,255,0.15)_1px,transparent_1px),linear-gradient(-45deg,rgba(0,229,255,0.15)_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1520px] relative z-10 w-full">
                 {/* Unified Section Header */}
