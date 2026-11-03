@@ -16,7 +16,7 @@ export default function Navbar() {
     const { isEn, toggleLanguage, t } = useLanguage();
 
     const navLinks = useMemo(() => [
-        { id: 'hero', label: t.nav.hero },
+        { id: 'metodo', label: t.nav.metodo },
         { id: 'progetti', label: t.nav.progetti },
         { id: 'servizi', label: t.nav.servizi },
         { id: 'chi-sono', label: t.nav.chiSono },
