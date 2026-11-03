@@ -194,9 +194,6 @@ export default function HeroAtmosphere() {
             {/* Micro-dot matrix grid overlay */}
             <div className="absolute inset-0 opacity-[0.035] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
 
-            {/* Subtle horizontal luminous horizon ray */}
-            <div className="absolute top-[48%] inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/15 to-transparent pointer-events-none opacity-60" />
-
             {/* Celestial Stardust & Constellation Canvas */}
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
         </div>
