@@ -45,7 +45,7 @@ function getArgoLocalResponse(rawQuery, isEn = false) {
         }
 
         if (q.includes('workflow') || q.includes('agent') || q.includes('multiagent') || q.includes('orchestrat')) {
-            return "For the **Autonomous Multi-Agent Ecosystem**, Gianluca engineered a distributed AI orchestration architecture:\n\n• **The Challenge**: Complex information workflows (monitoring heterogeneous sources, strategic synthesis, draft generation, and communication triage) cause severe manual bottlenecks.\n• **The Solution**: A central orchestrator coordinating 6 specialized persistent sub-agents (SOUL/MEMORY architecture), asymmetric model routing, strict Human-in-the-Loop approval gatekeepers, and local SQLite telemetry.\n• **Results**: Up to 85% reduction in manual routine load, zero unvetted external output, complete event auditability, and zero context drift.";
+            return "For the **Autonomous Multi-Agent Ecosystem**, Gianluca engineered a Python 3.12 (AsyncIO) and FastAPI distributed architecture:\n\n• **The Challenge**: Complex information workflows (monitoring heterogeneous sources, strategic synthesis, draft generation, and communication triage) cause severe manual bottlenecks.\n• **The Solution**: A central orchestrator coordinating 6 specialized persistent sub-agents (SOUL/MEMORY architecture), asymmetric model routing, local SQLite telemetry, and a **local Mission Control Dashboard via zero-latency Server-Sent Events (SSE)** with a Human-in-the-Loop gatekeeper to review and authorize drafts/emails with a single click before dispatch.\n• **Results**: Up to 85% reduction in manual routine load, zero unvetted external output, complete event auditability, and zero context drift.";
         }
 
         if (q.includes('vistamare') || q.includes('holiday')) {
@@ -93,7 +93,7 @@ function getArgoLocalResponse(rawQuery, isEn = false) {
     }
 
     if (q.includes('workflow') || q.includes('agenti') || q.includes('multiagente') || q.includes('multi-agente') || q.includes('orchestrazion')) {
-        return "Per l'**Ecosistema Autonomo Multi-Agente**, Gianluca ha progettato un'architettura di orchestrazione distribuita:\n\n• **La Sfida**: I processi operativi ad alta densità di informazioni (monitoraggio fonti eterogenee, sintesi strategica, stesura bozze e triage comunicazioni) creano colli di bottiglia e forte attrito manuale.\n• **La Soluzione**: Orchestratore centrale che coordina 6 sub-agenti specializzati con perimetro e memoria isolata (SOUL/MEMORY), routing asimmetrico dei modelli LLM, gatekeeper Human-in-the-Loop per validare ogni pubblicazione/invio e telemetria locale SQLite.\n• **I Risultati**: Riduzione dell'85% del carico manuale ripetitivo, zero allucinazioni su canali esterni grazie all'approvazione umana obbligatoria e tracciabilità integrale degli eventi.";
+        return "Per l'**Ecosistema Autonomo Multi-Agente**, Gianluca ha progettato un'architettura software in Python 3.12 (AsyncIO) e FastAPI:\n\n• **La Sfida**: I processi operativi ad alta densità di informazioni (monitoraggio fonti eterogenee, sintesi strategica, stesura bozze e triage comunicazioni) creano colli di bottiglia e attrito manuale.\n• **La Soluzione**: Orchestratore centrale che coordina 6 sub-agenti specializzati con perimetro e memoria isolata (SOUL/MEMORY), routing asimmetrico dei modelli LLM, telemetria locale SQLite e una **Mission Control Dashboard in locale via SSE (Server-Sent Events)** con gatekeeper Human-in-the-Loop per revisionare e autorizzare a 1-click ogni bozza o email prima del rilascio.\n• **I Risultati**: Riduzione dell'85% del carico manuale ripetitivo, zero allucinazioni su canali esterni grazie all'approvazione umana obbligatoria e tracciabilità integrale degli eventi.";
     }
 
     if (q.includes('progetti') || q.includes('casi studio') || q.includes('portfolio') || q.includes('lavori')) {
@@ -150,13 +150,18 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
-    const messagesEndRef = useRef(null);
+    const chatContainerRef = useRef(null);
     const sentInitialRef = useRef(false);
 
     const prompts = isEn ? PROMPTS_EN : PROMPTS_IT;
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTo({
+                top: chatContainerRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     };
 
     useEffect(() => {
@@ -358,7 +363,7 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
+            <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
                 {messages.map((m) => (
                     <div
                         key={m.id}
@@ -408,7 +413,6 @@ export default function ArgoConsole({ onClose, initialPrompt, isExpanded, onTogg
                         </div>
                     </div>
                 )}
-                <div ref={messagesEndRef} />
             </div>
 
             {/* Quick Suggestion Pills */}

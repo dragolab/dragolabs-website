@@ -104,8 +104,8 @@ export const translations = {
         },
         staff: {
             badge: 'Chi C\'è Dietro Drago Labs',
-            title: 'La mia visione e il mio assistente IA',
-            subtitle: 'Competenze umane ed intelligenza artificiale: la mia sinergia per costruire prodotti digitali ad alte prestazioni.',
+            title: 'Chi Sono & Argo AI',
+            subtitle: 'Competenze ingegneristiche e intelligenza artificiale integrata nel laboratorio per creare software ad alte prestazioni.',
             gianlucaRole: 'Founder & Software Developer',
             location: 'Fasano (BR), Puglia · Clienti in tutta Italia da remoto',
             bio1: 'Ho fondato **Drago Labs** per trasformare la complessità tecnologica in soluzioni digitali concrete, veloci e affidabili per professionisti e imprese.',
@@ -267,8 +267,8 @@ export const translations = {
         },
         staff: {
             badge: 'Behind Drago Labs',
-            title: 'My vision and my AI assistant',
-            subtitle: 'Human craft and artificial intelligence: my synergy for building high-performance digital products.',
+            title: 'About Me & Argo AI',
+            subtitle: 'Bespoke software engineering and integrated artificial intelligence inside the lab.',
             gianlucaRole: 'Founder & Software Developer',
             location: 'Fasano (BR), Puglia · Remote clients worldwide',
             bio1: 'I founded **Drago Labs** to transform technological complexity into concrete, fast, and dependable digital solutions for professionals and businesses.',

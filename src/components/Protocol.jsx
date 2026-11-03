@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, ShieldCheck, Zap, ChevronLeft, ChevronRight, Laptop, Smartphone, ArrowUpRight, Lock, X, Maximize2 } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Zap, ChevronLeft, ChevronRight, Laptop, Smartphone, ArrowUpRight, Lock, X, Maximize2, Code2, Cpu, Database, Wrench } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,6 +11,7 @@ const rawCaseStudies = {
         {
             id: 'palmisano',
             number: '01',
+            status: 'live',
             title: 'Studio Legale Ambientale Palmisano',
             shortTitle: 'Studio Palmisano',
             type: 'Sito Web',
@@ -26,10 +27,11 @@ const rawCaseStudies = {
             challenge: 'Lo Studio Legale Ambientale Palmisano, riferimento nazionale per materie ambientali complesse, necessitava di superare un sito datato. L’obiettivo: trasmettere rigore istituzionale e consentire allo staff di pubblicare sentenze, articoli e aree legali in completa autonomia, senza builder pesanti.',
             solution: 'Ho riprogettato l’architettura dell’informazione da zero: gerarchia visiva sobria, navigazione fluida tra le aree di competenza e moduli di contatto riservati con piena conformità deontologica.',
             engineering: [
-                { label: 'Architettura CMS', desc: 'WordPress con tema sartoriale su misura: zero builder pesanti (no Elementor), codice essenziale e manutenibile.' },
-                { label: 'Prestazioni Estreme', desc: 'Core Web Vitals 99/100, tempo di caricamento inferiore a 0.6s sia su desktop che da mobile.' },
-                { label: 'SEO Semantico', desc: 'Dati strutturati Schema.org dedicati agli studi legali e posizionamento organico nel diritto ambientale.' },
-                { label: 'Autonomia dello Staff', desc: 'Pannello editoriale intuitivo per pubblicare sentenze, memorie o articoli in meno di 2 minuti.' }
+                { label: 'Linguaggi & Core Stack', desc: 'PHP 8.3 puro, WordPress 6.x Core, JavaScript ES6+, HTML5 Semantico e Tailwind CSS compilato su misura per un bundle CSS ultra-leggero.' },
+                { label: 'Architettura Software', desc: 'Tema sartoriale a blocchi proprietario senza page builder terzi (zero Elementor/Divi). Codice essenziale, caricamento istantaneo (<0.6s) e Core Web Vitals 99/100 certificati.' },
+                { label: 'Dashboard & Tooling Operativo', desc: 'Pannello editoriale forense personalizzato con tassonomie per sentenze, memorie ambientali e consulenze legali. Consente allo studio di pubblicare atti e commentari in meno di 2 minuti.' },
+                { label: 'Dati, Storage & Telemetria', desc: 'Database MySQL ottimizzato con query indicizzate, microcaching Nginx a livello server e microdati Schema.org (LegalService) specifici per posizionamento semantico nel diritto ambientale.' },
+                { label: 'Sicurezza & Deontologia', desc: 'Piena conformità alla deontologia forense CNF: moduli di contatto con cifratura SSL anti-spam zero-tracking, zero cookie di profilazione terzi e backup automatici crittografati.' }
             ],
             metrics: [
                 { label: 'Lighthouse Score', value: '99/100' },
@@ -41,12 +43,13 @@ const rawCaseStudies = {
         {
             id: 'workflow-multiagente',
             number: '02',
+            status: 'private',
             title: 'Ecosistema Autonomo Multi-Agente',
             shortTitle: 'Workflow Multi-Agente',
             type: 'Sistema AI & Orchestrazione',
             year: '2026',
-            url: 'https://dragolabs.vercel.app/#servizi',
-            domain: 'workflow.dragolabs.internal',
+            url: null,
+            domain: 'mission-control.local',
             image: '/img/optimized/multiagent-workflow-1600.jpg',
             imageSet: '/img/optimized/multiagent-workflow-1600.jpg 1600w',
             images: [
@@ -56,10 +59,11 @@ const rawCaseStudies = {
             challenge: 'La gestione di flussi operativi complessi (monitoraggio costante di fonti eterogenee, elaborazione di sintesi strategiche, redazione di bozze e smistamento comunicazioni) genera colli di bottiglia e un enorme dispendio di tempo per i professionisti, con elevato rischio di errori e ritardi se gestiti manualmente o con automazioni lineari rigide.',
             solution: 'Ho ingegnerizzato un’infrastruttura modulare guidata da un Orchestratore Centrale e 6 sub-agenti specializzati con memoria persistente isolata (SOUL/MEMORY), routing asimmetrico dei modelli LLM in base al costo computazionale, un rigoroso gatekeeper Human-in-the-Loop (nessun output esterno viene pubblicato senza consenso esplicito) e telemetria locale su SQLite.',
             engineering: [
-                { label: 'Orchestrazione Asimmetrica', desc: 'Routing dinamico dei modelli: task leggeri affidati a modelli veloci a basso costo, sintesi complesse e ragionamento strategico instradati su modelli frontier ad alta capacità.' },
-                { label: 'Human-in-the-Loop Rigoroso', desc: 'Protocollo di sicurezza a permessi bloccati: pubblicazioni, invio comunicazioni e modifiche operative richiedono validazione umana esplicita con preview interattiva.' },
-                { label: 'Memoria & Isolamento Agenti', desc: 'Ogni sub-agente possiede un perimetro operativo isolato con file SOUL.md e log cronologici MEMORY.md, prevenendo contaminazioni di contesto e allucinazioni cross-task.' },
-                { label: 'Telemetria & Manutenzione Zero-Leak', desc: 'Database SQLite locale per tracciamento eventi, vacuum e rotazione mensile dei log, audit notturno di sicurezza e Mission Control via Server-Sent Events.' }
+                { label: 'Linguaggi & Core Stack', desc: 'Python 3.12 (architettura asincrona con AsyncIO), FastAPI backend, SQLite locale, Vanilla JavaScript ES6+, Tailwind CSS e integrazione modelli frontier (LLM multimodali).' },
+                { label: 'Architettura Software', desc: 'Orchestratore Centrale distribuito che coordina 6 sub-agenti specializzati (Ricerca Fonti, Strategia, Redazione, Triage Comunicazioni, Webmaster, DevSecOps). Routing dinamico asimmetrico dei modelli per minimizzare costi computazionali e massimizzare la precisione.' },
+                { label: 'Dashboard & Tooling Operativo', desc: 'Mission Control Dashboard proprietaria in locale servita via Server-Sent Events (SSE) a latenza zero: visualizza lo stato live degli agenti, lo streaming dei task in coda e include il Gatekeeper Human-in-the-Loop per ispezionare, modificare e approvare con 1 click bozze ed email prima del rilascio.' },
+                { label: 'Dati, Storage & Telemetria', desc: 'Memoria contestuale isolata per agente (SOUL.md / MEMORY.md) per prevenire derive di contesto. Telemetria su SQLite locale con crittografia at-rest, routine cron di vacuum e rotazione mensile dei log, audit automatico notturno.' },
+                { label: 'Sicurezza & Governance', desc: 'Protocollo di autorizzazione zero-leak: nessun agente possiede permessi per inviare comunicazioni esterne o modificare asset di produzione senza approvazione umana esplicita. Esecuzione confinata in sandbox locale con policy anti-allucinazione.' }
             ],
             metrics: [
                 { label: 'Risparmio Tempo Operativo', value: '-85% Carico Routine' },
@@ -71,11 +75,12 @@ const rawCaseStudies = {
         {
             id: 'vistamare',
             number: '03',
+            status: 'maintenance',
             title: 'Casa Vacanze Vistamare',
             shortTitle: 'Casa Vistamare',
             type: 'Web App',
             year: '2025',
-            url: 'https://dragolabs.vercel.app',
+            url: null,
             domain: 'casavacanze-vistamare.it',
             image: '/img/optimized/casavacanze-vistamare-1600.webp',
             imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
@@ -86,10 +91,11 @@ const rawCaseStudies = {
             challenge: 'Le strutture ricettive cedono ogni anno dal 15% al 20% di commissioni a piattaforme come Airbnb e Booking. Vistamare voleva uno strumento digitale proprietario capace di emozionare visivamente gli ospiti e convertire le visite in prenotazioni dirette.',
             solution: 'Ho sviluppato un’applicazione web fluida in React 19 e Tailwind CSS: la fotografia ad alta definizione guida l’ospite tra le camere e la costa. Ho integrato il canale diretto su WhatsApp ed email per richiedere disponibilità con un solo click.',
             engineering: [
-                { label: 'Stack Frontend', desc: 'React 19, TypeScript, Tailwind CSS e build istantanea con Vite.' },
-                { label: 'Asset WebP Adattivi', desc: 'Immagini progressive servite in formati multi-risoluzione per caricamento istantaneo in mobilità.' },
-                { label: 'Deploy Edge Serverless', desc: 'Hosting globale Edge su Vercel con zero costi fissi mensili di gestione server.' },
-                { label: 'Booking Diretto', desc: 'Canale diretto WhatsApp ed email per riservare le date azzerando qualsiasi percentuale intermediaria.' }
+                { label: 'Linguaggi & Core Stack', desc: 'React 19, TypeScript, Tailwind CSS, Vite per build istantanea, Node.js e runtime serverless su Edge Vercel.' },
+                { label: 'Architettura Software', desc: 'Single Page Application (SPA) reattiva con rendering Edge decentralizzato, pipeline di immagini progressive WebP multi-risoluzione e zero tempi di caricamento da smartphone in mobilità.' },
+                { label: 'Dashboard & Tooling Operativo', desc: 'Sistema di prenotazione disintermediata: pipeline integrata WhatsApp Business API e form di contatto diretto che elimina il 15-20% di commissioni delle piattaforme OTA (Booking/Airbnb), instradando richieste e disponibilità direttamente su smartphone.' },
+                { label: 'Dati, Storage & Telemetria', desc: 'Deploy Edge globale con caching statico a livello CDN, zero costi fissi mensili di gestione server e tracciamento anonimo privacy-first senza script o cookie invasivi.' },
+                { label: 'Sicurezza & Affidabilità', desc: 'Architettura serverless a superficie d’attacco zero (nessun database o server esposto al pubblico), certificati SSL Edge con rinnovo automatico e disponibilità 99.99% garantita.' }
             ],
             metrics: [
                 { label: 'Disintermediazione', value: '0% Commissioni OTA' },
@@ -103,6 +109,7 @@ const rawCaseStudies = {
         {
             id: 'palmisano',
             number: '01',
+            status: 'live',
             title: 'Palmisano Environmental Law Firm',
             shortTitle: 'Palmisano Law',
             type: 'Website',
@@ -118,10 +125,11 @@ const rawCaseStudies = {
             challenge: 'Palmisano Environmental Law Firm, a national reference in complex environmental law, needed to replace an outdated website. The goal: convey institutional rigor and allow the legal team to publish rulings, articles, and legal areas independently, with zero heavy page builders.',
             solution: 'I redesigned the information architecture from scratch: sober visual hierarchy, seamless navigation across practice areas, and private contact forms adhering strictly to legal ethics.',
             engineering: [
-                { label: 'CMS Architecture', desc: 'Custom tailored WordPress theme: zero bloated builders (no Elementor), clean and maintainable code.' },
-                { label: 'Extreme Performance', desc: 'Core Web Vitals 99/100, loading time under 0.6s on both desktop and mobile.' },
-                { label: 'Semantic SEO', desc: 'Specialized Schema.org structured data for law firms and organic positioning in environmental law.' },
-                { label: 'Staff Autonomy', desc: 'Intuitive editorial panel to publish rulings, briefs, or legal commentaries in under 2 minutes.' }
+                { label: 'Languages & Core Stack', desc: 'Pure PHP 8.3, WordPress 6.x Core, ES6+ JavaScript, Semantic HTML5, tailored compiled Tailwind CSS for an ultra-lightweight CSS bundle.' },
+                { label: 'Software Architecture', desc: 'Custom block theme engineered from scratch without heavy page builders (zero Elementor/Divi). Lean codebase, instant loading (<0.6s), and certified 99/100 Core Web Vitals.' },
+                { label: 'Dashboard & Operational Tooling', desc: 'Tailored legal editorial panel with custom taxonomies for court rulings, environmental briefs, and case law. Enables legal staff to publish case notes in under 2 minutes.' },
+                { label: 'Data, Storage & Telemetry', desc: 'Optimized MySQL database with indexed queries, server-level Nginx caching, and legal Schema.org (LegalService) structured data for organic positioning in environmental law.' },
+                { label: 'Security & Legal Ethics', desc: 'Full compliance with bar association legal ethics: SSL encrypted contact channels, zero third-party tracking cookies, and automated encrypted backups.' }
             ],
             metrics: [
                 { label: 'Lighthouse Score', value: '99/100' },
@@ -133,12 +141,13 @@ const rawCaseStudies = {
         {
             id: 'workflow-multiagente',
             number: '02',
+            status: 'private',
             title: 'Autonomous Multi-Agent Ecosystem',
             shortTitle: 'Multi-Agent Workflow',
             type: 'AI System & Orchestration',
             year: '2026',
-            url: 'https://dragolabs.vercel.app/#servizi',
-            domain: 'workflow.dragolabs.internal',
+            url: null,
+            domain: 'mission-control.local',
             image: '/img/optimized/multiagent-workflow-1600.jpg',
             imageSet: '/img/optimized/multiagent-workflow-1600.jpg 1600w',
             images: [
@@ -148,10 +157,11 @@ const rawCaseStudies = {
             challenge: 'Managing complex knowledge workflows—monitoring diverse feeds, generating strategic syntheses, drafting specialized publications, and triaging multi-channel communications—creates massive operational bottlenecks and manual drag, which legacy linear scripts cannot handle flexibly.',
             solution: 'I engineered a distributed multi-agent system driven by a Central Orchestrator and 6 persistent specialized sub-agents with isolated memory states (SOUL/MEMORY), cost-optimized model routing, an uncompromising Human-in-the-Loop approval gatekeeper, and local SQLite telemetry.',
             engineering: [
-                { label: 'Asymmetric Model Routing', desc: 'Dynamic model assignment: routine triage tasks run on fast cost-efficient models, while complex cross-source reasoning routes to high-capacity frontier models.' },
-                { label: 'Human-in-the-Loop Gatekeeper', desc: 'Zero-trust authorization protocol: communications, updates, and external publications mandate explicit human approval via interactive staging.' },
-                { label: 'Isolated Persistent Memory', desc: 'Strict sandbox boundaries for each agent using isolated SOUL.md definitions and rolling MEMORY.md logs, eliminating context contamination and hallucinations.' },
-                { label: 'Local Telemetry & Zero-Leak Audits', desc: 'SQLite logging with automated log vacuum/rotation, scheduled nightly security scans, and live Mission Control streaming via Server-Sent Events.' }
+                { label: 'Languages & Core Stack', desc: 'Python 3.12 (asynchronous architecture with AsyncIO), FastAPI backend, Local SQLite, Vanilla ES6+ JavaScript, Tailwind CSS, and frontier multimodal LLM integrations.' },
+                { label: 'Software Architecture', desc: 'Distributed Central Orchestrator coordinating 6 specialized sub-agents (Source Research, Strategy, Drafting, Communications Triage, Webmaster, DevSecOps). Asymmetric model routing to minimize computational costs and maximize accuracy.' },
+                { label: 'Dashboard & Operational Tooling', desc: 'Proprietary local Mission Control Dashboard powered by zero-latency Server-Sent Events (SSE): live agent status monitor, task streaming, and a Human-in-the-Loop Gatekeeper to inspect, edit, or authorize drafts/emails with a single click before dispatch.' },
+                { label: 'Data, Storage & Telemetry', desc: 'Isolated contextual memory per agent (SOUL.md / MEMORY.md) preventing cross-task contamination. Local SQLite telemetry with at-rest encryption, automated cron vacuum and monthly log rotation, scheduled nightly security audit.' },
+                { label: 'Security & Governance', desc: 'Zero-leak authorization protocol: zero unvetted external output. No agent can send emails or alter production assets without explicit human sign-off. Sandboxed local execution with zero-hallucination verification.' }
             ],
             metrics: [
                 { label: 'Operational Time Saved', value: '-85% Routine Load' },
@@ -163,11 +173,12 @@ const rawCaseStudies = {
         {
             id: 'vistamare',
             number: '03',
+            status: 'maintenance',
             title: 'Casa Vacanze Vistamare',
             shortTitle: 'Casa Vistamare',
             type: 'Web App',
             year: '2025',
-            url: 'https://dragolabs.vercel.app',
+            url: null,
             domain: 'casavacanze-vistamare.it',
             image: '/img/optimized/casavacanze-vistamare-1600.webp',
             imageSet: '/img/optimized/casavacanze-vistamare-960.webp 960w, /img/optimized/casavacanze-vistamare-1600.webp 1600w',
@@ -178,10 +189,11 @@ const rawCaseStudies = {
             challenge: 'Hospitality properties surrender 15% to 20% in commissions to OTA platforms like Airbnb and Booking on every stay. Vistamare wanted a proprietary digital tool capable of captivating guests visually and converting visits into direct bookings.',
             solution: 'I engineered a fluid web application in React 19 and Tailwind CSS: high-definition photography guides guests through rooms and coastlines. I integrated direct WhatsApp and email channels to request availability in one click.',
             engineering: [
-                { label: 'Frontend Stack', desc: 'React 19, TypeScript, Tailwind CSS, and instant bundling with Vite.' },
-                { label: 'Adaptive WebP Assets', desc: 'Progressive images served in multi-resolution formats for instant mobile loading.' },
-                { label: 'Edge Serverless Deploy', desc: 'Global Edge hosting on Vercel with zero monthly fixed server overhead.' },
-                { label: 'Direct Booking', desc: 'Direct WhatsApp and email channel to reserve dates, eliminating all intermediary fees.' }
+                { label: 'Languages & Core Stack', desc: 'React 19, TypeScript, Tailwind CSS, Vite for instant bundling, Node.js, and Vercel Edge Serverless runtime.' },
+                { label: 'Software Architecture', desc: 'Reactive Single Page Application (SPA) with decentralized Edge rendering, progressive multi-resolution WebP image pipeline, and instantaneous mobile browsing speeds.' },
+                { label: 'Dashboard & Operational Tooling', desc: 'Direct disintermediated booking engine: integrated WhatsApp Business API and quick direct reservation channel that cuts 15-20% OTA commissions (Booking/Airbnb) by routing dates and availability directly to the host’s mobile.' },
+                { label: 'Data, Storage & Telemetry', desc: 'Global Edge deployment with CDN static asset caching, zero monthly fixed server overhead, and privacy-first tracking with zero invasive cookies.' },
+                { label: 'Security & Reliability', desc: 'Serverless architecture with zero exposed attack surface (no vulnerable public database or server backend), automated Edge SSL certificates, and guaranteed 99.99% uptime.' }
             ],
             metrics: [
                 { label: 'Disintermediation', value: '0% OTA Fees' },
@@ -417,7 +429,7 @@ export default function Protocol() {
                                 </button>
                             </div>
 
-                            {project.url && (
+                            {project.status === 'live' && project.url && (
                                 <a
                                     href={project.url}
                                     target="_blank"
@@ -428,6 +440,20 @@ export default function Protocol() {
                                     <span>{t.protocol.visitWebsite}</span>
                                     <ExternalLink className="w-3.5 h-3.5 text-black" />
                                 </a>
+                            )}
+
+                            {project.status === 'private' && (
+                                <div className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/20 font-mono text-xs font-semibold text-gray-200 shadow-sm flex-shrink-0">
+                                    <Lock className="w-3.5 h-3.5 text-drago-accent" />
+                                    <span>{isEn ? "Private System" : "Progetto Privato"}</span>
+                                </div>
+                            )}
+
+                            {project.status === 'maintenance' && (
+                                <div className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/35 font-mono text-xs font-semibold text-amber-300 shadow-sm flex-shrink-0">
+                                    <Wrench className="w-3.5 h-3.5 text-amber-400" />
+                                    <span>{isEn ? "In Maintenance" : "In Manutenzione"}</span>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -461,7 +487,7 @@ export default function Protocol() {
                                     {[
                                         { id: 'overview', label: t.protocol.tabs.overview },
                                         { id: 'challenge', label: t.protocol.tabs.challenge },
-                                        { id: 'engineering', label: t.protocol.tabs.engineering },
+                                        { id: 'engineering', label: isEn ? 'Engineering & Stack' : 'Ingegneria & Stack' },
                                     ].map((tabItem) => (
                                         <button
                                             key={tabItem.id}
@@ -528,18 +554,22 @@ export default function Protocol() {
                                     )}
 
                                     {activeTab === 'engineering' && (
-                                        <div className="space-y-2.5">
-                                            {project.engineering.map((eng) => (
-                                                <div key={eng.label} className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-drago-accent/30 transition-all">
-                                                    <div className="flex items-center gap-1.5 mb-1">
-                                                        <Zap className="w-3.5 h-3.5 text-drago-accent" />
-                                                        <span className="font-sans font-bold text-xs sm:text-sm text-white">{eng.label}</span>
+                                        <div className="space-y-3">
+                                            {project.engineering.map((eng, idx) => {
+                                                const iconsMap = [Code2, Cpu, Laptop, Database, ShieldCheck];
+                                                const EngIcon = iconsMap[idx] || Zap;
+                                                return (
+                                                    <div key={eng.label} className="p-3 sm:p-3.5 rounded-xl bg-white/[0.035] border border-white/10 hover:border-drago-accent/35 transition-all">
+                                                        <div className="flex items-center gap-1.5 mb-1">
+                                                            <EngIcon className="w-3.5 h-3.5 text-drago-accent flex-shrink-0" />
+                                                            <span className="font-mono font-bold text-xs sm:text-sm text-white tracking-tight">{eng.label}</span>
+                                                        </div>
+                                                        <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+                                                            {eng.desc}
+                                                        </p>
                                                     </div>
-                                                    <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
-                                                        {eng.desc}
-                                                    </p>
-                                                </div>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
                                     )}
                                 </div>
@@ -568,7 +598,7 @@ export default function Protocol() {
                                                 <span className="truncate text-gray-200">{project.domain || project.url}</span>
                                             </div>
 
-                                            {project.url ? (
+                                            {project.status === 'live' && project.url ? (
                                                 <a
                                                     href={project.url}
                                                     target="_blank"
@@ -578,6 +608,14 @@ export default function Protocol() {
                                                 >
                                                     <ExternalLink className="w-3.5 h-3.5" />
                                                 </a>
+                                            ) : project.status === 'private' ? (
+                                                <div title={isEn ? "Private System" : "Progetto Privato"} className="text-drago-accent">
+                                                    <Lock className="w-3.5 h-3.5" />
+                                                </div>
+                                            ) : project.status === 'maintenance' ? (
+                                                <div title={isEn ? "In Maintenance" : "In Manutenzione"} className="text-amber-400">
+                                                    <Wrench className="w-3.5 h-3.5" />
+                                                </div>
                                             ) : (
                                                 <div className="w-4" />
                                             )}

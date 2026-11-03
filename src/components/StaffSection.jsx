@@ -252,6 +252,7 @@ export default function StaffSection() {
                                             {quickArgoQuestions.map((q, i) => (
                                                 <button
                                                     key={i}
+                                                    type="button"
                                                     onClick={() => handleOpenWithPrompt(q.query)}
                                                     className="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all text-left flex items-center justify-between group/prompt"
                                                 >
@@ -268,6 +269,7 @@ export default function StaffSection() {
                                 {/* Primary CTA Button: Parla con Argo */}
                                 <div className="mt-8 pt-6 border-t border-white/10">
                                     <button
+                                        type="button"
                                         onClick={() => handleOpenWithPrompt('')}
                                         className="w-full py-4 px-6 rounded-2xl bg-white text-black hover:bg-gray-100 font-sans font-bold text-base sm:text-lg flex items-center justify-between transition-all duration-300 shadow-md group hover:scale-[1.01] active:scale-95"
                                     >
